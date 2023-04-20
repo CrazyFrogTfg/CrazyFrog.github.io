@@ -1,0 +1,66 @@
+body{
+  background-color:black;
+}
+
+li{
+  background-color: black;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+
+.logout{
+  margin-right:25px;
+}
+
+.title{
+  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Kanit', sans-serif;
+}
+
+.nav{
+  border:black;
+}
+
+p{
+  color:white;
+}
+
+.active{
+  background-color: white;
+  border-radius: 25px;
+}
+
+.nav-link {
+  color:white;
+}
+
+.navbar-brand{
+  margin-left: 25px;
+}
+
+.logo{
+  width:55px;
+}
+
+.buttons{
+  margin-left: 30px;
+}
+
+
+.nav-link:hover{
+  background-color:greenyellow;
+  color:black;
+  border:none;
+  border-radius: 25px;
+}
+
+nav {
+  background-color:#E9840E;
+  height: 70px;
+  display:flex;
+  align-items: center;
+}
+
+.nav-item{
+  height: 45px;
+}

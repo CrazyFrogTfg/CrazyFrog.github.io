@@ -1,0 +1,25 @@
+<!-- En tu componente de barra de navegación -->
+<nav class="navbar navbar-expand-lg d-flex justify-content-between">
+    <a [routerLink]="['inicio']" routerLinkActive="active" class="navbar-brand title" href="#">
+      <img class="logo" src="../../../../assets/frog-svgrepo-com.svg">
+      M<em>ediaFrog</em>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a [routerLink]="['home']" routerLinkActive="active" class="nav-link" aria-current="page" href="#">INICIO</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['buscador']" routerLinkActive="active" class="nav-link" href="#">BUSCADOR</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['perfil']" routerLinkActive="active" class="nav-link" href="#">PERFIL</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav logout">
+        <li class="nav-item">
+          <a [routerLink]="['logout']" routerLinkActive="active" class="nav-link" href="#">CERRAR SESION</a>
+        </li>
+      </ul>
+    </div>
+</nav>
