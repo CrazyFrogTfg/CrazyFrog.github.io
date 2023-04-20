@@ -30,6 +30,11 @@ p{
   border-radius: 25px;
 }
 
+.nav-link:focus{
+  background-color: greenyellow;
+  border-radius: 25px;
+}
+
 .nav-link {
   color:white;
 }
