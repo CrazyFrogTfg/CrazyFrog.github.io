@@ -1,10 +1,12 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter&family=Kanit&display=swap');
 
 body{
   background-color:black;
+  font-family: 'Inter', sans-serif;
 }
 
-li{
+.navbar-nav li{
   background-color: black;
   border-radius: 25px;
   margin-right: 10px;
@@ -30,11 +32,13 @@ p{
 .active{
   background-color: white;
   border-radius: 25px;
+  font-weight:bolder;
 }
 
 .nav-link:focus{
   background-color: greenyellow;
   border-radius: 25px;
+  font-weight:bolder;
 }
 
 .nav-link {
@@ -59,6 +63,10 @@ p{
   color:black;
   border:none;
   border-radius: 25px;
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+  font-weight:bolder;
 }
 
 nav {
@@ -70,4 +78,69 @@ nav {
 
 .nav-item{
   height: 45px;
+}
+
+@media (max-width: 768px) {
+
+  .navbar-collapse {
+    display: none; /* Ocultar la barra de navegación */
+  }
+
+  .navbar-toggler:hover {
+    background-color:greenyellow;
+    color:black;
+    border-radius: 25px;
+    transition-property: background-color, color;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    font-weight:bolder;
+  }
+
+  .navbar-collapse.show {
+    display: block; /* Mostrar la barra de navegación cuando se hace clic en el botón */
+  }
+
+  .navbar-nav {
+    display:flex;
+    flex-direction: column; /* Mostrar los elementos en una columna cuando se muestra la barra de navegación */
+    align-items: center; /* Centrar los elementos verticalmente */
+    background-color: black; /* Cambiar el fondo de la barra de navegación */
+    justify-content: center;
+  }
+
+  .navbar-nav {
+    width: 100%; /* Ancho completo del contenedor de la barra de navegación */
+    display: flex;
+    justify-content: center; /* Centrar los elementos en el eje horizontal */
+    align-items: center; /* Centrar los elementos en el eje vertical */
+}
+
+.navbar-nav li {
+    width: 60%; /* Ancho automático para cada elemento de la barra de navegación */
+    text-align: center; /* Centrar el texto en cada elemento */
+    margin-bottom: 10px;
+    margin-top: 10px; /* Agregar margen inferior entre elementos */
+    background-color: #E9840E;
+    border-radius: 25px;
+}
+
+.logout {
+    margin-right: 0px;
+}
+
+.nav-link {
+  color: black;
+}
+
+.navbar-brand {
+  margin-left: 25px;
+}
+
+.navbar-toggler {
+  display: block;
+  margin-right: 25px;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
 }
