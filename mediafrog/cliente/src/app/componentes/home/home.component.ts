@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  miaudio:any
+  isVisible = false;
+
+  reproducir() {
+    this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
+    this.isVisible = true;
+}
 }
