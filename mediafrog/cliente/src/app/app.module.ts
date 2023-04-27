@@ -7,7 +7,12 @@ import { NavbarComponent } from './componentes/shared/navbar/navbar.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { BuscadorComponent } from './componentes/buscador/buscador.component';
 import { LoginComponent } from './componentes/login/login.component';
-import { FrogComponent } from './componentes/frog/frog.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +21,15 @@ import { FrogComponent } from './componentes/frog/frog.component';
     HomeComponent,
     BuscadorComponent,
     LoginComponent,
-    FrogComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]
