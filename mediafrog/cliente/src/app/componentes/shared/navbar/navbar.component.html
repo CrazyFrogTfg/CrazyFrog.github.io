@@ -6,7 +6,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
       <span class="navbar-toggler-icon"></span> <!-- Icono de menú -->
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav" ngClass="{ 'show': isNavbarOpen }">
+    <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isNavbarOpen">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
           <a routerLink="/home" routerLinkActive="active" class="nav-link" aria-current="page" href="#">INICIO</a>
@@ -20,7 +20,7 @@
       </ul>
       <ul class="navbar-nav logout">
         <li class="nav-item">
-          <a routerLink="/logout" routerLinkActive="active" class="nav-link" href="#">CERRAR SESION</a>
+          <a routerLink="/logout" routerLinkActive="active" class="nav-link" href="#" (click)="onClick()">CERRAR SESION</a>
         </li>
       </ul>
     </div>

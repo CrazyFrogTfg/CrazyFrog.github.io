@@ -98,7 +98,7 @@ nav {
   justify-content: left;
   background-color: #E9840E;
   width: 450px;
-  height: 350px;
+  height: 325px;
   border-radius: 30px;
   color: black;
   font-family: 'Inter';
@@ -150,6 +150,7 @@ nav {
 #entrar{
   margin-top:1.5%;
   float:right;
+  margin-right: 1%;
 }
 
 .licencia {

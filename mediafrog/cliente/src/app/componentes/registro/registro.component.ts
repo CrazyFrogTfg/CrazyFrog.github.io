@@ -19,17 +19,19 @@ export class RegistroComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(){
     this.userService.register(this.formReg.value)
       .then(response => {
-        console.log("hola")
-        console.log(response);
         this.router.navigate(['/login']);
       })
+      //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
       .catch(error => console.log(error));
+  }
+
+  goToLogin(){
+    this.router.navigate(['/login']);
   }
 
 }

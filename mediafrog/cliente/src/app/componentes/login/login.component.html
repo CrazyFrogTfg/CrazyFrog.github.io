@@ -5,16 +5,17 @@
   <section class="login-box">
     <h1 style="padding-bottom: 20px;">INICIA SESIÓN</h1>
     <div>
-      <form>
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="exampleInputUser">Usuario</label>
-          <input type="text" class="form-control" id="exampleInputUser1" aria-describedby="user" placeholder="Introduzca usuario">
+          <input type="text" class="form-control" id="exampleInputUser1" aria-describedby="user" placeholder="Introduzca usuario" formControlName="email">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Introduzca contraseña">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
         </div>
         <button type="submit" class="btn btn-dark" id="entrar">ENTRAR</button>
+        <button class="btn btn-outline-dark" id="entrar" (click)="goToRegistro()">REGISTRATE</button>
       </form>
     </div>
   </section>
@@ -24,6 +25,6 @@
   <br />
   Este obra está bajo una
   <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
-  <br> Reconocimiento-CompartirIgual
-  <br> 4.0 Internacional</a>
+  Reconocimiento-CompartirIgual
+  4.0 Internacional</a>
 </footer>
