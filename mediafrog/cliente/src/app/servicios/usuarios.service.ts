@@ -27,7 +27,7 @@ export class UsuariosService {
     return signOut(this.auth);
   }
 
-   addUser(user: User) {
+  addUser(user: User) {
     if (user.email.trim() && user.password.trim() && user.username.trim()){
       const userRef = collection(this.firestore, 'users');
       return addDoc(userRef, user);
@@ -43,7 +43,7 @@ export class UsuariosService {
       const querySnapshots = await getDocs(q)
       this.userInfo = querySnapshots.docs[0].data()
       return this.userInfo
+    }
   }
-}
 
 }
