@@ -1,0 +1,53 @@
+h1 {
+    font-size: 500%;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.texto {
+    flex: 1;
+}
+
+.imagen {
+    flex: 1;
+    text-align: right;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+    width: 100vw;
+
+}
+
+a {
+    background-color: #c98900;
+    border-radius: 25px;
+    color: white;
+    padding: 20px 35px;
+    text-align: right;
+    display: inline-block;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .imagen {
+        padding-right: 0;
+        text-align: center;
+    }
+}
