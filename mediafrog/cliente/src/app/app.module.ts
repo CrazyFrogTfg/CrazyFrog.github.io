@@ -15,6 +15,10 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { FooterComponent } from './componentes/shared/footer/footer.component';
+import { LandingComponent } from './componentes/landing/landing.component';
+import { NavbarLandingComponent } from './componentes/shared/navbar-landing/navbar-landing.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,8 @@ import { FooterComponent } from './componentes/shared/footer/footer.component';
     RegistroComponent,
     PerfilComponent,
     FooterComponent,
+    LandingComponent,
+    NavbarLandingComponent
   ],
   imports: [
     BrowserModule,
