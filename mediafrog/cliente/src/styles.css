@@ -1,5 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@800&family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@800&family=Poppins&family=Kanit&display=swap');
 
 body{
   background-color:black;
@@ -17,8 +17,7 @@ body{
 }
 
 .title{
-  font-family: 'Cormorant Garamond', serif;
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Poppins';
 }
 
 .nav{
@@ -113,19 +112,20 @@ nav {
   flex-direction: column;
   justify-content: left;
   background-color: #E9840E;
-  width: 450px;
-  height: 395px;
+  width: 40%;
+  height: 90%;
   border-radius: 30px;
   color: black;
   font-family: 'Inter';
   padding-top: 25px;
+  padding-bottom: 25px;
   padding-left: 50px;
   padding-right: 50px;
   margin-top: 1%;
 }
 
 .form-group {
-  margin-bottom:5%;
+  margin-bottom:2%;
 }
 
 .form-control {
@@ -161,6 +161,47 @@ nav {
   margin: 0 auto;
   width: 100%;
   font-size: xx-small;
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.profile-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  background-color: #E9840E;
+  width: 60%;
+  height: 90%;
+  border-radius: 30px;
+  color: black;
+  font-family: 'Inter';
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.profile-img{
+  float:left;
+  width:20%;
+}
+
+.upload-img{
+  float:right;
+  width:80%;
+}
+
+.label-img{
+  margin-top: 40px;
+}
+
+.label{
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -224,6 +265,10 @@ nav {
   margin-right: 25px;
   border: 2px solid;
   border-radius: 25px;
+}
+
+.register-box{
+  width: 70%;
 }
 
 }
