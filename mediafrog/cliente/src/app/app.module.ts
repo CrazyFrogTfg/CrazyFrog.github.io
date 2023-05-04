@@ -14,6 +14,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { FooterComponent } from './componentes/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
     LoginComponent,
     RegistroComponent,
     PerfilComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

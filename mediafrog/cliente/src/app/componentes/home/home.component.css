@@ -1,0 +1,64 @@
+.homeDisp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2%;
+}
+
+.profile-img2{
+    justify-self: right;
+    width:10%;
+  }
+
+.welcome{
+    text-align: center;
+}
+
+
+.divBuscador{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lupa{
+    margin-right: 20px;
+}
+
+.buscador{
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.home-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.playlist-table{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.playlist-table>tr>td{
+    margin-right: 5px;
+}
+
+.addPlaylist{
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    
+}

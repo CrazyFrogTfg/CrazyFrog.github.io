@@ -27,9 +27,12 @@ export class UsuariosService {
     return signOut(this.auth);
   }
 
-  addUser(user: User) {
-    const userRef = collection(this.firestore, 'users');
-    return addDoc(userRef, user);
+   addUser(user: User) {
+    if (user.email.trim() && user.password.trim() && user.username.trim()){
+      const userRef = collection(this.firestore, 'users');
+      return addDoc(userRef, user);
+    } return null
+
   }
 
   async getUserInfo(){

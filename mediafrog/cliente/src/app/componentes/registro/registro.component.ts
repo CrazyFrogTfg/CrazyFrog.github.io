@@ -16,7 +16,7 @@ export class RegistroComponent implements OnInit {
     this.formReg = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
-      usuario:new FormControl()
+      username:new FormControl()
     })
   }
 
