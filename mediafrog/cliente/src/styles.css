@@ -82,7 +82,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 70px;
+  
 }
 
 .login-box, .register-box {
@@ -142,6 +142,7 @@ footer {
   position: relative;
   width: 100%;
   font-size: xx-small;
+  margin-top: 70px;
 }
 
 .profile-container{
@@ -255,4 +256,8 @@ footer {
 
 
 
+}
+
+.lupa{
+  margin-right: 20px;
 }

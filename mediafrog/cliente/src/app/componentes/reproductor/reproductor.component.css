@@ -1,0 +1,19 @@
+audio{
+    width: 100%;
+    position: relative;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: #E9840E; /* Cambiar el color del botón de reproducción */
+    /* Hacer que el botón sea redondeado */
+}
+
+audio::-webkit-media-controls-play-button {
+    /* Círculo negro */
+    background-color: greenyellow;
+    /* Tamaño del círculo */
+    width: 18px;
+    height: 22px;
+    /* Bordes redondos */
+    border-radius: 50%;
+  }

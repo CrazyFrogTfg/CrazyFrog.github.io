@@ -6,15 +6,22 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './componentes/shared/navbar/navbar.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { BuscadorComponent } from './componentes/buscador/buscador.component';
-import { LoginComponent } from './componentes/login/login.component';
-import { RegistroComponent } from './componentes/registro/registro.component';
+import { LoginComponent } from './componentes/usuarios/login/login.component';
+import { RegistroComponent } from './componentes/usuarios/registro/registro.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { PerfilComponent } from './componentes/usuarios/perfil/perfil.component';
 import { FooterComponent } from './componentes/shared/footer/footer.component';
+import { LandingComponent } from './componentes/landing/landing.component';
+import { NavbarLandingComponent } from './componentes/shared/navbar-landing/navbar-landing.component';
+import { Error404Component } from './componentes/shared/error404/error404.component';
+import { ArtistaComponent } from './componentes/pages/artista/artista.component';
+import { ReproductorComponent } from './componentes/reproductor/reproductor.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +33,11 @@ import { FooterComponent } from './componentes/shared/footer/footer.component';
     RegistroComponent,
     PerfilComponent,
     FooterComponent,
+    LandingComponent,
+    NavbarLandingComponent,
+    Error404Component,
+    ArtistaComponent,
+    ReproductorComponent
   ],
   imports: [
     BrowserModule,

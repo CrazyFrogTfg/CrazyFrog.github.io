@@ -1,2 +1,43 @@
 <app-navbar></app-navbar>
-<p>buscador works!</p>
+
+<section class="buscadorSection">
+    <input class="buscadorInput" type="text" placeholder="¿Qué te apetece escuchar?">
+    <div class="lupa">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+    </div>
+</section>
+
+<section class="busquedaContainer">
+    <section class="encontradoContainer">
+        <section>
+            <p>
+                artistas for
+            </p>
+        </section>
+        <section>
+            <p>
+                albumes for
+            </p>
+        </section>
+        <section>
+            <p>
+                canciones for
+            </p>
+        </section>
+    </section>
+
+    <section class="filtrosSection">
+        <label>Filtrar por:<br>
+            <input type="checkbox" id="cbox1" value="artistas">Artistas
+        </label><br>
+            <input type="checkbox" id="cbox2" value="albumes">
+        <label for="cbox2">Álbumes</label><br>
+        <label>
+            <input type="checkbox" id="cbox3" value="canciones">Canciones
+        </label>
+    </section>   
+</section>
+<app-reproductor></app-reproductor>
+
