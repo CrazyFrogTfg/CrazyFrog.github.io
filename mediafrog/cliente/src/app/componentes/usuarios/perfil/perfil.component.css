@@ -1,0 +1,48 @@
+.form-group {
+  margin-bottom:2%;
+}
+
+.form-control {
+  background-color: rgba(217, 217, 217, 0.5);
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.profile-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  background-color: #E9840E;
+  width: 60%;
+  height: 90%;
+  border-radius: 30px;
+  color: black;
+  font-family: 'Inter';
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.profile-img{
+  float:left;
+  width:20%;
+}
+
+.upload-img{
+  float:right;
+  width:80%;
+}
+
+.label-img{
+  margin-top: 40px;
+}
+
+.label{
+  width: 100%;
+}

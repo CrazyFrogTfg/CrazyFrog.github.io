@@ -1,0 +1,53 @@
+.frog-container {
+  margin-top:5%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(233, 132, 14, 0.6);
+  width: 83px;
+  height: 83px;
+  border-radius: 83px;
+  margin-bottom:10px;
+}
+
+.frog {
+  width:65px;
+}
+
+
+.register-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.register-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  background-color: #E9840E;
+  width: 40%;
+  height: 90%;
+  border-radius: 30px;
+  color: black;
+  font-family: 'Inter';
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 1%;
+}
+
+.form-group {
+  margin-bottom:2%;
+}
+
+.form-control {
+  background-color: rgba(217, 217, 217, 0.5);
+}
+
+#entrar{
+  margin-top:1.5%;
+  float:right;
+  margin-right: 1%;
+}
