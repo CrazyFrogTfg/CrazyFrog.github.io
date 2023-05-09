@@ -1,63 +1,81 @@
 h1 {
-    font-size: 5em;
-    width: 100%;
-    height: 100%;
-    color: white;
+  font-size:6em;
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding: 1%;
 }
 
 body {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
 .texto {
-    flex: 1;
+  grid-row: 1/2;
+  grid-column: 1/2;
+  justify-self: center;
+  font-family: Poppins;
 }
 
 .imagen {
-    flex: 1;
-    text-align: right;
+  grid-row: 1/2;
+  grid-column: 2/3;
+  justify-self: end;
+  width: 100%;
+  height: 100%;
+  text-align: right;
 }
 
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 70px;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 70px;
 }
 
 button {
-    background-color: #c98900;
-    border-radius: 25px;
-    color: white;
-    padding: 20px 35px;
-    text-align: right;
-    display: inline-block;
-    font-size: 16px;
+  background-color: #c98900;
+  border-radius: 25px;
+  color: white;
+  padding: 20px 35px;
+  display: inline-block;
+  font-size: 16px;
+  justify-self: end;
+  margin-top: 3%;
 }
 
-button:hover{
-    background-color:greenyellow;
-    color:black;
-    border-radius: 25px;
-    transition-property: background-color, color;
-    transition-duration: 0.4s;
-    transition-timing-function: ease;
-    font-weight:bolder;
+button:hover {
+  background-color: greenyellow;
+  color: black;
+  border-radius: 25px;
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+  font-weight: bolder;
 }
 
-@media screen and (max-width: 1200px) {
-    .container {
-        font-size: 80%;
-    }
+@media screen and (max-width: 857px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
 
-    .imagen{
-        width: 80%;
-        height: 80%;
-    }
+  .texto {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    text-align: center;
+    justify-self: center;
+  }
 
+  .imagen {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    justify-self: center;
+    width: 100%;
+    height: auto;
+  }
 }

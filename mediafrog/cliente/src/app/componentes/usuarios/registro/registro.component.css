@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@800&family=Poppins&family=Kanit&display=swap');
 .frog-container {
   margin-top:5%;
   display: flex;
@@ -50,4 +51,10 @@
   margin-top:1.5%;
   float:right;
   margin-right: 1%;
+}
+
+@media (max-width: 768px) {
+  .register-box{
+    width: 70%;
+  }
 }
