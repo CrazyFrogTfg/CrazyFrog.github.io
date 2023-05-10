@@ -21,6 +21,7 @@ import { Error404Component } from './componentes/shared/error404/error404.compon
 import { ArtistaComponent } from './componentes/pages/artista/artista.component';
 import { ReproductorComponent } from './componentes/reproductor/reproductor.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
 
 
 
@@ -38,7 +39,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     NavbarLandingComponent,
     Error404Component,
     ArtistaComponent,
-    ReproductorComponent
+    ReproductorComponent,
+    NewPlaylistComponent,
   ],
   imports: [
     BrowserModule,
