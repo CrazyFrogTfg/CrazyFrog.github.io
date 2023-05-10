@@ -1,5 +1,7 @@
-export interface Cancion {
+import { Cancion } from "./cancion.interface"
+
+export interface Album {
   nombre:string,
   año:number,
-  canciones: []
+  canciones: Cancion[]
 }
