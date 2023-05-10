@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
 import { Artista } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class ArtistasService {
   addArtista(artista:Artista){
     const artistaRef = collection(this.firestore, 'artistas');
     return addDoc(artistaRef, artista);
+  }
 
+  getArtistas(): Observable<Artista[]>{
+    const artistaRef = collection(this.firestore, 'artistas')
+    return collectionData(artistaRef, { idField: 'name'}) as Observable<Artista[]>;
   }
 }
