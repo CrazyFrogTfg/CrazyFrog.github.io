@@ -20,6 +20,7 @@ import { NavbarLandingComponent } from './componentes/shared/navbar-landing/navb
 import { Error404Component } from './componentes/shared/error404/error404.component';
 import { ArtistaComponent } from './componentes/pages/artista/artista.component';
 import { ReproductorComponent } from './componentes/reproductor/reproductor.component';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
@@ -45,7 +46,8 @@ import { ReproductorComponent } from './componentes/reproductor/reproductor.comp
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
