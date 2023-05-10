@@ -8,6 +8,7 @@ import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angula
 import { PerfilComponent } from './componentes/usuarios/perfil/perfil.component';
 import { LandingComponent } from './componentes/landing/landing.component';
 import { Error404Component } from './componentes/shared/error404/error404.component';
+import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent, ...canActivate(() => redirectLoggedInTo(['/home']))},
   {path: 'perfil', component: PerfilComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
   {path: 'landing', component: LandingComponent, ...canActivate(() => redirectLoggedInTo(['/home']))},
+  {path: 'newplaylist', component: NewPlaylistComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
   {path: '**', component: Error404Component}
 ];
 

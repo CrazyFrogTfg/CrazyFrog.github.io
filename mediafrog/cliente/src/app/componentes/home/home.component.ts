@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class HomeComponent {
   username:string = ""
   password:string = ""
 
-  constructor(private userService:UsuariosService){}
+  constructor(private userService:UsuariosService, private router: Router){}
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -27,5 +28,9 @@ export class HomeComponent {
   reproducir() {
     this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
     this.isVisible = true;
-}
+  }
+
+  goToNewPlaylist(){
+    this.router.navigate(['/newplaylist']);
+  }
 }

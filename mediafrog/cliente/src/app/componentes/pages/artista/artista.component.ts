@@ -21,7 +21,6 @@ export class ArtistaComponent {
     descripcion:new FormControl()
     })
   }
-
     ngOnInit(): void{ }
 
     async onSubmit() {

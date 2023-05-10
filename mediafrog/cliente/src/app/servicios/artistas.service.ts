@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
-import {Artista} from '../interfaces/artista.interface';
-import {Album} from '../interfaces/album.interface';
-import {Cancion} from '../interfaces/cancion.interface';
+import { Artista } from '../interfaces/artista.interface';
+import { Album } from '../interfaces/album.interface';
+import { Cancion } from '../interfaces/cancion.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
