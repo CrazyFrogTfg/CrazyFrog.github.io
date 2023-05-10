@@ -14,6 +14,9 @@ export class UsuariosService {
 
   private readonly authh = getAuth();
 
+  getAuthh(){
+    return this.authh
+  }
 
   register({email, password}: any){
     return createUserWithEmailAndPassword(this.auth, email, password);

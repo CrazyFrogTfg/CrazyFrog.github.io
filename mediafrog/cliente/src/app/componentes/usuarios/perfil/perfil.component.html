@@ -4,9 +4,9 @@
     <div>
       <form>
         <div class="form-group">
-          <img src="../../../assets/frog-svgrepo-com(1).svg" class="profile-img">
+          <img [src]="imageProfile" width="100">
           <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
-          <input type="file" class="form-control upload-img" id="exampleInputImage1" formControlName="imagen">
+          <input type="file" (change)="uploadImageProfile($event)" class="form-control upload-img">
         </div>
         <div class="form-group">
           <label for="exampleInputUser" class="label">Usuario</label>
