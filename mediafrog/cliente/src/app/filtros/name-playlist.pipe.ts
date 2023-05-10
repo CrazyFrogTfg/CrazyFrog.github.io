@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NamePlaylistPipe implements PipeTransform {
 
-  transform(arraySearched: any[], param: string, arrayFiltred: any[] ): any[] {
-    arrayFiltred = arraySearched.filter( searched => searched.nombre.includes(param));
+  transform(arraySearched: any[], param: string): any[] {
+    const arrayFiltred:any[] = arraySearched.filter( searched => searched.nombre.includes(param));
     return arrayFiltred
   }
 

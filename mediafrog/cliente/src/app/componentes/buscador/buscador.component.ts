@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ArtistasService } from 'src/app/servicios/artistas.service';
 import { Artista } from '../../interfaces/artista.interface'
+import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 
 @Component({
   selector: 'app-buscador',
@@ -14,13 +15,22 @@ export class BuscadorComponent {
   cboxCancion:boolean=true
   artistas:any
 
-  constructor(private artistaService:ArtistasService){ }
+  constructor(private artistaService:ArtistasService,
+              private fireStorage:FireStorageService){ }
   
   ngOnInit():void{
       this.artistaService.getArtistas().subscribe(artistas =>{
       console.log(artistas)
       this.artistas = artistas
     })
+  }
+
+  getFilterName():string{
+    return this.fireStorage.getFilterName()
+  }
+  
+  setFilterName(search:string){
+    this.fireStorage.setFilterName(search)
   }
 
   getArtistas():any{

@@ -41,7 +41,7 @@ import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/
     Error404Component,
     ArtistaComponent,
     ReproductorComponent,
-    NamePlaylistPipe
+    NamePlaylistPipe,
     NewPlaylistComponent,
   ],
   imports: [
