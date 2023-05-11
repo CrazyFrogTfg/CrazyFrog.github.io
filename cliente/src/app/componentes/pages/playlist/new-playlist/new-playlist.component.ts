@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -22,9 +23,9 @@ export class NewPlaylistComponent {
     });
   }
 
-  constructor(private router: Router, private userService:UsuariosService){
+  constructor(private router: Router, private userService:UsuariosService, private db:DbService){
     this.newPlaylist = new FormGroup({
-      namePlaylist: new FormControl(),
+      nombre: new FormControl(),
       privada: new FormControl(false),
       propietario: new FormControl('')
     })
@@ -34,7 +35,7 @@ export class NewPlaylistComponent {
     this.router.navigate(['/home']);
   }
 
-  onSubmit(){
-    console.log(this.newPlaylist.value);
+  async onSubmit(){
+    await this.db.addPlaylist(this.newPlaylist.value)
   }
 }

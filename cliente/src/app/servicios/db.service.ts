@@ -4,6 +4,7 @@ import { Artista } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
 import { Observable } from 'rxjs';
+import { Playlist } from '../interfaces/playlist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,10 @@ export class DbService {
   deleteArtista(artista:Artista){
     const artistaDocRef = doc(this.firestore, `artists/${artista.id}`);
     return deleteDoc(artistaDocRef)
+  }
+
+  addPlaylist(playlist:Playlist){
+    const playlistRef = collection(this.firestore, 'playlists');
+    return addDoc(playlistRef, playlist);
   }
 }
