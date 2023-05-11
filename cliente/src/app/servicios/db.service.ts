@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ArtistasService {
+export class DbService {
 
   constructor(private firestore:Firestore) { }
 
@@ -26,6 +26,4 @@ export class ArtistasService {
     const artistaDocRef = doc(this.firestore, `artists/${artista.id}`);
     return deleteDoc(artistaDocRef)
   }
-
-  
 }

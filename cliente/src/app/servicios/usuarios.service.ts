@@ -3,14 +3,17 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { Firestore, collection, addDoc, doc, getDocs, where, query} from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
 import { getAuth } from "firebase/auth";
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
   userInfo: any;
+  imageProfile:string=""
 
-  constructor(private auth:Auth, private firestore: Firestore) { }
+  constructor(private auth:Auth, private firestore: Firestore, private storage:Storage) { }
 
   private readonly authh = getAuth();
 
@@ -47,6 +50,32 @@ export class UsuariosService {
       this.userInfo = querySnapshots.docs[0].data()
       return this.userInfo
     }
+  }
+
+  getImageProfile(username:string){
+    const imagesRef = ref(this.storage, `users/${username}`)
+    listAll(imagesRef)
+    .then(async response =>{
+      console.log(response)
+
+      for(let item of response.items){
+        this.imageProfile = await getDownloadURL(item);
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
+  uploadImageProfile($event:any, username:string){
+    const file = $event.target.files[0];
+    console.log("file uploading: " + file)
+    const fileRef = ref(this.storage, `users/${username}/imageProfile`)
+
+    uploadBytes(fileRef, file)
+    .then(response =>{
+    console.log(response);
+    this.getImageProfile(username)
+    })
+    .catch(error => console.log(error));
   }
 
 }

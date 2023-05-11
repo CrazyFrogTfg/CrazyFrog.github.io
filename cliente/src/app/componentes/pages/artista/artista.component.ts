@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 // import { Artista } from '../../../interfaces/artista.interface'
 // import { Album } from '../../../interfaces/album.interface'
 // import { Cancion } from '../../../interfaces/cancion.interface'
-import { ArtistasService } from 'src/app/servicios/artistas.service';
 import { Input } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
+import { DbService } from 'src/app/servicios/db.service';
 // import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 // import { delay } from 'rxjs';
 
@@ -19,9 +19,9 @@ export class ArtistaComponent {
 @Input() artista:any;
   //imageArtist:string=""
   formulario: FormGroup
-  
 
-  constructor(private artistaService: ArtistasService,
+
+  constructor(private db: DbService,
               private storage:Storage){
   this.formulario = new FormGroup({
     nombre: new FormControl(),
@@ -34,7 +34,7 @@ export class ArtistaComponent {
 
   async onSubmit() {
     console.log(this.formulario.value)
-    const response = await this.artistaService.addArtista(this.formulario.value)
+    const response = await this.db.addArtista(this.formulario.value)
     console.log(response)
   }
 
@@ -71,12 +71,12 @@ export class ArtistaComponent {
     })
     .catch(error => console.log(error));
   }
-  
+
   async onClickDelete(artista:Artista){
-    const response = await this.artistaService.deleteArtista(artista)
+    const response = await this.db.deleteArtista(artista)
     console.log(response)
   }
-  
+
   */
 
 }

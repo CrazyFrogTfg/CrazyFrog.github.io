@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ArtistasService } from 'src/app/servicios/artistas.service';
 import { Artista } from '../../interfaces/artista.interface'
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
+import { DbService } from 'src/app/servicios/db.service';
 
 @Component({
   selector: 'app-buscador',
@@ -15,11 +15,11 @@ export class BuscadorComponent {
   cboxCancion:boolean=true
   artistas:any
 
-  constructor(private artistaService:ArtistasService,
+  constructor(private db:DbService,
               private fireStorage:FireStorageService){ }
-  
+
   ngOnInit():void{
-      this.artistaService.getArtistas().subscribe(artistas =>{
+      this.db.getArtistas().subscribe(artistas =>{
       console.log(artistas)
       this.artistas = artistas
     })
@@ -28,13 +28,13 @@ export class BuscadorComponent {
   getFilterName():string{
     return this.fireStorage.getFilterName()
   }
-  
+
   setFilterName(search:string){
     this.fireStorage.setFilterName(search)
   }
 
   getArtistas():any{
-    return this.artistas = this.artistaService.getArtistas()
+    return this.artistas = this.db.getArtistas()
   }
 
   toogleCboxArtista(){

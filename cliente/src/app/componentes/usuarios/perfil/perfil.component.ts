@@ -30,32 +30,13 @@ export class PerfilComponent {
     this.getImageProfile()
   }
 
-  
 
-  getImageProfile()
-  {
-    const imagesRef = ref(this.storage, `users/${this.username}`)
-    listAll(imagesRef)
-    .then(async response =>{
-      console.log(response)
 
-      for(let item of response.items){
-        this.imageProfile = await getDownloadURL(item);
-      }
-    })
-    .catch(error => console.log(error))
+  getImageProfile(){
+    this.userService.getImageProfile(this.username)
   }
 
   uploadImageProfile($event:any){
-    const file = $event.target.files[0];
-    console.log("file uploading: " + file)
-    const fileRef = ref(this.storage, `users/${this.username}/imageProfile`)
-
-    uploadBytes(fileRef, file)
-    .then(response =>{
-    console.log(response);
-    this.getImageProfile()
-    })
-    .catch(error => console.log(error));
+    this.userService.uploadImageProfile($event, this.username)
   }
 }
