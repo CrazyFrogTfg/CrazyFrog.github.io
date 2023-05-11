@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-playlist',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class NewPlaylistComponent {
 
+  constructor(private router: Router){}
+
+  goHome(){
+    this.router.navigate(['/home']);
+  }
 }

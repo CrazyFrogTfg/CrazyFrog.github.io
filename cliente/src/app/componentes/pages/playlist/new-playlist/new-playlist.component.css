@@ -40,3 +40,9 @@ h3{
 button{
   float:right
 }
+
+.form-check-input:checked{
+  background-color: black;
+  --bs-check-indicator-color: 
+}
+
