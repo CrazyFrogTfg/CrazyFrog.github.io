@@ -6,6 +6,7 @@ import { Cancion } from '../../../interfaces/cancion.interface'
 import { ArtistasService } from 'src/app/servicios/artistas.service';
 import { Input } from '@angular/core';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { delay } from 'rxjs';
 
 
 @Component({
@@ -37,7 +38,13 @@ export class ArtistaComponent {
 
   //PRUEBAS PARA PODER MOSTRAR IMAGEN DEL ARTISTA. ME TENGO QUE IR, COMMITEO.
 
-  getimageArtist(artistName:string)
+
+  getImageArtist(artistName:any){
+    this.setImageArtist(artistName)
+    return this.imageArtist
+  }
+
+  setImageArtist(artistName:string)
   {
     const imagesRef = ref(this.storage, `${artistName}`)
     listAll(imagesRef)
@@ -51,7 +58,7 @@ export class ArtistaComponent {
     .catch(error => console.log(error))
   }
 
-  uploadimageArtist($event:any){
+  uploadImageArtist($event:any){
     const file = $event.target.files[0];
     console.log("file uploading: " + file)
     const fileRef = ref(this.storage, `${this.artista.name}/imageArtist`)
