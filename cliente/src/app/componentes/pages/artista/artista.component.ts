@@ -70,7 +70,14 @@ export class ArtistaComponent {
     console.log(response);
     })
     .catch(error => console.log(error));
-  }*/
+  }
+  
+  async onClickDelete(artista:Artista){
+    const response = await this.artistaService.deleteArtista(artista)
+    console.log(response)
+  }
+  
+  */
 
 }
 

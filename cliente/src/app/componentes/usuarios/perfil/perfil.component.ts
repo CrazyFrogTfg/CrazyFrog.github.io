@@ -30,6 +30,8 @@ export class PerfilComponent {
     this.getImageProfile()
   }
 
+  
+
   getImageProfile()
   {
     const imagesRef = ref(this.storage, `users/${this.username}`)

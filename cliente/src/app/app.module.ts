@@ -12,7 +12,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './componentes/usuarios/perfil/perfil.component';
 import { FooterComponent } from './componentes/shared/footer/footer.component';
 import { LandingComponent } from './componentes/landing/landing.component';
@@ -48,6 +48,7 @@ import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
