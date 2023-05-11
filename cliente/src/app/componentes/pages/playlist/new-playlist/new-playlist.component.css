@@ -1,0 +1,42 @@
+.form-group {
+  margin-bottom:2%;
+}
+
+.form-control {
+  background-color: rgba(217, 217, 217, 0.5);
+}
+
+.newpl-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+h3{
+  color:black;
+}
+
+.newpl-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  background-color: #E9840E;
+  width: 60%;
+  height: 90%;
+  border-radius: 30px;
+  color: black;
+  font-family: 'Inter';
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.label{
+  width: 100%;
+}
+
+button{
+  float:right
+}

@@ -1,2 +1,39 @@
-<!-- <app-navbar></app-navbar> -->
-<p>new-playlist works!</p>
+<app-navbar></app-navbar>
+<section class="newpl-container">
+  <section class="newpl-box">
+    <div>
+      <button class="btn btn-outline-dark">X</button>
+      <br>
+      <h1>Dale nombre a tu nueva playlist</h1>
+      <form>
+        <div class="form-group">
+          <label for="namePlaylist" class="label">Nombre</label>
+          <input type="text" class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="namePlaylist">
+        </div>
+        <h3>Establece la privacidad:</h3>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Pública
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+          <label class="form-check-label" for="flexCheckChecked">
+            Privada
+          </label>
+        </div>
+        <button type="submit" class="btn btn-dark">CREAR</button>
+      </form>
+    </div>
+  </section>
+</section>
+<footer class="licencia">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  <br />
+  Este obra está bajo una
+  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
+  Reconocimiento-CompartirIgual
+  4.0 Internacional</a>
+</footer>
+
