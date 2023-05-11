@@ -52,17 +52,22 @@ export class UsuariosService {
     }
   }
 
-  getImageProfile(username:string){
-    const imagesRef = ref(this.storage, `users/${username}`)
-    listAll(imagesRef)
-    .then(async response =>{
-      console.log(response)
-
-      for(let item of response.items){
-        this.imageProfile = await getDownloadURL(item);
+  async getImageProfile(username: string): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const imagesRef = ref(this.storage, `users/${username}`);
+        const response = await listAll(imagesRef);
+        for (let item of response.items) {
+          const url = await getDownloadURL(item);
+          resolve(url);
+          return;
+        }
+        throw new Error('No se encontró ninguna imagen de perfil.');
+      } catch (error) {
+        console.log(error);
+        reject(error);
       }
-    })
-    .catch(error => console.log(error))
+    });
   }
 
   uploadImageProfile($event:any, username:string){

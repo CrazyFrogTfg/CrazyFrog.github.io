@@ -14,7 +14,7 @@ export class PerfilComponent {
   email:string = ""
   username:string = ""
   password:string = ""
-  imageProfile:string=""
+  imageProfile:string = ""
   images:string[]
 
   constructor(private userService:UsuariosService,
@@ -27,13 +27,7 @@ export class PerfilComponent {
     this.email = this.userInfo.email
     this.username = this.userInfo.username
     this.password = this.userInfo.password
-    this.getImageProfile()
-  }
-
-
-
-  getImageProfile(){
-    this.userService.getImageProfile(this.username)
+    this.imageProfile = await this.userService.getImageProfile(this.username)
   }
 
   uploadImageProfile($event:any){
