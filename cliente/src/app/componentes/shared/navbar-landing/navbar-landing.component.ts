@@ -19,11 +19,7 @@ export class NavbarLandingComponent {
   }
 
   onClick(){
-    this.userService.logout()
-      .then(() => {
-        this.router.navigate(['/login']);
-      })
-      .catch(error => console.log(error));
+    this.router.navigate(['/login']);
   }
 
 }
