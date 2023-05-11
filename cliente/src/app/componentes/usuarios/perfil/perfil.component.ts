@@ -32,7 +32,7 @@ export class PerfilComponent {
 
   getImageProfile()
   {
-    const imagesRef = ref(this.storage, `${this.username}`)
+    const imagesRef = ref(this.storage, `users/${this.username}`)
     listAll(imagesRef)
     .then(async response =>{
       console.log(response)
@@ -47,7 +47,7 @@ export class PerfilComponent {
   uploadImageProfile($event:any){
     const file = $event.target.files[0];
     console.log("file uploading: " + file)
-    const fileRef = ref(this.storage, `${this.username}/imageProfile`)
+    const fileRef = ref(this.storage, `users/${this.username}/imageProfile`)
 
     uploadBytes(fileRef, file)
     .then(response =>{

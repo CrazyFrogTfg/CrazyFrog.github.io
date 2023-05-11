@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Artista } from '../../../interfaces/artista.interface'
-import { Album } from '../../../interfaces/album.interface'
-import { Cancion } from '../../../interfaces/cancion.interface'
+// import { Artista } from '../../../interfaces/artista.interface'
+// import { Album } from '../../../interfaces/album.interface'
+// import { Cancion } from '../../../interfaces/cancion.interface'
 import { ArtistasService } from 'src/app/servicios/artistas.service';
 import { Input } from '@angular/core';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
-import { delay } from 'rxjs';
+import { Storage } from '@angular/fire/storage';
+// import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+// import { delay } from 'rxjs';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { delay } from 'rxjs';
 })
 export class ArtistaComponent {
 @Input() artista:any;
-  imageArtist:string=""
+  //imageArtist:string=""
   formulario: FormGroup
   
 
@@ -27,6 +28,7 @@ export class ArtistaComponent {
     descripcion:new FormControl()
     })
   }
+
   ngOnInit(){
     }
 
@@ -39,14 +41,14 @@ export class ArtistaComponent {
   //PRUEBAS PARA PODER MOSTRAR IMAGEN DEL ARTISTA. ME TENGO QUE IR, COMMITEO.
 
 
-  getImageArtist(artistName:any){
+  /*getImageArtist(artistName:any){
     this.setImageArtist(artistName)
     return this.imageArtist
   }
 
   setImageArtist(artistName:string)
   {
-    const imagesRef = ref(this.storage, `${artistName}`)
+    const imagesRef = ref(this.storage, `artists/${artistName}`)
     listAll(imagesRef)
     .then(async response =>{
       console.log(response)
@@ -61,14 +63,14 @@ export class ArtistaComponent {
   uploadImageArtist($event:any){
     const file = $event.target.files[0];
     console.log("file uploading: " + file)
-    const fileRef = ref(this.storage, `${this.artista.name}/imageArtist`)
+    const fileRef = ref(this.storage, `artists/${this.artista.name}/imageArtist`)
 
     uploadBytes(fileRef, file)
     .then(response =>{
     console.log(response);
     })
     .catch(error => console.log(error));
-  }
+  }*/
 
 }
 
