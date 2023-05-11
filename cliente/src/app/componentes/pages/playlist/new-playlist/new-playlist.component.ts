@@ -11,7 +11,6 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 export class NewPlaylistComponent {
 
   newPlaylist: FormGroup;
-  privada:boolean = true;
   userInfo:any
   propietario:string = '';
 
@@ -26,19 +25,10 @@ export class NewPlaylistComponent {
   constructor(private router: Router, private userService:UsuariosService){
     this.newPlaylist = new FormGroup({
       namePlaylist: new FormControl(),
-      privada: new FormControl(this.privada),
+      privada: new FormControl(false),
       propietario: new FormControl('')
     })
   }
-
-  // isPrivate(){
-  //   if(this.privada == true){
-  //     this.foro = ''
-  //     console.log(this.foro)
-  //     this.foro = "revisiontalentofuncionarios"
-  //     console.log("El foro seleccionado es:", this.foro)
-  //    }
-  // }
 
   goHome(){
     this.router.navigate(['/home']);

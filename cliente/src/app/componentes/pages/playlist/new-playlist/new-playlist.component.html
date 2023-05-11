@@ -12,9 +12,9 @@
         </div>
         <h3>Establece la privacidad:</h3>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="publicaCheckbox" (ngModel)="privada">
+          <input class="form-check-input" type="checkbox" #cboxPri formControlName="privada" >
           <label class="form-check-label" for="flexCheckDefault">
-            Pública
+            Privada
           </label>
         </div>
         <button type="submit" class="btn btn-dark">CREAR</button>
