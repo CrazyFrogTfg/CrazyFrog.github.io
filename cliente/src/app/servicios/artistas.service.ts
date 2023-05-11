@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
 import { Artista } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
@@ -21,4 +21,11 @@ export class ArtistasService {
     const artistaRef = collection(this.firestore, 'artistas')
     return collectionData(artistaRef, { idField: 'name'}) as Observable<Artista[]>;
   }
+
+  deleteArtista(artista:Artista){
+    const artistaDocRef = doc(this.firestore, `artists/${artista.id}`);
+    return deleteDoc(artistaDocRef)
+  }
+
+  
 }
