@@ -5,22 +5,16 @@
       <button class="btn btn-outline-dark" (click)="goHome()">X</button>
       <br>
       <h1>Dale nombre a tu nueva playlist</h1>
-      <form>
+      <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="namePlaylist" class="label">Nombre</label>
           <input type="text" class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="namePlaylist">
         </div>
         <h3>Establece la privacidad:</h3>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="publicaCheckbox" (ngModel)="privada">
           <label class="form-check-label" for="flexCheckDefault">
             Pública
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
-            Privada
           </label>
         </div>
         <button type="submit" class="btn btn-dark">CREAR</button>
