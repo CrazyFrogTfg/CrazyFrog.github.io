@@ -16,6 +16,7 @@ export class HomeComponent {
   email:string = ""
   username:string = ""
   password:string = ""
+  imageProfile:string =""
 
   constructor(private userService:UsuariosService, private router: Router){}
 
@@ -24,7 +25,10 @@ export class HomeComponent {
     this.email = this.userInfo.email
     this.username = this.userInfo.username
     this.password = this.userInfo.password
+    this.imageProfile = this.userInfo.imageProfile
+    //quizas seria mejor eliminar estas variables
   }
+  
   reproducir() {
     this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
     this.isVisible = true;

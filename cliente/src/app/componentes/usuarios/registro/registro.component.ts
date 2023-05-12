@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+//import { user } from '../../../interfaces/user.interface'
 
 @Component({
   selector: 'app-registro',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  defaultImageProfile = "/assets/defaultImageProfile.jpg"
 
   formReg: FormGroup;
 
@@ -16,7 +18,8 @@ export class RegistroComponent implements OnInit {
     this.formReg = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
-      username:new FormControl()
+      username:new FormControl(),
+      imageProfile: new FormControl(this.defaultImageProfile)
     })
   }
 
