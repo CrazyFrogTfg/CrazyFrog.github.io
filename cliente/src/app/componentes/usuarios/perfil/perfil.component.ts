@@ -27,7 +27,7 @@ export class PerfilComponent {
     this.email = this.userInfo.email
     this.username = this.userInfo.username
     this.password = this.userInfo.password
-    this.imageProfile = await this.userService.getImageProfile(this.username)
+    this.imageProfile = await this.userInfo.imageProfile
   }
 
   uploadImageProfile($event:any){

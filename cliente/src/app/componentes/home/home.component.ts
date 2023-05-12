@@ -17,6 +17,7 @@ export class HomeComponent {
   username:string = ""
   password:string = ""
   isAdmin:boolean = false
+  imageProfile:string =""
 
   constructor(private userService:UsuariosService, private router: Router){}
 
@@ -29,7 +30,10 @@ export class HomeComponent {
         this.isAdmin = true
         this.userService.getAllUsers()
       }
+    this.imageProfile = this.userInfo.imageProfile
+    //quizas seria mejor eliminar estas variables
   }
+
   reproducir() {
     this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
     this.isVisible = true;
