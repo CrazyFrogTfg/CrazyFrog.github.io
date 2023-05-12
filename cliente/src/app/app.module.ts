@@ -23,6 +23,7 @@ import { ReproductorComponent } from './componentes/reproductor/reproductor.comp
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NamePlaylistPipe } from './filtros/name-playlist.pipe';
 import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
+import { UsersComponent } from './componentes/admin/users/users.component';
 
 
 
@@ -43,6 +44,7 @@ import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/
     ReproductorComponent,
     NamePlaylistPipe,
     NewPlaylistComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

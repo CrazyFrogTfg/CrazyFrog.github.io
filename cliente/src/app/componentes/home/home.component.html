@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
-<section class="home-container">
+<div class="spinner-border text-success" role="status" *ngIf="!userInfo">
+</div>
+<section class="home-container" *ngIf="userInfo">
 
   <section class="homeDisp">
     <p></p>

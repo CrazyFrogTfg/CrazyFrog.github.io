@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md d-flex justify-content-between">
+<nav class="navbar navbar-expand-md d-flex justify-content-between" *ngIf="userInfo">
     <a routerLink="/home" class="navbar-brand title" href="#">
       <img class="logo" src="../../../../assets/mediafrogLogo.svg" alt="logo mediafrog - rana escuchando musica">
       M<em>ediaFrog</em>
@@ -10,6 +10,9 @@
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
           <a routerLink="/home" routerLinkActive="active" class="nav-link" aria-current="page">INICIO</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a routerLink="/users" routerLinkActive="active" class="nav-link" aria-current="page">USUARIOS</a>
         </li>
         <li class="nav-item">
           <a routerLink="/buscador" routerLinkActive="active" class="nav-link">BUSCADOR</a>

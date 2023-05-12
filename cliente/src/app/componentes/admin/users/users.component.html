@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="spinner-border text-success" role="status" *ngIf="!userInfo">
+</div>
+<div class="users-container">
+  <h2>Usuarios registrados</h2>
+  <table class="table table-hover bg-white" >
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

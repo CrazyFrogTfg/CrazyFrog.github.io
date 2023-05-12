@@ -10,8 +10,15 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   isNavbarOpen = false;
+  userInfo:any
+  isAdmin:boolean = false
 
   constructor(private userService:UsuariosService, private router: Router){}
+
+  async ngOnInit() {
+    this.userInfo = await this.userService.getUserInfo()
+    if(this.userInfo.admin) this.isAdmin = true
+  }
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;

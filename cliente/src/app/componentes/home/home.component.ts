@@ -16,6 +16,7 @@ export class HomeComponent {
   email:string = ""
   username:string = ""
   password:string = ""
+  isAdmin:boolean = false
 
   constructor(private userService:UsuariosService, private router: Router){}
 
@@ -24,6 +25,10 @@ export class HomeComponent {
     this.email = this.userInfo.email
     this.username = this.userInfo.username
     this.password = this.userInfo.password
+      if(this.userInfo.admin) {
+        this.isAdmin = true
+        this.userService.getAllUsers()
+      }
   }
   reproducir() {
     this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';

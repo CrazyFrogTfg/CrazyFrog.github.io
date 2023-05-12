@@ -52,6 +52,12 @@ export class UsuariosService {
     }
   }
 
+  async getAllUsers(): Promise<User[]> {
+    const querySnapshot = await getDocs(collection(this.firestore, "users"));
+    const documents = querySnapshot.docs.map((doc) => doc.data() as User);
+    return documents;
+  }
+
   async getImageProfile(username: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
