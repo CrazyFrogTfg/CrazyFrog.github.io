@@ -24,6 +24,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NamePlaylistPipe } from './filtros/name-playlist.pipe';
 import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
 import { UsersComponent } from './componentes/admin/users/users.component';
+import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/detalle-artista.component';
 
 
 
@@ -45,6 +46,7 @@ import { UsersComponent } from './componentes/admin/users/users.component';
     NamePlaylistPipe,
     NewPlaylistComponent,
     UsersComponent,
+    DetalleArtistaComponent,
   ],
   imports: [
     BrowserModule,

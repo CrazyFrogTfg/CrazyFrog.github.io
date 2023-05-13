@@ -6,6 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
 import { DbService } from 'src/app/servicios/db.service';
+import { Router } from '@angular/router';
 // import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 // import { delay } from 'rxjs';
 
@@ -21,8 +22,7 @@ export class ArtistaComponent {
   formulario: FormGroup
 
 
-  constructor(private db: DbService,
-              private storage:Storage){
+  constructor(private db: DbService, private storage:Storage, private router:Router){
   this.formulario = new FormGroup({
     nombre: new FormControl(),
     descripcion:new FormControl()
@@ -36,6 +36,10 @@ export class ArtistaComponent {
     console.log(this.formulario.value)
     const response = await this.db.addArtista(this.formulario.value)
     console.log(response)
+  }
+
+  verDetalles(artista: any) {
+    this.router.navigate(['/artista'], { queryParams: { id: artista.nombre } });
   }
 
   //PRUEBAS PARA PODER MOSTRAR IMAGEN DEL ARTISTA. ME TENGO QUE IR, COMMITEO.

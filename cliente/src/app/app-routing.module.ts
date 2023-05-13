@@ -10,6 +10,7 @@ import { LandingComponent } from './componentes/landing/landing.component';
 import { Error404Component } from './componentes/shared/error404/error404.component';
 import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
 import { UsersComponent } from './componentes/admin/users/users.component';
+import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/detalle-artista.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'landing', component: LandingComponent, ...canActivate(() => redirectLoggedInTo(['/home']))},
   {path: 'newplaylist', component: NewPlaylistComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'users', component: UsersComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  {path: 'artista', component: DetalleArtistaComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: '**', component: Error404Component}
 ];
 

@@ -11,7 +11,6 @@ export class HomeComponent {
 
   miaudio:any
   isVisible = false;
-
   userInfo:any
   email:string = ""
   username:string = ""
@@ -31,6 +30,7 @@ export class HomeComponent {
         this.userService.getAllUsers()
       }
     this.imageProfile = this.userInfo.imageProfile
+    this.getImageProfile()
     //quizas seria mejor eliminar estas variables
   }
 
@@ -41,5 +41,12 @@ export class HomeComponent {
 
   goToNewPlaylist(){
     this.router.navigate(['/newplaylist']);
+  }
+
+  async getImageProfile()
+  {
+    this.imageProfile = await this.userService.getImageProfile(this.userInfo.username)
+    console.log(this.imageProfile)
+    return this.imageProfile
   }
 }

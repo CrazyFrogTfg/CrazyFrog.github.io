@@ -2,6 +2,6 @@ import { Cancion } from "./cancion.interface"
 
 export interface Album {
   nombre:string,
-  año:number,
+  anyo:number,
   canciones: Cancion[]
 }
