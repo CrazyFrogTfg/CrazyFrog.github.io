@@ -11,14 +11,15 @@
 
 <section class="busquedaContainer">
     <section class="encontradoContainer">
-        <div class="container">
-            <h3>Artista</h3>
-            <div class="row">
-                <section class="artistSection d-flex col-sm-12" *ngIf="cboxArtista">
-                    <app-artista  *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista"></app-artista>
-                </section>
-            </div>
+      <div class="container">
+        <h3>Artista</h3>
+        <div class="row">
+          <section class="artistSection d-flex flex-wrap" *ngIf="cboxArtista">
+            <app-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" class="col-12 col-md-6"></app-artista>
+          </section>
         </div>
+      </div>
+
         <h3>Albumes</h3>
         <section *ngIf="cboxAlbum">
             <p>
@@ -44,6 +45,6 @@
         <label>
             <input type="checkbox" checked name="cboxCancion" (change)="toogleCboxCancion()">Canciones
         </label>
-    </section>   
+    </section>
 </section>
 <app-reproductor></app-reproductor>

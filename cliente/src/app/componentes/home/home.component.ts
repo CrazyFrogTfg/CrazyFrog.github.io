@@ -17,6 +17,7 @@ export class HomeComponent {
   password:string = ""
   isAdmin:boolean = false
   imageProfile:string =""
+  showImage: boolean = false;
 
   constructor(private userService:UsuariosService, private router: Router){}
 
@@ -46,7 +47,6 @@ export class HomeComponent {
   async getImageProfile()
   {
     this.imageProfile = await this.userService.getImageProfile(this.userInfo.username)
-    console.log(this.imageProfile)
-    return this.imageProfile
+    this.showImage = true
   }
 }
