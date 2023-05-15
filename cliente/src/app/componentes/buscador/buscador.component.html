@@ -11,9 +11,13 @@
 
 <section class="busquedaContainer">
     <section class="encontradoContainer">
-        <section class="artistSection" *ngIf="cboxArtista">
-            <app-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista"></app-artista>
-        </section>
+        <div class="container">
+            <div class="row">
+                <section class="artistSection d-flex col-sm-12" *ngIf="cboxArtista">
+                    <app-artista  *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista"></app-artista>
+                </section>
+            </div>
+        </div>
         <section *ngIf="cboxAlbum">
             <p>
                 albumes for

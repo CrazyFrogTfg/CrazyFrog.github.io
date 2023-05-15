@@ -1,6 +1,8 @@
-<div class="tarjetaArtistaDiv" (click)="verDetalles(artista)">
-    <img class="card-img-top" [src]="artista.image" alt="IMAGEN ARTISTA" width="5%">
-    <h5 >{{artista.nombre}}</h5>
-    <p>{{artista.descripcion}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+    <div class="row">
+        <div (click)="verDetalles(artista)" class="col-sm-12">
+                <img class="card-img-top img-fluid" [src]="artista.image" alt="IMAGEN ARTISTA">
+                <h5 class="card-title">{{artista.nombre}}</h5>
+        </div>
+    </div>
 </div>
