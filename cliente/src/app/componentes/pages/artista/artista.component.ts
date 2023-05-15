@@ -39,7 +39,8 @@ export class ArtistaComponent {
   }
 
   verDetalles(artista: any) {
-    this.router.navigate(['/artista'], { queryParams: { id: artista.nombre } });
+    const idSinEspacios = artista.nombre.replace(/\s/g, '%');
+    this.router.navigate(['/artista'], { queryParams: { id: idSinEspacios } });
   }
 
   //PRUEBAS PARA PODER MOSTRAR IMAGEN DEL ARTISTA. ME TENGO QUE IR, COMMITEO.

@@ -21,7 +21,8 @@ export class DetalleArtistaComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(async params => {
-      this.artistaId = params['id'];
+      const idConEspacios = params['id'].replace(/%/g, ' '); // Reemplazar guiones por espacios
+      this.artistaId = idConEspacios;
       const q = query(collection(this.firestore, "artistas"), where("nombre", "==", this.artistaId))
       const querySnapshots = await getDocs(q)
       this.artistaInfo = querySnapshots.docs[0].data()
@@ -55,5 +56,6 @@ export class DetalleArtistaComponent {
       });
     });
   }
+
 
 }
