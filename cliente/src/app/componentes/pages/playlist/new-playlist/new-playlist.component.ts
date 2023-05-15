@@ -37,5 +37,6 @@ export class NewPlaylistComponent {
 
   async onSubmit(){
     await this.db.addPlaylist(this.newPlaylist.value)
+    this.router.navigate(['/home']);
   }
 }

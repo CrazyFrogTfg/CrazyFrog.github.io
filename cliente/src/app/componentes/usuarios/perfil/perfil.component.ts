@@ -42,9 +42,10 @@ export class PerfilComponent {
     this.getImageProfile()
   }
 
-  onSubmit(){
-    this.userService.updateUserDb(this.uid, this.updateUser.value)
-    this.router.navigate(['/home']);
+  async onSubmit() {
+    await this.userService.updateUserDb(this.uid, this.updateUser.value, this.email);
+    this.userService.logout();
+    this.router.navigate(['/login']);
   }
 
   async getImageProfile()

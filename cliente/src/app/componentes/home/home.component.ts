@@ -47,6 +47,7 @@ export class HomeComponent {
   async getImageProfile()
   {
     this.imageProfile = await this.userService.getImageProfile(this.userInfo.username)
-    this.showImage = true
+    console.log(this.imageProfile)
+    this.showImage = true;
   }
 }

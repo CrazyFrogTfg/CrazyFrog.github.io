@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, updateEmail, updatePassword } from '@angular/fire/auth';
 import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
 import { getAuth } from "firebase/auth";
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UsuariosService {
   imageProfile:string=""
   username:string = ""
 
-  constructor(private auth:Auth, private firestore: Firestore, private storage:Storage) { }
+  constructor(private auth:Auth, private firestore: Firestore, private storage:Storage, private router:Router) { }
 
   private readonly authh = getAuth();
 
@@ -56,9 +57,9 @@ export class UsuariosService {
   }
 
   async getUserInfo(){
-    const user = this.authh.currentUser
-    if (user !== null) {
-      const email = user.email
+    const currentUser = this.getAuthh().currentUser;
+    if (currentUser !== null) {
+      const email = currentUser.email
       const q = query(collection(this.firestore, "users"), where("email", "==", email))
       const querySnapshots = await getDocs(q)
       this.userInfo = querySnapshots.docs[0].data()
@@ -72,32 +73,48 @@ export class UsuariosService {
     return documents;
   }
 
-  async updateUserDb(uid:any, user:User){
+  async updateUserDb(uid:any, user:User, email:string){
     const userRef = doc(this.firestore, 'users', uid);
-    if(user.email && user.password && user.username){
-      await updateDoc(userRef, {
-        email:user.email,
-        username:user.username,
-        password:user.password,
-      })
+    if(user !== null && user.email && user.password && user.username){
+      if (user.email.toString() !== email.toString()) {
+        const currentUser = this.getAuthh().currentUser;
+          if (currentUser !== null) {
+            await updateEmail(currentUser, user.email)
+              .then(async () => {
+                await updatePassword(currentUser, user.password)
+                await updateDoc(userRef, {
+                  email:user.email,
+                  username:user.username,
+                  password:user.password,
+                })
+                this.logout();
+                this.router.navigate(['/login']);
+              })
+              .catch((error) => {
+                console.log(error)
+              });
+          }
+      } else {
+        this.router.navigate(['/home']);
+      }
     }
   }
 
-  getImageProfile(username: string): Promise<string> {
-    const imagesRef = ref(this.storage, `${username}`);
-    return listAll(imagesRef)
-      .then(async response => {
-        console.log(response);
+  async getImageProfile(username: string): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const imagesRef = ref(this.storage, `users/${username}`);
+        const response = await listAll(imagesRef);
         for (let item of response.items) {
-          this.imageProfile = await getDownloadURL(item);
+          const url = await getDownloadURL(item);
+          resolve(url);
+          return;
         }
-        return Promise.resolve(this.imageProfile);
-      })
-      .catch(error => {
+        throw new Error('No se encontró ninguna imagen de perfil.');
+      } catch (error) {
         console.log(error);
-        return Promise.reject(error);
-      });
-  }
+        reject(error);
+  }})}
 
   uploadImageProfile($event:any, userInfo:any){
     const file = $event.target.files[0];
@@ -107,7 +124,7 @@ export class UsuariosService {
     uploadBytes(fileRef, file)
     .then(response =>{
     console.log(response);
-    this.getImageProfile(userInfo.username)
+    this.getImageProfile(userInfo.email)
     })
     .catch(error => console.log(error));
   }
