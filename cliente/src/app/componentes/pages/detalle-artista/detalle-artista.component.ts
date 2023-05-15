@@ -21,17 +21,15 @@ export class DetalleArtistaComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(async params => {
-      const idConEspacios = params['id'].replace(/%/g, ' '); // Reemplazar guiones por espacios
-      this.artistaId = idConEspacios;
-      const q = query(collection(this.firestore, "artistas"), where("nombre", "==", this.artistaId))
-      const querySnapshots = await getDocs(q)
-      this.artistaInfo = querySnapshots.docs[0].data()
-      this.uidArtista = querySnapshots.docs[0].id;
+      this.artistaId = params['id']
+      const docRef = doc(this.firestore, 'artistas', this.artistaId);
+      const docSnap = await getDoc(docRef);
+      this.artistaInfo = docSnap.data();
       const artistasRef = collection(this.firestore, 'artistas');
-      const artistaRef = doc(artistasRef, this.uidArtista);
+      const artistaRef = doc(artistasRef, this.artistaId);
       const albumesRef = collection(artistaRef, 'albumes');
-      const q2 = query(albumesRef);
-      const querySnapshot = await getDocs(q2);
+      const q = query(albumesRef);
+      const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach(async (doc) => {
         const uidAlbum = doc.id

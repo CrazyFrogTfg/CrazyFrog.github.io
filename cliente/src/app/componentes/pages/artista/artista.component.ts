@@ -38,9 +38,10 @@ export class ArtistaComponent {
     console.log(response)
   }
 
-  verDetalles(artista: any) {
+  async verDetalles(artista: any) {
+    let uid = await this.db.getArtistaUID(artista)
     const idSinEspacios = artista.nombre.replace(/\s/g, '%');
-    this.router.navigate(['/artista'], { queryParams: { id: idSinEspacios } });
+    this.router.navigate(['/artista'], { queryParams: { id: uid} });
   }
 
   //PRUEBAS PARA PODER MOSTRAR IMAGEN DEL ARTISTA. ME TENGO QUE IR, COMMITEO.
