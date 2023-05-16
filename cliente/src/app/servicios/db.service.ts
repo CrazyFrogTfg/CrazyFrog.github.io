@@ -5,6 +5,7 @@ import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,13 @@ export class DbService {
       uid = querySnapshots.docs[0].id;
     }
     return uid
+  }
+
+  async getPlaylistByUser(uid:string){
+    const q = query(collection(this.firestore, "playlists"), where("propietario", "==", uid))
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(element => {
+      
+    });
   }
 }

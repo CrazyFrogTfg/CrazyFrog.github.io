@@ -17,7 +17,8 @@ export class NewPlaylistComponent {
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
-    this.propietario = this.userInfo.email
+    this.propietario = await this.userService.getUID()
+    console.log(this.propietario)
     this.newPlaylist.patchValue({
       propietario: this.propietario
     });
