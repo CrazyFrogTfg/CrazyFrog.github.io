@@ -157,10 +157,10 @@ export class UsuariosService {
   }
 }
 
-  async getImageProfile(username: string): Promise<string> {
+  async getImageProfile(uid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
-        const imagesRef = ref(this.storage, `users/${username}`);
+        const imagesRef = ref(this.storage, `users/${uid}`);
         const response = await listAll(imagesRef);
         for (let item of response.items) {
           const url = await getDownloadURL(item);
@@ -173,15 +173,14 @@ export class UsuariosService {
         reject(error);
   }})}
 
-  uploadImageProfile($event:any, userInfo:any){
+  uploadImageProfile($event:any, uid:string){
     const file = $event.target.files[0];
     console.log("file uploading: " + file)
-    const fileRef = ref(this.storage, `users/${userInfo.username}/imageProfile`)
+    const fileRef = ref(this.storage, `users/${uid}/imageProfile`)
 
     uploadBytes(fileRef, file)
     .then(response =>{
     console.log(response);
-    this.getImageProfile(userInfo.email)
     })
     .catch(error => console.log(error));
   }

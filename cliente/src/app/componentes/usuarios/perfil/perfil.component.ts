@@ -29,8 +29,6 @@ export class PerfilComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
-    this.imageProfile = await this.userInfo.imageProfile.split("\\").pop();
-    console.log(this.imageProfile)
     this.getImageProfile()
   }
 
@@ -55,12 +53,12 @@ export class PerfilComponent {
 
   async getImageProfile()
   {
-    this.imageProfile = await this.userService.getImageProfile(this.userInfo.username)
+    this.imageProfile = await this.userService.getImageProfile(this.uid)
     console.log(this.imageProfile)
     return this.imageProfile
   }
 
   uploadImageProfile($event:any){
-    this.userService.uploadImageProfile($event, this.userInfo)
+    this.userService.uploadImageProfile($event, this.uid)
   }
 }
