@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
+import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class HomeComponent {
   uid:string = ""
   playlists:Playlist[] = []
 
-  constructor(private userService:UsuariosService, private router: Router, private db:DbService){}
+  constructor(private userService:UsuariosService, private router: Router, private db:DbService,
+      private fireStorage:FireStorageService){}
 
   async ngOnInit() {
     this.playlists=[]
@@ -38,6 +40,14 @@ export class HomeComponent {
   reproducir() {
     this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
     this.isVisible = true;
+  }
+
+  getFilterName():string{
+    return this.fireStorage.getFilterName()
+  }
+
+  setFilterName(search:string){
+    this.fireStorage.setFilterName(search)
   }
 
   goToNewPlaylist(){
