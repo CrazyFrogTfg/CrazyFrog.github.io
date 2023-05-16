@@ -10,7 +10,7 @@ export class FireStorageService {
   srcImage:any
   imageDown = ref(this.storage, 'images/rana.jpg')
   cancionRef:string = "gs://mediafrog-816db.appspot.com/songs/Amazing_Harmonica_Street_Musician_192_kbps.mp3";
-  filterName:string="";
+  filterName:string=" ";
   //VARIABLE PARA PIPE DE NAMEPLAYLIST.
   private namePlaylist:string ="hola";
 

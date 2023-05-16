@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-playlist',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./tarjeta-playlist.component.css']
 })
 export class TarjetaPlaylistComponent {
+@Input() playlist:any
 
 }
