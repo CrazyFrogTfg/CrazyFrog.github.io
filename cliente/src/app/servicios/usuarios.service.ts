@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, updateEmail, updatePassword } from '@angular/fire/auth';
-import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query, deleteDoc} from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
 import { getAuth } from "firebase/auth";
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
@@ -41,6 +41,16 @@ export class UsuariosService {
       return addDoc(userRef, user);
     } return null
 
+  }
+
+  // deleteUser(user:any){
+  //   const userDocRef = doc(this.firestore, `users/${user}`);
+  //   return deleteDoc(userDocRef)
+  // }
+
+  deleteUser(user:User){
+    const userDocRef = doc(this.firestore, `users/${user.id}`);
+    return deleteDoc(userDocRef)
   }
 
   async getUID(){

@@ -24,4 +24,14 @@ export class UsersComponent {
       }
   }
 
+  // async deleteUser(user:any){
+  //   console.log(user+" Boton clicado")
+  //   this.userService.deleteUser(user)
+  // }
+
+  async deleteUser(user:User){
+    const response = await this.userService.deleteUser(user)
+    console.log(response)
+  }
+
 }
