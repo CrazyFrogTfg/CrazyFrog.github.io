@@ -136,12 +136,21 @@ export class UsuariosService {
   }})}
 
   uploadImageProfile($event:any, uid:string){
+    //Preparamos la imagen dandole ruta
     const file = $event.target.files[0];
     console.log("file uploading: " + file)
     const fileRef = ref(this.storage, `users/${uid}/imageProfile`)
 
+    //subimos la imagen
     uploadBytes(fileRef, file)
-    .then(response =>{
+    .then(async response =>{
+      //Despues, obtenemos la imagen, guardamos en una variable
+      const imagenProfile = await this.getImageProfile(uid);
+      //Introducimos dicha variable en el campo "imageProfile" del usuario
+      const userRef = doc(this.firestore, 'users', uid);
+      await updateDoc(userRef, {
+        imageProfile:imagenProfile,
+      })
     console.log(response);
     })
     .catch(error => console.log(error));
