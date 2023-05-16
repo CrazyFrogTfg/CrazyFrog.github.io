@@ -4,7 +4,6 @@ import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fir
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -12,17 +11,13 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent {
 
-  userInfo:any
-  email:string = ""
-  uid:any
-  username:string = ""
-  password:string = ""
-  imageProfile:string = ""
-  images:string[]
+  userInfo:any;
+  uid:any;
+  imageProfile:string = "";
+  myEvent:any;
   updateUser: FormGroup;
 
   constructor(private userService:UsuariosService, private storage:Storage, private router:Router){
-    this.images = [];
     this.updateUser = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -34,18 +29,28 @@ export class PerfilComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
-    this.email = this.userInfo.email
-    this.username = this.userInfo.username
-    this.password = this.userInfo.password
     this.imageProfile = await this.userInfo.imageProfile.split("\\").pop();
     console.log(this.imageProfile)
     this.getImageProfile()
   }
 
   async onSubmit() {
-    await this.userService.updateUserDb(this.uid, this.updateUser.value, this.email);
-    this.userService.logout();
-    this.router.navigate(['/login']);
+    if(this.updateUser)
+    {
+      await this.userService.updateUserDb2(this.uid, this.updateUser.value, this.userInfo);
+      if(this.myEvent)
+      {
+        this.uploadImageProfile(this.myEvent)
+      }
+      //this.userService.logout();
+      setTimeout(() => this.router.navigate(['/home']), 2000)
+      
+    }
+  }
+
+  setMyEvent($event:any){
+    console.log($event)
+    this.myEvent = $event
   }
 
   async getImageProfile()

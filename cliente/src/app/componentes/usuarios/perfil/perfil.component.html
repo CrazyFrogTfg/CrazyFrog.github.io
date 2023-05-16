@@ -6,21 +6,21 @@
         <div class="form-group">
           <img [src]="imageProfile" width="100" *ngIf="imageProfile">
           <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
-          <input type="file" (change)="uploadImageProfile($event)" class="form-control upload-img" formControlName="imageProfile">
+          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
         </div>
         <div class="form-group">
           <label for="exampleInputUser" class="label">Usuario</label>
-          <input type="text" class="form-control" id="exampleInputUser1" aria-describedby="user" placeholder={{username}} formControlName="username">
+          <input type="text" class="form-control" id="exampleInputUser1" aria-describedby="user" placeholder={{userInfo.username}} formControlName="username">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder={{password}} formControlName="password" >
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder={{userInfo.password}} formControlName="password" >
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder={{email}} formControlName="email">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder={{userInfo.email}} formControlName="email">
         </div>
-        <small>Si actualizas tu email debes inicar sesión nuevamente.</small>
+        <small>Si actualizas tu email deberás iniciar sesión nuevamente.</small>
         <button class="btn btn-outline-dark" id="entrar">VOLVER</button>
         <button type="submit" class="btn btn-dark" id="entrar">ACTUALIZAR</button>
       </form>

@@ -73,20 +73,66 @@ export class UsuariosService {
     return documents;
   }
 
-  async updateUserDb(uid:any, user:User, email:string){
+
+  async updateUserDb2(uid:any, user:User, oldUser:any){
+    console.log(uid +" "+ user +" "+ oldUser)
     const userRef = doc(this.firestore, 'users', uid);
-    if(user !== null && user.email && user.password && user.username){
-      if (user.email.toString() !== email.toString()) {
-        const currentUser = this.getAuthh().currentUser;
-          if (currentUser !== null) {
-            await updateEmail(currentUser, user.email)
-              .then(async () => {
-                await updatePassword(currentUser, user.password)
+    //Comprobamos que los datos del form son correctos y no vacios.
+
+      //Comprobamos los datos de Auth
+      const currentUser = this.getAuthh().currentUser;
+      if (currentUser) {
+
+        //Actualizamos Nombre usuario si ha cambiado
+        if(user.username && user.username != oldUser.username)
+        await updateDoc(userRef, {
+          username:user.username,
+        })
+
+        //Actualizamos password si ha cambiado
+        if(user.password && user.password != oldUser.password){
+            await updatePassword(currentUser, user.password)
+            .then(async () =>{
+              await updateDoc(userRef, {
+                password:user.password,
+              })
+              .catch((error) => {
+                console.log(error)
+                });
+            })
+        }
+
+        //Actualizamos email si ha cambiado
+        if(user.email && user.email.toLowerCase().trim() != oldUser.email)
+        {
+          await updateEmail(currentUser, user.email)
+            .then(async () => {
                 await updateDoc(userRef, {
-                  email:user.email,
-                  username:user.username,
-                  password:user.password,
-                })
+                email:user.email.toLowerCase(),
+              })
+              this.logout();
+              this.router.navigate(['/login']);
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+        }
+      }
+    
+  }
+
+
+  async updateUserDb(uid:any, user:User, oldUser:any){
+    console.log(uid +" "+ user +" "+ oldUser)
+
+    const userRef = doc(this.firestore, 'users', uid);
+    if(user && user.email && user.password && user.username){
+
+      if (user.email != oldUser.email) {
+        const currentUser = this.getAuthh().currentUser;
+          if (currentUser) {
+            await updateEmail(currentUser, user.email)
+              .then(() => {
                 this.logout();
                 this.router.navigate(['/login']);
               })
@@ -94,11 +140,22 @@ export class UsuariosService {
                 console.log(error)
               });
           }
+          if (user.password != oldUser.password) {
+            const currentUser = this.getAuthh().currentUser;
+            if (currentUser) {
+            await updatePassword(currentUser, user.password)
+            await updateDoc(userRef, {
+              email:user.email,
+              username:user.username,
+              password:user.password,
+            })
+          }          
       } else {
         this.router.navigate(['/home']);
       }
     }
   }
+}
 
   async getImageProfile(username: string): Promise<string> {
     return new Promise(async (resolve, reject) => {

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="spinner-border text-success" role="status" *ngIf="!userInfo && !showImage">
 </div>
-<section class="home-container" *ngIf="userInfo && showImage">
+<section class="home-container" *ngIf="userInfo">
 
   <section class="homeDisp">
     <p></p>
@@ -9,7 +9,7 @@
     <div class="welcome">
       <h3>
         Bienvenido a <strong>MediaFrog</strong>,<br/>
-        {{username}}
+        {{userInfo.username}}
       </h3>
       <p>¿Qué te apetece escuchar hoy?</p>
     </div>

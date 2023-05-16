@@ -13,9 +13,6 @@ export class HomeComponent {
   miaudio:any
   isVisible = false;
   userInfo:any
-  email:string = ""
-  username:string = ""
-  password:string = ""
   isAdmin:boolean = false
   imageProfile:string =""
   showImage: boolean = false;
@@ -26,9 +23,6 @@ export class HomeComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
-    this.email = this.userInfo.email
-    this.username = this.userInfo.username
-    this.password = this.userInfo.password
       if(this.userInfo.admin) {
         this.isAdmin = true
         this.userService.getAllUsers()
