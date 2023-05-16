@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from '@angular/fire/firestore';
 import { Album } from 'src/app/interfaces/album.interface';
 import { Cancion } from 'src/app/interfaces/cancion.interface';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import { DbService } from 'src/app/servicios/db.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-detalle-artista',
@@ -16,10 +19,22 @@ export class DetalleArtistaComponent {
   uidArtista:any
   albumes: Album[] = []
   canciones: Cancion[] = []
+  userInfo:any
+  isAdmin:boolean = false
+  edit:boolean = false
+  updateArtist:FormGroup
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore) { }
+  constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
+    private db:DbService, private router:Router) {
+      this.updateArtist = new FormGroup({
+        nombre: new FormControl(),
+        descripcion: new FormControl(),
+      })
+    }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userInfo = await this.userService.getUserInfo()
+    if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
       this.artistaId = params['id']
       const docRef = doc(this.firestore, 'artistas', this.artistaId);
@@ -55,5 +70,18 @@ export class DetalleArtistaComponent {
     });
   }
 
+  async deleteArtist(artistaInfo: any){
+    let uid = await this.db.getArtistaUID(artistaInfo)
+    this.db.deleteArtist(uid)
+    this.router.navigate(['/buscador']);
+  }
+
+  toggleEdit(){
+    this.edit = !this.edit
+  }
+
+  onSubmit(){
+
+  }
 
 }

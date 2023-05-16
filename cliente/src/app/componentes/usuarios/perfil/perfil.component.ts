@@ -42,7 +42,7 @@ export class PerfilComponent {
       }
       //this.userService.logout();
       setTimeout(() => this.router.navigate(['/home']), 2000)
-      
+
     }
   }
 
@@ -60,5 +60,9 @@ export class PerfilComponent {
 
   uploadImageProfile($event:any){
     this.userService.uploadImageProfile($event, this.uid)
+  }
+
+  goHome(){
+    this.router.navigate(['/home']);
   }
 }

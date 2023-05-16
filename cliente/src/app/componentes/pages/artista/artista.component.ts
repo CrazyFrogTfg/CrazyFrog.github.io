@@ -7,6 +7,7 @@ import { Input } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
 import { DbService } from 'src/app/servicios/db.service';
 import { Router } from '@angular/router';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
 // import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 // import { delay } from 'rxjs';
 
@@ -20,16 +21,20 @@ export class ArtistaComponent {
 @Input() artista:any;
   //imageArtist:string=""
   formulario: FormGroup
+  isAdmin:boolean = false
+  userInfo:any
 
 
-  constructor(private db: DbService, private storage:Storage, private router:Router){
+  constructor(private db: DbService, private storage:Storage, private router:Router, private userService:UsuariosService){
   this.formulario = new FormGroup({
     nombre: new FormControl(),
     descripcion:new FormControl()
     })
   }
 
-  ngOnInit(){
+  async ngOnInit(){
+    this.userInfo = await this.userService.getUserInfo()
+    if(this.userInfo.admin) this.isAdmin = true
     }
 
   async onSubmit() {
@@ -40,7 +45,6 @@ export class ArtistaComponent {
 
   async verDetalles(artista: any) {
     let uid = await this.db.getArtistaUID(artista)
-    const idSinEspacios = artista.nombre.replace(/\s/g, '%');
     this.router.navigate(['/artista'], { queryParams: { id: uid} });
   }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
@@ -17,6 +18,7 @@ export class HomeComponent {
   imageProfile:string =""
   showImage: boolean = false;
   uid:string = ""
+  playlists:Playlist[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService){}
 
@@ -29,8 +31,7 @@ export class HomeComponent {
       }
     this.imageProfile = this.userInfo.imageProfile
     this.getImageProfile()
-    this.db.getPlaylistByUser(this.uid)
-    //quizas seria mejor eliminar estas variables
+    this.playlists = await this.db.getPlaylistByUser(this.uid)
   }
 
   reproducir() {
@@ -49,7 +50,4 @@ export class HomeComponent {
     this.showImage = true;
   }
 
-  async getPlaylistsByUser(){
-
-  }
 }

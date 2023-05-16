@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Artista } from '../../interfaces/artista.interface'
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { DbService } from 'src/app/servicios/db.service';
+import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscador',
@@ -14,15 +16,21 @@ export class BuscadorComponent {
   cboxAlbum:boolean=true
   cboxCancion:boolean=true
   artistas:any
+  isAdmin:boolean = false
+  userInfo:any
 
   constructor(private db:DbService,
-              private fireStorage:FireStorageService){ }
+              private fireStorage:FireStorageService,
+              private userService:UsuariosService,
+              private router:Router){ }
 
-  ngOnInit():void{
+  async ngOnInit(){
       this.db.getArtistas().subscribe(artistas =>{
       console.log(artistas)
       this.artistas = artistas
     })
+    this.userInfo = await this.userService.getUserInfo()
+    if(this.userInfo.admin) this.isAdmin = true
   }
 
   getFilterName():string{
@@ -45,5 +53,8 @@ export class BuscadorComponent {
   }
   toogleCboxCancion(){
     this.cboxCancion = !this.cboxCancion
+  }
+  newArtista(){
+    this.router.navigate(['/newartist']);
   }
 }

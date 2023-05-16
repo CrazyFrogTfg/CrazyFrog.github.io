@@ -2,6 +2,8 @@
 <section class="profile-container">
   <section class="profile-box">
     <div>
+      <button class="btn btn-outline-dark" (click)="goHome()">X</button>
+      <br>
       <form  [formGroup]="updateUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <img [src]="imageProfile" width="100" *ngIf="imageProfile">
@@ -20,8 +22,7 @@
           <label for="exampleInputEmail1">Email</label>
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder={{userInfo.email}} formControlName="email">
         </div>
-        <small>Si actualizas tu email deberás iniciar sesión nuevamente.</small>
-        <button class="btn btn-outline-dark" id="entrar">VOLVER</button>
+        <small>Si actualizas tu email deberás iniciar sesión nuevamente.</small> <br>
         <button type="submit" class="btn btn-dark" id="entrar">ACTUALIZAR</button>
       </form>
 

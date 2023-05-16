@@ -12,6 +12,8 @@ import { User } from '../interfaces/user.interface';
 })
 export class DbService {
 
+  playlists:Playlist[] = []
+
   constructor(private firestore:Firestore) { }
 
   addArtista(artista:Artista){
@@ -24,9 +26,8 @@ export class DbService {
     return collectionData(artistaRef, { idField: 'name'}) as Observable<Artista[]>;
   }
 
-  deleteArtista(artista:Artista){
-    const artistaDocRef = doc(this.firestore, `artists/${artista.id}`);
-    return deleteDoc(artistaDocRef)
+  async deleteArtist(uid:string){
+    await deleteDoc(doc(this.firestore, "artistas", uid));
   }
 
   addPlaylist(playlist:Playlist){
@@ -47,8 +48,16 @@ export class DbService {
   async getPlaylistByUser(uid:string){
     const q = query(collection(this.firestore, "playlists"), where("propietario", "==", uid))
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(element => {
-      
-    });
+    querySnapshot.forEach(async (doc) => {
+      const playlist = {
+        nombre: doc.data()['nombre'],
+        privada: doc.data()['privada'],
+        propietario: doc.data()['propietario'],
+        canciones: []
+      };
+      this.playlists.push(playlist);
+    })
+    console.log(this.playlists)
+    return this.playlists
   }
 }

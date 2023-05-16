@@ -1,0 +1,16 @@
+.playlist-table{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  border: solid 5px;
+  border-color: red;
+}
+
+.playlist-table>tr{
+  margin-right: 5px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
