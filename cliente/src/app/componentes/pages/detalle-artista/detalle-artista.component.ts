@@ -6,6 +6,8 @@ import { Cancion } from 'src/app/interfaces/cancion.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { FireStorageService } from 'src/app/servicios/fire-storage.service';
+import { waitForPendingWrites } from 'firebase/firestore';
 
 @Component({
   selector: 'app-detalle-artista',
@@ -25,7 +27,7 @@ export class DetalleArtistaComponent {
   updateArtist:FormGroup
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router) {
+    private db:DbService, private router:Router, private fireStorage:FireStorageService) {
       this.updateArtist = new FormGroup({
         nombre: new FormControl(),
         descripcion: new FormControl(),
@@ -33,6 +35,7 @@ export class DetalleArtistaComponent {
     }
 
   async ngOnInit() {
+    
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
@@ -68,6 +71,14 @@ export class DetalleArtistaComponent {
         this.albumes.push(album);
       });
     });
+  }
+
+  getFilterName():string{
+    return this.fireStorage.getFilterName()
+  }
+
+  setFilterName(search:string){
+    this.fireStorage.setFilterName(search)
   }
 
   async deleteArtist(artistaInfo: any){

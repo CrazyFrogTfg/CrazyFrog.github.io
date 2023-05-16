@@ -26,6 +26,8 @@ import { UsersComponent } from './componentes/admin/users/users.component';
 import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/detalle-artista.component';
 import { NewArtistComponent } from './componentes/pages/artista/new-artist/new-artist.component';
 import { TarjetaPlaylistComponent } from './componentes/pages/playlist/tarjeta-playlist/tarjeta-playlist.component';
+import { AlbumComponent } from './componentes/pages/album/album.component';
+import { NameAlbumPipe } from './filtros/name-album.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { TarjetaPlaylistComponent } from './componentes/pages/playlist/tarjeta-p
     DetalleArtistaComponent,
     NewArtistComponent,
     TarjetaPlaylistComponent,
+    AlbumComponent,
+    NameAlbumPipe,
   ],
   imports: [
     BrowserModule,

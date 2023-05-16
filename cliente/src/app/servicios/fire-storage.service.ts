@@ -16,7 +16,6 @@ export class FireStorageService {
 
   constructor() { }
   
-  
   getFilterName():string{
     return this.filterName
   }

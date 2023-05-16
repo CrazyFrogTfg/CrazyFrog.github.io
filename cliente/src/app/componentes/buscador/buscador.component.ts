@@ -33,6 +33,10 @@ export class BuscadorComponent {
     if(this.userInfo.admin) this.isAdmin = true
   }
 
+  // getAlbumes(artista:Artista){
+  //   this.albumes = this.db.getAlbumes(artista)
+  // }
+
   getFilterName():string{
     return this.fireStorage.getFilterName()
   }
