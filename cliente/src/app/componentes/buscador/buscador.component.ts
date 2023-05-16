@@ -26,7 +26,6 @@ export class BuscadorComponent {
 
   async ngOnInit(){
       this.db.getArtistas().subscribe(artistas =>{
-      console.log(artistas)
       this.artistas = artistas
     })
     this.userInfo = await this.userService.getUserInfo()

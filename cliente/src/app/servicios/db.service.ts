@@ -46,6 +46,7 @@ export class DbService {
   }
 
   async getPlaylistByUser(uid:string){
+    //Con la linea siguiente vaciamos el array para que no se llene continuamente.
     this.playlists=[]
     const q = query(collection(this.firestore, "playlists"), where("propietario", "==", uid))
     const querySnapshot = await getDocs(q);
@@ -58,7 +59,6 @@ export class DbService {
       };
       this.playlists.push(playlist);
     })
-    console.log(this.playlists)
     return this.playlists
   }
 }

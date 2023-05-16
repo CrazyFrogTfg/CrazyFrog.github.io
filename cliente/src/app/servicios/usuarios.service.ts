@@ -116,7 +116,6 @@ export class UsuariosService {
 
 
   async updateUserDb(uid:any, user:User, oldUser:any){
-    console.log(uid +" "+ user +" "+ oldUser)
     const userRef = doc(this.firestore, 'users', uid);
     //Comprobamos que los datos del form son correctos y no vacios.
 
@@ -180,7 +179,6 @@ export class UsuariosService {
   uploadImageProfile($event:any, uid:string){
     //Preparamos la imagen dandole ruta
     const file = $event.target.files[0];
-    console.log("file uploading: " + file)
     const fileRef = ref(this.storage, `users/${uid}/imageProfile`)
 
     //subimos la imagen

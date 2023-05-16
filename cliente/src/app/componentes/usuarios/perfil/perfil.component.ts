@@ -47,14 +47,12 @@ export class PerfilComponent {
   }
 
   setMyEvent($event:any){
-    console.log($event)
     this.myEvent = $event
   }
 
   async getImageProfile()
   {
     this.imageProfile = await this.userService.getImageProfile(this.uid)
-    console.log(this.imageProfile)
     return this.imageProfile
   }
 

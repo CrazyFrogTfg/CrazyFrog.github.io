@@ -28,7 +28,6 @@ export class NewArtistComponent {
   }
 
   setMyEvent($event:any){
-    console.log($event)
     this.myEvent = $event
   }
 }
