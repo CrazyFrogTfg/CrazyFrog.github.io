@@ -23,6 +23,7 @@ export class HomeComponent {
   constructor(private userService:UsuariosService, private router: Router, private db:DbService){}
 
   async ngOnInit() {
+    this.playlists=[]
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
       if(this.userInfo.admin) {

@@ -46,6 +46,7 @@ export class DbService {
   }
 
   async getPlaylistByUser(uid:string){
+    this.playlists=[]
     const q = query(collection(this.firestore, "playlists"), where("propietario", "==", uid))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
