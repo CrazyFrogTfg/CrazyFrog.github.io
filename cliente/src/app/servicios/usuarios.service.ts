@@ -17,7 +17,6 @@ export class UsuariosService {
   username:string = ""
 
   constructor(private auth:Auth, private firestore: Firestore, private storage:Storage, private router:Router) { }
-
   private readonly authh = getAuth();
 
   getAuthh(){
@@ -74,7 +73,7 @@ export class UsuariosService {
   }
 
 
-  async updateUserDb2(uid:any, user:User, oldUser:any){
+  async updateUserDb(uid:any, user:User, oldUser:any){
     console.log(uid +" "+ user +" "+ oldUser)
     const userRef = doc(this.firestore, 'users', uid);
     //Comprobamos que los datos del form son correctos y no vacios.
@@ -118,44 +117,7 @@ export class UsuariosService {
             });
         }
       }
-    
   }
-
-
-  async updateUserDb(uid:any, user:User, oldUser:any){
-    console.log(uid +" "+ user +" "+ oldUser)
-
-    const userRef = doc(this.firestore, 'users', uid);
-    if(user && user.email && user.password && user.username){
-
-      if (user.email != oldUser.email) {
-        const currentUser = this.getAuthh().currentUser;
-          if (currentUser) {
-            await updateEmail(currentUser, user.email)
-              .then(() => {
-                this.logout();
-                this.router.navigate(['/login']);
-              })
-              .catch((error) => {
-                console.log(error)
-              });
-          }
-          if (user.password != oldUser.password) {
-            const currentUser = this.getAuthh().currentUser;
-            if (currentUser) {
-            await updatePassword(currentUser, user.password)
-            await updateDoc(userRef, {
-              email:user.email,
-              username:user.username,
-              password:user.password,
-            })
-          }          
-      } else {
-        this.router.navigate(['/home']);
-      }
-    }
-  }
-}
 
   async getImageProfile(uid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
@@ -184,36 +146,4 @@ export class UsuariosService {
     })
     .catch(error => console.log(error));
   }
-
-  // async getImageProfile(userInfo:any): Promise<string> {
-  //   return new Promise(async (resolve, reject) => {
-  //     try {
-  //       const imagesRef = ref(this.storage, `users/${userInfo.username}/${userInfo.imageProfile}`);
-  //       const response = await listAll(imagesRef);
-  //       for (let item of response.items) {
-  //         const url = await getDownloadURL(item);
-  //         resolve(url);
-  //         return;
-  //       }
-  //       throw new Error('No se encontró ninguna imagen de perfil.');
-  //     } catch (error) {
-  //       console.log(error);
-  //       reject(error);
-  //     }
-  //   });
-  // }
-
-  // uploadImageProfile($event:any, userInfo:any){
-  //   const file = $event.target.files[0];
-  //   console.log("file uploading: " + file)
-  //   const fileRef = ref(this.storage, `users/${userInfo.username}/${file.name}`)
-
-  //   uploadBytes(fileRef, file)
-  //   .then(response =>{
-  //   console.log(response);
-  //   console.log(this.getImageProfile(userInfo))
-  //   })
-  //   .catch(error => console.log(error));
-  // }
-
 }
