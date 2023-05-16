@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './componentes/shared/navbar/navbar.component';
@@ -25,8 +24,6 @@ import { NamePlaylistPipe } from './filtros/name-playlist.pipe';
 import { NewPlaylistComponent } from './componentes/pages/playlist/new-playlist/new-playlist.component';
 import { UsersComponent } from './componentes/admin/users/users.component';
 import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/detalle-artista.component';
-
-
 
 @NgModule({
   declarations: [

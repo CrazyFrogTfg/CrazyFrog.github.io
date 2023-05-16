@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, updateEmail, updatePassword } from '@angular/fire/auth';
+import { Auth, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, updateEmail, updatePassword } from '@angular/fire/auth';
 import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query, deleteDoc} from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
-import { getAuth } from "firebase/auth";
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
@@ -22,6 +21,37 @@ export class UsuariosService {
   getAuthh(){
     return this.authh
   }
+
+
+// constructor(private afAuth: AngularFireAuth) {}
+
+// deleteUser(userId: string) {
+//   this.afAuth.auth
+//     .getUser(userId)
+//     .then((user) => {
+//       user.delete()
+//         .then(() => {
+//           console.log('Usuario eliminado correctamente de Firebase Authentication.');
+//           // Luego de eliminar el usuario de Firebase Authentication, puedes proceder a eliminar su información correspondiente de Firebase Cloud Firestore
+//           this.deleteUserFromFirestore(userId);
+//         })
+//         .catch((error) => {
+//           console.error('Error al eliminar el usuario de Firebase Authentication:', error);
+//         });
+//     })
+//     .catch((error) => {
+//       console.error('Error al obtener el usuario de Firebase Authentication:', error);
+//     });
+// }
+
+
+  // deleteAuth(user:any)
+  // {
+  //   user.delete()
+  //   .then(() => {
+  //     console.log('Successfully deleted user');
+  //   })
+  // }
 
   register({email, password}: any){
     return createUserWithEmailAndPassword(this.auth, email, password);
@@ -48,6 +78,8 @@ export class UsuariosService {
   //   return deleteDoc(userDocRef)
   // }
 
+  //Elimina Doc de user de CloudFirestore
+  //Añadir para eliminar el Auth!
   deleteUser(user:User){
     const userDocRef = doc(this.firestore, `users/${user.id}`);
     return deleteDoc(userDocRef)

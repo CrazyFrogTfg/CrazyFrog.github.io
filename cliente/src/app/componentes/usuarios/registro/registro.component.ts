@@ -26,8 +26,10 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
-      await this.userService.addUser(this.formReg.value)
-      await this.userService.register(this.formReg.value)
+    await this.userService.register(this.formReg.value)
+    .then(async () =>
+      await this.userService.addUser(this.formReg.value))
+      
       await this.userService.logout()
       await this.router.navigate(['/login'])
     //controlar errores

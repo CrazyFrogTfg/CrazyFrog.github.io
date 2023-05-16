@@ -22,6 +22,7 @@
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
     "firebase": "^9.21.0",
+    "firebase-admin": "^11.8.0",
     "jquery": "^3.6.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

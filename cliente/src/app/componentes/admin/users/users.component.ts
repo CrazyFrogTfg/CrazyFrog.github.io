@@ -33,8 +33,10 @@ export class UsersComponent {
   }
 
   async deleteUser(user:User){
-    const response = await this.userService.deleteUser(user)
-    console.log(response)
+    //user.idAuth="S0N0elq8EkhKixA54DntE9nX2I83"
+    //this.userService.deleteAuth(user)
+    await this.userService.deleteUser(user)
+    window.location.reload();
   }
-  
+
 }
