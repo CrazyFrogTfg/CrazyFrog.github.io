@@ -35,7 +35,7 @@ export class PerfilComponent {
   async onSubmit() {
     if(this.updateUser)
     {
-      await this.userService.updateUserDb2(this.uid, this.updateUser.value, this.userInfo);
+      await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo);
       if(this.myEvent)
       {
         this.uploadImageProfile(this.myEvent)
