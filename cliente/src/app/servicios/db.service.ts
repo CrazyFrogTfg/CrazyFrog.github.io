@@ -35,10 +35,26 @@ export class DbService {
     return addDoc(playlistRef, playlist);
   }
 
+  addArtist(artist:Artista){
+    const artistRef = collection(this.firestore, 'artistas');
+    return addDoc(artistRef, artist);
+  }
+
+
   async getArtistaUID(artista:Artista){
     let uid = ""
     if (artista !== null) {
       const q = query(collection(this.firestore, "artistas"), where("nombre", "==", artista.nombre))
+      const querySnapshots = await getDocs(q)
+      uid = querySnapshots.docs[0].id;
+    }
+    return uid
+  }
+  
+  async getArtistaUIDByNombre(artistaNombre:string){
+    let uid = ""
+    if (artistaNombre !== null) {
+      const q = query(collection(this.firestore, "artistas"), where("nombre", "==", artistaNombre))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
     }

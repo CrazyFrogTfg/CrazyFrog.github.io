@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { getStorage, ref, getDownloadURL} from "firebase/storage";
+import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where, getDocs } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { updateDoc } from 'firebase/firestore';
+import { DbService } from './db.service';
+import { Artista } from '../interfaces/artista.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +19,7 @@ export class FireStorageService {
   filterName:string="";
   private namePlaylist:string ="hola";
 
-  constructor() { }
+  constructor(private firestore: Firestore, private db:DbService) { }
   
   getFilterName():string{
     return this.filterName
@@ -23,6 +28,50 @@ export class FireStorageService {
   setFilterName(newName:string){
     this.filterName = newName
   }
+
+  async getImageArtist(aid: string): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const imagesRef = ref(this.storage, `artists/${aid}`);
+        const response = await listAll(imagesRef);
+        for (let item of response.items) {
+          const url = await getDownloadURL(item);
+          console.log(url)
+          resolve(url);
+          return;
+          
+        }
+        throw new Error('No se encontró ninguna imagen de perfil.');
+      } catch (error) {
+        console.log(error);
+        reject(error);
+  }})}
+
+  uploadImageArtist($event:any, aid:string){
+    //Preparamos la imagen dandole ruta
+    const file = $event.target.files[0];
+    const fileRef = ref(this.storage, `artists/${aid}/imageArtist`)
+
+    //subimos la imagen
+    uploadBytes(fileRef, file)
+    .then(async response =>{
+      //Despues, obtenemos la imagen, guardamos en una variable
+      const imagenArtist = await this.getImageArtist(aid)
+        //Introducimos dicha variable en el campo "image" del artista
+        const artistRef = doc(this.firestore, 'artistas', aid);
+        await updateDoc(artistRef, {
+          image:imagenArtist,
+        })
+      
+    })
+    .catch(error => console.log(error));
+  }
+
+
+
+
+
+
   /*getDownloadURL(imageDown)
   .then((imageURL) => {
     this.srcImage = imageURL

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Album } from 'src/app/interfaces/album.interface';
+import { Artista } from 'src/app/interfaces/artista.interface';
+import { DbService } from 'src/app/servicios/db.service';
+import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 
 @Component({
   selector: 'app-new-artist',
@@ -11,11 +15,13 @@ export class NewArtistComponent {
 
   newArtist:FormGroup
   myEvent:any
+  albumes:Album[]=[]
 
-  constructor(private router:Router){
+  constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService){
     this.newArtist = new FormGroup({
       nombre: new FormControl(),
-      descripcion: new FormControl()
+      descripcion: new FormControl(),
+      image: new FormControl(),
     })
   }
 
@@ -23,8 +29,23 @@ export class NewArtistComponent {
     this.router.navigate(['/home']);
   }
 
-  onSubmit(){
+  async onSubmit(){
+    if(this.newArtist.value)
+    {
+      await this.db.addArtist(this.newArtist.value)
 
+      if(this.myEvent)
+      {
+        const aid = await this.db.getArtistaUIDByNombre(this.newArtist.value.nombre)
+        this.uploadImageArtist(this.myEvent, aid)
+      }
+      //this.userService.logout();
+      setTimeout(() => this.router.navigate(['/home']), 2000)
+    }
+  }
+
+  uploadImageArtist($event:any, artist:string){
+    this.fireStorage.uploadImageArtist($event, artist)
   }
 
   setMyEvent($event:any){
