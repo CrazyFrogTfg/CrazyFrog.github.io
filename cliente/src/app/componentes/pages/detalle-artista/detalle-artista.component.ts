@@ -66,6 +66,7 @@ export class DetalleArtistaComponent {
         const album = {
           nombre: doc.data()['nombre'],
           anyo: doc.data()['año'],
+          image: doc.data()['image'],
           canciones: this.canciones
         };
         this.albumes.push(album);
