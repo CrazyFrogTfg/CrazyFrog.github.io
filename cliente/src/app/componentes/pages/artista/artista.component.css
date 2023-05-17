@@ -6,8 +6,8 @@ img{
 }
 h5{
     color: white;
+    text-align: center;
 }
-
 
 .users-container{
   max-width: 1000px;
@@ -19,6 +19,5 @@ h5{
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 15px;
-
 }
 
