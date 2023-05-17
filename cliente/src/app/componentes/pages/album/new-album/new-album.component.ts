@@ -66,10 +66,11 @@ export class NewAlbumComponent {
   }
 
   async onSubmit(){
-    if(this.newAlbum.value)
+    if(this.artistaId && this.newAlbum.value)
     {
         await this.db.addAlbum(this.artistaId, this.newAlbum.value)
-  
+      //No se puede subir imagen al Storage porque no se termina de definir correctamente la url
+      //de subida... Ya lo veremos ;)
       //   if(this.myEvent)
       //   {
       //     const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)
@@ -77,7 +78,7 @@ export class NewAlbumComponent {
       //   }
       this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} });
 
-      }
+    }
   }
 
   uploadImageAlbum($event:any, artistId:string, albumName:string, aid:any){
