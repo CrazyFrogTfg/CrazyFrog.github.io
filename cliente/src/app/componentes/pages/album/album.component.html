@@ -1,7 +1,7 @@
 <div class="col-md-2" >
     <div class="card custom-card">
-      <img [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top">
-      <!-- <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top"> -->
+      <img *ngIf="album.image" [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top">
+      <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top"> -->
       <div class="card-body">
         <h5 class="card-title">{{album.nombre}}</h5>
         <p class="card-subtitle">{{album.anyo}}</p>
