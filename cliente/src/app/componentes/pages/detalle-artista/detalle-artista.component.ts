@@ -8,6 +8,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { waitForPendingWrites } from 'firebase/firestore';
+import { Artista } from 'src/app/interfaces/artista.interface';
 
 @Component({
   selector: 'app-detalle-artista',
@@ -79,6 +80,15 @@ export class DetalleArtistaComponent {
       this.db.deleteArtist(uid)
       this.router.navigate(['/buscador']);
     }
+  }
+
+  async verDetalles(artista: any) {
+    let uid = await this.db.getArtistaUID(artista)
+    this.router.navigate(['/artista'], { queryParams: { id: uid} });
+  }
+
+  goToNewAlbum(){
+    this.router.navigate(['/newalbum'], {queryParams: {artistaId: this.artistaId} });
   }
 
   toggleEdit(){

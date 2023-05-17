@@ -66,6 +66,44 @@ export class FireStorageService {
     })
     .catch(error => console.log(error));
   }
+  
+  uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
+    //Preparamos la imagen dandole ruta
+    const file = $event.target.files[0];
+    const fileRef = ref(this.storage, `artists/${artistaId}`)
+
+    //subimos la imagen
+    uploadBytes(fileRef, file)
+    .then(async response =>{
+      //Despues, obtenemos la imagen, guardamos en una variable
+      const imagenAlbum = await this.getImageAlbum(artistaId,albumName)
+        //Introducimos dicha variable en el campo "image" del album. Me falta idAlbum
+        const albumRef = doc(this.firestore, 'artistas', artistaId,'albumes', albumId );
+        await updateDoc(albumRef, {
+          image:imagenAlbum,
+        })
+      
+    })
+    .catch(error => console.log(error));
+  }
+
+  async getImageAlbum(aid: string, albumName:string): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const imagesRef = ref(this.storage, `artists/${aid}/${albumName}`);
+        const response = await listAll(imagesRef);
+        for (let item of response.items) {
+          const url = await getDownloadURL(item);
+          console.log(url)
+          resolve(url);
+          return;
+          
+        }
+        throw new Error('No se encontró ninguna imagen de perfil.');
+      } catch (error) {
+        console.log(error);
+        reject(error);
+  }})}
 
 
 

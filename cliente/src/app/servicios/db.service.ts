@@ -39,6 +39,12 @@ export class DbService {
     const artistRef = collection(this.firestore, 'artistas');
     return addDoc(artistRef, artist);
   }
+  
+  addAlbum(artistId:string, newAlbum:Album){
+    console.log(artistId)
+    const artistRef = collection(this.firestore, `artistas/${artistId}/albumes`);
+    return addDoc(artistRef, newAlbum);
+  }
 
 
   async getArtistaUID(artista:Artista){
@@ -50,13 +56,24 @@ export class DbService {
     }
     return uid
   }
-  
+
   async getArtistaUIDByNombre(artistaNombre:string){
     let uid = ""
     if (artistaNombre !== null) {
       const q = query(collection(this.firestore, "artistas"), where("nombre", "==", artistaNombre))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
+    }
+    return uid
+  }
+
+  async getAlbumUIDByArtistaIdyNombre(artistaId:string, albumNombre:string){
+    let uid = ""
+    if (albumNombre !== null) {
+      const q = query(collection(this.firestore, `artists,SDlYHnzITTeu418fv2cN,albumes`), where("nombre", "==", albumNombre))
+      const querySnapshots = await getDocs(q)
+      uid = querySnapshots.docs[0].id;
+      console.log("db.service dice: getAlbumId? = " + uid)
     }
     return uid
   }

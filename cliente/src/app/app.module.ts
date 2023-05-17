@@ -28,6 +28,7 @@ import { NewArtistComponent } from './componentes/pages/artista/new-artist/new-a
 import { TarjetaPlaylistComponent } from './componentes/pages/playlist/tarjeta-playlist/tarjeta-playlist.component';
 import { AlbumComponent } from './componentes/pages/album/album.component';
 import { NameAlbumPipe } from './filtros/name-album.pipe';
+import { NewAlbumComponent } from './componentes/pages/album/new-album/new-album.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { NameAlbumPipe } from './filtros/name-album.pipe';
     TarjetaPlaylistComponent,
     AlbumComponent,
     NameAlbumPipe,
+    NewAlbumComponent,
   ],
   imports: [
     BrowserModule,

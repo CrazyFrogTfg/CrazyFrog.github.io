@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<section class="newpl-container">
+  <section class="newpl-box">
+    <div>
+      <button class="btn btn-outline-dark" (click)="goHome()">X</button>
+      <br>
+      <h1>Nuevo Albúm</h1>
+      <form [formGroup]="newAlbum" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nameArtist" class="label">Nombre</label>
+          <input type="text" class="form-control" id="nameArtist" aria-describedby="nameArtist" formControlName="nombre">
+        </div>
+        <div class="form-group">
+          <label for="descriptionArtist" class="label">Año</label>
+          <input type="text" class="form-control" id="anyoArtist" aria-describedby="descriptionArtist" formControlName="año">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
+          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="image">
+        </div>
+        <button type="submit" class="btn btn-dark">CREAR</button>
+      </form>
+    </div>
+  </section>
+</section>
+<footer class="licencia">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  <br />
+  Este obra está bajo una
+  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
+  Reconocimiento-CompartirIgual
+  4.0 Internacional</a>
+</footer>
