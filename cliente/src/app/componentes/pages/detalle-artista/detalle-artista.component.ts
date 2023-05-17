@@ -25,6 +25,7 @@ export class DetalleArtistaComponent {
   isAdmin:boolean = false
   edit:boolean = false
   updateArtist:FormGroup
+  myEvent:any
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService) {
@@ -80,18 +81,26 @@ export class DetalleArtistaComponent {
     this.edit = !this.edit
   }
 
+  setMyEvent($event:any){
+    this.myEvent = $event
+  }
+
   async onSubmit(){
     if(this.updateArtist)
     {
       await this.userService.updateArtistaDb(this.artistaId, this.updateArtist.value, this.userInfo);
-      // if(this.myEvent)
-      // {
-      //   this.uploadImageProfile(this.myEvent)
-      // }
+      if(this.myEvent)
+      {
+        this.uploadImageArtist(this.myEvent, this.artistaId)
+      }
       //this.userService.logout();
       setTimeout(() => this.router.navigate(['/home']), 2000)
 
     }
+  }
+
+  uploadImageArtist($event:any, artist:string){
+    this.fireStorage.uploadImageArtist($event, artist)
   }
 
 }

@@ -8,11 +8,6 @@
     </div>
     <div *ngIf="edit">
       <form  [formGroup]="updateArtist" (ngSubmit)="onSubmit()">
-        <!-- <div class="form-group">
-          <img [src]="imageProfile" width="100" *ngIf="imageProfile">
-          <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
-          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
-        </div> -->
         <div class="form-group">
           <label for="exampleInputUser" class="label">Nombre</label>
           <input type="text" class="form-control" placeholder={{artistaInfo.nombre}} formControlName="nombre">
@@ -20,6 +15,10 @@
         <div class="form-group">
           <label for="exampleInputPassword1">Descripción</label>
           <input type="text" class="form-control" placeholder={{artistaInfo.descripcion}} formControlName="descripcion" >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
+          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
         </div>
         <button type="submit" (click)="onSubmit()" class="btn btn-dark" >ACTUALIZAR</button>
         <button class="btn btn-dark" (click)="toggleEdit()">CANCELAR</button>
