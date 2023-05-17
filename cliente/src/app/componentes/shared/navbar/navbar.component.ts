@@ -27,7 +27,7 @@ export class NavbarComponent {
   onClick(){
     this.userService.logout()
       .then(() => {
-        this.router.navigate(['/registro']);
+        this.router.navigate(['/login']);
       })
       .catch(error => console.log(error));
   }
