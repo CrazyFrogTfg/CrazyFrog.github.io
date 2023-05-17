@@ -1,3 +1,8 @@
-p{
-    color:red
+.custom-card {
+  background-color: transparent;
+}
+
+h5 {
+  color:white;
+  margin-bottom: 15px;
 }
