@@ -72,9 +72,13 @@ export class DetalleArtistaComponent {
   }
 
   async deleteArtist(artistaInfo: any){
-    let uid = await this.db.getArtistaUID(artistaInfo)
-    this.db.deleteArtist(uid)
-    this.router.navigate(['/buscador']);
+    const pregunta="Si deseas eliminar "+artistaInfo.nombre+" escribe su nombre aquí";
+    if( prompt(pregunta) == artistaInfo.nombre)
+    {
+      let uid = await this.db.getArtistaUID(artistaInfo)
+      this.db.deleteArtist(uid)
+      this.router.navigate(['/buscador']);
+    }
   }
 
   toggleEdit(){
