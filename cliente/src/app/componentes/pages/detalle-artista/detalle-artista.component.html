@@ -21,8 +21,8 @@
           <label for="exampleInputPassword1">Descripción</label>
           <input type="text" class="form-control" placeholder={{artistaInfo.descripcion}} formControlName="descripcion" >
         </div>
-        <button type="submit" class="btn btn-dark" >ACTUALIZAR</button>
-        <button class="btn btn-dark" >CANCELAR</button>
+        <button type="submit" (click)="onSubmit()" class="btn btn-dark" >ACTUALIZAR</button>
+        <button class="btn btn-dark" (click)="toggleEdit()">CANCELAR</button>
       </form>
     </div>
     <div class="container d-flex" *ngIf="isAdmin && !edit">

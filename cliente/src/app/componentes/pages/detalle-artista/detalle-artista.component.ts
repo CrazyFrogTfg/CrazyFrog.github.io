@@ -29,6 +29,7 @@ export class DetalleArtistaComponent {
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService) {
       this.updateArtist = new FormGroup({
+        id: new FormControl(this.artistaId),
         nombre: new FormControl(),
         descripcion: new FormControl(),
       })
@@ -79,8 +80,18 @@ export class DetalleArtistaComponent {
     this.edit = !this.edit
   }
 
-  onSubmit(){
+  async onSubmit(){
+    if(this.updateArtist)
+    {
+      await this.userService.updateArtistaDb(this.artistaId, this.updateArtist.value, this.userInfo);
+      // if(this.myEvent)
+      // {
+      //   this.uploadImageProfile(this.myEvent)
+      // }
+      //this.userService.logout();
+      setTimeout(() => this.router.navigate(['/home']), 2000)
 
+    }
   }
 
 }

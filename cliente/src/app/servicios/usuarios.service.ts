@@ -5,6 +5,7 @@ import { User } from '../interfaces/user.interface';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
+import { Artista } from '../interfaces/artista.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -159,6 +160,27 @@ export class UsuariosService {
         }
       }
   }
+
+  async updateArtistaDb(uid:any, artista:Artista, oldUser:Artista){
+    const artistaRef = doc(this.firestore, 'artistas', uid);
+      //Comprobamos los datos de Auth
+      // const currentUser = this.getAuthh().currentUser;
+      // if (currentUser) {
+        //Actualizamos Nombre artista si ha cambiado
+        if(artista.nombre && artista.nombre != oldUser.nombre)
+        await updateDoc(artistaRef, {
+          nombre:artista.nombre,
+        })
+
+        //Actualizamos descripcion si ha cambiado
+        if(artista.descripcion && artista.descripcion != oldUser.descripcion){ 
+          await updateDoc(artistaRef, {
+            descripcion:artista.descripcion,
+          })
+        }
+      //}
+  }
+
 
   async getImageProfile(uid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
