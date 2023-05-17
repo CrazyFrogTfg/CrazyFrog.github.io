@@ -6,8 +6,8 @@
       <br>
       <form  [formGroup]="updateUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <img [src]="imageProfile" width="100" *ngIf="imageProfile">
-          <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
+          <img class="profile-img" [src]="imageProfile" width="100" *ngIf="imageProfile">
+          <label for="exampleInputImage" class="label-img">Foto de perfil</label>
           <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
         </div>
         <div class="form-group">

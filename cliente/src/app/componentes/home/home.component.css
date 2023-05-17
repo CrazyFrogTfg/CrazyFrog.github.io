@@ -8,7 +8,9 @@
 
 .profile-img2{
     justify-self: right;
-    width:10%;
+    width:150px;
+    height:150px;
+    border-radius: 50%;
   }
 
 .welcome{
