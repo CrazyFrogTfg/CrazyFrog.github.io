@@ -35,7 +35,7 @@ export class DetalleArtistaComponent {
     }
 
   async ngOnInit() {
-    
+
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
@@ -50,24 +50,11 @@ export class DetalleArtistaComponent {
       const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach(async (doc) => {
-        const uidAlbum = doc.id
-        const cancionesRef = collection(albumesRef, uidAlbum, 'canciones');
-        const cancionesSnapshot = await getDocs(cancionesRef);
-        cancionesSnapshot.forEach((cancionDoc) => {
-          const cancion = {
-            titulo: cancionDoc.data()['titulo'],
-            orden: cancionDoc.data()['orden'],
-            letra: cancionDoc.data()['letra'],
-            archivo: cancionDoc.data()['archivo'],
-            token: cancionDoc.data()['token'],
-          };
-          this.canciones.push(cancion);
-        });
         const album = {
+          id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['año'],
-          image: doc.data()['image'],
-          canciones: this.canciones
+          image: doc.data()['image']
         };
         this.albumes.push(album);
       });
