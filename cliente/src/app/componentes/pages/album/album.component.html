@@ -5,6 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">{{album.nombre}}</h5>
         <p class="card-subtitle">{{album.anyo}}</p>
+        <p *ngFor="let canc of album.canciones">Cancion del album con nombre:{{canc.titulo}}</p>
       </div>
     </div>
 </div>
