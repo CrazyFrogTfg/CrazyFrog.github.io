@@ -71,18 +71,17 @@ export class NewAlbumComponent {
         await this.db.addAlbum(this.artistaId, this.newAlbum.value)
       //No se puede subir imagen al Storage porque no se termina de definir correctamente la url
       //de subida... Ya lo veremos ;)
-      //   if(this.myEvent)
-      //   {
-      //     const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)
-      //     this.uploadImageAlbum(this.myEvent, this.artistaId, this.newAlbum.value, aid)
-      //   }
+        if(this.myEvent)
+        {
+          const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)
+          this.uploadImageAlbum(this.myEvent, this.artistaId, this.newAlbum.value, aid)
+        }
       this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} });
-
     }
   }
 
-  uploadImageAlbum($event:any, artistId:string, albumName:string, aid:any){
-    this.fireStorage.uploadImageAlbum($event, artistId, albumName, aid)
+  uploadImageAlbum($event:any, artistId:string, albumName:Album, aid:string){
+    this.fireStorage.uploadImageAlbum($event, artistId, albumName.nombre, aid)
   }
 
   setMyEvent($event:any){

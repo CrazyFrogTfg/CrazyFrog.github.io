@@ -2,7 +2,163 @@
   background-color: transparent;
 }
 
-h5 {
+h1, h5 {
   color:white;
   margin-bottom: 15px;
+}
+
+.artistaDisp {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  margin: 20px 20px;
+}
+
+.artista-img {
+  grid-column: 2 / span 3;
+}
+
+.artista-nombre {
+  grid-column: 5 / span 4;
+}
+
+.divBuscador {
+  grid-column: 9 / span 4;
+  display: flex;
+  align-items: center;
+}
+
+.lupa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buscador{
+  height: 40px;
+  width: 400px;
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.container{
+  margin-top: 5%;
+}
+
+.btn {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: none;
+  position: relative;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px .2px #00000035;
+  box-shadow: 1px 1px 5px .2px #00000035;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  transition-delay: .2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-between;
+  margin-right:4px;
+}
+
+.container {
+  margin-top: 10px;
+}
+
+.btn:hover {
+  width: 150px;
+  transition-delay: .2s;
+}
+
+.btn:hover > .paragraph {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: .4s;
+  transition-delay: .4s;
+}
+
+.btn:hover > .icon-wrapper .icon {
+  transform: scale(1.1);
+}
+
+.bnt:hover > .icon-wrapper .icon path {
+  stroke: black;
+}
+
+.paragraph {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 18px;
+  margin-right: 5px;
+  padding-left: 5px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transform: scale(.9);
+  transition: .2s linear;
+}
+
+.icon path {
+  stroke: #000;
+  stroke-width: 2px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+}
+
+label{
+  color:white;
+}
+
+.form-group{
+  width: 80%;
+}
+
+
+@media (max-width: 768px) {
+  .artistaDisp {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .artista-img {
+    grid-column: 1 / span 4;
+  }
+
+  .artista-nombre {
+    grid-column: 5 / span 4;
+  }
+
+  .divBuscador {
+    grid-column: 1 / span 8;
+  }
+
+  .buscador {
+    width: 100%;
+    max-width: 400px;
+  }
 }
