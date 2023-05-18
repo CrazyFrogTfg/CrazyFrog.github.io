@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Firestore, collection, doc, getDocs, getDoc, query} from '@angular/fire/firestore';
 import { Cancion } from 'src/app/interfaces/cancion.interface';
@@ -7,6 +7,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
+import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
 
 @Component({
   selector: 'app-detalle-album',
@@ -14,6 +15,7 @@ import { Title} from '@angular/platform-browser';
   styleUrls: ['./detalle-album.component.css']
 })
 export class DetalleAlbumComponent {
+  @ViewChild(TarjetaCancionComponent) cancion:any
 
   userInfo:any
   albumInfo: any
@@ -21,9 +23,14 @@ export class DetalleAlbumComponent {
   albumId:string = ""
   isAdmin:boolean = false
   canciones: Cancion[] = []
+  reproduciendo:string = ""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog-Album')}
+
+    receiveMessage($event:any) {
+      this.reproduciendo = $event;
+    }
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()

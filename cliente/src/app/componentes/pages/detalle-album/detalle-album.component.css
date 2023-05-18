@@ -38,6 +38,10 @@ h1, h5 {
   margin-top: 5%;
 }
 
+.album-img{
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .albumDisp {
     grid-template-columns: repeat(8, 1fr);

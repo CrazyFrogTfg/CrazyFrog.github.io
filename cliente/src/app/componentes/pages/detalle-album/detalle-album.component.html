@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <section class="albumDisp">
-  <img class="album-img" [src]="albumInfo.image">
+  <img class="album-img" [src]="albumInfo.imageAlbum">
   <div class="album-nombre">
     <!-- falta ngif -->
     <div >
@@ -66,10 +66,8 @@
 </section> -->
 <div class="container">
   <div class="row">
-    <app-tarjeta-cancion *ngFor="let cancion of canciones" [cancion] = "cancion"></app-tarjeta-cancion>
+    <app-tarjeta-cancion *ngFor="let cancion of canciones" [cancion] = "cancion" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
   </div>
 </div>
 
-<!-- <footer *ngIf="artistaInfo.nombre == 'Supersubmarina'">
-  <audio controls src="https://firebasestorage.googleapis.com/v0/b/mediafrog-816db.appspot.com/o/songs%2FSupersubmarina%2FSamuraiSupersubmarina.mpeg?alt=media&token=bd41e010-cd42-4d7a-ad24-fd687d7175cd"></audio>
-</footer> -->
+<app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>

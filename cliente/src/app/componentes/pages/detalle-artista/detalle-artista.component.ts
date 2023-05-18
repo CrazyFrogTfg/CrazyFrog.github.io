@@ -7,6 +7,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
+
 @Component({
   selector: 'app-detalle-artista',
   templateUrl: './detalle-artista.component.html',
@@ -53,7 +54,7 @@ export class DetalleArtistaComponent {
           id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['anyo'],
-          image: doc.data()['image']
+          image: doc.data()['imageAlbum']
         };
         this.albumes.push(album);
       });

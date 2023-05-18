@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reproductor',
@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./reproductor.component.css']
 })
 export class ReproductorComponent {
-
-  miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
+@Input() reproduciendo:any
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-cancion',
@@ -7,10 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 export class TarjetaCancionComponent {
 @Input() cancion:any
+@Output() messageEvent = new EventEmitter<string>();
 
-reproduciendo:string = ""
+  reproduciendo:string = ""
 
 reproducir(cancion:string){
   this.reproduciendo = cancion
+  this.messageEvent.emit(this.reproduciendo);
 }
 }
