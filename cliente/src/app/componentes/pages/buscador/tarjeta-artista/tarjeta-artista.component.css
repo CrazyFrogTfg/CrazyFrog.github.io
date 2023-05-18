@@ -2,23 +2,23 @@
 img{
     width: 200px;
     height: 200px;
-    padding-right: 40px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
+
 }
 h5{
     color: rgb(255, 255, 255);
     width: 100%;
 }
 
-.users-container{
+.artist-container{
   max-width: 1000px;
   margin: 0 auto;
   margin-top:2%;
-  background-color: #E9840E;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 15px;
+  text-align: center;
 }
 

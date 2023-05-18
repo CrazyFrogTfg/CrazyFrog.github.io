@@ -63,8 +63,10 @@
   </section>
 </section>
 <div class="container">
-  <div class="row">
-    <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album"/>
+  <div class="row row-cols-auto">
+    <div class="d-flex flex-wrap col">
+      <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album"/>
+    </div>
   </div>
 </div>
 

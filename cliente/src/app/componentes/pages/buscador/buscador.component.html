@@ -22,15 +22,19 @@
 
         <h3>Albumes</h3>
         <section *ngIf="cboxAlbum">
-            <p>
-                albumes for
-            </p>
+          <div class="row row-cols-auto">
+            <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+              <app-tarjeta-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" ></app-tarjeta-artista>
+            </section>
+          </div>
         </section>
         <h3>Canciones</h3>
         <section *ngIf="cboxCancion">
-            <p>
-                canciones for
-            </p>
+          <div class="row row-cols-auto">
+            <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+              <app-tarjeta-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" ></app-tarjeta-artista>
+            </section>
+          </div>
         </section>
     </section>
 
