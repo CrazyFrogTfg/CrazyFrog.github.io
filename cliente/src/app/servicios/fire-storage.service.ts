@@ -34,16 +34,16 @@ export class FireStorageService {
   async getImageArtist(aid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
-        const imagesRef = ref(this.storage, `artists/${aid}`);
-        const response = await listAll(imagesRef);
-        for (let item of response.items) {
-          const url = await getDownloadURL(item);
+        const imagesRef = ref(this.storage, `artists/${aid}/imageArtist`);
+        //const response = await listAll(imagesRef);
+        //for (let item of response.items) {
+          const url = await getDownloadURL(imagesRef);
           console.log(url)
           resolve(url);
           return;
           
-        }
-        throw new Error('No se encontró ninguna imagen de perfil.');
+        //}
+        //throw new Error('No se encontró ninguna imagen de perfil.');
       } catch (error) {
         console.log(error);
         reject(error);
@@ -82,14 +82,7 @@ export class FireStorageService {
       console.log("subido el fichero. fichero completo:")
       console.log(response)
 
-      // console.log("host")
-      // const host= response.metadata.ref?.fullPath
-      // const host2= response.metadata.ref
-      // const host3= response.metadata.downloadTokens
-      // console.log(host+" "+host2+" "+host3)
-
       //Despues, obtenemos la imagen, guardamos en una variable
-      //EL FALLO ESTA AQUI, NO COGE LA IMAGEN
       const imagenAlbum = await this.getImageAlbum(artistaId,albumName)
       
       // SI UPDATEA
@@ -110,14 +103,14 @@ export class FireStorageService {
       try {
         //const link:string =`${artistaId}/${albumName}`
         const imagesRef = ref(this.storage, `artists/${artistaId}/${albumName}`);
-        const response = await listAll(imagesRef);
-        for (let item of response.items) {
-            const url = await getDownloadURL(item);
+        //const response = await listAll(imagesRef);
+       // for (let item of response.items) {
+            const url = await getDownloadURL(imagesRef);
             console.log("url imagen album =" +url)
             resolve(url);
             return;
-        }
-        throw new Error('No se encontró ninguna imagen de album.');
+       // }
+       // throw new Error('No se encontró ninguna imagen de album.');
       } catch (error) {
         console.log(error);
         reject(error);

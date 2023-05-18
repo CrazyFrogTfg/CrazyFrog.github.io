@@ -76,7 +76,8 @@ export class NewAlbumComponent {
           const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)
           this.uploadImageAlbum(this.myEvent, this.artistaId, this.newAlbum.value, aid)
         }
-      this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} });
+      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} }), 1200)
+      
     }
   }
 
