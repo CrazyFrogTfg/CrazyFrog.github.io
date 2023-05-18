@@ -1,8 +1,8 @@
 <div class="col-md-2" >
     <div class="card custom-card">
+      <div class="card-body" *ngIf="!edit" (click)="verDetalles(album)">
       <img *ngIf="album.image" [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top img-fluid">
-      <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid"> -->
-      <div class="card-body" *ngIf="!edit">
+      <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
         <h5 class="card-title">{{album.nombre}}</h5>
         <p class="card-subtitle">{{album.anyo}}</p>
       </div>

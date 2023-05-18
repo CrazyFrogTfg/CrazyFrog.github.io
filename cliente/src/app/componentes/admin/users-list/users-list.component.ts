@@ -5,11 +5,11 @@ import { User } from 'src/app/interfaces/user.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.css']
 })
-export class UsersComponent {
+export class UsersListComponent {
 
   userInfo:any
   users:User[] = []

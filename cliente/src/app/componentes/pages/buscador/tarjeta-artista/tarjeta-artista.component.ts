@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
-  selector: 'app-artista',
-  templateUrl: './artista.component.html',
-  styleUrls: ['./artista.component.css']
+  selector: 'app-tarjeta-artista',
+  templateUrl: './tarjeta-artista.component.html',
+  styleUrls: ['./tarjeta-artista.component.css']
 })
-export class ArtistaComponent {
+export class TarjetaArtistaComponent {
 @Input() artista:any;
   //imageArtist:string=""
   formulario: FormGroup

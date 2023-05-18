@@ -6,11 +6,11 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+  selector: 'app-tarjeta-album',
+  templateUrl: './tarjeta-album.component.html',
+  styleUrls: ['./tarjeta-album.component.css']
 })
-export class AlbumComponent {
+export class TarjetaAlbumComponent {
 @Input() album:any
 
 edit:boolean=false
@@ -21,14 +21,12 @@ userInfo:any
 
 
 constructor(private db:DbService, private router:Router, private userService:UsuariosService){
-
-      this.updateAlbum = new FormGroup({
-        id: new FormControl(),
-        nombre: new FormControl(),
-        año: new FormControl(),
-      })
-
-            }
+  this.updateAlbum = new FormGroup({
+    id: new FormControl(),
+    nombre: new FormControl(),
+    año: new FormControl(),
+  })
+}
 
 async ngOnInit()
 {
@@ -61,6 +59,10 @@ async deleteAlbum(artistaInfo: any){
     this.db.deleteArtist(uid)
     this.router.navigate(['/buscador']);
   }
+}
+
+async verDetalles(album: any) {
+  this.router.navigate(['/album'], { queryParams: { id: album.id } });
 }
 
 }

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Artista } from '../../interfaces/artista.interface'
+import { Artista } from '../../../interfaces/artista.interface'
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
