@@ -1,4 +1,5 @@
-<section class="register-container">
+<div class="spinner-border text-success" role="status" *ngIf="!showImage"></div>
+<section class="register-container" *ngIf="showImage">
   <section class="frog-container">
     <img src="../../../assets/mediafrogLogo.svg" alt="logo-mediafrog" class="frog">
   </section>

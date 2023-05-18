@@ -1,4 +1,5 @@
-<div class="artist-container">
+<div class="spinner-border text-success" role="status" *ngIf="!artista"></div>
+<div class="artist-container" *ngIf="artista">
   <div (click)="verDetalles(artista)" class="cardArtista">
     <img class="card-img-top img-fluid" [src]="artista.image" alt="IMAGEN ARTISTA">
     <h5 class="card-title">{{artista.nombre}}</h5>

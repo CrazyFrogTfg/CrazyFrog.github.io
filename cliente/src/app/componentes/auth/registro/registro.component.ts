@@ -14,6 +14,7 @@ export class RegistroComponent implements OnInit {
   defaultImageProfile = "/assets/defaultImageProfile.jpg"
 
   formReg: FormGroup;
+  showImage:boolean=false
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title){
     title.setTitle('Mediafrog-Registro')
@@ -28,6 +29,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
+    this.showImage=true
     await this.userService.register(this.formReg.value)
     .then(async () =>
       await this.userService.addUser(this.formReg.value))

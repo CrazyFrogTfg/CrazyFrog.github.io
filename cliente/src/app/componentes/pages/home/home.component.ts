@@ -16,7 +16,6 @@ export class HomeComponent {
   isVisible = false;
   userInfo:any
   isAdmin:boolean = false
-  showImage: boolean = false;
   uid:string = ""
   playlists:Playlist[] = []
 

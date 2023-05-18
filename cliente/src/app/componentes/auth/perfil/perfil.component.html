@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
-<section class="profile-container">
+<div class="spinner-border text-success" role="status" *ngIf="!userInfo"></div>
+<section class="profile-container" *ngIf="userInfo">
+
   <section class="profile-box">
     <div>
       <button class="btn btn-outline-dark" (click)="goHome()">X</button>
       <br>
-      <form  [formGroup]="updateUser" (ngSubmit)="onSubmit()">
+      <form [formGroup]="updateUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <img class="profile-img" [src]="userInfo.imageProfile" width="100" *ngIf="userInfo.imageProfile">
           <label for="exampleInputImage" class="label-img">Foto de perfil</label>
@@ -28,14 +30,7 @@
 
     </div>
   </section>
+<app-footer></app-footer>
 </section>
-<footer class="licencia">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-  <br />
-  Este obra está bajo una
-  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
-  Reconocimiento-CompartirIgual
-  4.0 Internacional</a>
-</footer>
 
 

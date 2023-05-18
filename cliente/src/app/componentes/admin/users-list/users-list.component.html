@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
-<div class="spinner-border text-success" role="status" *ngIf="!userInfo">
+<div class="spinner-border text-success" role="status" *ngIf="!users">
 </div>
-<div class="users-container">
+<div class="users-container" *ngIf="users">
   <h2>Usuarios registrados</h2>
-  <table class="table table-hover bg-white" >
+  <table class="table table-hover bg-white">
     <thead>
       <tr>
         <th>Email</th>

@@ -15,7 +15,6 @@ export class UsersListComponent {
   userInfo:any
   users:User[] = []
   isAdmin:boolean = false
-  uids:Array<string> = []
 
   constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafrog-Lista Usuarios')}
 
