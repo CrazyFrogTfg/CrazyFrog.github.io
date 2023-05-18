@@ -54,6 +54,7 @@ export class DetalleArtistaComponent {
 
       querySnapshot.forEach(async (doc) => {
         const album = {
+          artistaId: this.artistaInfo.id,
           id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['año'],
@@ -76,6 +77,7 @@ export class DetalleArtistaComponent {
     const pregunta="Si deseas eliminar "+artistaInfo.nombre+" escribe su nombre aquí";
     if( prompt(pregunta) == artistaInfo.nombre)
     {
+      //artistaInfo.id
       let uid = await this.db.getArtistaUID(artistaInfo)
       this.db.deleteArtist(uid)
       this.router.navigate(['/buscador']);

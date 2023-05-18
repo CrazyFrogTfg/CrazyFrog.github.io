@@ -30,6 +30,12 @@ export class DbService {
     await deleteDoc(doc(this.firestore, "artistas", uid));
   }
 
+  async deleteAlbum(albumId:any){
+    console.log("Funcion deleteAlbum incompleta. DB-SERVICE")
+    //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
+    //await deleteDoc(doc(this.firestore, "artistas", albumId ));
+  }
+
   addPlaylist(playlist:Playlist){
     const playlistRef = collection(this.firestore, 'playlists');
     return addDoc(playlistRef, playlist);
