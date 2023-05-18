@@ -5,6 +5,7 @@ import { Album } from 'src/app/interfaces/album.interface';
 import { Artista } from 'src/app/interfaces/artista.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-new-artist',
@@ -17,7 +18,8 @@ export class NewArtistComponent {
   myEvent:any
   albumes:Album[]=[]
 
-  constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService){
+  constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService, private title:Title){ 
+    title.setTitle('Mediafrog-Nuevo Artista')
     this.newArtist = new FormGroup({
       nombre: new FormControl(),
       descripcion: new FormControl(),

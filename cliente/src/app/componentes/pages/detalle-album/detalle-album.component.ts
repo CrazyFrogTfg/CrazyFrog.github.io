@@ -6,6 +6,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
+import { Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detalle-album',
@@ -22,7 +23,7 @@ export class DetalleAlbumComponent {
   canciones: Cancion[] = []
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService) {}
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog-Album')}
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()

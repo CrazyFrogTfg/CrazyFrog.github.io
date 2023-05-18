@@ -3,6 +3,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-perfil',
@@ -10,14 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-
   userInfo:any;
   uid:any;
-  imageProfile:string = "";
   myEvent:any;
   updateUser: FormGroup;
 
-  constructor(private userService:UsuariosService, private storage:Storage, private router:Router){
+  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog-Perfil')
     this.updateUser = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -29,7 +28,6 @@ export class PerfilComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
-    this.getImageProfile()
   }
 
   async onSubmit() {
@@ -40,9 +38,7 @@ export class PerfilComponent {
       {
         this.uploadImageProfile(this.myEvent)
       }
-      //this.userService.logout();
       setTimeout(() => this.router.navigate(['/home']), 2000)
-
     }
   }
 
@@ -50,16 +46,10 @@ export class PerfilComponent {
     this.myEvent = $event
   }
 
-  async getImageProfile()
-  {
-    this.imageProfile = await this.userService.getImageProfile(this.uid)
-    return this.imageProfile
-  }
-
   uploadImageProfile($event:any){
     this.userService.uploadImageProfile($event, this.uid)
   }
-
+  
   goHome(){
     this.router.navigate(['/home']);
   }

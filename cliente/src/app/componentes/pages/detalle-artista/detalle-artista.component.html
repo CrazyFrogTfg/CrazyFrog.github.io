@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-<section class="artistaDisp">
+<div class="spinner-border text-success" role="status" *ngIf="!artistaInfo"></div>
+<section class="artistaDisp" *ngIf="artistaInfo">
   <img class="artista-img" [src]="artistaInfo.image">
   <div class="artista-nombre">
     <div *ngIf="!edit">
@@ -63,8 +64,10 @@
   </section>
 </section>
 <div class="container">
-  <div class="row">
-    <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album" [artista]="artistaId"/>
+  <div class="row row-cols-auto">
+    <div class="d-flex flex-wrap col">
+      <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album" [artista]="artistaId"/>
+    </div>
   </div>
 </div>
 

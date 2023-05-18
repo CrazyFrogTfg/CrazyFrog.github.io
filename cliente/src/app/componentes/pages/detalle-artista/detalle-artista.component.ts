@@ -6,7 +6,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
-
+import { Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-detalle-artista',
   templateUrl: './detalle-artista.component.html',
@@ -24,7 +24,7 @@ export class DetalleArtistaComponent {
   myEvent:any
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService) {
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog-Artista'),
       this.updateArtist = new FormGroup({
         id: new FormControl(this.artistaId),
         nombre: new FormControl(),
@@ -49,6 +49,7 @@ export class DetalleArtistaComponent {
 
       querySnapshot.forEach(async (doc) => {
         const album = {
+          artistaId: this.artistaInfo.id,
           id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['anyo'],
@@ -71,6 +72,7 @@ export class DetalleArtistaComponent {
     const pregunta="Si deseas eliminar "+artistaInfo.nombre+" escribe su nombre aquí";
     if( prompt(pregunta) == artistaInfo.nombre)
     {
+      //artistaInfo.id
       let uid = await this.db.getArtistaUID(artistaInfo)
       this.db.deleteArtist(uid)
       this.router.navigate(['/buscador']);

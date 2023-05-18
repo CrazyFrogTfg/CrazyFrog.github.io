@@ -4,7 +4,7 @@ import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-
+import { Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,13 +16,11 @@ export class HomeComponent {
   isVisible = false;
   userInfo:any
   isAdmin:boolean = false
-  imageProfile:string =""
-  showImage: boolean = false;
   uid:string = ""
   playlists:Playlist[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
-      private fireStorage:FireStorageService){}
+      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog-Home')}
 
   async ngOnInit() {
     this.playlists=[]
@@ -32,8 +30,6 @@ export class HomeComponent {
         this.isAdmin = true
         this.userService.getAllUsers()
       }
-    this.imageProfile = this.userInfo.imageProfile
-    this.getImageProfile()
     this.playlists = await this.db.getPlaylistByUser(this.uid)
   }
 
@@ -53,11 +49,4 @@ export class HomeComponent {
   goToNewPlaylist(){
     this.router.navigate(['/newplaylist']);
   }
-
-  async getImageProfile()
-  {
-    this.imageProfile = await this.userService.getImageProfile(this.uid)
-    this.showImage = true;
-  }
-
 }

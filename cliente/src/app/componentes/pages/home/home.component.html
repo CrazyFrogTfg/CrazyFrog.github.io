@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<div class="spinner-border text-success" role="status" *ngIf="!userInfo && !showImage">
+<div class="spinner-border text-success" role="status" *ngIf="!userInfo">
 </div>
 <section class="home-container" *ngIf="userInfo">
 
   <section class="homeDisp">
     <p></p>
-    <img class="profile-img2" [src]="imageProfile" alt="alt">
+    <img class="profile-img2" [src]="userInfo.imageProfile" alt="alt">
     <div class="welcome">
       <h3>
         Bienvenido a <strong>MediaFrog</strong>,<br/>
