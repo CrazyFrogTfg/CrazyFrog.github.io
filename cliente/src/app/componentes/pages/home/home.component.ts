@@ -4,7 +4,7 @@ import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-
+import { Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,7 +21,7 @@ export class HomeComponent {
   playlists:Playlist[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
-      private fireStorage:FireStorageService){}
+      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog-Home')}
 
   async ngOnInit() {
     this.playlists=[]

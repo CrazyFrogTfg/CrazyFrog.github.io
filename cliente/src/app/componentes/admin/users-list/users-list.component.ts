@@ -3,6 +3,7 @@ import { Firestore, collection, query, where, getDocs } from '@angular/fire/fire
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-users-list',
@@ -16,7 +17,7 @@ export class UsersListComponent {
   isAdmin:boolean = false
   uids:Array<string> = []
 
-  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore){}
+  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafrog-Lista Usuarios')}
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent {
 
   formLogin: FormGroup;
 
-  constructor(private userService:UsuariosService, private router: Router){
+  constructor(private userService:UsuariosService, private router: Router, private title:Title){
+    title.setTitle('Mediafrog-Login')
     this.formLogin = new FormGroup({
       email: new FormControl(),
       password: new FormControl()

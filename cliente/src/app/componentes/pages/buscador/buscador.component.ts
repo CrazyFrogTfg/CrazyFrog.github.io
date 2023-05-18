@@ -4,6 +4,7 @@ import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
+import { Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-buscador',
@@ -22,7 +23,8 @@ export class BuscadorComponent {
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
               private userService:UsuariosService,
-              private router:Router){ }
+              private router:Router,
+              private title:Title){ title.setTitle('Mediafrog-Buscador')}
 
   async ngOnInit(){
       this.db.getArtistas().subscribe(artistas =>{

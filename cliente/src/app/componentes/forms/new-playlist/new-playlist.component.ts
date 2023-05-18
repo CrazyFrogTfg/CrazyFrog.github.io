@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-new-playlist',
   templateUrl: './new-playlist.component.html',
@@ -23,7 +23,8 @@ export class NewPlaylistComponent {
     });
   }
 
-  constructor(private router: Router, private userService:UsuariosService, private db:DbService){
+  constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title) {
+     title.setTitle('Mediafrog-Nueva Playlist')
     this.newPlaylist = new FormGroup({
       nombre: new FormControl(),
       privada: new FormControl(false),

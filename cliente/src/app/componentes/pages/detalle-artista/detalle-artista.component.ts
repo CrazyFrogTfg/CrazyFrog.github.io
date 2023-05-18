@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { waitForPendingWrites } from 'firebase/firestore';
 import { Artista } from 'src/app/interfaces/artista.interface';
-
+import { Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-detalle-artista',
   templateUrl: './detalle-artista.component.html',
@@ -29,12 +29,12 @@ export class DetalleArtistaComponent {
   myEvent:any
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService) {
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog-Artista'),
       this.updateArtist = new FormGroup({
         id: new FormControl(this.artistaId),
         nombre: new FormControl(),
         descripcion: new FormControl(),
-      })
+      }) 
     }
 
   async ngOnInit() {

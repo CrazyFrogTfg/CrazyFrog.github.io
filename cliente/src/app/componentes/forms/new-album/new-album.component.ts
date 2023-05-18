@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Artista } from 'src/app/interfaces/artista.interface';
+import { Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-new-album',
@@ -25,7 +26,7 @@ export class NewAlbumComponent {
 
   constructor(private firestore:Firestore, private route:ActivatedRoute, 
     private userService:UsuariosService, private router:Router, private db:DbService, 
-    private fireStorage:FireStorageService){
+    private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog-Nuevo Album')
 
     this.newAlbum = new FormGroup({
       nombre: new FormControl(),

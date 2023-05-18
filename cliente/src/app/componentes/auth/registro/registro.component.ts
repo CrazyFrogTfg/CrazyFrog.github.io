@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 //import { user } from '../../../interfaces/user.interface'
 
 @Component({
@@ -14,7 +15,8 @@ export class RegistroComponent implements OnInit {
 
   formReg: FormGroup;
 
-  constructor(private userService:UsuariosService, private router: Router){
+  constructor(private userService:UsuariosService, private router: Router, private title:Title){
+    title.setTitle('Mediafrog-Registro')
     this.formReg = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),

@@ -3,6 +3,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +16,7 @@ export class PerfilComponent {
   myEvent:any;
   updateUser: FormGroup;
 
-  constructor(private userService:UsuariosService, private storage:Storage, private router:Router){
+  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog-Perfil')
     this.updateUser = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
