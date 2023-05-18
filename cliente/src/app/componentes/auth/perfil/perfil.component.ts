@@ -10,10 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-
   userInfo:any;
   uid:any;
-  imageProfile:string = "";
   myEvent:any;
   updateUser: FormGroup;
 
@@ -29,7 +27,6 @@ export class PerfilComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
-    this.getImageProfile()
   }
 
   async onSubmit() {
@@ -40,9 +37,7 @@ export class PerfilComponent {
       {
         this.uploadImageProfile(this.myEvent)
       }
-      //this.userService.logout();
       setTimeout(() => this.router.navigate(['/home']), 2000)
-
     }
   }
 
@@ -50,16 +45,10 @@ export class PerfilComponent {
     this.myEvent = $event
   }
 
-  async getImageProfile()
-  {
-    this.imageProfile = await this.userService.getImageProfile(this.uid)
-    return this.imageProfile
-  }
-
   uploadImageProfile($event:any){
     this.userService.uploadImageProfile($event, this.uid)
   }
-
+  
   goHome(){
     this.router.navigate(['/home']);
   }
