@@ -2,11 +2,12 @@
 img{
     width: 200px;
     height: 200px;
-    padding-right: 20px;
+    padding-right: 40px;
+    padding-bottom: 5px;
 }
 h5{
-    color: white;
-    text-align: center;
+    color: rgb(255, 255, 255);
+    width: 100%;
 }
 
 .users-container{

@@ -13,9 +13,9 @@
     <section class="encontradoContainer">
       <div class="container">
         <h3>Artista</h3>
-        <div class="row">
-          <section class="artistSection d-flex flex-wrap" *ngIf="cboxArtista">
-            <app-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" class="col-12 col-md-6"></app-artista>
+        <div class="row row-cols-auto">
+          <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+            <app-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" ></app-artista>
           </section>
         </div>
       </div>
