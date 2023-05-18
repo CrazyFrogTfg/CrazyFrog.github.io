@@ -23,13 +23,13 @@ export class NewAlbumComponent {
   artistaId:string="";
 
 
-  constructor(private firestore:Firestore, private route:ActivatedRoute, 
-    private userService:UsuariosService, private router:Router, private db:DbService, 
+  constructor(private firestore:Firestore, private route:ActivatedRoute,
+    private userService:UsuariosService, private router:Router, private db:DbService,
     private fireStorage:FireStorageService){
 
     this.newAlbum = new FormGroup({
       nombre: new FormControl(),
-      año: new FormControl(),
+      anyo: new FormControl(),
       image: new FormControl(),
     })
   }
@@ -77,7 +77,7 @@ export class NewAlbumComponent {
           this.uploadImageAlbum(this.myEvent, this.artistaId, this.newAlbum.value, aid)
         }
       setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} }), 1200)
-      
+
     }
   }
 

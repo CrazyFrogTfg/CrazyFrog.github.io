@@ -12,6 +12,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 })
 export class TarjetaAlbumComponent {
 @Input() album:any
+@Input() artista:any
 
 edit:boolean=false
 updateAlbum:FormGroup
@@ -24,7 +25,7 @@ constructor(private db:DbService, private router:Router, private userService:Usu
   this.updateAlbum = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl(),
-    año: new FormControl(),
+    anyo: new FormControl(),
   })
 }
 
@@ -62,7 +63,7 @@ async deleteAlbum(artistaInfo: any){
 }
 
 async verDetalles(album: any) {
-  this.router.navigate(['/album'], { queryParams: { id: album.id } });
+  this.router.navigate(['/album'], { queryParams: { idArtista: this.artista, idAlbum: album.id } });
 }
 
 }

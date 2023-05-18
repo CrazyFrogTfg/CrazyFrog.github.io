@@ -64,7 +64,7 @@
 </section>
 <div class="container">
   <div class="row">
-    <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album"/>
+    <app-tarjeta-album *ngFor="let album of albumes | nameAlbum:getFilterName()" [album]="album" [artista]="artistaId"/>
   </div>
 </div>
 

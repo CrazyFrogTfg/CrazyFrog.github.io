@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, query} from '@angular/fire/firestore';
 import { Album } from 'src/app/interfaces/album.interface';
-import { Cancion } from 'src/app/interfaces/cancion.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
-import { waitForPendingWrites } from 'firebase/firestore';
-import { Artista } from 'src/app/interfaces/artista.interface';
 
 @Component({
   selector: 'app-detalle-artista',
@@ -19,9 +16,7 @@ export class DetalleArtistaComponent {
 
   artistaId:string = "";
   artistaInfo: any
-  uidArtista:any
   albumes: Album[] = []
-  canciones: Cancion[] = []
   userInfo:any
   isAdmin:boolean = false
   edit:boolean = false
@@ -56,7 +51,7 @@ export class DetalleArtistaComponent {
         const album = {
           id: doc.id,
           nombre: doc.data()['nombre'],
-          anyo: doc.data()['año'],
+          anyo: doc.data()['anyo'],
           image: doc.data()['image']
         };
         this.albumes.push(album);
