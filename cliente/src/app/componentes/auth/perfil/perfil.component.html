@@ -6,7 +6,7 @@
       <br>
       <form  [formGroup]="updateUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <img class="profile-img" [src]="imageProfile" width="100" *ngIf="imageProfile">
+          <img class="profile-img" [src]="userInfo.imageProfile" width="100" *ngIf="userInfo.imageProfile">
           <label for="exampleInputImage" class="label-img">Foto de perfil</label>
           <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
         </div>
@@ -23,7 +23,7 @@
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder={{userInfo.email}} formControlName="email">
         </div>
         <small>Si actualizas tu email deberás iniciar sesión nuevamente.</small> <br>
-        <button type="submit" class="btn btn-dark" id="entrar">ACTUALIZAR</button>
+        <button type="submit" class="btn btn-dark">ACTUALIZAR</button>
       </form>
 
     </div>
