@@ -16,7 +16,6 @@ export class HomeComponent {
   isVisible = false;
   userInfo:any
   isAdmin:boolean = false
-  imageProfile:string =""
   showImage: boolean = false;
   uid:string = ""
   playlists:Playlist[] = []
@@ -32,8 +31,6 @@ export class HomeComponent {
         this.isAdmin = true
         this.userService.getAllUsers()
       }
-    this.imageProfile = this.userInfo.imageProfile
-    this.getImageProfile()
     this.playlists = await this.db.getPlaylistByUser(this.uid)
   }
 
@@ -53,11 +50,4 @@ export class HomeComponent {
   goToNewPlaylist(){
     this.router.navigate(['/newplaylist']);
   }
-
-  async getImageProfile()
-  {
-    this.imageProfile = await this.userService.getImageProfile(this.uid)
-    this.showImage = true;
-  }
-
 }
