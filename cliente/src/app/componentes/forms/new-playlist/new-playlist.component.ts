@@ -14,6 +14,7 @@ export class NewPlaylistComponent {
   newPlaylist: FormGroup;
   userInfo:any
   propietario:string = '';
+  canCreate:boolean=false
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -36,8 +37,16 @@ export class NewPlaylistComponent {
     this.router.navigate(['/home']);
   }
 
+  toogleCanCreate(){
+    if(this.newPlaylist.value.nombre.trim() != "")
+    this.canCreate = true
+    else this.canCreate = false
+  }
+
   async onSubmit(){
-    await this.db.addPlaylist(this.newPlaylist.value)
-    this.router.navigate(['/home']);
+    if(this.newPlaylist.value.nombre){
+      await this.db.addPlaylist(this.newPlaylist.value)
+      this.router.navigate(['/home']);
+    }
   }
 }

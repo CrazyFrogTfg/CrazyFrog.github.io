@@ -15,8 +15,8 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
         </div>
-        <button type="submit" class="btn btn-dark" id="entrar">ENTRAR</button>
-        <button class="btn btn-outline-dark" id="entrar" (click)="goToRegistro()">REGISTRATE</button>
+        <button type="submit" class="btn btn-dark" [disabled]="formLogin.pristine">ENTRAR</button>
+        <button class="btn btn-outline-dark" (click)="goToRegistro()">REGISTRATE</button>
       </form>
     </div>
   </section>

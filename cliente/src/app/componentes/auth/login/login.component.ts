@@ -30,7 +30,10 @@ export class LoginComponent {
       })
       //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
       //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error)
+        prompt("Comprobacion de errores. Login.ts")
+      });
   }
 
   goToRegistro(){
