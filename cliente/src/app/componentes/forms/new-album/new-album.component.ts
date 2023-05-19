@@ -22,6 +22,7 @@ export class NewAlbumComponent {
   userInfo:any
   isAdmin:boolean = false;
   artistaId:string="";
+  currentYear:number = 2023
 
 
   constructor(private firestore:Firestore, private route:ActivatedRoute,
@@ -36,7 +37,6 @@ export class NewAlbumComponent {
   }
 
   async ngOnInit() {
-
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     await this.route.queryParams.subscribe(async params => {
@@ -69,9 +69,8 @@ export class NewAlbumComponent {
   async onSubmit(){
     if(this.artistaId && this.newAlbum.value)
     {
+      console.log(this.newAlbum.value.anyoAlbum)
         await this.db.addAlbum(this.artistaId, this.newAlbum.value)
-      //No se puede subir imagen al Storage porque no se termina de definir correctamente la url
-      //de subida... Ya lo veremos ;)
         if(this.myEvent)
         {
           const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)

@@ -24,16 +24,19 @@ export class LoginComponent {
   ngOnInit(): void {}
 
   onSubmit(){
-    this.userService.login(this.formLogin.value)
-      .then(response => {
-        this.router.navigate(['/home']);
-      })
-      //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
-      //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
-      .catch(error => {
-        console.log(error)
-        prompt("Comprobacion de errores. Login.ts")
-      });
+    if(this.formLogin.value.email.trim() !="" && this.formLogin.value.password.trim() !="")
+    {
+      this.userService.login(this.formLogin.value)
+        .then(response => {
+          this.router.navigate(['/home']);
+        })
+        //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
+        //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
+        .catch(error => {
+          console.log(error)
+          prompt("Comprobacion de errores. Login.ts")
+        });
+    }
   }
 
   goToRegistro(){

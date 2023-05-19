@@ -1,5 +1,5 @@
-<div class="spinner-border text-success" role="status" *ngIf="!showImage"></div>
-<section class="register-container" *ngIf="showImage">
+<div class="spinner-border text-success" role="status" ></div>
+<section class="register-container">
   <section class="frog-container">
     <img src="../../../assets/mediafrogLogo.svg" alt="logo-mediafrog" class="frog">
   </section>
@@ -9,17 +9,17 @@
       <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="exampleInputEmail1">E-mail</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduzca e-mail" formControlName="email">
+          <input type="email" class="form-control" #email required id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduzca e-mail" formControlName="email">
         </div>
         <div class="form-group">
           <label for="exampleInputUser1">Usuario</label>
-          <input type="text" class="form-control" id="exampleInputUser1" placeholder="Introduzca usuario" formControlName="username">
+          <input type="text" class="form-control" #username required id="exampleInputUser1" placeholder="Introduzca usuario" formControlName="username">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
+          <input type="password" class="form-control" #password required id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
         </div>
-        <button type="submit" class="btn btn-dark" id="entrar">ÚNETE</button>
+        <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entrar">ÚNETE</button>
         <button class="btn btn-outline-dark" id="entrar" (click)="goToLogin()">INICIA SESIÓN</button>
       </form>
     </div>

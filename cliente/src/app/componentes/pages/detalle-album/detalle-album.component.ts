@@ -24,10 +24,11 @@ export class DetalleAlbumComponent {
   isAdmin:boolean = false
   canciones: Cancion[] = []
   reproduciendo:string = ""
+  iteraciones:number=0;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog-Album')}
-
+    
     receiveMessage($event:any) {
       this.reproduciendo = $event;
     }
@@ -54,6 +55,7 @@ export class DetalleAlbumComponent {
             token: cancionDoc.data()['token'],
           };
           this.canciones.push(cancion);
+          this.iteraciones++;
         });
     });
   }
@@ -67,6 +69,6 @@ export class DetalleAlbumComponent {
   }
 
   goToNewSong(){
-    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistaId, albumId: this.albumId} });
+    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistaId, albumId: this.albumId, order: this.iteraciones} });
   }
 }

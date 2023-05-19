@@ -13,7 +13,7 @@
 <section class="busquedaContainer">
     <section class="encontradoContainer">
       <div class="container">
-        <h3>Artista</h3>
+        <h3>Artistas</h3>
         <div class="row row-cols-auto">
           <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
             <app-tarjeta-artista *ngFor="let artista of artistas | byName:getFilterName()" [artista]="artista" ></app-tarjeta-artista>

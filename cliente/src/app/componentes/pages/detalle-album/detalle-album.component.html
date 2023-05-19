@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-<section class="albumDisp">
+<div class="spinner-border text-success" role="status" *ngIf="!albumInfo"></div>
+<section class="albumDisp" *ngIf="albumInfo">
   <img class="album-img" [src]="albumInfo.image">
   <div class="album-nombre">
     <!-- falta ngif -->
@@ -8,8 +9,8 @@
       <h5> {{albumInfo.anyo}} </h5>
     </div>
     <!-- falta ngif -->
-    <!-- <div>
-      <form  [formGroup]="updateArtist" (ngSubmit)="onSubmit()">
+    <!-- <div> -->
+      <!-- <form  [formGroup]="updateArtist" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="exampleInputUser" class="label">Nombre</label>
           <input type="text" class="form-control" placeholder={{artistaInfo.nombre}} formControlName="nombre">

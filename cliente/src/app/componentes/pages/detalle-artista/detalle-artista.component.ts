@@ -30,6 +30,7 @@ export class DetalleArtistaComponent {
         id: new FormControl(this.artistaId),
         nombre: new FormControl(),
         descripcion: new FormControl(),
+        image: new FormControl(),
       })
     }
 
@@ -106,7 +107,6 @@ export class DetalleArtistaComponent {
       {
         this.uploadImageArtist(this.myEvent, this.artistaId)
       }
-      //this.userService.logout();
       setTimeout(() => this.router.navigate(['/home']), 2000)
 
     }

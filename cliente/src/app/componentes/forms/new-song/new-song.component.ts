@@ -20,6 +20,9 @@ export class NewSongComponent {
   albumId:string=""
   isAdmin:boolean = false;
   myEvent:any
+  order:any
+  helpOrder:boolean=false
+  
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -27,6 +30,8 @@ export class NewSongComponent {
     await this.route.queryParams.subscribe(async params => {
       this.artistaId = params['artistaId']
       this.albumId = params['albumId']
+      this.order = parseInt(params['order'])+1
+      this.newSong.controls['orden'].setValue(this.order)
     })
   }
 
@@ -47,13 +52,18 @@ export class NewSongComponent {
     this.myEvent = $event
   }
 
+  toogleHelpOrder()
+  {
+    this.helpOrder = !this.helpOrder
+  }
   // uploadImageSong($event:any, artistId:string, albumId:string, aid:string){
   //   this.fireStorage.uploadImageSong($event, artistId, albumId, aid)
   // }
 
   async onSubmit(){
-    await this.db.addSong(this.artistaId, this.albumId, this.newSong.value)
-    this.router.navigate(['/home']);
+    // await this.db.addSong(this.artistaId, this.albumId, this.newSong.value)
+    // this.router.navigate(['/home']);
+    prompt("Aun no esta implementado subir archivo .mp3")
   }
 
 }
