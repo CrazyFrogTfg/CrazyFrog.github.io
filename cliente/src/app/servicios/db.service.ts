@@ -31,7 +31,7 @@ export class DbService {
   }
 
   async deleteAlbum(albumId:any){
-    console.log("Funcion deleteAlbum incompleta. DB-SERVICE")
+    prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
     //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
     //await deleteDoc(doc(this.firestore, "artistas", albumId ));
   }
@@ -83,7 +83,6 @@ export class DbService {
       const q = query(collection(this.firestore, `artistas/${artistaId}/albumes`), where("nombre", "==", albumNombre))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
-      console.log("db.service dice: getAlbumId? = " + uid)
     }
     return uid
   }

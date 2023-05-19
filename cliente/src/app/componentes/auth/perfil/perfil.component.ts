@@ -33,7 +33,6 @@ export class PerfilComponent {
   async onSubmit() {
     if(this.updateUser.value)
     {
-      console.log(this.updateUser.value)
       await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo);
       if(this.myEvent)
       {

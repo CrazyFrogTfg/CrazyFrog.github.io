@@ -38,7 +38,6 @@ export class FireStorageService {
         //const response = await listAll(imagesRef);
         //for (let item of response.items) {
           const url = await getDownloadURL(imagesRef);
-          console.log(url)
           resolve(url);
           return;
 
@@ -70,25 +69,19 @@ export class FireStorageService {
   }
 
   uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
-    console.log("entramos a uploadImageAlbum en fireStorageService")
     //Preparamos la imagen dandole ruta
     const file = $event.target.files[0];
     const fileRef = ref(this.storage, `artists/${artistaId}/${albumName}`)
-    console.log("preparamos el file para subirlo a: `artists/"+artistaId+"/"+albumName)
     //subimos la imagen
     uploadBytes(fileRef, file)
     .then(async response =>{
       //const imagenAlbum = getDownloadURL(fileRef)
-      console.log("subido el fichero. fichero completo:")
-      console.log(response)
-
       //Despues, obtenemos la imagen, guardamos en una variable
       const imagenAlbum = await this.getImageAlbum(artistaId,albumName)
 
       // SI UPDATEA
         const albumRef = doc(this.firestore, `artistas/${artistaId}/albumes/${albumId}`);
         await updateDoc(albumRef, {
-          //nombre:"updateadoElDoc",
           image:imagenAlbum,
         })
         .then(response => console.log(response))
@@ -106,7 +99,6 @@ export class FireStorageService {
         //const response = await listAll(imagesRef);
        // for (let item of response.items) {
             const url = await getDownloadURL(imagesRef);
-            console.log("url imagen album =" +url)
             resolve(url);
             return;
        // }

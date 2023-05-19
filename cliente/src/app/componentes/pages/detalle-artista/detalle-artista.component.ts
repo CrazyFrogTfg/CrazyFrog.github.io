@@ -58,7 +58,6 @@ export class DetalleArtistaComponent {
           image: doc.data()['image']
         };
         this.albumes.push(album);
-        console.log(this.albumes)
       });
     });
   }
@@ -108,7 +107,6 @@ export class DetalleArtistaComponent {
         this.uploadImageArtist(this.myEvent, this.artistaId)
       }
       setTimeout(() => this.router.navigate(['/home']), 2000)
-
     }
   }
 
