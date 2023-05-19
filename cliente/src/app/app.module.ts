@@ -20,19 +20,18 @@ import { Error404Component } from './componentes/shared/error404/error404.compon
 import { TarjetaArtistaComponent } from './componentes/pages/buscador/tarjeta-artista/tarjeta-artista.component';
 import { ReproductorComponent } from './componentes/shared/reproductor/reproductor.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { NamePlaylistPipe } from './filtros/name-playlist.pipe';
 import { NewPlaylistComponent } from './componentes/forms/new-playlist/new-playlist.component';
 import { UsersListComponent } from './componentes/admin/users-list/users-list.component';
 import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/detalle-artista.component';
 import { NewArtistComponent } from './componentes/forms/new-artist/new-artist.component';
 import { TarjetaPlaylistComponent } from './componentes/pages/home/tarjeta-playlist/tarjeta-playlist.component';
 import { TarjetaAlbumComponent } from './componentes/pages/detalle-artista/tarjeta-album/tarjeta-album.component';
-import { NameAlbumPipe } from './filtros/name-album.pipe';
 import { NewAlbumComponent } from './componentes/forms/new-album/new-album.component';
 import { DetalleAlbumComponent } from './componentes/pages/detalle-album/detalle-album.component';
 import { TarjetaCancionComponent } from './componentes/pages/detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
 import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics.component';
+import { ByNamePipe } from './filtros/byName.pipe';
 
 @NgModule({
   declarations: [
@@ -49,14 +48,13 @@ import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics
     Error404Component,
     TarjetaArtistaComponent,
     ReproductorComponent,
-    NamePlaylistPipe,
     NewPlaylistComponent,
     UsersListComponent,
     DetalleArtistaComponent,
     NewArtistComponent,
     TarjetaPlaylistComponent,
     TarjetaAlbumComponent,
-    NameAlbumPipe,
+    ByNamePipe,
     NewAlbumComponent,
     DetalleAlbumComponent,
     TarjetaCancionComponent,

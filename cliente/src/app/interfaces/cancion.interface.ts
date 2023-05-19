@@ -1,7 +1,6 @@
 export interface Cancion {
-  titulo:string,
+  nombre:string,
   orden:number,
   letra:string,
   archivo:string,
-  token:string
 }

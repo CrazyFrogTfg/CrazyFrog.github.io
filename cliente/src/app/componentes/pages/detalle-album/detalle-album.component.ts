@@ -47,7 +47,7 @@ export class DetalleAlbumComponent {
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
-            titulo: cancionDoc.data()['titulo'],
+            nombre: cancionDoc.data()['nombre'],
             orden: cancionDoc.data()['orden'],
             letra: cancionDoc.data()['letra'],
             archivo: cancionDoc.data()['archivo'],
@@ -56,6 +56,14 @@ export class DetalleAlbumComponent {
           this.canciones.push(cancion);
         });
     });
+  }
+
+  getFilterName():string{
+    return this.fireStorage.getFilterName()
+  }
+
+  setFilterName(search:string){
+    this.fireStorage.setFilterName(search)
   }
 
   goToNewSong(){

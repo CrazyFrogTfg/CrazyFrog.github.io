@@ -16,7 +16,7 @@
         <h3>Artista</h3>
         <div class="row row-cols-auto">
           <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
-            <app-tarjeta-artista *ngFor="let artista of artistas | namePlaylist:getFilterName()" [artista]="artista" ></app-tarjeta-artista>
+            <app-tarjeta-artista *ngFor="let artista of artistas | byName:getFilterName()" [artista]="artista" ></app-tarjeta-artista>
           </section>
         </div>
       </div>

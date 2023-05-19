@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'namePlaylist'
+  name: 'byName'
 })
-export class NamePlaylistPipe implements PipeTransform {
+export class ByNamePipe implements PipeTransform {
 
-  transform(arraySearched: any[], param: string): any[] {
-    
+  transform(arraySearched: any[], param: string=""): any[] {
     if(param){
       const arrayFiltred:any[] = arraySearched.filter( searched => searched.nombre.toLowerCase().includes(param.toLowerCase()));
       return arrayFiltred
@@ -15,5 +14,4 @@ export class NamePlaylistPipe implements PipeTransform {
        return arraySearched;
      }
   }
-
 }

@@ -33,7 +33,7 @@ export class NewSongComponent {
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title, private route:ActivatedRoute, private fireStorage:FireStorageService) {
      title.setTitle('Mediafrog-Nueva Cancion')
     this.newSong = new FormGroup({
-      titulo: new FormControl(),
+      nombre: new FormControl(),
       orden: new FormControl(),
       letra: new FormControl()
     })
