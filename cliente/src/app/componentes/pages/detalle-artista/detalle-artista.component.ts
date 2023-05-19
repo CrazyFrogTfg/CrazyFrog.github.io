@@ -54,9 +54,10 @@ export class DetalleArtistaComponent {
           id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['anyo'],
-          image: doc.data()['imageAlbum']
+          image: doc.data()['image']
         };
         this.albumes.push(album);
+        console.log(this.albumes)
       });
     });
   }
