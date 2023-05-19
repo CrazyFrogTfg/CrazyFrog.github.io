@@ -10,7 +10,7 @@ import { Artista } from '../interfaces/artista.interface';
   providedIn: 'root'
 })
 export class FireStorageService {
-  
+
   storage = getStorage()
   srcImage:any
   imageDown = ref(this.storage, 'images/rana.jpg')
@@ -22,7 +22,7 @@ export class FireStorageService {
   private namePlaylist:string ="hola";
 
   constructor(private firestore: Firestore, private db:DbService) { }
-  
+
   getFilterName():string{
     return this.filterName
   }
@@ -41,7 +41,7 @@ export class FireStorageService {
           console.log(url)
           resolve(url);
           return;
-          
+
         //}
         //throw new Error('No se encontró ninguna imagen de perfil.');
       } catch (error) {
@@ -64,11 +64,11 @@ export class FireStorageService {
         await updateDoc(artistRef, {
           image:imagenArtist,
         })
-      
+
     })
     .catch(error => console.log(error));
   }
-  
+
   uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
     console.log("entramos a uploadImageAlbum en fireStorageService")
     //Preparamos la imagen dandole ruta
@@ -84,7 +84,7 @@ export class FireStorageService {
 
       //Despues, obtenemos la imagen, guardamos en una variable
       const imagenAlbum = await this.getImageAlbum(artistaId,albumName)
-      
+
       // SI UPDATEA
         const albumRef = doc(this.firestore, `artistas/${artistaId}/albumes/${albumId}`);
         await updateDoc(albumRef, {
@@ -92,7 +92,7 @@ export class FireStorageService {
           image:imagenAlbum,
         })
         .then(response => console.log(response))
-      
+
     })
     .catch(error => console.log(error));
   }
@@ -125,14 +125,14 @@ export class FireStorageService {
   .then((imageURL) => {
     this.srcImage = imageURL
     // Insert url into an <img> tag to "download"
-  }) 
+  })
 
   reproducir()
   {
     return this.cancionRef
   }
 
-  
+
    //FUNCIONES GET/SET PARA EL FILTRADO DE PLAYLISTS!
   getNamePlaylist():string
   {

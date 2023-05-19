@@ -57,4 +57,8 @@ export class DetalleAlbumComponent {
         });
     });
   }
+
+  goToNewSong(){
+    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistaId, albumId: this.albumId} });
+  }
 }

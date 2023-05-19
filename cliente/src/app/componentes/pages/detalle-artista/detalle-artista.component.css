@@ -13,7 +13,7 @@ h1, h5 {
 
 .custom-card {
   background-color: transparent;
-  
+
 }
 
 .artista-img {
@@ -169,10 +169,6 @@ label{
 
 .cssbuttons-io-button:active {
   box-shadow: 0 0.3em 1em -0.5em #14a73e98;
-}
-
-.adminButtons {
-  margin-top: 20px;
 }
 
 .addAlbum{

@@ -47,9 +47,13 @@ export class DbService {
   }
 
   addAlbum(artistId:string, newAlbum:Album){
-    console.log("dbService / addAlbum. artistId = " + artistId)
     const artistRef = collection(this.firestore, `artistas/${artistId}/albumes`);
     return addDoc(artistRef, newAlbum);
+  }
+
+  addSong(artistId:string, albumId:string, newSong:Album){
+    const albumRef = collection(this.firestore, `artistas/${artistId}/albumes/${albumId}/canciones`);
+    return addDoc(albumRef, newSong);
   }
 
 

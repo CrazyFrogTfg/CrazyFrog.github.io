@@ -14,6 +14,8 @@ import { DetalleArtistaComponent } from './componentes/pages/detalle-artista/det
 import { NewArtistComponent } from './componentes/forms/new-artist/new-artist.component';
 import { NewAlbumComponent } from './componentes/forms/new-album/new-album.component';
 import { DetalleAlbumComponent } from './componentes/pages/detalle-album/detalle-album.component';
+import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path: 'newplaylist', component: NewPlaylistComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'newalbum', component: NewAlbumComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'newartist', component: NewArtistComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  {path: 'newsong', component: NewSongComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'users', component: UsersListComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'artista', component: DetalleArtistaComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'album', component: DetalleAlbumComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},

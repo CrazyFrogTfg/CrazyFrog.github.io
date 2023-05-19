@@ -31,6 +31,8 @@ import { NameAlbumPipe } from './filtros/name-album.pipe';
 import { NewAlbumComponent } from './componentes/forms/new-album/new-album.component';
 import { DetalleAlbumComponent } from './componentes/pages/detalle-album/detalle-album.component';
 import { TarjetaCancionComponent } from './componentes/pages/detalle-album/tarjeta-cancion/tarjeta-cancion.component';
+import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
+import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { TarjetaCancionComponent } from './componentes/pages/detalle-album/tarje
     NewAlbumComponent,
     DetalleAlbumComponent,
     TarjetaCancionComponent,
+    NewSongComponent,
+    LyricsComponent,
   ],
   imports: [
     BrowserModule,
