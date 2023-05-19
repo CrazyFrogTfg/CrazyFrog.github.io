@@ -8,7 +8,7 @@
       <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="namePlaylist" class="label">Nombre</label>
-          <input type="text" (keyup)="toogleCanCreate()" class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="nombre">
+          <input type="text" (keyup)="toogleCanCreate()" required class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="nombre">
         </div>
         <h3>Establece la privacidad:</h3>
         <p>Será pública por defecto</p>
