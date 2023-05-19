@@ -1,4 +1,4 @@
-import { ByNamePipe } from './byName.pipe';
+import { ByNamePipe } from './by-name.pipe';
 
 describe('NameAlbumPipe', () => {
   it('create an instance', () => {

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NewPlaylistComponent } from './new-playlist.component';
 
 describe('NewPlaylistComponent', () => {

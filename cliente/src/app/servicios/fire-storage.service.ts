@@ -116,31 +116,4 @@ export class FireStorageService {
         reject(error);
   }})}
 
-
-
-
-
-
-  /*getDownloadURL(imageDown)
-  .then((imageURL) => {
-    this.srcImage = imageURL
-    // Insert url into an <img> tag to "download"
-  })
-
-  reproducir()
-  {
-    return this.cancionRef
-  }
-
-
-   //FUNCIONES GET/SET PARA EL FILTRADO DE PLAYLISTS!
-  getNamePlaylist():string
-  {
-    return this.namePlaylist;
-  }
-
-  setNamePlaylist(newName:string){
-    //Código a desarrollar. Esto serviria para setear el newNamePlaylist para el filter!!
-    this.namePlaylist = newName;
-  }*/
 }

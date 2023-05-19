@@ -31,7 +31,7 @@ import { DetalleAlbumComponent } from './componentes/pages/detalle-album/detalle
 import { TarjetaCancionComponent } from './componentes/pages/detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
 import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics.component';
-import { ByNamePipe } from './filtros/byName.pipe';
+import { ByNamePipe } from './filtros/by-name.pipe';
 
 @NgModule({
   declarations: [
