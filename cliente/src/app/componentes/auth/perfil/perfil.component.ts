@@ -31,14 +31,15 @@ export class PerfilComponent {
   }
 
   async onSubmit() {
-    if(this.updateUser)
+    if(this.updateUser.value)
     {
+      console.log(this.updateUser.value)
       await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo);
       if(this.myEvent)
       {
         this.uploadImageProfile(this.myEvent)
       }
-      setTimeout(() => this.router.navigate(['/home']), 2000)
+      setTimeout(() => this.router.navigate(['/home']), 1500)
     }
   }
 

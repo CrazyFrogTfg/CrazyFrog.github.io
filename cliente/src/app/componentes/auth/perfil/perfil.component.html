@@ -25,12 +25,13 @@
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder={{userInfo.email}} formControlName="email">
         </div>
         <small>Si actualizas tu email deberás iniciar sesión nuevamente.</small> <br>
-        <button type="submit" class="btn btn-dark">ACTUALIZAR</button>
+        <button type="submit" [disabled]="updateUser.pristine" class="btn btn-dark">ACTUALIZAR</button>
       </form>
 
     </div>
   </section>
 <app-footer></app-footer>
+<app-reproductor></app-reproductor>
 </section>
 
 
