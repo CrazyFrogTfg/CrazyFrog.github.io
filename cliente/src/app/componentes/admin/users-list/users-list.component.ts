@@ -16,7 +16,7 @@ export class UsersListComponent {
   users:User[] = []
   isAdmin:boolean = false
 
-  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafrog-Lista Usuarios')}
+  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafrog - Lista Usuarios')}
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()

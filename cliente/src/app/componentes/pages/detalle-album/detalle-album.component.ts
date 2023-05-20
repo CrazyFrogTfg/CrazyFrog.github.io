@@ -27,8 +27,8 @@ export class DetalleAlbumComponent {
   iteraciones:number=0;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog-Album')}
-    
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog - Album')}
+
     receiveMessage($event:any) {
       this.reproduciendo = $event;
     }

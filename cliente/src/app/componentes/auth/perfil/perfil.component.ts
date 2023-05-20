@@ -16,7 +16,7 @@ export class PerfilComponent {
   myEvent:any;
   updateUser: FormGroup;
 
-  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog-Perfil')
+  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog - Perfil')
     this.updateUser = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -49,7 +49,7 @@ export class PerfilComponent {
   uploadImageProfile($event:any){
     this.userService.uploadImageProfile($event, this.uid)
   }
-  
+
   goHome(){
     this.router.navigate(['/home']);
   }

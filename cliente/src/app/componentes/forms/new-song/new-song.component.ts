@@ -22,7 +22,7 @@ export class NewSongComponent {
   myEvent:any
   order:any
   helpOrder:boolean=false
-  
+
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -36,7 +36,7 @@ export class NewSongComponent {
   }
 
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title, private route:ActivatedRoute, private fireStorage:FireStorageService) {
-     title.setTitle('Mediafrog-Nueva Cancion')
+     title.setTitle('Mediafrog - Nueva Cancion')
     this.newSong = new FormGroup({
       nombre: new FormControl(),
       orden: new FormControl(),

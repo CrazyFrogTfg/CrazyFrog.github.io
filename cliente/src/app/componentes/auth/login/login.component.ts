@@ -14,7 +14,7 @@ export class LoginComponent {
   formLogin: FormGroup;
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title){
-    title.setTitle('Mediafrog-Login')
+    title.setTitle('Mediafrog - Login')
     this.formLogin = new FormGroup({
       email: new FormControl(),
       password: new FormControl()

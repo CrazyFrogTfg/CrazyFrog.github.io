@@ -17,7 +17,7 @@ export class RegistroComponent implements OnInit {
   showImage:boolean=false
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title){
-    title.setTitle('Mediafrog-Registro')
+    title.setTitle('Mediafrog - Registro')
     this.formReg = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
@@ -33,7 +33,7 @@ export class RegistroComponent implements OnInit {
     await this.userService.register(this.formReg.value)
     .then(async () =>
       await this.userService.addUser(this.formReg.value))
-      
+
       await this.userService.logout()
       await this.router.navigate(['/login'])
     //controlar errores

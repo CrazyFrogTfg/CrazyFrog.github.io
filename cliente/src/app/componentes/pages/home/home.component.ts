@@ -20,7 +20,7 @@ export class HomeComponent {
   playlists:Playlist[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
-      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog-Home')}
+      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog - Home')}
 
   async ngOnInit() {
     this.playlists=[]

@@ -18,8 +18,8 @@ export class NewArtistComponent {
   myEvent:any
   albumes:Album[]=[]
 
-  constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService, private title:Title){ 
-    title.setTitle('Mediafrog-Nuevo Artista')
+  constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService, private title:Title){
+    title.setTitle('Mediafrog - Nuevo Artista')
     this.newArtist = new FormGroup({
       nombre: new FormControl(),
       descripcion: new FormControl(),

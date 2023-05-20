@@ -25,7 +25,7 @@ export class NewPlaylistComponent {
   }
 
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title) {
-     title.setTitle('Mediafrog-Nueva Playlist')
+     title.setTitle('Mediafrog - Nueva Playlist')
     this.newPlaylist = new FormGroup({
       nombre: new FormControl(),
       privada: new FormControl(false),

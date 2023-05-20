@@ -24,7 +24,7 @@ export class BuscadorComponent {
               private fireStorage:FireStorageService,
               private userService:UsuariosService,
               private router:Router,
-              private title:Title){ title.setTitle('Mediafrog-Buscador')}
+              private title:Title){ title.setTitle('Mediafrog - Buscador')}
 
   async ngOnInit(){
       this.db.getArtistas().subscribe(artistas =>{

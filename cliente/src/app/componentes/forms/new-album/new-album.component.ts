@@ -27,7 +27,7 @@ export class NewAlbumComponent {
 
   constructor(private firestore:Firestore, private route:ActivatedRoute,
     private userService:UsuariosService, private router:Router, private db:DbService,
-    private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog-Nuevo Album')
+    private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Nuevo Album')
 
     this.newAlbum = new FormGroup({
       nombre: new FormControl(),
