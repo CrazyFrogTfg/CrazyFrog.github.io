@@ -17,3 +17,18 @@ audio::-webkit-media-controls-play-button {
     /* Bordes redondos */
     border-radius: 50%;
   }
+
+.btn {
+  border-radius: 50%;
+  margin-left: 1%;
+}
+
+.repro{
+  background-color: #E9840E;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

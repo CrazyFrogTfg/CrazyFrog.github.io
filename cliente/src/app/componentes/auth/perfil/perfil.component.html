@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="spinner-border text-success" role="status" *ngIf="!userInfo"></div>
+<app-spinner *ngIf="!userInfo"></app-spinner>
 <section class="profile-container" *ngIf="userInfo">
 
   <section class="profile-box">
@@ -31,7 +31,6 @@
     </div>
   </section>
 <app-footer></app-footer>
-<app-reproductor></app-reproductor>
 </section>
 
 

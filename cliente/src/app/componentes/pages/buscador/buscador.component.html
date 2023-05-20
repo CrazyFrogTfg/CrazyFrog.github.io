@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="spinner-border text-success" role="status" *ngIf="!userInfo"></div>
+<app-spinner *ngIf="!userInfo"></app-spinner>
 <section *ngIf="userInfo">
 <section class="buscadorSection">
     <input class="buscadorInput" type="text" #search (keyup.enter)="setFilterName(search.value)" placeholder="¿Qué te apetece escuchar?">
@@ -60,5 +60,5 @@
       </section>
     </section>
 </section>
-<app-reproductor></app-reproductor>
 </section>
+<app-reproductor></app-reproductor>

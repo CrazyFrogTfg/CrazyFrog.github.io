@@ -1,21 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 @Component({
   selector: 'app-reproductor',
-  template: `
-  <audio src="{{reproduciendo}}"></audio>
-  <button (click)="reproducir()">Reproducir</button>
-  <button (click)="playPausa()">PlayPausa</button>
-  <button (click)="detener()">Detener</button>
-`,
+  templateUrl: './reproductor.component.html',
   styleUrls: ['./reproductor.component.css']
 })
 export class ReproductorComponent {
 @Input() reproduciendo:any
+@HostListener('window:scroll', ['$event'])
 isPaused:boolean=true
+isSticky: boolean = false;
 
 constructor(private reproductorService:ReproductorService){}
+
+
+checkScroll() {
+  const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const bodyHeight = document.body.offsetHeight;
+
+  // Ajusta la altura de offset según tus necesidades
+  if (scrollPosition + windowHeight > bodyHeight - 100) {
+    this.isSticky = true;
+  } else {
+    this.isSticky = false;
+  }
+}
 
 reproducir() {
   const cancion = this.reproduciendo;

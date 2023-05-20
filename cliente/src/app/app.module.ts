@@ -32,6 +32,7 @@ import { TarjetaCancionComponent } from './componentes/pages/detalle-album/tarje
 import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
 import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics.component';
 import { ByNamePipe } from './filtros/by-name.pipe';
+import { SpinnerComponent } from './componentes/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ByNamePipe } from './filtros/by-name.pipe';
     TarjetaCancionComponent,
     NewSongComponent,
     LyricsComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

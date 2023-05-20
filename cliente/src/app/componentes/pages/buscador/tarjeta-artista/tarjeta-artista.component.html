@@ -1,4 +1,4 @@
-<div class="spinner-border text-success" role="status" *ngIf="!artista"></div>
+<app-spinner *ngIf="!artista"></app-spinner>
 <div class="artist-container" *ngIf="artista">
   <div (click)="verDetalles(artista)" class="cardArtista">
     <img class="card-img-top img-fluid" [src]="artista.image" alt="IMAGEN ARTISTA">

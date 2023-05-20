@@ -4,6 +4,7 @@
 body{
   background-color:black;
   font-family: 'Inter', sans-serif;
+  margin-bottom: 70px;
 }
 
 .navbar-nav li{
