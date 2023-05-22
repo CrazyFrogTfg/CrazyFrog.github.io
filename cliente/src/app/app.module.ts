@@ -33,6 +33,7 @@ import { NewSongComponent } from './componentes/forms/new-song/new-song.componen
 import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics.component';
 import { ByNamePipe } from './filtros/by-name.pipe';
 import { SpinnerComponent } from './componentes/shared/spinner/spinner.component';
+import { DetallePlaylistComponent } from './componentes/pages/detalle-playlist/detalle-playlist.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { SpinnerComponent } from './componentes/shared/spinner/spinner.component
     NewSongComponent,
     LyricsComponent,
     SpinnerComponent,
+    DetallePlaylistComponent,
   ],
   imports: [
     BrowserModule,

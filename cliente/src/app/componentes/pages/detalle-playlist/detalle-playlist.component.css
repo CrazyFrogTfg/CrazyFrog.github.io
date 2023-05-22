@@ -1,0 +1,99 @@
+.artista-nombre {
+    grid-column: 5 / span 4;
+  }
+  
+  h1, h5 {
+    color:white;
+    margin-bottom: 15px;
+  }
+  
+  .albumDisp {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    margin: 20px 20px;
+  }
+  
+  .divBuscador {
+    grid-column: 9 / span 4;
+    display: flex;
+    align-items: center;
+  }
+  
+  .lupa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .buscador{
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+    flex-grow: 1;
+  }
+  
+  .container{
+    margin-top: 5%;
+  }
+  
+  .album-img{
+    width: 100%;
+  }
+  
+  .cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+  }
+  
+  .cssbuttons-io-button svg {
+    margin-right: 6px;
+  }
+  
+  .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em white;
+  }
+  
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+  }
+  
+  .addAlbum{
+    margin-right:25px;
+  }
+  
+  @media (max-width: 768px) {
+    .albumDisp {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  
+    .album-img {
+      grid-column: 1 / span 4;
+    }
+  
+    .album-nombre {
+      grid-column: 5 / span 4;
+    }
+  
+    .divBuscador {
+      grid-column: 1 / span 8;
+    }
+  
+    .buscador {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+  

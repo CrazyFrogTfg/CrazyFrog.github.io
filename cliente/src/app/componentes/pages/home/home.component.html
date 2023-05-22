@@ -24,6 +24,7 @@
 
   <section class="playlist-container">
     <div></div>
+    
   <div>
    <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
   </div>
