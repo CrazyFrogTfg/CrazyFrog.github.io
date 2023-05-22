@@ -21,10 +21,44 @@
     justify-content: space-around;
 }
 
+check-input:checked{
+  background-color: black;
+}
+.black-checkbox {
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  background-color: #000;
+  border-radius: 3px;
+  outline: none;
+}
 
+.black-checkbox:checked {
+  background-color: #000;
+}
+
+.black-checkbox::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.black-checkbox:checked::after {
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: 0.3px;
+  margin-left: 4px;
+}
 
 .filtrosSection{
-    background-color: whitesmoke;
+    background-color: #e9840e;
     margin-right: 45px;
     width: 90%;
     height: 300px;
