@@ -31,5 +31,5 @@ export class ReproductorService {
     this.audioElement.currentTime = 0;
   }
 
-  
+
 }

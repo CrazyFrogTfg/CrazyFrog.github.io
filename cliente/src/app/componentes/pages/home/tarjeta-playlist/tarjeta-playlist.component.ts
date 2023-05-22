@@ -21,6 +21,7 @@ constructor(private router:Router,private firestore: Firestore,private userServi
 async ngOnInit() {
   this.uid = await this.userService.getUID()
 }
+
 async verDetalles(playlist: any) {
   const q = query(collection(this.firestore, "playlists"), where("nombre", "==", playlist.nombre), where("propietario", "==", this.uid))
   const querySnapshots = await getDocs(q)
