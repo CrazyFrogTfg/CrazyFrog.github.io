@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ReproductorService {
   private audioElement: HTMLAudioElement;
-  private isPaused:boolean=true
+  isPaused:boolean=true
   constructor() {
     this.audioElement = new Audio();
   }
@@ -15,20 +15,28 @@ export class ReproductorService {
     this.audioElement.play();
   }
 
-  playPausa():boolean {
-    if(this.audioElement.paused){
-      this.isPaused=false
-      this.audioElement.play();
-    }else {
-      this.audioElement.pause()
-      this.isPaused=true;
+  playPausa(cancion: string): boolean {
+    if (this.audioElement.src !== cancion) {
+      this.audioElement.src = cancion;
+      this.audioElement.load();
     }
-    return this.isPaused
+    if(this.audioElement.src){
+      if (this.audioElement.paused) {
+        this.audioElement.play();
+        this.isPaused = false;
+      } else {
+        this.audioElement.pause();
+        this.isPaused = true;
+      }
+    }
+
+    return this.isPaused;
   }
 
   detener() {
     this.audioElement.pause();
     this.audioElement.currentTime = 0;
+    this.isPaused = true;
   }
 
   updateVolume(volume:any) {
@@ -79,7 +87,7 @@ const isMuted = audioElement.muted;
 muteUnmuted(){
   //editar boton pa que cambie su imagen segun estado
   this.audioElement.muted = !this.audioElement.muted; // Silenciar el audio
-  
+
 }
 
 //Loop: Obtiene o establece si el audio debe repetirse en bucle.
@@ -97,5 +105,5 @@ audioElement.addEventListener('ended', () => {
 });
 */
 
-  
+
 }

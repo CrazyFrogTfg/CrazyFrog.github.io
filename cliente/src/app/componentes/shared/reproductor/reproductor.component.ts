@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 @Component({
@@ -8,26 +8,11 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
 })
 export class ReproductorComponent {
 @Input() reproduciendo:any
-@HostListener('window:scroll', ['$event'])
 isPaused:boolean=true
 isSticky: boolean = false;
 volume:number = 0.5;
 
 constructor(private reproductorService:ReproductorService){}
-
-
-checkScroll() {
-  const scrollPosition = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const bodyHeight = document.body.offsetHeight;
-
-  // Ajusta la altura de offset según tus necesidades
-  if (scrollPosition + windowHeight > bodyHeight - 100) {
-    this.isSticky = true;
-  } else {
-    this.isSticky = false;
-  }
-}
 
 reproducir() {
   const cancion = this.reproduciendo;
@@ -35,7 +20,8 @@ reproducir() {
 }
 
 playPausa() {
-  return this.reproductorService.playPausa();
+  const cancion = this.reproduciendo;
+  return this.reproductorService.playPausa(cancion);
 }
 
 detener() {
@@ -46,6 +32,13 @@ updateVolume() {
   this.reproductorService.updateVolume(this.volume)
 }
 
+isPlaying(): boolean {
+  return !this.reproductorService.isPaused;
+}
+
+muteUnmuted(){
+  this.reproductorService.muteUnmuted()
+}
 /*
 
 // Obtener la posición actual
