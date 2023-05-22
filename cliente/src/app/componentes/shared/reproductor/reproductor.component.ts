@@ -11,6 +11,7 @@ export class ReproductorComponent {
 @HostListener('window:scroll', ['$event'])
 isPaused:boolean=true
 isSticky: boolean = false;
+volume:number = 0.5;
 
 constructor(private reproductorService:ReproductorService){}
 
@@ -34,27 +35,19 @@ reproducir() {
 }
 
 playPausa() {
-  this.reproductorService.playPausa();
+  return this.reproductorService.playPausa();
 }
 
 detener() {
   this.reproductorService.detener();
 }
 
+updateVolume() {
+  this.reproductorService.updateVolume(this.volume)
+}
+
 /*
-audioElement.play();
-Pause: Pausa la reproducción del audio.
-typescript
-Copy code
-audioElement.pause();
-Stop: Detiene la reproducción del audio y lo reinicia al principio.
-typescript
-Copy code
-audioElement.pause();
-audioElement.currentTime = 0;
-CurrentTime: Obtiene o establece la posición actual de reproducción del audio (en segundos).
-typescript
-Copy code
+
 // Obtener la posición actual
 const currentTime = audioElement.currentTime;
 
@@ -64,6 +57,7 @@ Duration: Obtiene la duración total del audio (en segundos).
 typescript
 Copy code
 const duration = audioElement.duration;
+
 Volume: Obtiene o establece el volumen del audio (entre 0 y 1).
 typescript
 Copy code
