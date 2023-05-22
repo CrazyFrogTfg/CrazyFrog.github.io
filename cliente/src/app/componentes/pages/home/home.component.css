@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-evenly;
     margin-top: 2%;
+    flex-wrap: wrap;
 }
 
 .profile-img2{
@@ -16,7 +17,6 @@
 .welcome{
     text-align: center;
 }
-
 
 .divBuscador{
     display: flex;
@@ -51,4 +51,31 @@
 
 .btn:hover svg {
   fill: #E9840E;
+}
+
+.homeDisp .buscador {
+  margin-left: 10px;
+  width: 250px;
+}
+
+/* Media queries para hacerlo responsive */
+
+@media screen and (max-width: 768px) {
+  .homeDisp .profile-img2 {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom:30px;
+  }
+
+  .homeDisp .welcome {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .homeDisp .buscador {
+    margin-left: 0;
+    width: 100%;
+    margin-bottom:30px;
+  }
 }
