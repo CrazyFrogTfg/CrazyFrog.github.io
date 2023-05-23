@@ -25,6 +25,7 @@ export class DetalleAlbumComponent {
   canciones: Cancion[] = []
   reproduciendo:string = ""
   iteraciones:number=0;
+  query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog - Album')}
@@ -60,13 +61,13 @@ export class DetalleAlbumComponent {
     });
   }
 
-  getFilterName():string{
-    return this.fireStorage.getFilterName()
-  }
-
-  setFilterName(search:string){
-    this.fireStorage.setFilterName(search)
-  }
+  // getFilterName():string{
+  //   return this.fireStorage.getFilterName()
+  // }
+  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
+  // setFilterName(search:string){
+  //   this.fireStorage.setFilterName(search)
+  // }
 
   goToNewSong(){
     this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistaId, albumId: this.albumId, order: this.iteraciones} });

@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="!playlistInfo"></app-spinner>
-<section class="albumDisp" *ngIf="playlistInfo">
+<app-spinner *ngIf="!propietario"></app-spinner>
+<section class="albumDisp" *ngIf="propietario">
   <img class="album-img" [src]="playlistInfo.image">
   <div class="album-nombre">
     <!-- falta ngif -->
@@ -8,20 +8,26 @@
       <h1> {{playlistInfo.nombre}} </h1>
       <h5> Creada por: {{propietario}} </h5>
     </div>
-</div>
-  <div class="divBuscador" *ngIf="isVisible">
-      <button class="btn" (click)="setFilterName(search.value)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-      </button>
-    <input class="buscador" (keyup.enter)="setFilterName(search.value)" #search type="text" placeholder="Filter de Canciones">
   </div>
+  <section *ngIf="isVisible">
+    <div class="divBuscador">
+        <button class="btn" (click)="setFilterName(search.value)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      <input class="buscador" (keyup.enter)="setFilterName(search.value)" #search type="text" placeholder="Filter de Canciones">
+    </div>
+    <div class="container">
+      <div class="row">
+        <app-tarjeta-cancion *ngFor="let cancion of canciones | byName:getFilterName()" [cancion] = "cancion"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="!isVisible">
+    <h3>Estás intentando acceder a una playlist privada, por lo tanto no se podrá mostrar para usted.</h3>
+  </section>
 </section>
-<div class="container">
-  <div class="row">
-    <app-tarjeta-cancion *ngFor="let cancion of canciones | byName:getFilterName()" [cancion] = "cancion"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
-  </div>
-</div>
 <app-footer></app-footer>
 <app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>

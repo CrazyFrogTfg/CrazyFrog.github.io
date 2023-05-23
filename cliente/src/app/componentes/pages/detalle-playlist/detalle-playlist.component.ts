@@ -15,8 +15,7 @@ import { Cancion } from 'src/app/interfaces/cancion.interface';
   styleUrls: ['./detalle-playlist.component.css']
 })
 export class DetallePlaylistComponent {
-
-  constructor(private route: ActivatedRoute,private router:Router,private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService){}
+  
   playlistId:string = ""
   playlistInfo:any = []
   canciones: Cancion[] = []
@@ -24,7 +23,10 @@ export class DetallePlaylistComponent {
   propietario:string = ""
   isVisible:boolean = false
 
+  constructor(private route: ActivatedRoute,private router:Router,private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService){}
+
   async ngOnInit() {
+    this.visibility()
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']

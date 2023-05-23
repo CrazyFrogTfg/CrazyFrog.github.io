@@ -23,6 +23,7 @@ export class DetalleArtistaComponent {
   edit:boolean = false
   updateArtist:FormGroup
   myEvent:any
+  query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Artista'),
@@ -35,7 +36,6 @@ export class DetalleArtistaComponent {
     }
 
   async ngOnInit() {
-
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
@@ -62,13 +62,13 @@ export class DetalleArtistaComponent {
     });
   }
 
-  getFilterName():string{
-    return this.fireStorage.getFilterName()
-  }
-
-  setFilterName(search:string){
-    this.fireStorage.setFilterName(search)
-  }
+  // getFilterName():string{
+  //   return this.fireStorage.getFilterName()
+  // }
+  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
+  // setFilterName(search:string){
+  //   this.fireStorage.setFilterName(search)
+  // }
 
   async deleteArtist(artistaInfo: any){
     const pregunta="Si deseas eliminar "+artistaInfo.nombre+" escribe su nombre aquí";
