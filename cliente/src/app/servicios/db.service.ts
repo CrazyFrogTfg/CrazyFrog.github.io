@@ -36,6 +36,10 @@ export class DbService {
     //await deleteDoc(doc(this.firestore, "artistas", albumId ));
   }
 
+  async deletePlaylist(playlistId:string){
+    await deleteDoc(doc(this.firestore, "playlists", playlistId));
+  }
+
   addPlaylist(playlist:Playlist){
     const playlistRef = collection(this.firestore, 'playlists');
     return addDoc(playlistRef, playlist);

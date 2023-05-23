@@ -1,16 +1,32 @@
-.playlist-table{
+.card-playlist{
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  border: solid 5px;
-  border-color: red;
+  margin-top: 15px;
 }
 
-.playlist-table>tr{
-  margin-right: 5px;
-  display: flex;
-  justify-content: space-around;
+.btn {
+  color: black;
+  border: none;
   padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+.btn:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn svg {
+  transition: fill 0.3s;
+}
+
+.btn:hover svg {
+  fill: black;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
