@@ -19,6 +19,7 @@ export class BuscadorComponent {
   artistas:any
   isAdmin:boolean = false
   userInfo:any
+  paginator:number=0
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
@@ -37,6 +38,22 @@ export class BuscadorComponent {
   // getAlbumes(artista:Artista){
   //   this.albumes = this.db.getAlbumes(artista)
   // }
+
+  increasePaginator(){
+    if(this.paginator<this.artistas.length-3)
+    {
+      this.paginator= this.paginator+3
+
+    }
+
+    console.log(this.paginator)
+
+  }
+  decreasePaginator(){
+    if(this.paginator>4)
+    this.paginator= this.paginator-3
+    console.log(this.paginator)
+  }
 
   getFilterName():string{
     return this.fireStorage.getFilterName()
