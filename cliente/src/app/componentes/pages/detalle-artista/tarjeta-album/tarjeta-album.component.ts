@@ -62,17 +62,16 @@ async verDetalles(album: any) {
   this.router.navigate(['/album'], { queryParams: { idArtista: this.artista, idAlbum: album.id } });
 }
 
-setFav(album:any){
-  album.tipo = "album"
+setAlbumFav(album:any){
   album.artistaId = this.artista
-  this.db.setFav(album)
+  this.db.setAlbumFav(album)
 }
 
-delFav(album:any){
-  this.db.delFav(album)
+delAlbumFav(album:any){
+  this.db.delAlbumFav(album)
 }
 
-isFav(album:any){
+isAlbumFav(album:any){
   return this.db.isFav(album)
 }
 

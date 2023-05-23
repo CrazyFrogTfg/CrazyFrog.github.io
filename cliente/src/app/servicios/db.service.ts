@@ -13,11 +13,15 @@ import { User } from '../interfaces/user.interface';
 export class DbService {
 
   playlists:Playlist[] = []
-  favs:Array<any> = []
+  artistsFav:Array<any> = []
+  albumsFav:Array<any> = []
 
   constructor(private firestore:Firestore) {
-    let savedFavs = localStorage.getItem("favs") || "[]"
-    this.favs = JSON.parse(savedFavs)
+    let savedAlbumsFav = localStorage.getItem("albumsFav") || "[]"
+    this.albumsFav = JSON.parse(savedAlbumsFav);
+
+    let savedArtistsFav = localStorage.getItem("artistsFav") || "[]"
+    this.artistsFav = JSON.parse(savedArtistsFav)
   }
 
   addArtista(artista:Artista){
@@ -129,27 +133,53 @@ export class DbService {
         }
       //}
   }
-  setFav(favorito:Album){
-    if(!this.favs.includes(favorito)){
-      this.favs.push(favorito)
-      localStorage.setItem("favs", JSON.stringify(this.favs))
+
+  //Favs de album - pegar un ojo
+  setAlbumFav(favorite:Album){
+    if(!this.albumsFav.includes(favorite)){
+      this.albumsFav.push(favorite)
+      localStorage.setItem("albumsFav", JSON.stringify(this.albumsFav))
     }
   }
 
-  delFav(favorito:any){
-    let posicion = this.favs.indexOf(favorito)
+  delAlbumFav(favorite:any){
+    let posicion = this.albumsFav.indexOf(favorite)
     if (posicion != -1){
-      this.favs.splice(posicion, 1)
-      localStorage.setItem("favs", JSON.stringify(this.favs))
+      this.albumsFav.splice(posicion, 1)
+      localStorage.setItem("albumsFav", JSON.stringify(this.albumsFav))
     }
   }
 
-  isFav(favorito:any){
-    return this.favs.includes(favorito)
+  isAlbumFav(favorite:any){
+    return this.albumsFav.includes(favorite)
   }
 
-  getFavs():Array<any>{
-    return this.favs
+  getAlbumFavs():Array<any>{
+    return this.albumsFav
+  }
+
+  //Favs de artista - Pegar un ojo
+  setArtistFav(favorite:Artista){
+    if(!this.artistsFav.includes(favorite)){
+      this.artistsFav.push(favorite)
+      localStorage.setItem("artistsFav", JSON.stringify(this.artistsFav))
+    }
+  }
+
+  delArtistFav(favorite:any){
+    let posicion = this.artistsFav.indexOf(favorite)
+    if (posicion != -1){
+      this.artistsFav.splice(posicion, 1)
+      localStorage.setItem("artistsFav", JSON.stringify(this.artistsFav))
+    }
+  }
+
+  isArtistFav(favorite:any){
+    return this.artistsFav.includes(favorite)
+  }
+
+  getArtistsFavs():Array<any>{
+    return this.artistsFav
   }
 
 }

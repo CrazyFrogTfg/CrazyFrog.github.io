@@ -51,6 +51,6 @@ export class HomeComponent {
   }
 
   getFavs():Array<any>{
-    return this.db.getFavs()
+    return this.db.getAlbumFavs()
   }
 }
