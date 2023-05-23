@@ -12,7 +12,7 @@ isPaused:boolean=true
 isSticky: boolean = false;
 volume:number = 0.5;
 
-constructor(private reproductorService:ReproductorService){}
+constructor(protected reproductorService:ReproductorService){}
 
 ngOnChanges()
 {

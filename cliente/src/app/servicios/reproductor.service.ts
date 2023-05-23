@@ -6,8 +6,17 @@ import { Injectable } from '@angular/core';
 export class ReproductorService {
   private audioElement: HTMLAudioElement;
   isPaused:boolean=true
+  currentProgress: number = 0;
+  totalDuration: number = 0;
+
   constructor() {
     this.audioElement = new Audio();
+    this.audioElement.addEventListener('timeupdate', () => {
+      this.currentProgress = this.audioElement.currentTime;
+    });
+    this.audioElement.addEventListener('loadedmetadata', () => {
+      this.totalDuration = this.audioElement.duration;
+    });
   }
 
   ngOnInit()
@@ -48,6 +57,9 @@ export class ReproductorService {
     this.audioElement.volume = volume;
   }
 
+  onProgressChange() {
+    this.audioElement.currentTime = this.currentProgress;
+  }
 
   /*
 audioElement.play();
