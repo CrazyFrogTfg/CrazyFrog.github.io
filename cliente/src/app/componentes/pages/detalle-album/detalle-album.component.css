@@ -7,12 +7,24 @@ h1, h5 {
   margin-bottom: 15px;
 }
 
+
 .albumDisp {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   grid-gap: 10px;
   margin: 20px 20px;
+}
+
+.album-img {
+  grid-column: 2 / span 3;
+  width: 200px;
+  height: 200px;
+  padding-bottom: 20px;
+}
+
+.album-nombre {
+  grid-column: 5 / span 4;
 }
 
 .divBuscador {
@@ -36,10 +48,6 @@ h1, h5 {
 
 .container{
   margin-top: 5%;
-}
-
-.album-img{
-  width: 100%;
 }
 
 .cssbuttons-io-button {
