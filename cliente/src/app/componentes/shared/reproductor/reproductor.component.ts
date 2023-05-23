@@ -14,6 +14,13 @@ volume:number = 0.5;
 
 constructor(private reproductorService:ReproductorService){}
 
+ngOnChanges()
+{
+  if(this.reproduciendo)
+  {
+    this.reproducir()
+  }
+}
 reproducir() {
   const cancion = this.reproduciendo;
   this.reproductorService.reproducir(cancion);

@@ -10,6 +10,11 @@ export class ReproductorService {
     this.audioElement = new Audio();
   }
 
+  ngOnInit()
+  {
+    this.audioElement.autoplay=true
+  }
+
   reproducir(cancion: string) {
     this.audioElement.src = cancion;
     this.audioElement.play();
