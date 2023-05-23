@@ -17,6 +17,7 @@ export class TarjetaArtistaComponent {
   formulario: FormGroup
   isAdmin:boolean = false
   userInfo:any
+  artistaId:string = ""
 
   constructor(private db: DbService, private storage:Storage, private router:Router, private userService:UsuariosService){
   this.formulario = new FormGroup({
@@ -28,15 +29,29 @@ export class TarjetaArtistaComponent {
   async ngOnInit(){
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
+    this.artistaId = await this.db.getArtistaUID(this.artista)
     }
 
   async onSubmit() {
     const response = await this.db.addArtista(this.formulario.value)
   }
 
-  async verDetalles(artista: any) {
-    let uid = await this.db.getArtistaUID(artista)
-    this.router.navigate(['/artista'], { queryParams: { id: uid} });
+  async verDetalles() {
+    this.router.navigate(['/artista'], { queryParams: {id: this.artistaId} });
+  }
+
+  setFav(artista:any){
+    artista.id = this.artistaId
+    artista.tipo = "artista"
+    this.db.setFav(artista)
+  }
+
+  delFav(artista:any){
+    this.db.delFav(artista)
+  }
+
+  isFav(artista:any){
+    return this.db.isFav(artista)
   }
 }
 

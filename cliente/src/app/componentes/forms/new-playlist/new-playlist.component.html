@@ -8,7 +8,7 @@
       <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="namePlaylist" class="label">Nombre</label>
-          <input type="text" (keyup)="toogleCanCreate()" required class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="nombre">
+          <input type="text" #namePlaylist required class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="nombre">
         </div>
         <h3>Establece la privacidad:</h3>
         <p>Será pública por defecto</p>
@@ -18,17 +18,10 @@
             Privada
           </label>
         </div>
-        <button type="submit" [disabled]="!this.canCreate" class="btn btn-dark">CREAR</button>
+        <button type="submit" [disabled]="namePlaylist.value.length < 1 || namePlaylist.value.length > 30" class="btn btn-dark">CREAR</button>
       </form>
     </div>
   </section>
 </section>
-<footer class="licencia">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-  <br />
-  Este obra está bajo una
-  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
-  Reconocimiento-CompartirIgual
-  4.0 Internacional</a>
-</footer>
+<app-footer></app-footer>
 

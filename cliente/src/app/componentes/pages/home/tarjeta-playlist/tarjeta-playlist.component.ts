@@ -29,33 +29,32 @@ export class TarjetaPlaylistComponent {
       })
     }
 
-  async ngOnInit() {
-    this.uid = await this.userService.getUID()
-    const q = query(collection(this.firestore, "playlists"), where("nombre", "==", this.playlist.nombre), where("propietario", "==", this.uid))
-    const querySnapshots = await getDocs(q)
-    this.idPlaylist = querySnapshots.docs[0].id;
-  }
+async ngOnInit() {
+  this.uid = await this.userService.getUID()
+  const q = query(collection(this.firestore, "playlists"), where("nombre", "==", this.playlist.nombre), where("propietario", "==", this.uid))
+  const querySnapshots = await getDocs(q)
+  this.idPlaylist = querySnapshots.docs[0].id;
+}
 
-  async verDetalles() {
-    this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
-  }
+async verDetalles() {
+  this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
+}
 
-  async deletePlaylist() {
-    const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
-    if (confirmDelete) {
-      console.log(this.idPlaylist)
-      await this.db.deletePlaylist(this.idPlaylist);
-      window.location.reload();
-    }
-  }
-
-  toggleEdit(){
-    this.edit = !this.edit
-  }
-
-  async onSubmit(){
-    await this.db.updatePlaylist(this.idPlaylist, this.updatePlaylist.value, this.playlist )
+async deletePlaylist() {
+  const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
+  if (confirmDelete) {
+    await this.db.deletePlaylist(this.idPlaylist);
     location.reload();
   }
+}
+
+toggleEdit(){
+  this.edit = !this.edit
+}
+
+async onSubmit(){
+  await this.db.updatePlaylist(this.idPlaylist, this.updatePlaylist.value, this.playlist )
+  location.reload();
+}
 
 }

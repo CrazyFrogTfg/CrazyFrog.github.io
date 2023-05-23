@@ -50,7 +50,7 @@ h1, h5 {
   margin-top: 5%;
 }
 
-.btn {
+.admin-button {
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -78,19 +78,19 @@ h1, h5 {
   margin-top: 10px;
 }
 
-.btn:hover {
+.admin-button:hover {
   width: 150px;
   transition-delay: .2s;
 }
 
-.btn:hover > .paragraph {
+.admin-button:hover > .paragraph {
   visibility: visible;
   opacity: 1;
   -webkit-transition-delay: .4s;
   transition-delay: .4s;
 }
 
-.btn:hover > .icon-wrapper .icon {
+.admin-button:hover > .icon-wrapper .icon {
   transform: scale(1.1);
 }
 

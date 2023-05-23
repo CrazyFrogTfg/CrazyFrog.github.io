@@ -13,8 +13,12 @@ import { User } from '../interfaces/user.interface';
 export class DbService {
 
   playlists:Playlist[] = []
+  favs:Array<any> = []
 
-  constructor(private firestore:Firestore) { }
+  constructor(private firestore:Firestore) {
+    let savedFavs = localStorage.getItem("favs") || "[]"
+    this.favs = JSON.parse(savedFavs)
+  }
 
   addArtista(artista:Artista){
     const artistaRef = collection(this.firestore, 'artistas');
@@ -118,11 +122,34 @@ export class DbService {
         })
 
         //Actualizamos privacidad si ha cambiado
-        if(playlist.privada && playlist.privada != oldPlaylist.privada){ 
+        if(playlist.privada && playlist.privada != oldPlaylist.privada){
           await updateDoc(playlistRef, {
             privada:playlist.privada,
           })
         }
       //}
   }
+  setFav(favorito:Album){
+    if(!this.favs.includes(favorito)){
+      this.favs.push(favorito)
+      localStorage.setItem("favs", JSON.stringify(this.favs))
+    }
+  }
+
+  delFav(favorito:any){
+    let posicion = this.favs.indexOf(favorito)
+    if (posicion != -1){
+      this.favs.splice(posicion, 1)
+      localStorage.setItem("favs", JSON.stringify(this.favs))
+    }
+  }
+
+  isFav(favorito:any){
+    return this.favs.includes(favorito)
+  }
+
+  getFavs():Array<any>{
+    return this.favs
+  }
+
 }

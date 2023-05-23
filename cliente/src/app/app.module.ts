@@ -34,6 +34,7 @@ import { LyricsComponent } from './componentes/pages/detalle-album/lyrics/lyrics
 import { ByNamePipe } from './filtros/by-name.pipe';
 import { SpinnerComponent } from './componentes/shared/spinner/spinner.component';
 import { DetallePlaylistComponent } from './componentes/pages/detalle-playlist/detalle-playlist.component';
+import { TarjetaFavComponent } from './componentes/pages/home/tarjeta-fav/tarjeta-fav.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { DetallePlaylistComponent } from './componentes/pages/detalle-playlist/d
     LyricsComponent,
     SpinnerComponent,
     DetallePlaylistComponent,
+    TarjetaFavComponent,
   ],
   imports: [
     BrowserModule,

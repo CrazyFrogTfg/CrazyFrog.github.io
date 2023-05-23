@@ -1,47 +1,52 @@
-.artista-nombre {
+.playlist-nombre {
     grid-column: 5 / span 4;
   }
-  
+
   h1, h5 {
     color:white;
     margin-bottom: 15px;
+    width: 600px;
   }
-  
-  .albumDisp {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
-    grid-gap: 10px;
-    margin: 20px 20px;
+
+  .playlistDisp {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
   }
-  
+
   .divBuscador {
     grid-column: 9 / span 4;
     display: flex;
     align-items: center;
   }
-  
+
+  .img-owner{
+    width: 30px;
+    height: 30px;
+    border-radius:50%;
+  }
+
   .lupa {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .buscador{
     height: 40px;
     width: 400px;
     border-radius: 10px;
     flex-grow: 1;
   }
-  
+
   .container{
     margin-top: 5%;
   }
-  
-  .album-img{
+
+  .playlist-img{
     width: 100%;
   }
-  
+
   .cssbuttons-io-button {
     display: flex;
     align-items: center;
@@ -57,43 +62,42 @@
     letter-spacing: 0.05em;
     border-radius: 20em;
   }
-  
+
   .cssbuttons-io-button svg {
     margin-right: 6px;
   }
-  
+
   .cssbuttons-io-button:hover {
     box-shadow: 0 0.5em 1.5em -0.5em white;
   }
-  
+
   .cssbuttons-io-button:active {
     box-shadow: 0 0.3em 1em -0.5em #14a73e98;
   }
-  
-  .addAlbum{
+
+  .addplaylist{
     margin-right:25px;
   }
-  
+
   @media (max-width: 768px) {
-    .albumDisp {
+    .playlistDisp {
       grid-template-columns: repeat(8, 1fr);
     }
-  
-    .album-img {
+
+    .playlist-img {
       grid-column: 1 / span 4;
     }
-  
-    .album-nombre {
+
+    .playlist-nombre {
       grid-column: 5 / span 4;
     }
-  
+
     .divBuscador {
       grid-column: 1 / span 8;
     }
-  
+
     .buscador {
       width: 100%;
       max-width: 400px;
     }
   }
-  

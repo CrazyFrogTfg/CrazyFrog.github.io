@@ -49,4 +49,8 @@ export class HomeComponent {
   goToNewPlaylist(){
     this.router.navigate(['/newplaylist']);
   }
+
+  getFavs():Array<any>{
+    return this.db.getFavs()
+  }
 }

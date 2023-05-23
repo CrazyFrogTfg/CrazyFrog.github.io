@@ -15,12 +15,13 @@ import { Cancion } from 'src/app/interfaces/cancion.interface';
   styleUrls: ['./detalle-playlist.component.css']
 })
 export class DetallePlaylistComponent {
-  
+
   playlistId:string = ""
   playlistInfo:any = []
   canciones: Cancion[] = []
   reproduciendo:string = ""
   propietario:string = ""
+  imageOwner:string = ""
   isVisible:boolean = false
   query:string=""
 
@@ -37,11 +38,11 @@ export class DetallePlaylistComponent {
       const userRef = doc(this.firestore, "users", this.playlistInfo.propietario);
       const userSnap = await getDoc(userRef);
       this.propietario = userSnap.data()?.['username'];
+      this.imageOwner = userSnap.data()?.['imageProfile'];
       const cancionesRef = collection(this.firestore, "playlists", this.playlistId, "canciones");
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
-
             nombre: cancionDoc.data()['nombre'],
             orden: cancionDoc.data()['orden'],
             letra: cancionDoc.data()['letra'],
