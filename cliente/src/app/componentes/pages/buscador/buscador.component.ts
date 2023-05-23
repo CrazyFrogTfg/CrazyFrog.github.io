@@ -39,20 +39,36 @@ export class BuscadorComponent {
   //   this.albumes = this.db.getAlbumes(artista)
   // }
 
+
+  // increasePaginator() {
+  //   const filteredArtistas:any = this.artistas | byName:getFilterName();
+  //   const totalPages = Math.ceil(filteredArtistas.length / 3);
+  //   if (this.paginator < totalPages - 1) {
+  //     this.paginator += 1;
+  //   }
+  //   console.log("paginator: " + this.paginator);
+  //   console.log("totalPages: " + totalPages);
+  // }
+  // decreasePaginator() {
+  //   if (this.paginator > 0) {
+  //     this.paginator -= 1;
+  //   }
+
   increasePaginator(){
-    if(this.paginator<this.artistas.length-3)
+    if(this.artistas.length>3 && this.paginator+1<this.artistas.length-3)
     {
+      console.log("artistas length: "+this.artistas.length)
       this.paginator= this.paginator+3
-
     }
-
-    console.log(this.paginator)
-
+    console.log("paginator: "+this.paginator)
+    console.log("artistas length: "+this.artistas.length)
   }
+
   decreasePaginator(){
-    if(this.paginator>4)
+    if(this.paginator+1>3)
     this.paginator= this.paginator-3
-    console.log(this.paginator)
+    console.log("paginator: "+this.paginator)
+
   }
 
   getFilterName():string{

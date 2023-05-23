@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="users"></app-spinner>
+<app-spinner *ngIf="!users"></app-spinner>
 <div class="users-container" *ngIf="users">
   <h2>Usuarios registrados</h2>
   <table class="table table-hover bg-white">
