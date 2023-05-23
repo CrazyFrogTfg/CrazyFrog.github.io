@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs } from '@angular/fire/firestore';
 import { Artista } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
@@ -106,5 +106,23 @@ export class DbService {
       this.playlists.push(playlist);
     })
     return this.playlists
+  }
+
+  async updatePlaylist(playlistId:any, playlist:Playlist, oldPlaylist:Playlist){
+    const playlistRef = doc(this.firestore, 'playlists', playlistId);
+
+        //Actualizamos Nombre playlist si ha cambiado
+        if(playlist.nombre && playlist.nombre != oldPlaylist.nombre)
+        await updateDoc(playlistRef, {
+          nombre:playlist.nombre,
+        })
+
+        //Actualizamos privacidad si ha cambiado
+        if(playlist.privada && playlist.privada != oldPlaylist.privada){ 
+          await updateDoc(playlistRef, {
+            privada:playlist.privada,
+          })
+        }
+      //}
   }
 }

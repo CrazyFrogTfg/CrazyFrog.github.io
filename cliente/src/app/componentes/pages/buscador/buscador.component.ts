@@ -77,6 +77,8 @@ export class BuscadorComponent {
 
   setFilterName(search:string){
     this.fireStorage.setFilterName(search)
+   this.paginator = 0
+    
   }
 
   getArtistas():any{

@@ -101,12 +101,12 @@ export class DetalleArtistaComponent {
   async onSubmit(){
     if(this.updateArtist)
     {
-      await this.userService.updateArtistaDb(this.artistaId, this.updateArtist.value, this.userInfo);
+      await this.userService.updateArtistaDb(this.artistaId, this.updateArtist.value, this.artistaInfo);
       if(this.myEvent)
       {
         this.uploadImageArtist(this.myEvent, this.artistaId)
       }
-      setTimeout(() => this.router.navigate(['/home']), 2000)
+      this.router.navigate(['/home'])
     }
   }
 

@@ -6,6 +6,7 @@ import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
 import { DbService } from 'src/app/servicios/db.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -14,33 +15,47 @@ import { DbService } from 'src/app/servicios/db.service';
   styleUrls: ['./tarjeta-playlist.component.css']
 })
 export class TarjetaPlaylistComponent {
-@Input() playlist:any
-uid:string = ""
-idPlaylist:string = ""
+  @Input() playlist:any
+  uid:string = ""
+  idPlaylist:string = ""
+  edit:boolean = false
+  updatePlaylist:FormGroup
 
-constructor(private router:Router, private firestore: Firestore,
-  private userService:UsuariosService, private fireStorage:FireStorageService,
-  private db:DbService){}
+  constructor(private router:Router, private firestore: Firestore,
+    private userService:UsuariosService, private fireStorage:FireStorageService,
+    private db:DbService){
+      this.updatePlaylist = new FormGroup({
+        nombre: new FormControl(),
+      })
+    }
 
-async ngOnInit() {
-  this.uid = await this.userService.getUID()
-  const q = query(collection(this.firestore, "playlists"), where("nombre", "==", this.playlist.nombre), where("propietario", "==", this.uid))
-  const querySnapshots = await getDocs(q)
-  this.idPlaylist = querySnapshots.docs[0].id;
-}
-
-async verDetalles() {
-  this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
-}
-
-async deletePlaylist() {
-  const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
-  if (confirmDelete) {
-    console.log(this.idPlaylist)
-    await this.db.deletePlaylist(this.idPlaylist);
-    window.location.reload();
+  async ngOnInit() {
+    this.uid = await this.userService.getUID()
+    const q = query(collection(this.firestore, "playlists"), where("nombre", "==", this.playlist.nombre), where("propietario", "==", this.uid))
+    const querySnapshots = await getDocs(q)
+    this.idPlaylist = querySnapshots.docs[0].id;
   }
-}
 
+  async verDetalles() {
+    this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
+  }
+
+  async deletePlaylist() {
+    const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
+    if (confirmDelete) {
+      console.log(this.idPlaylist)
+      await this.db.deletePlaylist(this.idPlaylist);
+      window.location.reload();
+    }
+  }
+
+  toggleEdit(){
+    this.edit = !this.edit
+  }
+
+  async onSubmit(){
+    await this.db.updatePlaylist(this.idPlaylist, this.updatePlaylist.value, this.playlist )
+    location.reload();
+  }
 
 }

@@ -181,7 +181,6 @@ export class UsuariosService {
       //}
   }
 
-
   async getImageProfile(uid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
