@@ -21,6 +21,8 @@ export class DetallePlaylistComponent {
   playlistInfo:any = []
   canciones: Cancion[] = []
   reproduciendo:string = ""
+  propietario:string = ""
+  isVisible:boolean = false
 
   async ngOnInit() {
     this.route.queryParams.subscribe(async params => {
@@ -30,11 +32,14 @@ export class DetallePlaylistComponent {
       const playlistRef = doc(this.firestore, "playlists", this.playlistId);
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
+      const userRef = doc(this.firestore, "users", this.playlistInfo.propietario);
+      const userSnap = await getDoc(userRef);
+      this.propietario = userSnap.data()?.['username'];
       const cancionesRef = collection(this.firestore, "playlists", this.playlistId, "canciones");
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
-            
+
             nombre: cancionDoc.data()['nombre'],
             orden: cancionDoc.data()['orden'],
             letra: cancionDoc.data()['letra'],
@@ -44,7 +49,7 @@ export class DetallePlaylistComponent {
         });
     });
   }
-    
+
   getFilterName():string{
     return this.fireStorage.getFilterName()
   }
@@ -53,6 +58,18 @@ export class DetallePlaylistComponent {
   }
   receiveMessage($event:any) {
     this.reproduciendo = $event;
+  }
+
+  visibility(){
+    if(this.userService.getUID() == this.playlistInfo.propietario){
+      this.isVisible = true
+    } else {
+      if(this.playlistInfo.privada == false){
+        this.isVisible = true
+      } else {
+        this.isVisible = false
+      }
+    }
   }
 
 }
