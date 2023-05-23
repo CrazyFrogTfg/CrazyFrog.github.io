@@ -22,11 +22,11 @@ export class DetallePlaylistComponent {
   reproduciendo:string = ""
   propietario:string = ""
   isVisible:boolean = false
+  query:string=""
 
   constructor(private route: ActivatedRoute,private router:Router,private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService){}
 
   async ngOnInit() {
-    this.visibility()
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']
@@ -49,7 +49,8 @@ export class DetallePlaylistComponent {
           }; console.log(cancion)
           this.canciones.push(cancion);
         });
-    });
+      });
+      await this.visibility()
   }
 
   getFilterName():string{
@@ -62,8 +63,8 @@ export class DetallePlaylistComponent {
     this.reproduciendo = $event;
   }
 
-  visibility(){
-    if(this.userService.getUID() == this.playlistInfo.propietario){
+  async visibility(){
+    if(await this.userService.getUID() == this.playlistInfo.propietario){
       this.isVisible = true
     } else {
       if(this.playlistInfo.privada == false){
