@@ -8,26 +8,19 @@
       <form [formGroup]="newAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="nameArtist" class="label">Nombre</label>
-          <input type="text" class="form-control" #nameAlbum id="nameAlbum" aria-describedby="nameAlbum" formControlName="nombre">
+          <input type="text" class="form-control" #nameAlbum id="nameAlbum" formControlName="name">
         </div>
         <div class="form-group">
           <label for="descriptionArtist" class="label">Año</label>
-          <input type="number" required max={{currentYear}} min="1" class="form-control" #anyoAlbum id="anyoAlbum" aria-describedby="anyoAlbum" formControlName="anyo">
+          <input type="number" required max={{currentYear}} min="1" class="form-control" #yearAlbum id="anyoAlbum" formControlName="year">
         </div>
         <div class="form-group">
           <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
           <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="image">
         </div>
-        <button type="submit" [disabled]="( anyoAlbum.value.length <1 || anyoAlbum.value.length > 4 || nameAlbum.value.length === 0)" class="btn btn-dark">CREAR</button>
+        <button type="submit" [disabled]="( yearAlbum.value.length <1 || yearAlbum.value.length > 4 || nameAlbum.value.length === 0)" class="btn btn-dark">CREAR</button>
       </form>
     </div>
   </section>
 </section>
-<footer class="licencia">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-  <br />
-  Este obra está bajo una
-  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
-  Reconocimiento-CompartirIgual
-  4.0 Internacional</a>
-</footer>
+<app-footer></app-footer>

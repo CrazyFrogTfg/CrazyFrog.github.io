@@ -16,7 +16,7 @@
           <input type="password" class="form-control" #password id="password" placeholder="Introduzca contraseña" formControlName="password">
         </div>
         <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 6 || email.value.length === 0)">ENTRAR</button>
-        <button class="btn btn-outline-dark" (click)="goToRegistro()">REGISTRATE</button>
+        <button class="btn btn-outline-dark" (click)="goToRegister()">REGISTRATE</button>
       </form>
     </div>
   </section>

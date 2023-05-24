@@ -43,22 +43,25 @@ export class DetalleArtistaComponent {
       const docRef = doc(this.firestore, 'artists', this.artistId);
       const docSnap = await getDoc(docRef);
       this.artistInfo = docSnap.data();
-      const artistasRef = collection(this.firestore, 'artists');
-      const artistaRef = doc(artistasRef, this.artistId);
-      const albumesRef = collection(artistaRef, 'albumes');
-      const q = query(albumesRef);
-      const querySnapshot = await getDocs(q);
+      
+      //creo que esto ya no hace falta
 
-      querySnapshot.forEach(async (doc) => {
-        const album = {
-          artistaId: this.artistInfo.id,
-          id: doc.id,
-          nombre: doc.data()['nombre'],
-          anyo: doc.data()['anyo'],
-          image: doc.data()['image']
-        };
-        this.albums.push(album);
-      });
+      // const artistasRef = collection(this.firestore, 'artists');
+      // const artistaRef = doc(artistasRef, this.artistId);
+      // const albumesRef = collection(artistaRef, 'albumes');
+      // const q = query(albumesRef);
+      // const querySnapshot = await getDocs(q);
+
+      // querySnapshot.forEach(async (doc) => {
+      //   const album = {
+      //     artistaId: this.artistInfo.id,
+      //     id: doc.id,
+      //     nombre: doc.data()['nombre'],
+      //     anyo: doc.data()['anyo'],
+      //     image: doc.data()['image']
+      //   };
+      //   this.albums.push(album);
+      // });
     });
   }
 
@@ -86,7 +89,7 @@ export class DetalleArtistaComponent {
   }
 
   goToNewAlbum(){
-    this.router.navigate(['/newalbum'], {queryParams: {artistaId: this.artistId} });
+    this.router.navigate(['/newalbum'], {queryParams: {artistId: this.artistId} });
   }
 
   toggleEdit(){

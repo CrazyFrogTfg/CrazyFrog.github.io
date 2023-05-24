@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -39,7 +39,7 @@ export class LoginComponent {
     }
   }
 
-  goToRegistro(){
+  goToRegister(){
     this.router.navigate(['/registro']);
   }
 

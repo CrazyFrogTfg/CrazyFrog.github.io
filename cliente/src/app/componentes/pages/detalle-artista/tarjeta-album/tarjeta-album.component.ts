@@ -55,7 +55,7 @@ setMyEvent($event:any){
 //POR EDITAR
 async deleteAlbum(album:Album){
   console.log("Recuerda volver a deleteAlbum() de tarjetaAlbum")
-  const pregunta="Si deseas eliminar "+album.nombre+" escribe su nombre aquí";
+  const pregunta="Si deseas eliminar "+album.name+" escribe su nombre aquí";
   // if( prompt(pregunta) == album.nombre)
   // {
     this.db.deleteAlbum(album.id)

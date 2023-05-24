@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
-import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Artist } from 'src/app/interfaces/artista.interface';
 import { Title} from '@angular/platform-browser';
 
 @Component({
@@ -18,10 +17,9 @@ export class NewAlbumComponent {
 
   newAlbum:FormGroup
   myEvent:any
-  albumes:Album[]=[]
   userInfo:any
   isAdmin:boolean = false;
-  artistaId:string="";
+  artistId:string="";
   currentYear:number = 2023
 
 
@@ -30,8 +28,8 @@ export class NewAlbumComponent {
     private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Nuevo Album')
 
     this.newAlbum = new FormGroup({
-      nombre: new FormControl(),
-      anyo: new FormControl(),
+      name: new FormControl(),
+      year: new FormControl(),
       image: new FormControl(),
     })
   }
@@ -39,26 +37,8 @@ export class NewAlbumComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
-    await this.route.queryParams.subscribe(async params => {
-    this.artistaId = params['artistaId']
-      // const docRef = doc(this.firestore, 'artistas', this.artista.id);
-      // const docSnap = await getDoc(docRef);
-      // this.artistaInfo = docSnap.data();
-      // const artistasRef = collection(this.firestore, 'artistas');
-      // const artistaRef = doc(artistasRef, this.artistaId);
-      // const albumesRef = collection(artistaRef, 'albumes');
-      // const q = query(albumesRef);
-      // const querySnapshot = await getDocs(q);
-
-      // querySnapshot.forEach(async (doc) => {
-      //   const album = {
-      //     id: doc.id,
-      //     nombre: doc.data()['nombre'],
-      //     anyo: doc.data()['año'],
-      //     image: doc.data()['image']
-      //   };
-      //   this.albumes.push(album);
-      // });
+    this.route.queryParams.subscribe(async params => {
+      this.artistId = params['artistId']
     });
   }
 
@@ -67,22 +47,20 @@ export class NewAlbumComponent {
   }
 
   async onSubmit(){
-    if(this.artistaId && this.newAlbum.value)
+    if(this.artistId && this.newAlbum.value)
     {
-      console.log(this.newAlbum.value.anyoAlbum)
-        await this.db.addAlbum(this.artistaId, this.newAlbum.value)
-        if(this.myEvent)
-        {
-          const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistaId, this.newAlbum.value.nombre)
-          this.uploadImageAlbum(this.myEvent, this.artistaId, this.newAlbum.value, aid)
-        }
-      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistaId} }), 1200)
-
+      await this.db.addAlbum(this.artistId, this.newAlbum.value)
+      if(this.myEvent)
+      {
+        const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistId, this.newAlbum.value.name)
+        this.uploadImageAlbum(this.myEvent, this.artistId, this.newAlbum.value, aid)
+      }
+      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId} }), 1200)
     }
   }
 
   uploadImageAlbum($event:any, artistId:string, albumName:Album, aid:string){
-    this.fireStorage.uploadImageAlbum($event, artistId, albumName.nombre, aid)
+    this.fireStorage.uploadImageAlbum($event, artistId, albumName.name, aid)
   }
 
   setMyEvent($event:any){

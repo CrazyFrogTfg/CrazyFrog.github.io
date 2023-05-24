@@ -1,9 +1,7 @@
-import { Cancion } from "./cancion.interface"
-
 export interface Album {
   id?:string,
-  nombre:string,
-  anyo:number,
+  name:string,
+  year:number,
   image:string,
-  canciones?: Cancion[]
+  artistId?:string,
 }
