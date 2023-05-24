@@ -31,6 +31,7 @@ export class NewAlbumComponent {
       name: new FormControl(),
       year: new FormControl(),
       image: new FormControl(),
+      artisId: new FormControl(),
     })
   }
 
@@ -40,6 +41,7 @@ export class NewAlbumComponent {
     this.route.queryParams.subscribe(async params => {
       this.artistId = params['artistId']
     });
+    this.newAlbum.controls['artistId'].setValue(this.artistId)
   }
 
   goHome(){

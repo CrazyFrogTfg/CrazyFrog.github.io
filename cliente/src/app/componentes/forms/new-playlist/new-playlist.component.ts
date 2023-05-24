@@ -13,14 +13,14 @@ export class NewPlaylistComponent {
 
   newPlaylist: FormGroup;
   userInfo:any
-  propietario:string = '';
+  owner:string = '';
   canCreate:boolean=false
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
-    this.propietario = await this.userService.getUID()
+    this.owner = await this.userService.getUID()
     this.newPlaylist.patchValue({
-      owner: this.propietario
+      owner: this.owner
     });
   }
 

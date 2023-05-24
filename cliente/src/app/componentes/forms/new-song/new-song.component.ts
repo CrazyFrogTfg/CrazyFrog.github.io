@@ -31,7 +31,8 @@ export class NewSongComponent {
       this.artistaId = params['artistaId']
       this.albumId = params['albumId']
       this.order = parseInt(params['order'])+1
-      this.newSong.controls['orden'].setValue(this.order)
+      this.newSong.controls['order'].setValue(this.order)
+      this.newSong.controls['albumId'].setValue(this.albumId)
     })
   }
 
@@ -40,7 +41,8 @@ export class NewSongComponent {
     this.newSong = new FormGroup({
       name: new FormControl(),
       order: new FormControl(),
-      lyrics: new FormControl()
+      lyrics: new FormControl(),
+      albumId: new FormControl(),
     })
   }
 
