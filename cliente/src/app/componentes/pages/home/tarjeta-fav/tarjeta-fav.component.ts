@@ -8,13 +8,19 @@ import { Router } from '@angular/router';
 })
 export class TarjetaFavComponent {
 
-  @Input() fav:any
+  @Input() favArtist:any
+  @Input() favAlbum:any
 
   constructor(private router:Router){}
 
+  ngOnInit(){
+    console.log(this.favArtist)
+    console.log(this.favAlbum)
+  }
+
   async verDetalles(fav: any) {
-    if(fav.tipo === "album"){
-      this.router.navigate(['/album'], { queryParams: { idArtista: fav.artistaId, idAlbum: fav.id } });
+    if(fav.idArtista){
+      this.router.navigate(['/album'], { queryParams: { idArtista: fav.idArtista, idAlbum: fav.id } });
     } else {
       this.router.navigate(['/artista'], { queryParams: { id: fav.id } });
     }

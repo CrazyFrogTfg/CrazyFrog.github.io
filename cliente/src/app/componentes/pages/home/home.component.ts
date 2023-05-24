@@ -5,6 +5,8 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
+import { Artista } from 'src/app/interfaces/artista.interface';
+import { Album } from 'src/app/interfaces/album.interface';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,12 +20,16 @@ export class HomeComponent {
   isAdmin:boolean = false
   uid:string = ""
   playlists:Playlist[] = []
+  artistsFav:Artista[] = []
+  albumsFav:Album[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
       private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog - Home')}
 
   async ngOnInit() {
     this.playlists=[]
+    this.artistsFav=[]
+    this.albumsFav=[]
     this.userInfo = await this.userService.getUserInfo()
     this.uid = await this.userService.getUID()
       if(this.userInfo.admin) {
@@ -31,6 +37,8 @@ export class HomeComponent {
         this.userService.getAllUsers()
       }
     this.playlists = await this.db.getPlaylistByUser(this.uid)
+    this.artistsFav = await this.db.getArtistsFav()
+    this.albumsFav = await this.db.getAlbumsFav()
   }
 
   reproducir() {
@@ -50,7 +58,15 @@ export class HomeComponent {
     this.router.navigate(['/newplaylist']);
   }
 
-  getFavs():Array<any>{
-    return this.db.getAlbumFavs()
+  getAlbumsFav():Array<any>{
+    if(this.albumsFav)
+    return this.albumsFav
+    else return []
+  }
+
+  getArtistsFav():Array<any>{
+    if(this.artistsFav)
+    return this.artistsFav
+    else return []
   }
 }

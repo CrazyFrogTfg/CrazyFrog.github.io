@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
 import { Artista } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
@@ -15,6 +15,8 @@ export class DbService {
   playlists:Playlist[] = []
   artistsFav:Array<any> = []
   albumsFav:Array<any> = []
+  artistsFavInfo:Array<any> = []
+  albumsFavInfo:Array<any> = []
 
   constructor(private firestore:Firestore) {
     let savedAlbumsFav = localStorage.getItem("albumsFav") || "[]"
@@ -135,7 +137,7 @@ export class DbService {
   }
 
   //Favs de album - pegar un ojo
-  setAlbumFav(favorite:Album){
+  setAlbumFav(favorite:any){
     if(!this.albumsFav.includes(favorite)){
       this.albumsFav.push(favorite)
       localStorage.setItem("albumsFav", JSON.stringify(this.albumsFav))
@@ -150,36 +152,57 @@ export class DbService {
     }
   }
 
-  isAlbumFav(favorite:any){
+  isAlbumFav(favorite:string){
     return this.albumsFav.includes(favorite)
   }
 
-  getAlbumFavs():Array<any>{
-    return this.albumsFav
+  async getAlbumsFav():Promise<any[]>{
+    this.albumsFavInfo = []
+    this.albumsFav.forEach(async album => {
+      const docRef = doc(this.firestore, 'artistas', album.idArtista, 'albumes', album.idAlbum);
+      const docSnap = await getDoc(docRef);
+      const albumInfo = docSnap.data();
+      if(albumInfo){
+        albumInfo['id'] = album.idAlbum;
+        albumInfo['idArtista'] = album.idArtista;
+        this.albumsFavInfo.push(albumInfo)
+      }
+    });
+    return this.albumsFavInfo
   }
 
   //Favs de artista - Pegar un ojo
-  setArtistFav(favorite:Artista){
-    if(!this.artistsFav.includes(favorite)){
-      this.artistsFav.push(favorite)
+  setArtistFav(favArtist:string){
+    if(!this.artistsFav.includes(favArtist)){
+      this.artistsFav.push(favArtist)
       localStorage.setItem("artistsFav", JSON.stringify(this.artistsFav))
     }
   }
 
-  delArtistFav(favorite:any){
-    let posicion = this.artistsFav.indexOf(favorite)
+  delArtistFav(favArtist:string){
+    let posicion = this.artistsFav.indexOf(favArtist)
     if (posicion != -1){
       this.artistsFav.splice(posicion, 1)
       localStorage.setItem("artistsFav", JSON.stringify(this.artistsFav))
     }
   }
 
-  isArtistFav(favorite:any){
+  isArtistFav(favorite:string){
     return this.artistsFav.includes(favorite)
   }
 
-  getArtistsFavs():Array<any>{
-    return this.artistsFav
+  async getArtistsFav():Promise<any[]>{
+    this.artistsFavInfo = []
+    this.artistsFav.forEach(async artist => {
+      const docRef = doc(this.firestore, 'artistas', artist);
+      const docSnap = await getDoc(docRef);
+      const artistInfo = docSnap.data();
+      if(artistInfo){
+        artistInfo['id'] = artist;
+        this.artistsFavInfo.push(artistInfo)
+      }
+    });
+    return this.artistsFavInfo
   }
 
 }

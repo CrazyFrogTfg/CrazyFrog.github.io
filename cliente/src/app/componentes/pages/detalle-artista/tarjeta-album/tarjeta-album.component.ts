@@ -20,6 +20,7 @@ updateAlbum:FormGroup
 myEvent:any
 isAdmin:boolean = false
 userInfo:any
+albumFav:any
 
 
 constructor(private db:DbService, private router:Router, private userService:UsuariosService){
@@ -35,6 +36,10 @@ async ngOnInit()
   this.userInfo = await this.userService.getUserInfo()
   if(this.userInfo.admin) this.isAdmin = true
   setTimeout( () => undefined, 2000)
+  this.albumFav = {
+    idArtista: this.artista,
+    idAlbum: this.album.id
+  };
 }
 
 onSubmit(){
@@ -62,17 +67,16 @@ async verDetalles(album: any) {
   this.router.navigate(['/album'], { queryParams: { idArtista: this.artista, idAlbum: album.id } });
 }
 
-setAlbumFav(album:any){
-  album.artistaId = this.artista
-  this.db.setAlbumFav(album)
+setAlbumFav(){
+  this.db.setAlbumFav(this.albumFav)
 }
 
-delAlbumFav(album:any){
-  this.db.delAlbumFav(album)
+delAlbumFav(){
+  this.db.delAlbumFav(this.albumFav)
 }
 
-isAlbumFav(album:any){
-  return this.db.isFav(album)
+isAlbumFav(){
+  return this.db.isAlbumFav(this.albumFav)
 }
 
 }

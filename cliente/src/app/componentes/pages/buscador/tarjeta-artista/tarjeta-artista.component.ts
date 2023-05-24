@@ -40,18 +40,16 @@ export class TarjetaArtistaComponent {
     this.router.navigate(['/artista'], { queryParams: {id: this.artistaId} });
   }
 
-  setFav(artista:any){
-    artista.id = this.artistaId
-    artista.tipo = "artista"
-    this.db.setFav(artista)
+  setArtistFav(){
+    this.db.setArtistFav(this.artistaId)
   }
 
-  delFav(artista:any){
-    this.db.delFav(artista)
+  delArtistFav(){
+    this.db.delArtistFav(this.artistaId)
   }
 
-  isFav(artista:any){
-    return this.db.isFav(artista)
+  isArtistFav(){
+    return this.db.isArtistFav(this.artistaId)
   }
 }
 
