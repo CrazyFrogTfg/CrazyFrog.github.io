@@ -16,7 +16,7 @@
         <h3>Artistas</h3>
         <div class="row row-cols-auto">
           <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
-            <app-tarjeta-artista *ngFor="let artista of (artistas | byName:getFilterName()) | slice:paginator:paginator+3" [artista]="artista"></app-tarjeta-artista>
+            <app-tarjeta-artista *ngFor="let artist of (artists | byName:getFilterName()) | slice:paginator:paginator+3" [artist]="artist"></app-tarjeta-artista>
           </section>
         </div>
         <button (click)="increasePaginator()">+</button>

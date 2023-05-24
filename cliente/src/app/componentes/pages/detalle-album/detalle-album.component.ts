@@ -19,7 +19,7 @@ export class DetalleAlbumComponent {
 
   userInfo:any
   albumInfo: any
-  artistaId:string = ""
+  artistId:string = ""
   albumId:string = ""
   isAdmin:boolean = false
   canciones: Cancion[] = []
@@ -39,13 +39,13 @@ export class DetalleAlbumComponent {
     if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
-      this.artistaId = params['idArtista']
+      this.artistId = params['idArtist']
       this.albumId = params['idAlbum']
       //sacar datos album
-      const albumRef = doc(this.firestore, "artistas", this.artistaId, "albumes", this.albumId);
+      const albumRef = doc(this.firestore, "artistas", this.artistId, "albumes", this.albumId);
       const albumSnap = await getDoc(albumRef);
       this.albumInfo = albumSnap.data();
-      const cancionesRef = collection(this.firestore, "artistas", this.artistaId, "albumes", this.albumId, "canciones");
+      const cancionesRef = collection(this.firestore, "artistas", this.artistId, "albumes", this.albumId, "canciones");
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
@@ -70,6 +70,6 @@ export class DetalleAlbumComponent {
   // }
 
   goToNewSong(){
-    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistaId, albumId: this.albumId, order: this.iteraciones} });
+    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
-import { Artista } from '../interfaces/artista.interface';
+import { Artist } from '../interfaces/artista.interface';
 import { Album } from '../interfaces/album.interface';
 import { Cancion } from '../interfaces/cancion.interface';
 import { Observable } from 'rxjs';
@@ -26,18 +26,34 @@ export class DbService {
     this.artistsFav = JSON.parse(savedArtistsFav)
   }
 
-  addArtista(artista:Artista){
-    const artistaRef = collection(this.firestore, 'artistas');
-    return addDoc(artistaRef, artista);
+  addArtist(artist:Artist){
+    const artistRef = collection(this.firestore, 'artists');
+    return addDoc(artistRef, artist);
   }
 
-  getArtistas(): Observable<Artista[]>{
-    const artistaRef = collection(this.firestore, 'artistas')
-    return collectionData(artistaRef, { idField: 'name'}) as Observable<Artista[]>;
+  getArtists(): Observable<Artist[]>{
+    const artistaRef = collection(this.firestore, 'artists')
+    return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
+  }
+
+  async updateArtistDb(uid:any, artist:Artist, oldArtist:Artist){
+    const artistaRef = doc(this.firestore, 'artists', uid);
+        //Actualizamos Nombre artista si ha cambiado
+        if(artist.name && artist.name != oldArtist.name)
+        await updateDoc(artistaRef, {
+          name:artist.name,
+        })
+
+        //Actualizamos descripcion si ha cambiado
+        if(artist.description && artist.description != oldArtist.description){
+          await updateDoc(artistaRef, {
+            description:artist.description,
+          })
+        }
   }
 
   async deleteArtist(uid:string){
-    await deleteDoc(doc(this.firestore, "artistas", uid));
+    await deleteDoc(doc(this.firestore, "artists", uid));
   }
 
   async deleteAlbum(albumId:any){
@@ -55,11 +71,6 @@ export class DbService {
     return addDoc(playlistRef, playlist);
   }
 
-  addArtist(artist:Artista){
-    const artistRef = collection(this.firestore, 'artistas');
-    return addDoc(artistRef, artist);
-  }
-
   addAlbum(artistId:string, newAlbum:Album){
     const artistRef = collection(this.firestore, `artistas/${artistId}/albumes`);
     return addDoc(artistRef, newAlbum);
@@ -71,20 +82,20 @@ export class DbService {
   }
 
 
-  async getArtistaUID(artista:Artista){
+  async getArtistUID(artist:Artist){
     let uid = ""
-    if (artista !== null) {
-      const q = query(collection(this.firestore, "artistas"), where("nombre", "==", artista.nombre))
+    if (artist !== null) {
+      const q = query(collection(this.firestore, "artists"), where("name", "==", artist.name))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
     }
     return uid
   }
 
-  async getArtistaUIDByNombre(artistaNombre:string){
+  async getArtistUIDByName(artistName:string){
     let uid = ""
-    if (artistaNombre !== null) {
-      const q = query(collection(this.firestore, "artistas"), where("nombre", "==", artistaNombre))
+    if (artistName !== null) {
+      const q = query(collection(this.firestore, "artists"), where("name", "==", artistName))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
     }
@@ -194,7 +205,7 @@ export class DbService {
   async getArtistsFav():Promise<any[]>{
     this.artistsFavInfo = []
     this.artistsFav.forEach(async artist => {
-      const docRef = doc(this.firestore, 'artistas', artist);
+      const docRef = doc(this.firestore, 'artists', artist);
       const docSnap = await getDoc(docRef);
       const artistInfo = docSnap.data();
       if(artistInfo){

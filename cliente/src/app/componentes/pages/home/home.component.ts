@@ -5,7 +5,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
-import { Artista } from 'src/app/interfaces/artista.interface';
+import { Artist } from 'src/app/interfaces/artista.interface';
 import { Album } from 'src/app/interfaces/album.interface';
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ export class HomeComponent {
   isAdmin:boolean = false
   uid:string = ""
   playlists:Playlist[] = []
-  artistsFav:Artista[] = []
+  artistsFav:Artist[] = []
   albumsFav:Album[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,

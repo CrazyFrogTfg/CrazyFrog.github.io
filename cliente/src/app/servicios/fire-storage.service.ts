@@ -3,7 +3,7 @@ import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, w
 import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { DbService } from './db.service';
-import { Artista } from '../interfaces/artista.interface';
+import { Artist } from '../interfaces/artista.interface';
 
 
 @Injectable({
@@ -55,11 +55,11 @@ export class FireStorageService {
 
     //subimos la imagen
     uploadBytes(fileRef, file)
-    .then(async response =>{
+    .then(async () => {
       //Despues, obtenemos la imagen, guardamos en una variable
       const imagenArtist = await this.getImageArtist(aid)
         //Introducimos dicha variable en el campo "image" del artista
-        const artistRef = doc(this.firestore, 'artistas', aid);
+        const artistRef = doc(this.firestore, 'artists', aid);
         await updateDoc(artistRef, {
           image:imagenArtist,
         })

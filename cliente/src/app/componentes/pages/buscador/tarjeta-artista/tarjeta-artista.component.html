@@ -1,8 +1,8 @@
-<app-spinner *ngIf="!artista"></app-spinner>
-<div class="artist-container" *ngIf="artista">
-  <div (click)="verDetalles()" class="cardArtista">
-    <img class="card-img-top img-fluid" [src]="artista.image" alt="IMAGEN ARTISTA">
-    <h5 class="card-title">{{artista.nombre}}</h5>
+<app-spinner *ngIf="!artist"></app-spinner>
+<div class="artist-container" *ngIf="artist">
+  <div (click)="goToDetails()" class="cardArtista">
+    <img class="card-img-top img-fluid" [src]="artist.image" alt="IMAGEN ARTISTA">
+    <h5 class="card-title">{{artist.name}}</h5>
   </div>
   <button class="btn btn-fav" (click)="setArtistFav()" *ngIf="!isArtistFav()">
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">

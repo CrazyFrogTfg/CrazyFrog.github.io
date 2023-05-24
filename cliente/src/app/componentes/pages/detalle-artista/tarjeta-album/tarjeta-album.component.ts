@@ -63,8 +63,8 @@ async deleteAlbum(album:Album){
   //}
 }
 
-async verDetalles(album: any) {
-  this.router.navigate(['/album'], { queryParams: { idArtista: this.artista, idAlbum: album.id } });
+async goToDetails(album: any) {
+  this.router.navigate(['/album'], { queryParams: { idArtist: this.artista, idAlbum: album.id } });
 }
 
 setAlbumFav(){

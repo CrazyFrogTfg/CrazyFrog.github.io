@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { Artista } from '../../../interfaces/artista.interface'
+import { Component } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
-import { Title} from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-buscador',
@@ -16,7 +15,7 @@ export class BuscadorComponent {
   cboxArtista:boolean=true
   cboxAlbum:boolean=true
   cboxCancion:boolean=true
-  artistas:any
+  artists:any
   isAdmin:boolean = false
   userInfo:any
   paginator:number=0
@@ -28,8 +27,8 @@ export class BuscadorComponent {
               private title:Title){ title.setTitle('Mediafrog - Buscador')}
 
   async ngOnInit(){
-      this.db.getArtistas().subscribe(artistas =>{
-      this.artistas = artistas
+      this.db.getArtists().subscribe(artists =>{
+      this.artists = artists
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
@@ -55,13 +54,13 @@ export class BuscadorComponent {
   //   }
 
   increasePaginator(){
-    if(this.artistas.length>3 && this.paginator+1<this.artistas.length-3)
+    if(this.artists.length>3 && this.paginator+1<this.artists.length-3)
     {
-      console.log("artistas length: "+this.artistas.length)
+      console.log("artistas length: "+this.artists.length)
       this.paginator= this.paginator+3
     }
     console.log("paginator: "+this.paginator)
-    console.log("artistas length: "+this.artistas.length)
+    console.log("artistas length: "+this.artists.length)
   }
 
   decreasePaginator(){
@@ -78,11 +77,11 @@ export class BuscadorComponent {
   setFilterName(search:string){
     this.fireStorage.setFilterName(search)
    this.paginator = 0
-    
+
   }
 
   getArtistas():any{
-    return this.artistas = this.db.getArtistas()
+    return this.artists = this.db.getArtists()
   }
 
   toogleCboxArtista(){

@@ -18,9 +18,9 @@ export class TarjetaFavComponent {
     console.log(this.favAlbum)
   }
 
-  async verDetalles(fav: any) {
+  async goToDetails(fav: any) {
     if(fav.idArtista){
-      this.router.navigate(['/album'], { queryParams: { idArtista: fav.idArtista, idAlbum: fav.id } });
+      this.router.navigate(['/album'], { queryParams: { idArtist: fav.idArtista, idAlbum: fav.id } });
     } else {
       this.router.navigate(['/artista'], { queryParams: { id: fav.id } });
     }

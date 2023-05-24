@@ -15,9 +15,9 @@ import { Title} from '@angular/platform-browser';
 })
 export class DetalleArtistaComponent {
 
-  artistaId:string = "";
-  artistaInfo: any
-  albumes: Album[] = []
+  artistId:string = "";
+  artistInfo: any
+  albums: Album[] = []
   userInfo:any
   isAdmin:boolean = false
   edit:boolean = false
@@ -28,9 +28,9 @@ export class DetalleArtistaComponent {
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Artista'),
       this.updateArtist = new FormGroup({
-        id: new FormControl(this.artistaId),
-        nombre: new FormControl(),
-        descripcion: new FormControl(),
+        id: new FormControl(this.artistId),
+        name: new FormControl(),
+        description: new FormControl(),
         image: new FormControl(),
       })
     }
@@ -39,25 +39,25 @@ export class DetalleArtistaComponent {
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     this.route.queryParams.subscribe(async params => {
-      this.artistaId = params['id']
-      const docRef = doc(this.firestore, 'artistas', this.artistaId);
+      this.artistId = params['id']
+      const docRef = doc(this.firestore, 'artists', this.artistId);
       const docSnap = await getDoc(docRef);
-      this.artistaInfo = docSnap.data();
-      const artistasRef = collection(this.firestore, 'artistas');
-      const artistaRef = doc(artistasRef, this.artistaId);
+      this.artistInfo = docSnap.data();
+      const artistasRef = collection(this.firestore, 'artists');
+      const artistaRef = doc(artistasRef, this.artistId);
       const albumesRef = collection(artistaRef, 'albumes');
       const q = query(albumesRef);
       const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach(async (doc) => {
         const album = {
-          artistaId: this.artistaInfo.id,
+          artistaId: this.artistInfo.id,
           id: doc.id,
           nombre: doc.data()['nombre'],
           anyo: doc.data()['anyo'],
           image: doc.data()['image']
         };
-        this.albumes.push(album);
+        this.albums.push(album);
       });
     });
   }
@@ -70,24 +70,23 @@ export class DetalleArtistaComponent {
   //   this.fireStorage.setFilterName(search)
   // }
 
-  async deleteArtist(artistaInfo: any){
-    const pregunta="Si deseas eliminar "+artistaInfo.nombre+" escribe su nombre aquí";
-    if( prompt(pregunta) == artistaInfo.nombre)
+  async deleteArtist(artistInfo: any){
+    const pregunta="Si deseas eliminar "+artistInfo.name+" escribe su nombre aquí";
+    if( prompt(pregunta) == artistInfo.name)
     {
-      //artistaInfo.id
-      let uid = await this.db.getArtistaUID(artistaInfo)
+      let uid = await this.db.getArtistUID(artistInfo)
       this.db.deleteArtist(uid)
       this.router.navigate(['/buscador']);
     }
   }
 
-  async verDetalles(artista: any) {
-    let uid = await this.db.getArtistaUID(artista)
+  async goToDetails(artist: any) {
+    let uid = await this.db.getArtistUID(artist)
     this.router.navigate(['/artista'], { queryParams: { id: uid} });
   }
 
   goToNewAlbum(){
-    this.router.navigate(['/newalbum'], {queryParams: {artistaId: this.artistaId} });
+    this.router.navigate(['/newalbum'], {queryParams: {artistaId: this.artistId} });
   }
 
   toggleEdit(){
@@ -101,10 +100,10 @@ export class DetalleArtistaComponent {
   async onSubmit(){
     if(this.updateArtist)
     {
-      await this.userService.updateArtistaDb(this.artistaId, this.updateArtist.value, this.artistaInfo);
+      await this.db.updateArtistDb(this.artistId, this.updateArtist.value, this.artistInfo);
       if(this.myEvent)
       {
-        this.uploadImageArtist(this.myEvent, this.artistaId)
+        this.uploadImageArtist(this.myEvent, this.artistId)
       }
       this.router.navigate(['/home'])
     }

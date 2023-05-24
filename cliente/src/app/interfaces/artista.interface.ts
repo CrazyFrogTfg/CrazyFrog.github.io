@@ -1,9 +1,6 @@
-import { Album } from "./album.interface"
-
-export interface Artista {
+export interface Artist {
 	id:string,
-	nombre:string,
-	descripcion:string,
-	image:string,
-	albumes: Album[]
+	name:string,
+	description:string,
+	image:string
 }

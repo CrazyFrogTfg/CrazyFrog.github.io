@@ -36,7 +36,7 @@ async ngOnInit() {
   this.idPlaylist = querySnapshots.docs[0].id;
 }
 
-async verDetalles() {
+async goToDetails() {
   this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
 }
 

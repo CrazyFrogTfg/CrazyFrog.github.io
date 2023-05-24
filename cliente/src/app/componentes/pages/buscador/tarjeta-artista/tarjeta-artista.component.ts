@@ -12,44 +12,31 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
   styleUrls: ['./tarjeta-artista.component.css']
 })
 export class TarjetaArtistaComponent {
-@Input() artista:any;
-  //imageArtist:string=""
-  formulario: FormGroup
+@Input() artist:any;
   isAdmin:boolean = false
   userInfo:any
-  artistaId:string = ""
 
-  constructor(private db: DbService, private storage:Storage, private router:Router, private userService:UsuariosService){
-  this.formulario = new FormGroup({
-    nombre: new FormControl(),
-    descripcion:new FormControl()
-    })
-  }
+  constructor(private db: DbService, private storage:Storage, private router:Router, private userService:UsuariosService){}
 
   async ngOnInit(){
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
-    this.artistaId = await this.db.getArtistaUID(this.artista)
     }
 
-  async onSubmit() {
-    const response = await this.db.addArtista(this.formulario.value)
-  }
-
-  async verDetalles() {
-    this.router.navigate(['/artista'], { queryParams: {id: this.artistaId} });
+  async goToDetails() {
+    this.router.navigate(['/artista'], { queryParams: {id: this.artist.id} });
   }
 
   setArtistFav(){
-    this.db.setArtistFav(this.artistaId)
+    this.db.setArtistFav(this.artist.id)
   }
 
   delArtistFav(){
-    this.db.delArtistFav(this.artistaId)
+    this.db.delArtistFav(this.artist.id)
   }
 
   isArtistFav(){
-    return this.db.isArtistFav(this.artistaId)
+    return this.db.isArtistFav(this.artist.id)
   }
 }
 

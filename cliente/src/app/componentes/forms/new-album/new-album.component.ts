@@ -6,7 +6,7 @@ import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query} from
 import { FormControl, FormGroup } from '@angular/forms';
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Artista } from 'src/app/interfaces/artista.interface';
+import { Artist } from 'src/app/interfaces/artista.interface';
 import { Title} from '@angular/platform-browser';
 
 @Component({
