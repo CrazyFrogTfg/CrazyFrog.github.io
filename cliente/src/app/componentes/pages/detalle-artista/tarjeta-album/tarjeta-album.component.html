@@ -3,8 +3,8 @@
       <div class="card-body" *ngIf="!edit" (click)="goToDetails(album)">
         <img *ngIf="album.image" [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top img-fluid">
         <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-        <h5 class="card-title">{{album.nombre}}</h5>
-        <p class="card-subtitle">{{album.anyo}}</p>
+        <h5 class="card-title">{{album.name}}</h5>
+        <p class="card-subtitle">{{album.year}}</p>
       </div>
       <button class="btn btn-fav" (click)="setAlbumFav()" *ngIf="!isAlbumFav()">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">
@@ -20,11 +20,11 @@
         <form  [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="exampleInputUser" class="label">Nombre</label>
-            <input type="text" class="form-control" placeholder={{album.nombre}} formControlName="nombre">
+            <input type="text" class="form-control" placeholder={{album.name}} formControlName="name">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Descripción</label>
-            <input type="text" class="form-control" placeholder={{album.descripcion}} formControlName="descripcion" >
+            <label for="exampleInputPassword1">Año</label>
+            <input type="text" class="form-control" placeholder={{album.year}} formControlName="year" >
           </div>
           <div class="form-group">
             <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>

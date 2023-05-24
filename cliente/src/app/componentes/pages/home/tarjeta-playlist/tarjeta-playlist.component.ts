@@ -25,13 +25,13 @@ export class TarjetaPlaylistComponent {
     private userService:UsuariosService, private fireStorage:FireStorageService,
     private db:DbService){
       this.updatePlaylist = new FormGroup({
-        nombre: new FormControl(),
+        name: new FormControl(),
       })
     }
 
 async ngOnInit() {
   this.uid = await this.userService.getUID()
-  const q = query(collection(this.firestore, "playlists"), where("nombre", "==", this.playlist.nombre), where("propietario", "==", this.uid))
+  const q = query(collection(this.firestore, "playlists"), where("name", "==", this.playlist.name), where("owner", "==", this.uid))
   const querySnapshots = await getDocs(q)
   this.idPlaylist = querySnapshots.docs[0].id;
 }

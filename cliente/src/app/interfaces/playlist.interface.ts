@@ -1,8 +1,8 @@
-import { Cancion } from "./cancion.interface"
+import { Song } from "./song.interface"
 
 export interface Playlist {
-  nombre:string,
-  propietario:string,
-	privada:boolean,
-	canciones: Cancion[]
+  name:string,
+  owner:string,
+	private:boolean,
+	songs: Song[]
 }

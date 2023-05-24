@@ -5,7 +5,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
-import { Artist } from 'src/app/interfaces/artista.interface';
+import { Artist } from 'src/app/interfaces/artist.interface';
 import { Album } from 'src/app/interfaces/album.interface';
 @Component({
   selector: 'app-home',

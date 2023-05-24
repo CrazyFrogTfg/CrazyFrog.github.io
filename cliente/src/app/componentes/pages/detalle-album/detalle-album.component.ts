@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Firestore, collection, doc, getDocs, getDoc, query} from '@angular/fire/firestore';
-import { Cancion } from 'src/app/interfaces/cancion.interface';
+import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -22,7 +22,7 @@ export class DetalleAlbumComponent {
   artistId:string = ""
   albumId:string = ""
   isAdmin:boolean = false
-  canciones: Cancion[] = []
+  canciones: Song[] = []
   reproduciendo:string = ""
   iteraciones:number=0;
   query:string=""
@@ -49,11 +49,11 @@ export class DetalleAlbumComponent {
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
-            nombre: cancionDoc.data()['nombre'],
-            orden: cancionDoc.data()['orden'],
-            letra: cancionDoc.data()['letra'],
-            archivo: cancionDoc.data()['archivo'],
-            token: cancionDoc.data()['token'],
+            name: cancionDoc.data()['name'],
+            order: cancionDoc.data()['order'],
+            lyrics: cancionDoc.data()['lyrics'],
+            file: cancionDoc.data()['file'],
+            albumId: cancionDoc.data()['albumId']
           };
           this.canciones.push(cancion);
           this.iteraciones++;

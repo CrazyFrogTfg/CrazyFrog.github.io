@@ -20,16 +20,16 @@ export class NewPlaylistComponent {
     this.userInfo = await this.userService.getUserInfo()
     this.propietario = await this.userService.getUID()
     this.newPlaylist.patchValue({
-      propietario: this.propietario
+      owner: this.propietario
     });
   }
 
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title) {
      title.setTitle('Mediafrog - Nueva Playlist')
     this.newPlaylist = new FormGroup({
-      nombre: new FormControl(),
-      privada: new FormControl(false),
-      propietario: new FormControl('')
+      name: new FormControl(),
+      private: new FormControl(false),
+      owner: new FormControl('')
     })
   }
 
@@ -38,13 +38,13 @@ export class NewPlaylistComponent {
   }
 
   toogleCanCreate(){
-    if(this.newPlaylist.value.nombre.trim() != "")
+    if(this.newPlaylist.value.name.trim() != "")
     this.canCreate = true
     else this.canCreate = false
   }
 
   async onSubmit(){
-    if(this.newPlaylist.value.nombre){
+    if(this.newPlaylist.value.name){
       await this.db.addPlaylist(this.newPlaylist.value)
       this.router.navigate(['/home']);
     }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { Cancion } from 'src/app/interfaces/cancion.interface';
+import { Song } from 'src/app/interfaces/song.interface';
 
 
 
@@ -18,9 +18,9 @@ export class DetallePlaylistComponent {
 
   playlistId:string = ""
   playlistInfo:any = []
-  canciones: Cancion[] = []
+  canciones: Song[] = []
   reproduciendo:string = ""
-  propietario:string = ""
+  owner:string = ""
   imageOwner:string = ""
   isVisible:boolean = false
   query:string=""
@@ -35,18 +35,19 @@ export class DetallePlaylistComponent {
       const playlistRef = doc(this.firestore, "playlists", this.playlistId);
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
-      const userRef = doc(this.firestore, "users", this.playlistInfo.propietario);
+      const userRef = doc(this.firestore, "users", this.playlistInfo.owner);
       const userSnap = await getDoc(userRef);
-      this.propietario = userSnap.data()?.['username'];
+      this.owner = userSnap.data()?.['username'];
       this.imageOwner = userSnap.data()?.['imageProfile'];
       const cancionesRef = collection(this.firestore, "playlists", this.playlistId, "canciones");
       const cancionesSnapshot = await getDocs(cancionesRef);
         cancionesSnapshot.forEach((cancionDoc) => {
           const cancion = {
-            nombre: cancionDoc.data()['nombre'],
-            orden: cancionDoc.data()['orden'],
-            letra: cancionDoc.data()['letra'],
-            archivo: cancionDoc.data()['archivo'],
+            name: cancionDoc.data()['name'],
+            order: cancionDoc.data()['order'],
+            lyrics: cancionDoc.data()['lyrics'],
+            file: cancionDoc.data()['file'],
+            albumId : cancionDoc.data()['albumId']
           }; console.log(cancion)
           this.canciones.push(cancion);
         });
@@ -65,7 +66,7 @@ export class DetallePlaylistComponent {
   }
 
   async visibility(){
-    if(await this.userService.getUID() == this.playlistInfo.propietario){
+    if(await this.userService.getUID() == this.playlistInfo.owner){
       this.isVisible = true
     } else {
       if(this.playlistInfo.privada == false){

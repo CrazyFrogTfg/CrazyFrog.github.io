@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
-import { Artist } from '../interfaces/artista.interface';
+import { Artist } from '../interfaces/artist.interface';
 import { Album } from '../interfaces/album.interface';
-import { Cancion } from '../interfaces/cancion.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
-import { User } from '../interfaces/user.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +33,11 @@ export class DbService {
   getArtists(): Observable<Artist[]>{
     const artistaRef = collection(this.firestore, 'artists')
     return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
+  }
+
+  getAlbums(): Observable<Album[]>{
+    const albumRef = collection(this.firestore, 'albums')
+    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
   }
 
   async updateArtistDb(uid:any, artist:Artist, oldArtist:Artist){
@@ -72,8 +76,9 @@ export class DbService {
   }
 
   addAlbum(artistId:string, newAlbum:Album){
-    const artistRef = collection(this.firestore, `artistas/${artistId}/albumes`);
-    return addDoc(artistRef, newAlbum);
+    newAlbum.artistId = artistId
+    const albumRef = collection(this.firestore, 'albums');
+    return addDoc(albumRef, newAlbum);
   }
 
   addSong(artistId:string, albumId:string, newSong:Album){
@@ -115,14 +120,14 @@ export class DbService {
   async getPlaylistByUser(uid:string){
     //Con la linea siguiente vaciamos el array para que no se llene continuamente.
     this.playlists=[]
-    const q = query(collection(this.firestore, "playlists"), where("propietario", "==", uid))
+    const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       const playlist = {
-        nombre: doc.data()['nombre'],
-        privada: doc.data()['privada'],
-        propietario: doc.data()['propietario'],
-        canciones: []
+        name: doc.data()['name'],
+        private: doc.data()['private'],
+        owner: doc.data()['owner'],
+        songs: []
       };
       this.playlists.push(playlist);
     })
@@ -133,15 +138,15 @@ export class DbService {
     const playlistRef = doc(this.firestore, 'playlists', playlistId);
 
         //Actualizamos Nombre playlist si ha cambiado
-        if(playlist.nombre && playlist.nombre != oldPlaylist.nombre)
+        if(playlist.name && playlist.name != oldPlaylist.name)
         await updateDoc(playlistRef, {
-          nombre:playlist.nombre,
+          name:playlist.name,
         })
 
         //Actualizamos privacidad si ha cambiado
-        if(playlist.privada && playlist.privada != oldPlaylist.privada){
+        if(playlist.private && playlist.private != oldPlaylist.private){
           await updateDoc(playlistRef, {
-            privada:playlist.privada,
+            private:playlist.private,
           })
         }
       //}

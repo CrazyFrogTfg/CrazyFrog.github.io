@@ -28,6 +28,7 @@
         <section *ngIf="cboxAlbum">
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+              <app-tarjeta-album *ngFor="let album of albums" [album]="album" ></app-tarjeta-album>
               <!-- <app-tarjeta-artista *ngFor="let artista of artistas | byName:getFilterName()" [artista]="artista" ></app-tarjeta-artista> -->
             </section>
           </div>

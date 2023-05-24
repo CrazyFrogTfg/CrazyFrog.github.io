@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="!propietario"></app-spinner>
-<section class="playlistDisp" *ngIf="propietario">
+<app-spinner *ngIf="!owner"></app-spinner>
+<section class="playlistDisp" *ngIf="owner">
   <img class="playlist-img" [src]="playlistInfo.image">
   <div class="playlist-nombre">
   </div>
   <div class="d-flex justify-content-between">
     <div></div>
     <div>
-      <h1> {{playlistInfo.nombre}} </h1>
-      <h5> Creada por: {{propietario}} <img  class="img-owner" [src]="imageOwner"></h5>
+      <h1> {{playlistInfo.name}} </h1>
+      <h5> Creada por: {{owner}} <img  class="img-owner" [src]="imageOwner"></h5>
 
 
     </div>

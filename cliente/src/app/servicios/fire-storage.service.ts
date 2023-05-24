@@ -3,7 +3,7 @@ import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, w
 import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { DbService } from './db.service';
-import { Artist } from '../interfaces/artista.interface';
+import { Artist } from '../interfaces/artist.interface';
 
 
 @Injectable({

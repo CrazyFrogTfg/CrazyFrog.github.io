@@ -16,6 +16,7 @@ export class BuscadorComponent {
   cboxAlbum:boolean=true
   cboxCancion:boolean=true
   artists:any
+  albums:any
   isAdmin:boolean = false
   userInfo:any
   paginator:number=0
@@ -27,17 +28,15 @@ export class BuscadorComponent {
               private title:Title){ title.setTitle('Mediafrog - Buscador')}
 
   async ngOnInit(){
-      this.db.getArtists().subscribe(artists =>{
+    this.db.getArtists().subscribe(artists =>{
       this.artists = artists
+    })
+    this.db.getAlbums().subscribe(albums =>{
+      this.albums = albums
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
   }
-
-  // getAlbumes(artista:Artista){
-  //   this.albumes = this.db.getAlbumes(artista)
-  // }
-
 
   // increasePaginator() {
   //   const filteredArtistas:any = this.artistas | byName:getFilterName();
@@ -78,10 +77,6 @@ export class BuscadorComponent {
     this.fireStorage.setFilterName(search)
    this.paginator = 0
 
-  }
-
-  getArtistas():any{
-    return this.artists = this.db.getArtists()
   }
 
   toogleCboxArtista(){

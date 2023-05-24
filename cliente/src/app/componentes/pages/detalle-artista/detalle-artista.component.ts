@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Firestore, collection, doc, getDocs, getDoc, query} from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angular/fire/firestore';
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
@@ -43,25 +43,21 @@ export class DetalleArtistaComponent {
       const docRef = doc(this.firestore, 'artists', this.artistId);
       const docSnap = await getDoc(docRef);
       this.artistInfo = docSnap.data();
-      
-      //creo que esto ya no hace falta
-
-      // const artistasRef = collection(this.firestore, 'artists');
-      // const artistaRef = doc(artistasRef, this.artistId);
-      // const albumesRef = collection(artistaRef, 'albumes');
-      // const q = query(albumesRef);
-      // const querySnapshot = await getDocs(q);
-
-      // querySnapshot.forEach(async (doc) => {
-      //   const album = {
-      //     artistaId: this.artistInfo.id,
-      //     id: doc.id,
-      //     nombre: doc.data()['nombre'],
-      //     anyo: doc.data()['anyo'],
-      //     image: doc.data()['image']
-      //   };
-      //   this.albums.push(album);
-      // });
+      //extraer albumes where idartist tal
+      const q = query(collection(this.firestore, "albums"), where("artistId", "==", this.artistId))
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (doc) => {
+        console.log(doc)
+        const album = {
+          id: doc.id,
+          name: doc.data()['name'],
+          year: doc.data()['year'],
+          image: doc.data()['image'],
+          artistId: doc.data()['artistId'],
+        };
+        this.albums.push(album);
+        console.log(this.albums)
+      });
     });
   }
 

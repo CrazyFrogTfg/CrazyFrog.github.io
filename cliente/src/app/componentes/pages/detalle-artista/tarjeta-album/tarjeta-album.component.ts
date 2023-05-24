@@ -26,8 +26,8 @@ albumFav:any
 constructor(private db:DbService, private router:Router, private userService:UsuariosService){
   this.updateAlbum = new FormGroup({
     id: new FormControl(),
-    nombre: new FormControl(),
-    anyo: new FormControl(),
+    name: new FormControl(),
+    year: new FormControl(),
   })
 }
 
