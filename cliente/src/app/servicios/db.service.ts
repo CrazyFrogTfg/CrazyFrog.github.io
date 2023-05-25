@@ -52,6 +52,22 @@ export class DbService {
         }
   }
 
+  async updateAlbumDb(albumId:string, album:Album, oldAlbum:Album){
+    const albumRef = doc(this.firestore, 'albums', albumId);
+        //Actualizamos Nombre album si ha cambiado
+        if(album.name && album.name != oldAlbum.name)
+        await updateDoc(albumRef, {
+          name:album.name,
+        })
+
+        //Actualizamos año si ha cambiado
+        if(album.year && album.year != oldAlbum.year){
+          await updateDoc(albumRef, {
+            year:album.year,
+          })
+        }
+  }
+
   async deleteArtist(uid:string){
     await deleteDoc(doc(this.firestore, "artists", uid));
   }
@@ -68,9 +84,7 @@ export class DbService {
   }
   
   async deleteAlbum(albumId:any){
-    prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
-    //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
-    //await deleteDoc(doc(this.firestore, "artistas", albumId ));
+    await deleteDoc(doc(this.firestore, "albums", albumId));
   }
 
   getSongs(): Observable<Song[]>{

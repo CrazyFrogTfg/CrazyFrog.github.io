@@ -73,8 +73,7 @@ export class DetalleArtistaComponent {
     const pregunta="Si deseas eliminar "+artistInfo.name+" escribe su nombre aquí";
     if( prompt(pregunta) == artistInfo.name)
     {
-      let uid = await this.db.getArtistUID(artistInfo)
-      this.db.deleteArtist(uid)
+      this.db.deleteArtist(this.artistId)
       this.router.navigate(['/buscador']);
     }
   }

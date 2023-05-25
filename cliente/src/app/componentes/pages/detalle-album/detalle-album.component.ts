@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
+import { Album } from 'src/app/interfaces/album.interface';
 
 @Component({
   selector: 'app-detalle-album',
@@ -26,9 +27,23 @@ export class DetalleAlbumComponent {
   reproduciendo:string = ""
   iteraciones:number=0;
   query:string=""
+  edit:boolean=false
+  updateAlbum:FormGroup
+  currentYear:number = 2023
+  myEvent:any
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog - Album')}
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
+    { title.setTitle('Mediafrog - Album')
+    
+    this.updateAlbum = new FormGroup({
+      artistId: new FormControl(this.artistId),
+      name: new FormControl(),
+      year: new FormControl(),
+      image: new FormControl(),
+    })
+    
+  }
 
     receiveMessage($event:any) {
       this.reproduciendo = $event;
@@ -63,13 +78,40 @@ export class DetalleAlbumComponent {
     });
   }
 
-  // getFilterName():string{
-  //   return this.fireStorage.getFilterName()
-  // }
-  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
-  // setFilterName(search:string){
-  //   this.fireStorage.setFilterName(search)
-  // }
+  async onSubmit(){
+    if(this.updateAlbum)
+    {
+      await this.db.updateAlbumDb(this.albumId, this.updateAlbum.value, this.albumInfo);
+      if(this.myEvent)
+      {
+        if(this.updateAlbum.value.name)
+        {
+          this.uploadImageAlbum(this.myEvent, this.artistId, this.updateAlbum.value.name,this.albumId)
+        }else
+        this.uploadImageAlbum(this.myEvent, this.artistId, this.albumInfo.name,this.albumId)
+
+      }
+      this.router.navigate(['/home'])
+    }
+    window.confirm("Update en construcción")
+  }
+
+  uploadImageAlbum($event:any, artistId:string, albumName:string, aid:string){
+    this.fireStorage.uploadImageAlbum($event, artistId, albumName, aid)
+  }
+
+  setMyEvent($event:any){
+    this.myEvent = $event
+  }
+
+  deleteAlbum(){
+    this.db.deleteAlbum(this.albumId)
+  }
+
+
+  toggleEdit(){
+    this.edit = !this.edit
+  }
 
   goToNewSong(){
     this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
