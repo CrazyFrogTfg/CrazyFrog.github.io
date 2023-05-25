@@ -6,8 +6,8 @@
   <div class="album-nombre">
     <!-- falta ngif -->
     <div >
-      <h1> {{albumInfo.nombre}} </h1>
-      <h5> {{albumInfo.anyo}} </h5>
+      <h1> {{albumInfo.name}} </h1>
+      <h5> {{albumInfo.year}} </h5>
     </div>
     <!-- falta ngif -->
     <!-- <div> -->
@@ -77,7 +77,7 @@
 </section> -->
 <div class="container">
   <div class="row">
-    <app-tarjeta-cancion *ngFor="let cancion of canciones | byName:query" [cancion] = "cancion"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
+    <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
   </div>
 </div>
 

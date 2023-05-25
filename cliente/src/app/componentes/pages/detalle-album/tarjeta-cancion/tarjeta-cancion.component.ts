@@ -6,13 +6,13 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./tarjeta-cancion.component.css']
 })
 export class TarjetaCancionComponent {
-@Input() cancion:any
+@Input() song:any
 @Output() messageEvent = new EventEmitter<string>();
 
   reproduciendo:string = ""
 
-reproducir(cancion:string){
-  this.reproduciendo = cancion
+reproducir(song:string){
+  this.reproduciendo = song
   this.messageEvent.emit(this.reproduciendo);
 }
 }

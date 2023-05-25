@@ -18,7 +18,7 @@ export class DetallePlaylistComponent {
 
   playlistId:string = ""
   playlistInfo:any = []
-  canciones: Song[] = []
+  songs: Song[] = []
   reproduciendo:string = ""
   owner:string = ""
   imageOwner:string = ""
@@ -39,17 +39,17 @@ export class DetallePlaylistComponent {
       const userSnap = await getDoc(userRef);
       this.owner = userSnap.data()?.['username'];
       this.imageOwner = userSnap.data()?.['imageProfile'];
-      const cancionesRef = collection(this.firestore, "playlists", this.playlistId, "canciones");
-      const cancionesSnapshot = await getDocs(cancionesRef);
-        cancionesSnapshot.forEach((cancionDoc) => {
-          const cancion = {
-            name: cancionDoc.data()['name'],
-            order: cancionDoc.data()['order'],
-            lyrics: cancionDoc.data()['lyrics'],
-            file: cancionDoc.data()['file'],
-            albumId : cancionDoc.data()['albumId']
-          }; console.log(cancion)
-          this.canciones.push(cancion);
+      const songsRef = collection(this.firestore, "playlists", this.playlistId, "songs");
+      const songsSnapshot = await getDocs(songsRef);
+        songsSnapshot.forEach((songDoc) => {
+          const song = {
+            name: songDoc.data()['name'],
+            order: songDoc.data()['order'],
+            lyrics: songDoc.data()['lyrics'],
+            file: songDoc.data()['file'],
+            albumId : songDoc.data()['albumId']
+          }; console.log(song)
+          this.songs.push(song);
         });
       });
       await this.visibility()

@@ -22,7 +22,7 @@ ngOnChanges()
   }
 }
 reproducir() {
-  const cancion = this.reproduciendo.archivo;
+  const cancion = this.reproduciendo.file;
   this.reproductorService.reproducir(cancion);
 }
 

@@ -22,7 +22,7 @@ export class DetalleAlbumComponent {
   artistId:string = ""
   albumId:string = ""
   isAdmin:boolean = false
-  canciones: Song[] = []
+  songs: Song[] = []
   reproduciendo:string = ""
   iteraciones:number=0;
   query:string=""
@@ -42,20 +42,22 @@ export class DetalleAlbumComponent {
       this.artistId = params['idArtist']
       this.albumId = params['idAlbum']
       //sacar datos album
-      const albumRef = doc(this.firestore, "artistas", this.artistId, "albumes", this.albumId);
+      const albumRef = doc(this.firestore, "albums", this.albumId);
       const albumSnap = await getDoc(albumRef);
       this.albumInfo = albumSnap.data();
-      const cancionesRef = collection(this.firestore, "artistas", this.artistId, "albumes", this.albumId, "canciones");
-      const cancionesSnapshot = await getDocs(cancionesRef);
-        cancionesSnapshot.forEach((cancionDoc) => {
-          const cancion = {
-            name: cancionDoc.data()['name'],
-            order: cancionDoc.data()['order'],
-            lyrics: cancionDoc.data()['lyrics'],
-            file: cancionDoc.data()['file'],
-            albumId: cancionDoc.data()['albumId']
+
+      //cambiar a canciones con idalbum tal
+      const songsRef = collection(this.firestore, "songs", );
+      const songsSnapshot = await getDocs(songsRef);
+      songsSnapshot.forEach((songDoc) => {
+          const song = {
+            name: songDoc.data()['name'],
+            order: songDoc.data()['order'],
+            lyrics: songDoc.data()['lyrics'],
+            file: songDoc.data()['file'],
+            albumId: songDoc.data()['albumId']
           };
-          this.canciones.push(cancion);
+          this.songs.push(song);
           this.iteraciones++;
         });
     });
