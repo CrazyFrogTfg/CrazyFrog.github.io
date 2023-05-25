@@ -35,11 +35,6 @@ export class DbService {
     return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
   }
 
-  getAlbums(): Observable<Album[]>{
-    const albumRef = collection(this.firestore, 'albums')
-    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
-  }
-
   async updateArtistDb(uid:any, artist:Artist, oldArtist:Artist){
     const artistaRef = doc(this.firestore, 'artists', uid);
         //Actualizamos Nombre artista si ha cambiado
@@ -60,6 +55,10 @@ export class DbService {
     await deleteDoc(doc(this.firestore, "artists", uid));
   }
 
+  getAlbums(): Observable<Album[]>{
+    const albumRef = collection(this.firestore, 'albums')
+    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
+  }
   
   addAlbum(artistId:string, newAlbum:Album){
     newAlbum.artistId = artistId
