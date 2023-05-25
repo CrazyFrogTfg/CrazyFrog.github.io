@@ -30,7 +30,8 @@ export class DetalleAlbumComponent {
   edit:boolean=false
   updateAlbum:FormGroup
   currentYear:number = 2023
-  myEvent:any
+  file:any
+  isFile:boolean=false
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
@@ -82,15 +83,15 @@ export class DetalleAlbumComponent {
     if(this.updateAlbum)
     {
       console.log("Controlar error de año, que puede ser mayor a la fecha actual")
-      await this.db.updateAlbumDb(this.albumId, this.updateAlbum.value, this.albumInfo);
-      if(this.myEvent)
-      {
-        if(this.updateAlbum.value.name)
-        {
-          this.uploadImageAlbum(this.myEvent, this.artistId, this.updateAlbum.value.name,this.albumId)
-        }else
-        this.uploadImageAlbum(this.myEvent, this.artistId, this.albumInfo.name,this.albumId)
-      }
+      await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
+      // if(this.file)
+      // {
+      //   if(this.updateAlbum.value.name)
+      //   {
+      //     this.uploadImageAlbum(this.file, this.artistId, this.updateAlbum.value.name,this.albumId)
+      //   }else
+      //   this.uploadImageAlbum(this.file, this.artistId, this.albumInfo.name,this.albumId)
+      // }
       this.router.navigate(['/home'])
     }
   }
@@ -99,8 +100,9 @@ export class DetalleAlbumComponent {
     this.fireStorage.uploadImageAlbum($event, artistId, albumName, aid)
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
+    this.isFile=true
   }
 
   deleteAlbum(){

@@ -101,7 +101,7 @@ export class DbService {
     return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
   }
 
-  async updateAlbumDb(albumId:string, album:Album, oldAlbum:Album){
+  async updateAlbum(albumId:string, album:Album, oldAlbum:Album, file:any){
     const albumRef = doc(this.firestore, 'albums', albumId);
         //Actualizamos Nombre album si ha cambiado
         if(album.name && album.name != oldAlbum.name)
@@ -114,6 +114,11 @@ export class DbService {
           await updateDoc(albumRef, {
             year:album.year,
           })
+        }
+
+        //event:any, artistId:string, albumName:string, albumId:string
+        if(file){
+          this.uploadImageAlbum(file, album.artistId, album.name, albumId)
         }
   }
   
