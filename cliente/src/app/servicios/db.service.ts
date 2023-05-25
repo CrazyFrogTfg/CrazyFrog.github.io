@@ -107,10 +107,10 @@ export class DbService {
     return uid
   }
 
-  async getAlbumUIDByArtistaIdyNombre(artistaId:string, albumNombre:string){
+  async getAlbumUIDByName( albumName:string){
     let uid = ""
-    if (albumNombre !== null) {
-      const q = query(collection(this.firestore, `artistas/${artistaId}/albumes`), where("nombre", "==", albumNombre))
+    if (albumName !== null) {
+      const q = query(collection(this.firestore, 'albums'), where("name", "==", albumName))
       const querySnapshots = await getDocs(q)
       uid = querySnapshots.docs[0].id;
     }
@@ -175,7 +175,7 @@ export class DbService {
   async getAlbumsFav():Promise<any[]>{
     this.albumsFavInfo = []
     this.albumsFav.forEach(async album => {
-      const docRef = doc(this.firestore, 'artistas', album.idArtista, 'albumes', album.idAlbum);
+      const docRef = doc(this.firestore, 'albums', album.idAlbum);
       const docSnap = await getDoc(docRef);
       const albumInfo = docSnap.data();
       if(albumInfo){

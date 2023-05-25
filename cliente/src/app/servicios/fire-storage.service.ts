@@ -77,10 +77,10 @@ export class FireStorageService {
     .then(async response =>{
       //const imagenAlbum = getDownloadURL(fileRef)
       //Despues, obtenemos la imagen, guardamos en una variable
-      const imagenAlbum = await this.getImageAlbum(artistaId,albumName)
+      const imagenAlbum = await this.getImageAlbum(artistaId, albumName)
 
       // SI UPDATEA
-        const albumRef = doc(this.firestore, `artistas/${artistaId}/albumes/${albumId}`);
+        const albumRef = doc(this.firestore, `albums/${albumId}`);
         await updateDoc(albumRef, {
           image:imagenAlbum,
         })

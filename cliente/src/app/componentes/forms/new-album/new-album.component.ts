@@ -31,7 +31,7 @@ export class NewAlbumComponent {
       name: new FormControl(),
       year: new FormControl(),
       image: new FormControl(),
-      artisId: new FormControl(),
+      artistId: new FormControl(),
     })
   }
 
@@ -54,10 +54,10 @@ export class NewAlbumComponent {
       await this.db.addAlbum(this.artistId, this.newAlbum.value)
       if(this.myEvent)
       {
-        const aid = await this.db.getAlbumUIDByArtistaIdyNombre(this.artistId, this.newAlbum.value.name)
+        const aid = await this.db.getAlbumUIDByName(this.newAlbum.value.name)
         this.uploadImageAlbum(this.myEvent, this.artistId, this.newAlbum.value, aid)
       }
-      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId} }), 1200)
+      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
     }
   }
 
