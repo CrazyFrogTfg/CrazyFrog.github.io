@@ -9,6 +9,7 @@ import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
 import { Album } from 'src/app/interfaces/album.interface';
+import { where } from 'firebase/firestore';
 
 @Component({
   selector: 'app-detalle-album',
@@ -64,10 +65,8 @@ export class DetalleAlbumComponent {
       const albumRef = doc(this.firestore, "albums", this.albumId);
       const albumSnap = await getDoc(albumRef);
       this.albumInfo = albumSnap.data();
-
-      //cambiar a canciones con idalbum tal
-      const songsRef = collection(this.firestore, "songs", );
-      const songsSnapshot = await getDocs(songsRef);
+      const q = query(collection(this.firestore, "songs"), where("albumId", "==", this.albumId))
+      const songsSnapshot = await getDocs(q);
       songsSnapshot.forEach((songDoc) => {
           const song = {
             id: songDoc.id,
