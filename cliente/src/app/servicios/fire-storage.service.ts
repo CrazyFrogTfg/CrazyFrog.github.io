@@ -21,7 +21,7 @@ export class FireStorageService {
   rutatotal="https://firebasestorage.googleapis.com/v0/b/mediafrog-816db.appspot.com/o/artists%2FSDlYHnzITTeu418fv2cN%2Fotramas?alt=media&token=5b2885b2-c33a-47e0-a146-3900badd21af"
   private namePlaylist:string ="hola";
 
-  constructor(private firestore: Firestore, private db:DbService) { }
+  constructor(private firestore: Firestore) { }
 
   getFilterName():string{
     return this.filterName
@@ -48,22 +48,21 @@ export class FireStorageService {
         reject(error);
   }})}
 
-  uploadImageArtist($event:any, aid:string){
+  uploadImageArtist($event:any, artistId:string){
     //Preparamos la imagen dandole ruta
     const file = $event.target.files[0];
-    const fileRef = ref(this.storage, `artists/${aid}/imageArtist`)
+    const fileRef = ref(this.storage, `artists/${artistId}/imageArtist`)
 
     //subimos la imagen
     uploadBytes(fileRef, file)
     .then(async () => {
       //Despues, obtenemos la imagen, guardamos en una variable
-      const imagenArtist = await this.getImageArtist(aid)
+      const imagenArtist = await this.getImageArtist(artistId)
         //Introducimos dicha variable en el campo "image" del artista
-        const artistRef = doc(this.firestore, 'artists', aid);
+        const artistRef = doc(this.firestore, 'artists', artistId);
         await updateDoc(artistRef, {
           image:imagenArtist,
         })
-
     })
     .catch(error => console.log(error));
   }

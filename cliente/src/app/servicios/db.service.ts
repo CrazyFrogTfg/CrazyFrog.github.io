@@ -5,6 +5,7 @@ import { Album } from '../interfaces/album.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
 import { Song } from '../interfaces/song.interface';
+import { FireStorageService } from './fire-storage.service';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class DbService {
   artistsFavInfo:Array<any> = []
   albumsFavInfo:Array<any> = []
 
-  constructor(private firestore:Firestore) {
+  constructor(private firestore:Firestore, private fireStorage:FireStorageService) {
     let savedAlbumsFav = localStorage.getItem("albumsFav") || "[]"
     this.albumsFav = JSON.parse(savedAlbumsFav);
 
@@ -26,9 +27,23 @@ export class DbService {
     this.artistsFav = JSON.parse(savedArtistsFav)
   }
 
-  addArtist(artist:Artist){
-    const artistRef = collection(this.firestore, 'artists');
-    return addDoc(artistRef, artist);
+  async addArtist(artist:Artist, file:any){
+    const q = query(collection(this.firestore, "artists"), where("name", "==", artist.name))
+    const querySnapshots = await getDocs(q)
+    if(querySnapshots.docs.length === 0)
+    {
+      const artistRef = collection(this.firestore, 'artists');
+      addDoc(artistRef, artist);
+
+      const artistId = await this.getArtistUIDByName(artist.name)
+      this.uploadImageArtist(file, artistId)
+    }else{
+      window.confirm("Ese nombre de artista ya está en uso.\nSerás redirigido al buscador.")
+    }
+  }
+
+  uploadImageArtist(event:any, artistId:string){
+    this.fireStorage.uploadImageArtist(event, artistId)
   }
 
   getArtists(): Observable<Artist[]>{
@@ -52,6 +67,36 @@ export class DbService {
         }
   }
 
+  async deleteArtist(uid:string){
+    await deleteDoc(doc(this.firestore, "artists", uid));
+  }
+
+  addAlbum(artistId:string, newAlbum:Album){
+    newAlbum.artistId = artistId
+    const albumRef = collection(this.firestore, 'albums');
+    return addDoc(albumRef, newAlbum);
+  }
+
+  async addAlbum2(album:Album, file:any){
+    const q = query(collection(this.firestore, "albums"), where("name", "==", album.name))
+    const querySnapshots = await getDocs(q)
+    if(querySnapshots.docs.length === 0)
+    {
+      const albumRef = collection(this.firestore, 'albums');
+      addDoc(albumRef, album);
+
+      const albumId = await this.getArtistUIDByName(album.name)
+      this.uploadImageArtist(file, albumId)
+    }else{
+      window.confirm("Ese nombre de album ya está en uso.\nSerás redirigido al buscador.")
+    }
+  }
+  
+  getAlbums(): Observable<Album[]>{
+    const albumRef = collection(this.firestore, 'albums')
+    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
+  }
+
   async updateAlbumDb(albumId:string, album:Album, oldAlbum:Album){
     const albumRef = doc(this.firestore, 'albums', albumId);
         //Actualizamos Nombre album si ha cambiado
@@ -67,21 +112,6 @@ export class DbService {
           })
         }
   }
-
-  async deleteArtist(uid:string){
-    await deleteDoc(doc(this.firestore, "artists", uid));
-  }
-
-  getAlbums(): Observable<Album[]>{
-    const albumRef = collection(this.firestore, 'albums')
-    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
-  }
-  
-  addAlbum(artistId:string, newAlbum:Album){
-    newAlbum.artistId = artistId
-    const albumRef = collection(this.firestore, 'albums');
-    return addDoc(albumRef, newAlbum);
-  }
   
   async deleteAlbum(albumId:any){
     await deleteDoc(doc(this.firestore, "albums", albumId));
@@ -96,7 +126,6 @@ export class DbService {
     const albumRef = collection(this.firestore, `artistas/${artistId}/albumes/${albumId}/canciones`);
     return addDoc(albumRef, newSong);
   }
-  
   
   async getArtistUID(artist:Artist){
     let uid = ""

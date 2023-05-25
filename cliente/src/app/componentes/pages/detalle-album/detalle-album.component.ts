@@ -81,6 +81,7 @@ export class DetalleAlbumComponent {
   async onSubmit(){
     if(this.updateAlbum)
     {
+      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.updateAlbumDb(this.albumId, this.updateAlbum.value, this.albumInfo);
       if(this.myEvent)
       {
@@ -89,11 +90,9 @@ export class DetalleAlbumComponent {
           this.uploadImageAlbum(this.myEvent, this.artistId, this.updateAlbum.value.name,this.albumId)
         }else
         this.uploadImageAlbum(this.myEvent, this.artistId, this.albumInfo.name,this.albumId)
-
       }
       this.router.navigate(['/home'])
     }
-    window.confirm("Update en construcción")
   }
 
   uploadImageAlbum($event:any, artistId:string, albumName:string, aid:string){
@@ -106,6 +105,7 @@ export class DetalleAlbumComponent {
 
   deleteAlbum(){
     this.db.deleteAlbum(this.albumId)
+    this.router.navigate(['/buscador'])
   }
 
 

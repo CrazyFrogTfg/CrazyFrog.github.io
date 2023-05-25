@@ -51,6 +51,7 @@ export class NewAlbumComponent {
   async onSubmit(){
     if(this.artistId && this.newAlbum.value)
     {
+      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.addAlbum(this.artistId, this.newAlbum.value)
       if(this.myEvent)
       {
