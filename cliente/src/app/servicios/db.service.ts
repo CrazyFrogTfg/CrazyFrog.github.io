@@ -221,7 +221,6 @@ export class DbService {
       };
       this.playlists.push(playlist);
     })
-    console.log(this.playlists)
     return this.playlists
   }
 

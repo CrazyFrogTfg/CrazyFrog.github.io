@@ -43,7 +43,6 @@ export class NewSongComponent {
       name: new FormControl(),
       order: new FormControl(),
       lyrics: new FormControl(),
-      file: new FormControl(),
       albumId: new FormControl(),
       artistId: new FormControl(),
     })
@@ -61,9 +60,6 @@ export class NewSongComponent {
   {
     this.helpOrder = !this.helpOrder
   }
-  // uploadImageSong($event:any, artistId:string, albumId:string, aid:string){
-  //   this.fireStorage.uploadImageSong($event, artistId, albumId, aid)
-  // }
 
   async onSubmit(){
     await this.db.addSong(this.newSong.value, this.file)

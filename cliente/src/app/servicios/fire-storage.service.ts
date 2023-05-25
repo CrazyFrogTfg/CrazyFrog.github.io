@@ -113,10 +113,11 @@ export class FireStorageService {
   uploadSong($event:any, song:Song, songId:string){
     //STORAGE
     const file = $event.target.files[0];
-    const fileRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/`)
-    //subimos la imagen
+    const fileRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${songId}`)
+    //subimos la cancion
     uploadBytes(fileRef, file)
     .then(async response =>{
+      console.log(response)
       //Despues, obtenemos la imagen, guardamos en una variable
       const songFile = await this.getSongFile(song,songId)
 
@@ -131,10 +132,12 @@ export class FireStorageService {
   }
 
   async getSongFile(song:Song,songId:string): Promise<string> {
+    console.log("getSongFile")
     return new Promise(async (resolve, reject) => {
       try {
         const songRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${songId}`);
           const url = await getDownloadURL(songRef);
+          console.log("url= "+url)
           resolve(url);
           return;
       } catch (error) {

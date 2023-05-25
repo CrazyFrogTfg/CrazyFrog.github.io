@@ -32,7 +32,6 @@ async ngOnInit(){
   this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
   this.userUID = await this.userService.getUID()
-  console.log(this.song)
 }
 
 reproducir(song:string){
