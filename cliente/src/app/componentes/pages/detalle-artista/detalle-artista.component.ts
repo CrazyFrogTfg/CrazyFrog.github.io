@@ -22,7 +22,7 @@ export class DetalleArtistaComponent {
   isAdmin:boolean = false
   edit:boolean = false
   updateArtist:FormGroup
-  myEvent:any
+  myEvent:any=null
   query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
@@ -61,14 +61,6 @@ export class DetalleArtistaComponent {
     });
   }
 
-  // getFilterName():string{
-  //   return this.fireStorage.getFilterName()
-  // }
-  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
-  // setFilterName(search:string){
-  //   this.fireStorage.setFilterName(search)
-  // }
-
   async deleteArtist(artistInfo: any){
     const pregunta="Si deseas eliminar "+artistInfo.name+" escribe su nombre aquí";
     if( prompt(pregunta) == artistInfo.name)
@@ -98,11 +90,7 @@ export class DetalleArtistaComponent {
   async onSubmit(){
     if(this.updateArtist)
     {
-      await this.db.updateArtistDb(this.artistId, this.updateArtist.value, this.artistInfo);
-      if(this.myEvent)
-      {
-        this.uploadImageArtist(this.myEvent, this.artistId)
-      }
+      await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.myEvent);
       this.router.navigate(['/home'])
     }
   }

@@ -51,8 +51,8 @@ export class DbService {
     return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
   }
 
-  async updateArtistDb(uid:any, artist:Artist, oldArtist:Artist){
-    const artistaRef = doc(this.firestore, 'artists', uid);
+  async updateArtist(artistId:any, artist:Artist, oldArtist:Artist, file:any){
+    const artistaRef = doc(this.firestore, 'artists', artistId);
         //Actualizamos Nombre artista si ha cambiado
         if(artist.name && artist.name != oldArtist.name)
         await updateDoc(artistaRef, {
@@ -64,6 +64,10 @@ export class DbService {
           await updateDoc(artistaRef, {
             description:artist.description,
           })
+        }
+
+        if(file){
+          this.uploadImageArtist(file, artistId)
         }
   }
 
