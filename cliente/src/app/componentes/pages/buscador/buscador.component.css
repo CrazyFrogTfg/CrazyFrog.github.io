@@ -25,7 +25,7 @@ check-input:checked{
   background-color: black;
 }
 .black-checkbox {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   width: 16px;
@@ -70,9 +70,10 @@ check-input:checked{
 .filtrosSection>p{
     color: green;
 }
-h3{
+h2{
     margin-bottom: 20px;
     margin-top: 20px;
+    color:white
 }
 
 .cssbuttons-io-button {

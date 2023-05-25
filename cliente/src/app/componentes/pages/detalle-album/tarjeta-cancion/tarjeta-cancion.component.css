@@ -1,3 +1,23 @@
 .card-song{
   color:white
 }
+
+.dropup{
+  margin-left: 25px;
+}
+
+.dropdown-toggle:hover{
+  background-color: #14a73e98;
+}
+
+.dropdown-toggle:focus{
+  background-color: #14a73e98;
+}
+
+.dropdown-toggle{
+  background-color: greenyellow;
+}
+
+.playlist{
+  margin-left:15px;
+}

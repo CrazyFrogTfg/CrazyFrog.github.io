@@ -13,14 +13,11 @@ export class TarjetaFavComponent {
 
   constructor(private router:Router){}
 
-  ngOnInit(){
-    console.log(this.favArtist)
-    console.log(this.favAlbum)
-  }
+  ngOnInit(){}
 
   async goToDetails(fav: any) {
-    if(fav.idArtista){
-      this.router.navigate(['/album'], { queryParams: { idArtist: fav.idArtista, idAlbum: fav.id } });
+    if(fav.artistId){
+      this.router.navigate(['/album'], { queryParams: { idArtist: fav.artistId, idAlbum: fav.id } });
     } else {
       this.router.navigate(['/artista'], { queryParams: { id: fav.id } });
     }

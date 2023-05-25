@@ -60,13 +60,13 @@ export class DbService {
     const albumRef = collection(this.firestore, 'albums')
     return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
   }
-  
+
   addAlbum(artistId:string, newAlbum:Album){
     newAlbum.artistId = artistId
     const albumRef = collection(this.firestore, 'albums');
     return addDoc(albumRef, newAlbum);
   }
-  
+
   async deleteAlbum(albumId:any){
     prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
     //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
@@ -77,13 +77,13 @@ export class DbService {
     const songRef = collection(this.firestore, 'songs')
     return collectionData(songRef, { idField: 'id'}) as Observable<Song[]>;
   }
-  
+
   addSong(artistId:string, albumId:string, newSong:Album){
     const albumRef = collection(this.firestore, `artistas/${artistId}/albumes/${albumId}/canciones`);
     return addDoc(albumRef, newSong);
   }
-  
-  
+
+
   async getArtistUID(artist:Artist){
     let uid = ""
     if (artist !== null) {
@@ -113,12 +113,12 @@ export class DbService {
     }
     return uid
   }
-  
+
   addPlaylist(playlist:Playlist){
     const playlistRef = collection(this.firestore, 'playlists');
     return addDoc(playlistRef, playlist);
   }
-  
+
   async getPlaylistByUser(uid:string){
   //Con la linea siguiente vaciamos el array para que no se llene continuamente.
   this.playlists=[]
@@ -135,7 +135,7 @@ export class DbService {
     })
     return this.playlists
   }
-  
+
   async updatePlaylist(playlistId:any, playlist:Playlist, oldPlaylist:Playlist){
     const playlistRef = doc(this.firestore, 'playlists', playlistId);
     //Actualizamos Nombre playlist si ha cambiado
@@ -152,20 +152,20 @@ export class DbService {
         }
       //}
     }
-    
+
     async deletePlaylist(playlistId:string){
       await deleteDoc(doc(this.firestore, "playlists", playlistId));
     }
 
   //Favs de album - pegar un ojo
-  setAlbumFav(favorite:any){
+  setAlbumFav(favorite:string){
     if(!this.albumsFav.includes(favorite)){
       this.albumsFav.push(favorite)
       localStorage.setItem("albumsFav", JSON.stringify(this.albumsFav))
     }
   }
 
-  delAlbumFav(favorite:any){
+  delAlbumFav(favorite:string){
     let posicion = this.albumsFav.indexOf(favorite)
     if (posicion != -1){
       this.albumsFav.splice(posicion, 1)
@@ -180,11 +180,11 @@ export class DbService {
   async getAlbumsFav():Promise<any[]>{
     this.albumsFavInfo = []
     this.albumsFav.forEach(async album => {
-      const docRef = doc(this.firestore, 'albums', album.idAlbum);
+      const docRef = doc(this.firestore, 'albums', album);
       const docSnap = await getDoc(docRef);
       const albumInfo = docSnap.data();
       if(albumInfo){
-        albumInfo['id'] = album.idAlbum;
+        albumInfo['id'] = album;
         albumInfo['idArtista'] = album.idArtista;
         this.albumsFavInfo.push(albumInfo)
       }

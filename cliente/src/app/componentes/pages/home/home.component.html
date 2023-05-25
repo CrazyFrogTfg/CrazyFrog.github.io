@@ -47,14 +47,14 @@
     <div class="container">
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
-          <app-tarjeta-fav *ngFor="let favAlbum of getAlbumsFav()" [favAlbum] = "favAlbum" ></app-tarjeta-fav>
+          <app-tarjeta-fav *ngFor="let favArtist of getArtistsFav()" [favArtist] = "favArtist" ></app-tarjeta-fav>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
-          <app-tarjeta-fav *ngFor="let favArtist of getArtistsFav()" [favArtist] = "favArtist" ></app-tarjeta-fav>
+          <app-tarjeta-fav *ngFor="let favAlbum of getAlbumsFav()" [favAlbum] = "favAlbum" ></app-tarjeta-fav>
         </div>
       </div>
     </div>

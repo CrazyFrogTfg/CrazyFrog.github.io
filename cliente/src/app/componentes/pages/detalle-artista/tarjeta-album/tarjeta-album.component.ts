@@ -36,10 +36,6 @@ async ngOnInit()
   this.userInfo = await this.userService.getUserInfo()
   if(this.userInfo.admin) this.isAdmin = true
   setTimeout( () => undefined, 2000)
-  this.albumFav = {
-    idArtista: this.artista,
-    idAlbum: this.album.id
-  };
 }
 
 onSubmit(){
@@ -68,15 +64,15 @@ async goToDetails(album: any) {
 }
 
 setAlbumFav(){
-  this.db.setAlbumFav(this.albumFav)
+  this.db.setAlbumFav(this.album.id)
 }
 
 delAlbumFav(){
-  this.db.delAlbumFav(this.albumFav)
+  this.db.delAlbumFav(this.album.id)
 }
 
 isAlbumFav(){
-  return this.db.isAlbumFav(this.albumFav)
+  return this.db.isAlbumFav(this.album.id)
 }
 
 }

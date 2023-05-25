@@ -13,7 +13,7 @@
 <section class="busquedaContainer">
     <section class="encontradoContainer">
       <div class="container">
-        <h3>Artistas</h3>
+        <h2>Artistas</h2>
         <div class="row row-cols-auto">
           <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
             <app-tarjeta-artista *ngFor="let artist of (artists | byName:getFilterName()) | slice:paginator:paginator+3" [artist]="artist"></app-tarjeta-artista>
@@ -23,7 +23,7 @@
         <button (click)="decreasePaginator()">-</button>
       </div>
 
-        <h3>Albumes</h3>
+        <h2>Albumes</h2>
         <section *ngIf="cboxAlbum">
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
@@ -31,8 +31,8 @@
             </section>
           </div>
         </section>
-        
-        <h3>Canciones</h3>
+
+        <h2>Canciones</h2>
         <section *ngIf="cboxCancion">
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxArtista">

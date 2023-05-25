@@ -47,7 +47,6 @@ export class DetalleArtistaComponent {
       const q = query(collection(this.firestore, "albums"), where("artistId", "==", this.artistId))
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(async (doc) => {
-        console.log(doc)
         const album = {
           id: doc.id,
           name: doc.data()['name'],
@@ -56,7 +55,6 @@ export class DetalleArtistaComponent {
           artistId: doc.data()['artistId'],
         };
         this.albums.push(album);
-        console.log(this.albums)
       });
     });
   }
