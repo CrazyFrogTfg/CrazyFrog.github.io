@@ -10,19 +10,19 @@
     <div *ngIf="edit"> 
        <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="nameAlbum" class="label">Name</label>
+          <label for="nameAlbum" class="label">Nombre</label>
           <input type="text" class="form-control" #nameAlbum id="nameAlbum" placeholder="{{albumInfo.name}}" formControlName="name">
         </div>
         <div class="form-group">
-          <label for="yearAlbum" class="label">Year</label>
+          <label for="yearAlbum" class="label">Año</label>
           <input type="number" required max={{currentYear}} min="1" class="form-control" placeholder="{{albumInfo.year}}" #yearAlbum id="yearAlbum" formControlName="year">
         </div>
         <div class="form-group">
-          <label for="exampleInputImage" class="upload-img label-img">Image</label>
-          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="image">
+          <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
+          <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
         </div>
-        <button type="submit" [disabled]="( ((yearAlbum.value.length > 4)) || ( nameAlbum.value!=null && (nameAlbum.value.length === 0)) )" class="btn btn-dark">UPDATE</button>
-        <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCEL</button> 
+        <button type="submit" [disabled]="(yearAlbum.value.length != 4 && nameAlbum.value.length<1 && isFile===false)" class="btn btn-dark">ACTUALIZAR</button>
+        <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCELAR</button>
       </form>
     </div>
     <div class="container d-flex" *ngIf="isAdmin && !edit">
@@ -44,7 +44,7 @@
             </svg>
           </span>
       </button>
-    </div>
+    </div>   
   </div>
   <div class="divBuscador">
       <button class="btn">
