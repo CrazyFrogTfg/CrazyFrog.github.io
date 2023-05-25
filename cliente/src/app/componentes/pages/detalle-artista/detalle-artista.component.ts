@@ -22,7 +22,7 @@ export class DetalleArtistaComponent {
   isAdmin:boolean = false
   edit:boolean = false
   updateArtist:FormGroup
-  myEvent:any=null
+  file:any=null
   query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
@@ -83,20 +83,16 @@ export class DetalleArtistaComponent {
     this.edit = !this.edit
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
   }
 
   async onSubmit(){
     if(this.updateArtist)
     {
-      await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.myEvent);
+      await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.file);
       this.router.navigate(['/home'])
     }
-  }
-
-  uploadImageArtist($event:any, artist:string){
-    this.fireStorage.uploadImageArtist($event, artist)
   }
 
 }
