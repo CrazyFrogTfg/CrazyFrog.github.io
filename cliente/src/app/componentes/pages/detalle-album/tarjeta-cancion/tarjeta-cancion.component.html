@@ -1,5 +1,5 @@
-<section class="card-song d-flex align-items-center" (click)="reproducir(song)">
-  <h4>{{song.name}}</h4>
+<section class="card-song d-flex align-items-center">
+  <h4 (click)="reproducir(song)">{{song.name}}</h4>
   <div class="btn-group dropup">
     <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">

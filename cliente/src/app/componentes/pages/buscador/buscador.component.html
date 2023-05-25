@@ -27,7 +27,7 @@
         <section *ngIf="cboxAlbum">
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
-              <app-tarjeta-album *ngFor="let album of albums" [album]="album" ></app-tarjeta-album>
+              <app-tarjeta-album *ngFor="let album of albums" [album]="album" [artista]="album.artistId" ></app-tarjeta-album>
             </section>
           </div>
         </section>

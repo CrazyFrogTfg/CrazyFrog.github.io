@@ -15,11 +15,10 @@ export class NewSongComponent {
 
   newSong: FormGroup;
   userInfo:any
-  propietario:string = '';
-  artistaId:string=""
+  artistId:string=""
   albumId:string=""
   isAdmin:boolean = false;
-  myEvent:any
+  file:any
   order:any
   helpOrder:boolean=false
 
@@ -28,11 +27,13 @@ export class NewSongComponent {
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
     await this.route.queryParams.subscribe(async params => {
-      this.artistaId = params['artistaId']
+      this.artistId = params['artistId']
+      this.newSong.controls['artistId'].setValue(this.artistId)
       this.albumId = params['albumId']
+      this.newSong.controls['albumId'].setValue(this.albumId)
       this.order = parseInt(params['order'])+1
       this.newSong.controls['order'].setValue(this.order)
-      this.newSong.controls['albumId'].setValue(this.albumId)
+      console.log(this.artistId)
     })
   }
 
@@ -42,7 +43,9 @@ export class NewSongComponent {
       name: new FormControl(),
       order: new FormControl(),
       lyrics: new FormControl(),
+      file: new FormControl(),
       albumId: new FormControl(),
+      artistId: new FormControl(),
     })
   }
 
@@ -50,8 +53,8 @@ export class NewSongComponent {
     this.router.navigate(['/home']);
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
   }
 
   toogleHelpOrder()
@@ -63,9 +66,8 @@ export class NewSongComponent {
   // }
 
   async onSubmit(){
-    // await this.db.addSong(this.artistaId, this.albumId, this.newSong.value)
-    // this.router.navigate(['/home']);
-    prompt("Aun no esta implementado subir archivo .mp3")
+    await this.db.addSong(this.newSong.value, this.file)
+    this.router.navigate(['/home']);
   }
 
 }

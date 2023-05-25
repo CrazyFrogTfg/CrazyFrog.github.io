@@ -24,7 +24,6 @@ export class NewArtistComponent {
     this.newArtist = new FormGroup({
       name: new FormControl(),
       description: new FormControl(),
-      image: new FormControl(),
     })
   }
 

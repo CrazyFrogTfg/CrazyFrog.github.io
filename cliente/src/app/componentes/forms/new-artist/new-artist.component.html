@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
-          <input type="file" #file (change)="setFile($event)" required class="form-control upload-img" formControlName="image">
+          <input type="file" #file (change)="setFile($event)" required class="form-control upload-img">
         </div>
         <button type="submit" [disabled]="(nameArtist.value.length === 0 || descriptionArtist.value.length === 0 || isFile===false)" class="btn btn-dark">CREAR</button>
       </form>
