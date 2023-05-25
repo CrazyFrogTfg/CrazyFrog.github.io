@@ -131,11 +131,6 @@ export class DbService {
     return collectionData(songRef, { idField: 'id'}) as Observable<Song[]>;
   }
 
-  addSong2(newSong:Song, file:any){
-    const albumRef = collection(this.firestore, `songs`);
-    return addDoc(albumRef, newSong);
-  }
-
   async addSong(song:Song, file:any){
     console.log("Entrando a dbservice addSong")
     console.log("song arti id:" +song.artistId)
@@ -160,6 +155,19 @@ export class DbService {
 
   uploadSong(file:any, song:Song, songId:string){
     this.fireStorage.uploadSong(file, song, songId)
+  }
+
+  async updateSong(song:Song, oldSong:Song){
+    const songRef = doc(this.firestore, 'songs', oldSong.id);
+        //Actualizamos Nombre album si ha cambiado
+        if(song.name && song.name != oldSong.name)
+        await updateDoc(songRef, {
+          name:song.name,
+        })
+  }
+
+  async deleteSong(songId:any){
+    await deleteDoc(doc(this.firestore, "songs", songId));
   }
 
 
