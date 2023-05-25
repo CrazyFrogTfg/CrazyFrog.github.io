@@ -35,11 +35,6 @@ export class DbService {
     return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
   }
 
-  getAlbums(): Observable<Album[]>{
-    const albumRef = collection(this.firestore, 'albums')
-    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
-  }
-
   async updateArtistDb(uid:any, artist:Artist, oldArtist:Artist){
     const artistaRef = doc(this.firestore, 'artists', uid);
         //Actualizamos Nombre artista si ha cambiado
@@ -60,33 +55,29 @@ export class DbService {
     await deleteDoc(doc(this.firestore, "artists", uid));
   }
 
-  async deleteAlbum(albumId:any){
-    prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
-    //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
-    //await deleteDoc(doc(this.firestore, "artistas", albumId ));
+  getAlbums(): Observable<Album[]>{
+    const albumRef = collection(this.firestore, 'albums')
+    return collectionData(albumRef, { idField: 'id'}) as Observable<Album[]>;
   }
-
-  async deletePlaylist(playlistId:string){
-    await deleteDoc(doc(this.firestore, "playlists", playlistId));
-  }
-
-  addPlaylist(playlist:Playlist){
-    const playlistRef = collection(this.firestore, 'playlists');
-    return addDoc(playlistRef, playlist);
-  }
-
+  
   addAlbum(artistId:string, newAlbum:Album){
     newAlbum.artistId = artistId
     const albumRef = collection(this.firestore, 'albums');
     return addDoc(albumRef, newAlbum);
   }
-
+  
+  async deleteAlbum(albumId:any){
+    prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
+    //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
+    //await deleteDoc(doc(this.firestore, "artistas", albumId ));
+  }
+  
   addSong(artistId:string, albumId:string, newSong:Album){
     const albumRef = collection(this.firestore, `artistas/${artistId}/albumes/${albumId}/canciones`);
     return addDoc(albumRef, newSong);
   }
-
-
+  
+  
   async getArtistUID(artist:Artist){
     let uid = ""
     if (artist !== null) {
@@ -116,11 +107,16 @@ export class DbService {
     }
     return uid
   }
-
+  
+  addPlaylist(playlist:Playlist){
+    const playlistRef = collection(this.firestore, 'playlists');
+    return addDoc(playlistRef, playlist);
+  }
+  
   async getPlaylistByUser(uid:string){
-    //Con la linea siguiente vaciamos el array para que no se llene continuamente.
-    this.playlists=[]
-    const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
+  //Con la linea siguiente vaciamos el array para que no se llene continuamente.
+  this.playlists=[]
+  const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       const playlist = {
@@ -133,12 +129,11 @@ export class DbService {
     })
     return this.playlists
   }
-
+  
   async updatePlaylist(playlistId:any, playlist:Playlist, oldPlaylist:Playlist){
     const playlistRef = doc(this.firestore, 'playlists', playlistId);
-
-        //Actualizamos Nombre playlist si ha cambiado
-        if(playlist.name && playlist.name != oldPlaylist.name)
+    //Actualizamos Nombre playlist si ha cambiado
+    if(playlist.name && playlist.name != oldPlaylist.name)
         await updateDoc(playlistRef, {
           name:playlist.name,
         })
@@ -150,7 +145,11 @@ export class DbService {
           })
         }
       //}
-  }
+    }
+    
+    async deletePlaylist(playlistId:string){
+      await deleteDoc(doc(this.firestore, "playlists", playlistId));
+    }
 
   //Favs de album - pegar un ojo
   setAlbumFav(favorite:any){
