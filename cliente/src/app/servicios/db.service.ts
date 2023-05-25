@@ -131,9 +131,35 @@ export class DbService {
     return collectionData(songRef, { idField: 'id'}) as Observable<Song[]>;
   }
 
-  addSong(artistId:string, albumId:string, newSong:Album){
-    const albumRef = collection(this.firestore, `artistas/${artistId}/albumes/${albumId}/canciones`);
+  addSong2(newSong:Song, file:any){
+    const albumRef = collection(this.firestore, `songs`);
     return addDoc(albumRef, newSong);
+  }
+
+  async addSong(song:Song, file:any){
+    console.log("Entrando a dbservice addSong")
+    console.log("song arti id:" +song.artistId)
+    const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
+    const querySnapshots = await getDocs(q)
+    if(querySnapshots.docs.length === 0)
+    {
+      console.log("Comprobado que no existe cancion con mismo nombre")
+      const songRef = collection(this.firestore, 'songs');
+      await addDoc(songRef, song);
+      console.log("Cancion subida a database")
+
+      const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
+      const querySnapshots = await getDocs(q)
+      let songId = querySnapshots.docs[0].id;
+      console.log("recogido songId: "+ songId)
+      this.uploadSong(file, song, songId)
+    }else{
+      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
+    }
+  }
+
+  uploadSong(file:any, song:Song, songId:string){
+    this.fireStorage.uploadSong(file, song, songId)
   }
 
 

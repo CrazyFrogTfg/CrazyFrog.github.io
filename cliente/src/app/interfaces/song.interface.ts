@@ -4,5 +4,6 @@ export interface Song {
   order:number,
   lyrics:string,
   file:string,
-  albumId:string
+  albumId:string,
+  artistId:string,
 }

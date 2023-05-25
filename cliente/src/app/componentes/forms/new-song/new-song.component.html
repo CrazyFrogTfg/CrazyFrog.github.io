@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputImage" class="label-img">Archivo</label>
-          <input type="file" (change)="setMyEvent($event)" id="exampleInputImage" class="form-control upload-img" formControlName="file">
+          <input type="file" (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img" formControlName="file">
         </div>
         <button type="submit"  [disabled]="(nombreCancion.value.length === 0 || orden.value.length === 0)" class="btn btn-dark">CREAR</button>
       </form>

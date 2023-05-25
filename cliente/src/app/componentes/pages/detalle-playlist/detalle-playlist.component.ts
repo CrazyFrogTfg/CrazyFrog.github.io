@@ -48,7 +48,8 @@ export class DetallePlaylistComponent {
             order: songDoc.data()['order'],
             lyrics: songDoc.data()['lyrics'],
             file: songDoc.data()['file'],
-            albumId : songDoc.data()['albumId']
+            albumId : songDoc.data()['albumId'],
+            artistId : songDoc.data()['artistId'],
           }; console.log(song)
           this.songs.push(song);
         });

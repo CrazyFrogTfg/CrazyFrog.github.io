@@ -75,7 +75,8 @@ export class DetalleAlbumComponent {
             order: songDoc.data()['order'],
             lyrics: songDoc.data()['lyrics'],
             file: songDoc.data()['file'],
-            albumId: songDoc.data()['albumId']
+            albumId: songDoc.data()['albumId'],
+            artistId: songDoc.data()['artistId']
           };
           this.songs.push(song);
           this.iteraciones++;
@@ -107,6 +108,6 @@ export class DetalleAlbumComponent {
   }
 
   goToNewSong(){
-    this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
+    this.router.navigate(['/newsong'], {queryParams: {artistId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
   }
 }
