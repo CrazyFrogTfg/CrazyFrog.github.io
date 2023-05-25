@@ -36,7 +36,7 @@
         <section *ngIf="cboxCancion">
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
-              <app-tarjeta-cancion *ngFor="let song of songs" [song]="song" [playlists] = "playlists"></app-tarjeta-cancion>
+              <app-tarjeta-cancion *ngFor="let song of songs" [song]= "song" [playlists] = "playlists" ></app-tarjeta-cancion>
             </section>
           </div>
         </section>

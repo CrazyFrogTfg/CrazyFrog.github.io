@@ -6,6 +6,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
+import { DbService } from 'src/app/servicios/db.service';
 
 
 
@@ -24,10 +25,16 @@ export class DetallePlaylistComponent {
   imageOwner:string = ""
   isVisible:boolean = false
   query:string=""
+  playlists:any
+  userUID:string = ""
 
-  constructor(private route: ActivatedRoute,private router:Router,private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService){}
+  constructor(private route: ActivatedRoute,private router:Router,
+    private firestore: Firestore,private userService:UsuariosService,
+    private fireStorage:FireStorageService, private db:DbService){}
 
   async ngOnInit() {
+    this.userUID = await this.userService.getUID()
+    this.playlists = await this.db.getPlaylistByUser(this.userUID)
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']
