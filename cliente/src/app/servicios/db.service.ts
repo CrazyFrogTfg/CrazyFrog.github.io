@@ -71,25 +71,25 @@ export class DbService {
     await deleteDoc(doc(this.firestore, "artists", uid));
   }
 
-  addAlbum(artistId:string, newAlbum:Album){
-    newAlbum.artistId = artistId
-    const albumRef = collection(this.firestore, 'albums');
-    return addDoc(albumRef, newAlbum);
-  }
-
-  async addAlbum2(album:Album, file:any){
+  async addAlbum(album:Album, file:any){
     const q = query(collection(this.firestore, "albums"), where("name", "==", album.name))
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
     {
       const albumRef = collection(this.firestore, 'albums');
-      addDoc(albumRef, album);
+      await addDoc(albumRef, album);
 
-      const albumId = await this.getArtistUIDByName(album.name)
-      this.uploadImageArtist(file, albumId)
+      const q = query(collection(this.firestore, "albums"), where("name", "==", album.name))
+      const querySnapshots = await getDocs(q)
+      let albumId = querySnapshots.docs[0].id;
+      this.uploadImageAlbum(file, album.artistId, album.name, albumId)
     }else{
       window.confirm("Ese nombre de album ya está en uso.\nSerás redirigido al buscador.")
     }
+  }
+
+  uploadImageAlbum(event:any, artistId:string, albumName:string, albumId:string){
+    this.fireStorage.uploadImageAlbum(event, artistId, albumName, albumId)
   }
   
   getAlbums(): Observable<Album[]>{
