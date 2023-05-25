@@ -63,7 +63,8 @@ export class NewSongComponent {
 
   async onSubmit(){
     await this.db.addSong(this.newSong.value, this.file)
-    this.router.navigate(['/home']);
+    setTimeout(() => this.router.navigate(['/home']), 1500)
+
   }
 
 }
