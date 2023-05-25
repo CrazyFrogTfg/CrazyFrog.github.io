@@ -43,12 +43,11 @@ export class DetalleAlbumComponent {
       year: new FormControl(),
       image: new FormControl(),
     })
-    
   }
 
-    receiveMessage($event:any) {
-      this.reproduciendo = $event;
-    }
+  receiveMessage($event:any) {
+    this.reproduciendo = $event;
+  }
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -84,20 +83,8 @@ export class DetalleAlbumComponent {
     {
       console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
-      // if(this.file)
-      // {
-      //   if(this.updateAlbum.value.name)
-      //   {
-      //     this.uploadImageAlbum(this.file, this.artistId, this.updateAlbum.value.name,this.albumId)
-      //   }else
-      //   this.uploadImageAlbum(this.file, this.artistId, this.albumInfo.name,this.albumId)
-      // }
       this.router.navigate(['/home'])
     }
-  }
-
-  uploadImageAlbum($event:any, artistId:string, albumName:string, aid:string){
-    this.fireStorage.uploadImageAlbum($event, artistId, albumName, aid)
   }
 
   setFile($event:any){
@@ -109,7 +96,6 @@ export class DetalleAlbumComponent {
     this.db.deleteAlbum(this.albumId)
     this.router.navigate(['/buscador'])
   }
-
 
   toggleEdit(){
     this.edit = !this.edit
