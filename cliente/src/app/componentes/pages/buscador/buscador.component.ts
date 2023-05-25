@@ -32,6 +32,9 @@ export class BuscadorComponent {
               private title:Title){ title.setTitle('Mediafrog - Buscador')}
 
   async ngOnInit(){
+    this.userUID = await this.userService.getUID()
+    this.playlists = await this.db.getPlaylistByUser(this.userUID)
+    console.log(this.playlists)
     this.db.getArtists().subscribe(artists =>{
       this.artists = artists
     })
@@ -43,7 +46,6 @@ export class BuscadorComponent {
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
-    this.playlists = await this.db.getPlaylistByUser(this.userUID)
   }
 
   // increasePaginator() {

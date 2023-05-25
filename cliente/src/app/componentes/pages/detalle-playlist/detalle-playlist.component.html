@@ -23,7 +23,7 @@
   </div>
   <div class="container" *ngIf="isVisible">
       <div class="row">
-        <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
+        <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  [playlists] = "playlists" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
       </div>
   </div>
 
