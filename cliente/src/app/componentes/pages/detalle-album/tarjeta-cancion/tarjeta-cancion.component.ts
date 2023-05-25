@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
@@ -9,21 +10,26 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 })
 export class TarjetaCancionComponent {
 @Input() song:any
+@Input() playlists:any
 @Output() messageEvent = new EventEmitter<string>();
 
   reproduciendo:string = ""
   userUID:any
-  playlists:any
 
   constructor(private userService:UsuariosService, private db:DbService){}
 
   async ngOnInit(){
     this.userUID = await this.userService.getUID()
-    this.playlists = await this.db.getPlaylistByUser(this.userUID)
+    console.log(this.song)
   }
 
 reproducir(song:string){
   this.reproduciendo = song
   this.messageEvent.emit(this.reproduciendo);
 }
+
+addSongToPlaylist(playlist:Playlist){
+  this.db.addSongToPlaylist(playlist, this.song)
+}
+
 }

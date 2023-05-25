@@ -4,6 +4,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Song } from 'src/app/interfaces/song.interface';
 
 @Component({
   selector: 'app-buscador',
@@ -17,10 +18,12 @@ export class BuscadorComponent {
   cboxCancion:boolean=true
   artists:any
   albums:any
-  songs:any
+  songs:Song[] = []
   isAdmin:boolean = false
   userInfo:any
   paginator:number=0
+  playlists:any
+  userUID:string = ""
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
@@ -40,6 +43,7 @@ export class BuscadorComponent {
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
+    this.playlists = await this.db.getPlaylistByUser(this.userUID)
   }
 
   // increasePaginator() {

@@ -32,11 +32,13 @@ export class DetalleAlbumComponent {
   currentYear:number = 2023
   file:any
   isFile:boolean=false
+  playlists:any
+  userUID:string = ""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
     { title.setTitle('Mediafrog - Album')
-    
+
     this.updateAlbum = new FormGroup({
       artistId: new FormControl(this.artistId),
       name: new FormControl(),
@@ -51,7 +53,9 @@ export class DetalleAlbumComponent {
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
+    this.userUID = await this.userService.getUID()
     if(this.userInfo.admin) this.isAdmin = true
+    this.playlists = await this.db.getPlaylistByUser(this.userUID)
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.artistId = params['idArtist']
@@ -66,6 +70,7 @@ export class DetalleAlbumComponent {
       const songsSnapshot = await getDocs(songsRef);
       songsSnapshot.forEach((songDoc) => {
           const song = {
+            id: songDoc.id,
             name: songDoc.data()['name'],
             order: songDoc.data()['order'],
             lyrics: songDoc.data()['lyrics'],

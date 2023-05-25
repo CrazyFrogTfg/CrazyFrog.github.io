@@ -179,6 +179,7 @@ export class DbService {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       const playlist = {
+        id: doc.id,
         name: doc.data()['name'],
         private: doc.data()['private'],
         owner: doc.data()['owner'],
@@ -186,6 +187,7 @@ export class DbService {
       };
       this.playlists.push(playlist);
     })
+    console.log(this.playlists)
     return this.playlists
   }
 
@@ -277,6 +279,12 @@ export class DbService {
       }
     });
     return this.artistsFavInfo
+  }
+
+  addSongToPlaylist(playlist:Playlist, song:Song){
+    console.log(playlist, song)
+    const playlistRef = collection(this.firestore, `playlists/${playlist.id}/songs`);
+    addDoc(playlistRef, song);
   }
 
 }

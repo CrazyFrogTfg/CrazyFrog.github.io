@@ -7,7 +7,7 @@
       <h1> {{albumInfo.name}} </h1>
       <h5> {{albumInfo.year}} </h5>
     </div>
-    <div *ngIf="edit"> 
+    <div *ngIf="edit">
        <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="nameAlbum" class="label">Nombre</label>
@@ -43,7 +43,7 @@
             </svg>
           </span>
       </button>
-    </div>   
+    </div>
   </div>
   <div class="divBuscador">
       <button class="btn">
@@ -65,7 +65,7 @@
 </section>
 <div class="container">
   <div class="row">
-    <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
+    <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song" [playlists] = "playlists" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
   </div>
 </div>
 <app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>

@@ -43,6 +43,7 @@ export class DetallePlaylistComponent {
       const songsSnapshot = await getDocs(songsRef);
         songsSnapshot.forEach((songDoc) => {
           const song = {
+            id: songDoc.id,
             name: songDoc.data()['name'],
             order: songDoc.data()['order'],
             lyrics: songDoc.data()['lyrics'],
