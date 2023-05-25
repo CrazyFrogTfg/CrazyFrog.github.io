@@ -59,7 +59,7 @@ async onSubmit()
 
 deleteSong()
 {
-  this.db.deleteSong(this.song.id)
+  this.db.deleteSong(this.song)
   this.router.navigate(['/buscador'])
 }
 

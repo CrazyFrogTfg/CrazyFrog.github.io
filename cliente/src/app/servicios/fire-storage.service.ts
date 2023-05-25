@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where, getDocs } from '@angular/fire/firestore';
-import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Firestore, doc } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL,deleteObject } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
-import { DbService } from './db.service';
-import { Artist } from '../interfaces/artist.interface';
 import { Song } from '../interfaces/song.interface';
 
 
@@ -50,7 +48,7 @@ export class FireStorageService {
     })
     .catch(error => console.log(error));
   }
-  
+
   async getImageArtist(aid: string): Promise<string> {
     return new Promise(async (resolve, reject) => {
       try {
@@ -68,7 +66,7 @@ export class FireStorageService {
         reject(error);
   }})}
 
-  
+
 
   uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
     //Preparamos la imagen dandole ruta
@@ -144,5 +142,16 @@ export class FireStorageService {
         console.log(error);
         reject(error);
   }})}
+
+  async deleteSongFile(song:any){
+    const songRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${song.id}`);
+    // Delete the file
+    deleteObject(songRef).then(() => {
+    // File deleted successfully
+    }).catch((error) => {
+    // Uh-oh, an error occurred!
+    });
+  }
+
 
 }

@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
 import { Song } from '../interfaces/song.interface';
 import { FireStorageService } from './fire-storage.service';
+import { ref, deleteObject } from '@angular/fire/storage';
+import { Storage } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -19,7 +21,7 @@ export class DbService {
   artistsFavInfo:Array<any> = []
   albumsFavInfo:Array<any> = []
 
-  constructor(private firestore:Firestore, private fireStorage:FireStorageService) {
+  constructor(private firestore:Firestore, private fireStorage:FireStorageService, private storage:Storage) {
     let savedAlbumsFav = localStorage.getItem("albumsFav") || "[]"
     this.albumsFav = JSON.parse(savedAlbumsFav);
 
@@ -166,8 +168,9 @@ export class DbService {
         })
   }
 
-  async deleteSong(songId:any){
-    await deleteDoc(doc(this.firestore, "songs", songId));
+  async deleteSong(song:any){
+    await deleteDoc(doc(this.firestore, "songs", song.id));
+    await this.fireStorage.deleteSongFile(song)
   }
 
 

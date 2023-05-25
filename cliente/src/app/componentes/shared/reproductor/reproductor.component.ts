@@ -27,7 +27,7 @@ reproducir() {
 }
 
 playPausa() {
-  const cancion = this.reproduciendo;
+  const cancion = this.reproduciendo.file;
   return this.reproductorService.playPausa(cancion);
 }
 
