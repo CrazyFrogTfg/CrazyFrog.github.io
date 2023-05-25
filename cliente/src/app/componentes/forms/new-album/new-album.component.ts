@@ -16,7 +16,7 @@ import { Title} from '@angular/platform-browser';
 export class NewAlbumComponent {
 
   newAlbum:FormGroup
-  myEvent:any
+  file:any
   userInfo:any
   isAdmin:boolean = false;
   artistId:string="";
@@ -49,14 +49,15 @@ export class NewAlbumComponent {
   }
 
   async onSubmit(){
-    if(this.artistId && this.newAlbum.value)
+    if(this.artistId && this.newAlbum.value && this.file)
     {
-      await this.db.addAlbum(this.artistId, this.newAlbum.value)
-      if(this.myEvent)
-      {
-        const aid = await this.db.getAlbumUIDByName(this.newAlbum.value.name)
-        this.uploadImageAlbum(this.myEvent, this.artistId, this.newAlbum.value, aid)
-      }
+      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
+      await this.db.addAlbum(this.newAlbum.value, this.file)
+      // if(this.file)
+      // {
+      //   const aid = await this.db.getAlbumUIDByName(this.newAlbum.value.name)
+      //   this.uploadImageAlbum(this.file, this.artistId, this.newAlbum.value, aid)
+      // }
       setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
     }
   }
@@ -65,8 +66,8 @@ export class NewAlbumComponent {
     this.fireStorage.uploadImageAlbum($event, artistId, albumName.name, aid)
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
   }
 
 }

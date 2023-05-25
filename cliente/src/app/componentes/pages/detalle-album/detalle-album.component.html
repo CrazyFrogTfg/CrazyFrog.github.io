@@ -2,34 +2,31 @@
 <app-spinner *ngIf="!albumInfo"></app-spinner>
 <section class="albumDisp" *ngIf="albumInfo">
   <img class="album-img" [src]="albumInfo.image">
-
   <div class="album-nombre">
-    <!-- falta ngif -->
-    <div >
+    <div *ngIf="!edit">
       <h1> {{albumInfo.name}} </h1>
       <h5> {{albumInfo.year}} </h5>
     </div>
-    <!-- falta ngif -->
-    <!-- <div> -->
-      <!-- <form  [formGroup]="updateArtist" (ngSubmit)="onSubmit()">
+    <div *ngIf="edit"> 
+       <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="exampleInputUser" class="label">Nombre</label>
-          <input type="text" class="form-control" placeholder={{artistaInfo.nombre}} formControlName="nombre">
+          <label for="nameAlbum" class="label">Nombre</label>
+          <input type="text" class="form-control" #nameAlbum id="nameAlbum" placeholder="{{albumInfo.name}}" formControlName="name">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Descripción</label>
-          <input type="text" class="form-control" placeholder={{artistaInfo.descripcion}} formControlName="descripcion" >
+          <label for="yearAlbum" class="label">Año</label>
+          <input type="number" required max={{currentYear}} min="1" class="form-control" placeholder="{{albumInfo.year}}" #yearAlbum id="yearAlbum" formControlName="year">
         </div>
         <div class="form-group">
-          <label for="exampleInputImage" class="upload-img label-img">Foto de perfil</label>
-          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
+          <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
+          <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
         </div>
-        <button type="submit" (click)="onSubmit()" class="btn btn-dark" >ACTUALIZAR</button>
-        <button class="btn btn-dark" (click)="toggleEdit()">CANCELAR</button>
+        <button type="submit" [disabled]="(yearAlbum.value.length != 4 && nameAlbum.value.length<1 && isFile===false)" class="btn btn-dark">ACTUALIZAR</button>
+        <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCELAR</button>
       </form>
-    </div> -->
-    <!-- <div class="container d-flex" *ngIf="isAdmin && !edit">
-      <button class="btn btn-light" (click)="deleteArtist(artistaInfo)">
+    </div>
+    <div class="container d-flex" *ngIf="isAdmin && !edit">
+      <button class="btn btn-light admin-button" (click)="deleteAlbum()">
         <p class="paragraph"> borrar </p>
           <span class="icon-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -37,7 +34,7 @@
             </svg>
           </span>
       </button>
-      <button class="btn btn-light" (click)="toggleEdit()">
+      <button class="btn btn-light admin-button" (click)="toggleEdit()">
         <p class="paragraph"> editar </p>
           <span class="icon-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -46,7 +43,7 @@
             </svg>
           </span>
       </button>
-    </div> -->
+    </div>   
   </div>
   <div class="divBuscador">
       <button class="btn">
@@ -66,19 +63,9 @@
     </button>
   </section>
 </section>
-<!-- <section class="addAlbum d-flex justify-content-between" *ngIf="isAdmin">
-  <section></section>
-  <section class="adminButtons">
-    <button class="cssbuttons-io-button" >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
-      <span>Añadir álbum</span>
-    </button>
-  </section>
-</section> -->
 <div class="container">
   <div class="row">
     <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
   </div>
 </div>
-
 <app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>

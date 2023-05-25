@@ -22,7 +22,7 @@ export class DetalleArtistaComponent {
   isAdmin:boolean = false
   edit:boolean = false
   updateArtist:FormGroup
-  myEvent:any
+  file:any=null
   query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
@@ -59,20 +59,11 @@ export class DetalleArtistaComponent {
     });
   }
 
-  // getFilterName():string{
-  //   return this.fireStorage.getFilterName()
-  // }
-  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
-  // setFilterName(search:string){
-  //   this.fireStorage.setFilterName(search)
-  // }
-
   async deleteArtist(artistInfo: any){
     const pregunta="Si deseas eliminar "+artistInfo.name+" escribe su nombre aquí";
     if( prompt(pregunta) == artistInfo.name)
     {
-      let uid = await this.db.getArtistUID(artistInfo)
-      this.db.deleteArtist(uid)
+      this.db.deleteArtist(this.artistId)
       this.router.navigate(['/buscador']);
     }
   }
@@ -90,24 +81,16 @@ export class DetalleArtistaComponent {
     this.edit = !this.edit
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
   }
 
   async onSubmit(){
     if(this.updateArtist)
     {
-      await this.db.updateArtistDb(this.artistId, this.updateArtist.value, this.artistInfo);
-      if(this.myEvent)
-      {
-        this.uploadImageArtist(this.myEvent, this.artistId)
-      }
+      await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.file);
       this.router.navigate(['/home'])
     }
-  }
-
-  uploadImageArtist($event:any, artist:string){
-    this.fireStorage.uploadImageArtist($event, artist)
   }
 
 }

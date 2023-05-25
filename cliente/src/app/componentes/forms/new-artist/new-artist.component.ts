@@ -35,21 +35,13 @@ export class NewArtistComponent {
   async onSubmit(){
     if(this.newArtist.value && this.file)
     {
-      await this.db.addArtist(this.newArtist.value)
-      
-      const aid = await this.db.getArtistUIDByName(this.newArtist.value.name)
-      this.uploadImageArtist(this.file, aid)
-      
+      await this.db.addArtist(this.newArtist.value, this.file)
       this.router.navigate(['/buscador'])
     }
   }
 
-  uploadImageArtist(event:any, artist:string){
-    this.fireStorage.uploadImageArtist(event, artist)
-  }
-
   setFile($event:any){
-    this.isFile = true
     this.file = $event
+    this.isFile = true
   }
 }

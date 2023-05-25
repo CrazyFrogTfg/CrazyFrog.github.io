@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
+import { Album } from 'src/app/interfaces/album.interface';
 
 @Component({
   selector: 'app-detalle-album',
@@ -26,13 +27,27 @@ export class DetalleAlbumComponent {
   reproduciendo:string = ""
   iteraciones:number=0;
   query:string=""
+  edit:boolean=false
+  updateAlbum:FormGroup
+  currentYear:number = 2023
+  file:any
+  isFile:boolean=false
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title){ title.setTitle('Mediafrog - Album')}
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
+    { title.setTitle('Mediafrog - Album')
+    
+    this.updateAlbum = new FormGroup({
+      artistId: new FormControl(this.artistId),
+      name: new FormControl(),
+      year: new FormControl(),
+      image: new FormControl(),
+    })
+  }
 
-    receiveMessage($event:any) {
-      this.reproduciendo = $event;
-    }
+  receiveMessage($event:any) {
+    this.reproduciendo = $event;
+  }
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -63,13 +78,28 @@ export class DetalleAlbumComponent {
     });
   }
 
-  // getFilterName():string{
-  //   return this.fireStorage.getFilterName()
-  // }
-  //            FUNCIONAMIENTO ANTERIOR PARA PIPES. ACTUALIZADO A VARIABLE QUERY, FUNCIONAMIENTO OPTIMIZADO
-  // setFilterName(search:string){
-  //   this.fireStorage.setFilterName(search)
-  // }
+  async onSubmit(){
+    if(this.updateAlbum)
+    {
+      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
+      await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
+      this.router.navigate(['/home'])
+    }
+  }
+
+  setFile($event:any){
+    this.file = $event
+    this.isFile=true
+  }
+
+  deleteAlbum(){
+    this.db.deleteAlbum(this.albumId)
+    this.router.navigate(['/buscador'])
+  }
+
+  toggleEdit(){
+    this.edit = !this.edit
+  }
 
   goToNewSong(){
     this.router.navigate(['/newsong'], {queryParams: {artistaId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
