@@ -17,6 +17,7 @@ export class BuscadorComponent {
   cboxCancion:boolean=true
   artists:any
   albums:any
+  songs:any
   isAdmin:boolean = false
   userInfo:any
   paginator:number=0
@@ -33,6 +34,9 @@ export class BuscadorComponent {
     })
     this.db.getAlbums().subscribe(albums =>{
       this.albums = albums
+    })
+    this.db.getSongs().subscribe(songs =>{
+      this.songs = songs
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true

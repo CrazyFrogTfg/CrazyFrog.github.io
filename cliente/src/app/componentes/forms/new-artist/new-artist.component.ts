@@ -15,8 +15,9 @@ import { Title } from '@angular/platform-browser';
 export class NewArtistComponent {
 
   newArtist:FormGroup
-  myEvent:any
+  file:any
   albumes:Album[]=[]
+  isFile:boolean = false
 
   constructor(private router:Router, private db:DbService, private fireStorage:FireStorageService, private title:Title){
     title.setTitle('Mediafrog - New Artist')
@@ -32,25 +33,23 @@ export class NewArtistComponent {
   }
 
   async onSubmit(){
-    if(this.newArtist.value)
+    if(this.newArtist.value && this.file)
     {
       await this.db.addArtist(this.newArtist.value)
-
-      if(this.myEvent)
-      {
-        const aid = await this.db.getArtistUIDByName(this.newArtist.value.name)
-        console.log(aid)
-        this.uploadImageArtist(this.myEvent, aid)
-      }
-      setTimeout(() => this.router.navigate(['/home']), 2000)
+      
+      const aid = await this.db.getArtistUIDByName(this.newArtist.value.name)
+      this.uploadImageArtist(this.file, aid)
+      
+      this.router.navigate(['/buscador'])
     }
   }
 
-  uploadImageArtist($event:any, artist:string){
-    this.fireStorage.uploadImageArtist($event, artist)
+  uploadImageArtist(event:any, artist:string){
+    this.fireStorage.uploadImageArtist(event, artist)
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.isFile = true
+    this.file = $event
   }
 }

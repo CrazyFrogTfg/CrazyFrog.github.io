@@ -4,6 +4,7 @@ import { Artist } from '../interfaces/artist.interface';
 import { Album } from '../interfaces/album.interface';
 import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
+import { Song } from '../interfaces/song.interface';
 
 
 @Injectable({
@@ -70,6 +71,11 @@ export class DbService {
     prompt("Funcion deleteAlbum incompleta. DB-SERVICE")
     //Faltaría artistaId para poder rellenar la ruta para encontrar el Doc a eliminar...
     //await deleteDoc(doc(this.firestore, "artistas", albumId ));
+  }
+
+  getSongs(): Observable<Song[]>{
+    const songRef = collection(this.firestore, 'songs')
+    return collectionData(songRef, { idField: 'id'}) as Observable<Song[]>;
   }
   
   addSong(artistId:string, albumId:string, newSong:Album){
