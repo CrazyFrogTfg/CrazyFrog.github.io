@@ -124,7 +124,17 @@ export class DbService {
         }
   }
 
-  async deleteAlbum(albumId:any){
+  async deleteAlbum(albumId: any) {
+    const q = query(collection(this.firestore, "songs"), where("albumId", "==", albumId));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (songDoc) => {
+      await this.fireStorage.deleteSongFile(songDoc)
+      await deleteDoc(doc(this.firestore, "songs", songDoc.id));
+    });
+    const albumRef = doc(this.firestore, "albums", albumId);
+    const albumSnap = await getDoc(albumRef);
+    const album = albumSnap.data();
+    await this.fireStorage.deleteAlbumImage(album)
     await deleteDoc(doc(this.firestore, "albums", albumId));
   }
 

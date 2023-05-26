@@ -144,7 +144,7 @@ export class FireStorageService {
   }})}
 
   async deleteSongFile(song:any){
-    const songRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${song.id}`);
+    const songRef = ref(this.storage, `songs/${song.data()['artistId']}/${song.data()['albumId']}/${song.id}`);
     // Delete the file
     deleteObject(songRef).then(() => {
     // File deleted successfully
@@ -152,6 +152,16 @@ export class FireStorageService {
     // Uh-oh, an error occurred!
     });
   }
+  
+  async deleteAlbumImage(album:any){
+    const albumRefImages = ref(this.storage, `artists/${album.artistId}/${album.name}`);
+    deleteObject(albumRefImages).then(() => {
+    // File deleted successfully
+    }).catch((error) => {
+    // Uh-oh, an error occurred!
+    });
+  }
+
 
 
 }
