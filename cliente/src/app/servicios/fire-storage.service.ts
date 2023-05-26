@@ -152,9 +152,18 @@ export class FireStorageService {
     // Uh-oh, an error occurred!
     });
   }
-  
+
   async deleteAlbumImage(album:any){
     const albumRefImages = ref(this.storage, `artists/${album.artistId}/${album.name}`);
+    deleteObject(albumRefImages).then(() => {
+    // File deleted successfully
+    }).catch((error) => {
+    // Uh-oh, an error occurred!
+    });
+  }
+
+  async deleteArtistImage(artist:any){
+    const albumRefImages = ref(this.storage, `artists/${artist}/imageArtist`);
     deleteObject(albumRefImages).then(() => {
     // File deleted successfully
     }).catch((error) => {
