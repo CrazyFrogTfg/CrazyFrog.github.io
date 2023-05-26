@@ -19,8 +19,8 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" #password required id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
         </div>
-        <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entrar">ÚNETE</button>
-        <button class="btn btn-outline-dark" id="entrar" (click)="goToLogin()">INICIA SESIÓN</button>
+        <button type="submit" class="entrar btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entra">ÚNETE</button>
+        <button class="btn btn-outline-dark" id="iniciar" (click)="goToLogin()">INICIA SESIÓN</button>
       </form>
     </div>
   </section>
