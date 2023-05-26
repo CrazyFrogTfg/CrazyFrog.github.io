@@ -39,7 +39,8 @@ export class FireStorageService {
     uploadBytes(fileRef, file)
     .then(async () => {
       //Despues, obtenemos la imagen, guardamos en una variable
-      const imagenArtist = await this.getImageArtist(artistId)
+      const imagenArtist = await getDownloadURL(fileRef);
+      //const imagenArtist = await this.getImageArtist(artistId)
         //Introducimos dicha variable en el campo "image" del artista
         const artistRef = doc(this.firestore, 'artists', artistId);
         await updateDoc(artistRef, {
@@ -48,25 +49,6 @@ export class FireStorageService {
     })
     .catch(error => console.log(error));
   }
-
-  async getImageArtist(aid: string): Promise<string> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const imagesRef = ref(this.storage, `artists/${aid}/imageArtist`);
-        //const response = await listAll(imagesRef);
-        //for (let item of response.items) {
-          const url = await getDownloadURL(imagesRef);
-          resolve(url);
-          return;
-
-        //}
-        //throw new Error('No se encontró ninguna imagen de perfil.');
-      } catch (error) {
-        console.log(error);
-        reject(error);
-  }})}
-
-
 
   uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
     //Preparamos la imagen dandole ruta
@@ -77,7 +59,8 @@ export class FireStorageService {
     .then(async response =>{
       //const imagenAlbum = getDownloadURL(fileRef)
       //Despues, obtenemos la imagen, guardamos en una variable
-      const imagenAlbum = await this.getImageAlbum(artistaId, albumName)
+      const imagenAlbum = await getDownloadURL(fileRef);
+      //const imagenAlbum = await this.getImageAlbum(artistaId, albumName)
 
       // SI UPDATEA
         const albumRef = doc(this.firestore, `albums/${albumId}`);
@@ -90,24 +73,6 @@ export class FireStorageService {
     .catch(error => console.log(error));
   }
 
-  //LA IMAGEN DEBERIA ESTAR EN artist/artistId/NombreAlbum
-  async getImageAlbum(artistaId:any, albumName:any): Promise<string> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        //const link:string =`${artistaId}/${albumName}`
-        const imagesRef = ref(this.storage, `artists/${artistaId}/${albumName}`);
-        //const response = await listAll(imagesRef);
-       // for (let item of response.items) {
-            const url = await getDownloadURL(imagesRef);
-            resolve(url);
-            return;
-       // }
-       // throw new Error('No se encontró ninguna imagen de album.');
-      } catch (error) {
-        console.log(error);
-        reject(error);
-  }})}
-
   uploadSong($event:any, song:Song, songId:string){
     //STORAGE
     const file = $event.target.files[0];
@@ -117,7 +82,8 @@ export class FireStorageService {
     .then(async response =>{
       console.log(response)
       //Despues, obtenemos la imagen, guardamos en una variable
-      const songFile = await this.getSongFile(song,songId)
+      const songFile = await getDownloadURL(fileRef);
+      //const songFile = await this.getSongFile(song,songId)
 
       // UPDATEAR FIREBASE DATABASE (NO STORAGE)
         const songRef = doc(this.firestore, `songs/${songId}`);
@@ -128,20 +94,6 @@ export class FireStorageService {
     })
     .catch(error => console.log(error));
   }
-
-  async getSongFile(song:Song,songId:string): Promise<string> {
-    console.log("getSongFile")
-    return new Promise(async (resolve, reject) => {
-      try {
-        const songRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${songId}`);
-          const url = await getDownloadURL(songRef);
-          console.log("url= "+url)
-          resolve(url);
-          return;
-      } catch (error) {
-        console.log(error);
-        reject(error);
-  }})}
 
   async deleteSongFile(song:any){
     const songRef = ref(this.storage, `songs/${song.data()['artistId']}/${song.data()['albumId']}/${song.id}`);
@@ -171,6 +123,26 @@ export class FireStorageService {
     });
   }
 
+          //ANTIGUAS FUNCIONES GET FILES. ESTABAN LLAMADAS EN LOS UPLOAD FILES.
 
+      //async getImageAlbum(artistaId:any, albumName:any): Promise<string> {
+      //const imagesRef = ref(this.storage, `artists/${artistaId}/${albumName}`);
+      //async getSongFile(song:Song,songId:string): Promise<string> {
+      //const songRef = ref(this.storage, `songs/${song.artistId}/${song.albumId}/${songId}`);
+  // async getImageArtist(aid: string): Promise<string> {
+  //   return new Promise(async (resolve, reject) => {
+  //     try {
+  //       const imagesRef = ref(this.storage, `artists/${aid}/imageArtist`);
+  //       //const response = await listAll(imagesRef);
+  //       //for (let item of response.items) {
+  //         const url = await getDownloadURL(imagesRef);
+  //         resolve(url);
+  //         return;
 
+  //       //}
+  //       //throw new Error('No se encontró ninguna imagen de perfil.');
+  //     } catch (error) {
+  //       console.log(error);
+  //       reject(error);
+  // }})}
 }
