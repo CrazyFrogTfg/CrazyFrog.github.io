@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 img{
@@ -153,7 +154,7 @@ label{
 
 .btn-fav{
   color:white;
-  margin-top: 10px;
+  
 }
 
 .heart-svg:hover {
