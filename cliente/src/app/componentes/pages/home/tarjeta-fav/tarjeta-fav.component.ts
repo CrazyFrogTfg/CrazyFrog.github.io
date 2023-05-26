@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { DbService } from 'src/app/servicios/db.service';
 
 @Component({
   selector: 'app-tarjeta-fav',
@@ -11,7 +12,7 @@ export class TarjetaFavComponent {
   @Input() favArtist:any
   @Input() favAlbum:any
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private db:DbService){}
 
   ngOnInit(){}
 
@@ -23,15 +24,27 @@ export class TarjetaFavComponent {
     }
   }
 
-  setFav(fav:any){
-
+  setAlbumFav(){
+    this.db.setAlbumFav(this.favAlbum.id)
   }
 
-  delFav(fav:any){
-
+  setArtistFav(){
+    this.db.setArtistFav(this.favArtist.id)
   }
 
-  isFav(fav:any){
-    return true
+  delAlbumFav(){
+    this.db.delAlbumFav(this.favAlbum.id)
+  }
+
+  delArtistFav(){
+    this.db.delArtistFav(this.favArtist.id)
+  }
+
+  isAlbumFav(){
+    return this.db.isAlbumFav(this.favAlbum.id)
+  }
+
+  isArtistFav(){
+    return this.db.isArtistFav(this.favArtist.id)
   }
 }
