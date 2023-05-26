@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Storage } from '@angular/fire/storage';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';

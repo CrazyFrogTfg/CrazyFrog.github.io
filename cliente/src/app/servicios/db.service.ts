@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { Playlist } from '../interfaces/playlist.interface';
 import { Song } from '../interfaces/song.interface';
 import { FireStorageService } from './fire-storage.service';
-import { ref, deleteObject } from '@angular/fire/storage';
 import { Storage } from '@angular/fire/storage';
 
 

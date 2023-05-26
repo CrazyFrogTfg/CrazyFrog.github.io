@@ -4,7 +4,6 @@ import { collection, getDocs } from 'firebase/firestore';
 import { Firestore, query, where } from '@angular/fire/firestore';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Title} from '@angular/platform-browser';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 

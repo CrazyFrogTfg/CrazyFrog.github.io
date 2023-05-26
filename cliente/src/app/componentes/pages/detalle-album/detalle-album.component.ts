@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Firestore, collection, doc, getDocs, getDoc, query} from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angular/fire/firestore';
 import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
@@ -8,8 +8,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
-import { Album } from 'src/app/interfaces/album.interface';
-import { where } from 'firebase/firestore';
 
 @Component({
   selector: 'app-detalle-album',

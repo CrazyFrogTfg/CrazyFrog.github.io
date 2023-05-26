@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
 import { DbService } from 'src/app/servicios/db.service';

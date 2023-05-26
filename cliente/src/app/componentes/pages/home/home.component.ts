@@ -7,11 +7,13 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
 import { Artist } from 'src/app/interfaces/artist.interface';
 import { Album } from 'src/app/interfaces/album.interface';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
 
   miaudio:any

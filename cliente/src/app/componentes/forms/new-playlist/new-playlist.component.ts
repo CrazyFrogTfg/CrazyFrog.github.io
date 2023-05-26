@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-new-playlist',
   templateUrl: './new-playlist.component.html',
   styleUrls: ['./new-playlist.component.css']
 })
+
 export class NewPlaylistComponent {
 
   newPlaylist: FormGroup;

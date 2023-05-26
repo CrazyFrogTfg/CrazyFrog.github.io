@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Album } from 'src/app/interfaces/album.interface';
-import { Artist } from 'src/app/interfaces/artist.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title } from '@angular/platform-browser';

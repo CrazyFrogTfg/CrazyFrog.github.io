@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Auth, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, updateEmail, updatePassword } from '@angular/fire/auth';
-import { Firestore, collection, addDoc, doc, getDocs, getDoc, where, query, deleteDoc} from '@angular/fire/firestore';
+import { Auth, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateEmail, updatePassword } from '@angular/fire/auth';
+import { Firestore, collection, addDoc, doc, getDocs, where, query, deleteDoc } from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
-import { Artist } from '../interfaces/artist.interface';
 
 @Injectable({
   providedIn: 'root'
