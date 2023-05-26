@@ -45,7 +45,7 @@ export class NewAlbumComponent {
   }
 
   goHome(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/artista']);
   }
 
   async onSubmit(){

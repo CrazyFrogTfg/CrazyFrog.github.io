@@ -27,7 +27,7 @@ export class NewArtistComponent {
   }
 
   goHome(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/buscador']);
   }
 
   async onSubmit(){

@@ -49,7 +49,7 @@ export class NewSongComponent {
   }
 
   goHome(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/album']);
   }
 
   setFile($event:any){
