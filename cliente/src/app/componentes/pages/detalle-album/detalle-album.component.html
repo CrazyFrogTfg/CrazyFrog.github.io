@@ -7,6 +7,7 @@
       <h1> {{albumInfo.name}} </h1>
       <h5> {{albumInfo.year}} </h5>
     </div>
+    
     <div *ngIf="edit">
        <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -25,6 +26,7 @@
         <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCELAR</button>
       </form>
     </div>
+
     <div class="container d-flex" *ngIf="isAdmin && !edit">
       <button class="btn btn-light admin-button" (click)="deleteAlbum()">
         <p class="paragraph"> borrar </p>
@@ -45,6 +47,7 @@
       </button>
     </div>
   </div>
+
   <div class="divBuscador">
       <button class="btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
@@ -54,6 +57,7 @@
     <input class="buscador" [(ngModel)]="query" #search type="text" placeholder="Filter de Canciones">
   </div>
 </section>
+
 <section class="addAlbum d-flex justify-content-between" *ngIf="isAdmin">
   <section></section>
   <section class="adminButtons">
@@ -63,6 +67,7 @@
     </button>
   </section>
 </section>
+
 <div class="container">
   <div class="row">
     <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song" [playlists] = "playlists" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>

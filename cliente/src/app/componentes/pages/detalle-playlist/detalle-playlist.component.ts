@@ -7,6 +7,7 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 
@@ -27,10 +28,18 @@ export class DetallePlaylistComponent {
   query:string=""
   playlists:any
   userUID:string = ""
+  edit:boolean=false
+  updatePlaylist:FormGroup
+  privateChecked:boolean=false
 
   constructor(private route: ActivatedRoute,private router:Router,
     private firestore: Firestore,private userService:UsuariosService,
-    private fireStorage:FireStorageService, private db:DbService){}
+    private fireStorage:FireStorageService, private db:DbService){
+      this.updatePlaylist = new FormGroup({
+        name: new FormControl(),
+        private: new FormControl(),
+      })
+    }
 
   async ngOnInit() {
     this.userUID = await this.userService.getUID()
@@ -42,6 +51,7 @@ export class DetallePlaylistComponent {
       const playlistRef = doc(this.firestore, "playlists", this.playlistId);
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
+      this.privateChecked=this.playlistInfo.private
       const userRef = doc(this.firestore, "users", this.playlistInfo.owner);
       const userSnap = await getDoc(userRef);
       this.owner = userSnap.data()?.['username'];
@@ -64,6 +74,14 @@ export class DetallePlaylistComponent {
       await this.visibility()
   }
 
+  async onSubmit(){
+    if(this.updatePlaylist.value)
+    {
+      await this.db.updatePlaylist(this.updatePlaylist.value, this.playlistInfo, this.playlistId)
+      location.reload();
+    }
+  }
+
   getFilterName():string{
     return this.fireStorage.getFilterName()
   }
@@ -84,6 +102,10 @@ export class DetallePlaylistComponent {
         this.isVisible = false
       }
     }
+  }
+
+  toggleEdit(){
+    this.edit = !this.edit
   }
 
 }

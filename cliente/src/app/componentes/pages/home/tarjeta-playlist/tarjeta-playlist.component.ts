@@ -52,7 +52,7 @@ toggleEdit(){
 }
 
 async onSubmit(){
-  await this.db.updatePlaylist(this.idPlaylist, this.updatePlaylist.value, this.playlist )
+  await this.db.updatePlaylist(this.updatePlaylist.value, this.playlist, this.playlist.id )
   location.reload();
 }
 

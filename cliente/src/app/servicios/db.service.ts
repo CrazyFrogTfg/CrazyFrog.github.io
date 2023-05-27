@@ -243,7 +243,7 @@ export class DbService {
     return this.playlists
   }
 
-  async updatePlaylist(playlistId:any, playlist:Playlist, oldPlaylist:Playlist){
+  async updatePlaylist(playlist:Playlist, oldPlaylist:Playlist, playlistId:string ){
     const playlistRef = doc(this.firestore, 'playlists', playlistId);
     //Actualizamos Nombre playlist si ha cambiado
     if(playlist.name && playlist.name != oldPlaylist.name)
@@ -252,7 +252,7 @@ export class DbService {
         })
 
         //Actualizamos privacidad si ha cambiado
-        if(playlist.private && playlist.private != oldPlaylist.private){
+        if(playlist.private != oldPlaylist.private){
           await updateDoc(playlistRef, {
             private:playlist.private,
           })
@@ -263,8 +263,6 @@ export class DbService {
     async deletePlaylist(playlistId:string){
       await deleteDoc(doc(this.firestore, "playlists", playlistId));
     }
-
-    
 
   //Favs de album - pegar un ojo
   setAlbumFav(favorite:string){
@@ -338,6 +336,27 @@ export class DbService {
   addSongToPlaylist(playlist:Playlist, song:Song){
     const playlistRef = collection(this.firestore, `playlists/${playlist.id}/songs`);
     addDoc(playlistRef, song);
+  }
+
+  async updatePlaylist2(albumId:string, album:Album, oldAlbum:Album, file:any){
+    const albumRef = doc(this.firestore, 'albums', albumId);
+        //Actualizamos Nombre album si ha cambiado
+        if(album.name && album.name != oldAlbum.name)
+        await updateDoc(albumRef, {
+          name:album.name,
+        })
+
+        //Actualizamos año si ha cambiado
+        if(album.year && album.year != oldAlbum.year){
+          await updateDoc(albumRef, {
+            year:album.year,
+          })
+        }
+
+        //event:any, artistId:string, albumName:string, albumId:string
+        if(file){
+          this.uploadImageAlbum(file, album.artistId, album.name, albumId)
+        }
   }
 
   async deleteSongPlaylist(playlist:Playlist, song:any){
