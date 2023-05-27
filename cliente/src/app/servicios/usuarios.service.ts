@@ -115,7 +115,7 @@ export class UsuariosService {
   }
 
 
-  async updateUserDb(uid:any, user:User, oldUser:any){
+  async updateUserDb(uid:any, user:User, oldUser:any, file:any){
     const userRef = doc(this.firestore, 'users', uid);
     //Comprobamos que los datos del form son correctos y no vacios.
 
@@ -157,24 +157,29 @@ export class UsuariosService {
               console.log(error)
             });
         }
+
+        if(file)
+        {
+          this.uploadImageProfile(file, uid)
+        }
       }
   }
 
-  async getImageProfile(uid: string): Promise<string> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const imagesRef = ref(this.storage, `users/${uid}`);
-        const response = await listAll(imagesRef);
-        for (let item of response.items) {
-          const url = await getDownloadURL(item);
-          resolve(url);
-          return;
-        }
-        throw new Error('No se encontró ninguna imagen de perfil.');
-      } catch (error) {
-        console.log(error);
-        reject(error);
-  }})}
+  // async getImageProfile(uid: string): Promise<string> {
+  //   return new Promise(async (resolve, reject) => {
+  //     try {
+  //       const imagesRef = ref(this.storage, `users/${uid}`);
+  //       const response = await listAll(imagesRef);
+  //       for (let item of response.items) {
+  //         const url = await getDownloadURL(item);
+  //         resolve(url);
+  //         return;
+  //       }
+  //       throw new Error('No se encontró ninguna imagen de perfil.');
+  //     } catch (error) {
+  //       console.log(error);
+  //       reject(error);
+  // }})}
 
   uploadImageProfile($event:any, uid:string){
     //Preparamos la imagen dandole ruta
@@ -185,7 +190,7 @@ export class UsuariosService {
     uploadBytes(fileRef, file)
     .then(async response =>{
       //Despues, obtenemos la imagen, guardamos en una variable
-      const imagenProfile = await this.getImageProfile(uid);
+      const imagenProfile = await getDownloadURL(fileRef);
       //Introducimos dicha variable en el campo "imageProfile" del usuario
       const userRef = doc(this.firestore, 'users', uid);
       await updateDoc(userRef, {

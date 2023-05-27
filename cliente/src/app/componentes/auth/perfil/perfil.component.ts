@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class PerfilComponent {
   userInfo:any;
   uid:any;
-  myEvent:any;
+  file:any;
   updateUser: FormGroup;
 
   constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog - Perfil')
@@ -33,17 +33,17 @@ export class PerfilComponent {
   async onSubmit() {
     if(this.updateUser.value)
     {
-      await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo);
-      if(this.myEvent)
-      {
-        this.uploadImageProfile(this.myEvent)
-      }
+      await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo, this.file);
+      // if(this.file)
+      // {
+      //   this.uploadImageProfile(this.file)
+      // }
       setTimeout(() => this.router.navigate(['/home']), 1500)
     }
   }
 
-  setMyEvent($event:any){
-    this.myEvent = $event
+  setFile($event:any){
+    this.file = $event
   }
 
   uploadImageProfile($event:any){

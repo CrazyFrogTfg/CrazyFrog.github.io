@@ -10,7 +10,7 @@
         <div class="form-group">
           <img class="profile-img" [src]="userInfo.imageProfile" width="100" *ngIf="userInfo.imageProfile">
           <label for="exampleInputImage" class="label-img">Foto de perfil</label>
-          <input type="file" (change)="setMyEvent($event)" class="form-control upload-img" formControlName="imageProfile">
+          <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="imageProfile">
         </div>
         <div class="form-group">
           <label for="exampleInputUser" class="label">Usuario</label>
