@@ -21,6 +21,7 @@
       <input class="buscador" [(ngModel)]="query" #search type="text" placeholder="Filter de Canciones">
     </div>
   </div>
+  
   <div class="container" *ngIf="isVisible">
       <div class="row">
         <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  [playlists] = "playlists" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>

@@ -36,7 +36,6 @@ async ngOnInit()
   this.userInfo = await this.userService.getUserInfo()
   if(this.userInfo.admin) this.isAdmin = true
   setTimeout( () => undefined, 2000)
-  console.log("this.artista: "+this.artista)
 }
 
 onSubmit(){

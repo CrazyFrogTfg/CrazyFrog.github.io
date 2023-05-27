@@ -21,6 +21,7 @@ export class TarjetaCancionComponent {
   updateSong:FormGroup
   userInfo:any
   isAdmin:boolean=false
+  urlPlaylist:boolean=false
 
   constructor(private userService:UsuariosService, private db:DbService, private router:Router){
     this.updateSong = new FormGroup({
@@ -34,6 +35,13 @@ async ngOnInit(){
   this.userUID = await this.userService.getUID()
 }
 
+ngAfterViewInit()
+{
+  if(this.router.url.includes("playlist"))
+  this.urlPlaylist=true
+  console.log(this.urlPlaylist)
+}
+
 reproducir(song:string){
   this.reproduciendo = song
   this.messageEvent.emit(this.reproduciendo);
@@ -41,6 +49,13 @@ reproducir(song:string){
 
 addSongToPlaylist(playlist:Playlist){
   this.db.addSongToPlaylist(playlist, this.song)
+}
+
+deleteSongPlaylist(playlist:Playlist)
+{
+  console.log(playlist)
+  this.db.deleteSongPlaylist(playlist, this.song)
+  //this.router.navigate(['/buscador'])
 }
 
 toggleEdit(){

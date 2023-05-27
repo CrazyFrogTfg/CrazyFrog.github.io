@@ -264,6 +264,8 @@ export class DbService {
       await deleteDoc(doc(this.firestore, "playlists", playlistId));
     }
 
+    
+
   //Favs de album - pegar un ojo
   setAlbumFav(favorite:string){
     if(!this.albumsFav.includes(favorite)){
@@ -334,9 +336,18 @@ export class DbService {
   }
 
   addSongToPlaylist(playlist:Playlist, song:Song){
-    console.log(playlist, song)
     const playlistRef = collection(this.firestore, `playlists/${playlist.id}/songs`);
     addDoc(playlistRef, song);
+  }
+
+  async deleteSongPlaylist(playlist:Playlist, song:any){
+    console.log(playlist, song)
+    window.confirm("En construcción. db.service deleteSongPlaylist.\nNo selecciona correctamente la canción")
+    await deleteDoc(doc(this.firestore, `playlists/${playlist.id}/songs`, song.id))
+    .then(response => console.log(response))
+    //He probado de estas 2 maneras, devuelve undefined, no encuentra la cancion, no se porque
+    await deleteDoc(doc(this.firestore, `playlists/${playlist.id}/songs/${song.id}`))
+    .then(response => console.log(response))
   }
 
 }
