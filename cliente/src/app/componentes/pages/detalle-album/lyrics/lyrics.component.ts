@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-lyrics',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./lyrics.component.css']
 })
 export class LyricsComponent {
+@Input() lyrics:any
+
+constructor(){}
 
 }

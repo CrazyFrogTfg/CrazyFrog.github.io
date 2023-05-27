@@ -55,13 +55,19 @@
 
   <div class="container" *ngIf="isVisible">
       <div class="row">
-        <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"  [playlists] = "playlists" (messageEvent)="receiveMessage($event)"></app-tarjeta-cancion>
+        <app-tarjeta-cancion *ngFor="let song of songs | byName:query" 
+        [song] = "song"  [playlists] = "playlists" 
+        (sendSong)="receiveSong($event)" (sendLyrics)="obtainLyrics($event)"></app-tarjeta-cancion>
       </div>
   </div>
+
+  <section>
+    <app-lyrics [lyrics]="obtainedLyrics"></app-lyrics>
+  </section>
 
   <section *ngIf="!isVisible">
     <h3>Estás intentando acceder a una playlist privada, por lo tanto no se podrá mostrar para usted.</h3>
   </section>
 </section>
 <app-footer></app-footer>
-<app-reproductor [reproduciendo] = "reproduciendo" [playlist]="songs" (messageEvent)="receiveMessage($event)"></app-reproductor>
+<app-reproductor [reproduciendo] = "reproduciendo" [playlist]="songs" (messageEvent)="receiveSong($event)"></app-reproductor>

@@ -33,6 +33,7 @@ export class DetalleAlbumComponent {
   isFile:boolean=false
   playlists:any
   userUID:string = ""
+  obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
@@ -46,8 +47,18 @@ export class DetalleAlbumComponent {
     })
   }
 
-  receiveMessage($event:any) {
+  obtainLyrics(lyrics:string){
+    this.obtainedLyrics=lyrics
+  }
+
+  receiveSong($event:any) {
     this.reproduciendo = $event;
+  }
+
+  ngOnChanges()
+  {
+    console.log(this.reproduciendo)
+    this.obtainLyrics(this.obtainedLyrics)
   }
 
   async ngOnInit() {

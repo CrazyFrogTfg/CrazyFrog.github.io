@@ -30,6 +30,7 @@ export class DetallePlaylistComponent {
   edit:boolean=false
   updatePlaylist:FormGroup
   privateChecked:boolean=false
+  obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
 
   constructor(private route: ActivatedRoute,private router:Router,
     private firestore: Firestore,private userService:UsuariosService,
@@ -81,13 +82,17 @@ export class DetallePlaylistComponent {
     }
   }
 
+  obtainLyrics(letra:string){
+    this.obtainedLyrics=letra
+  }
+
   getFilterName():string{
     return this.fireStorage.getFilterName()
   }
   setFilterName(search:string){
     this.fireStorage.setFilterName(search)
   }
-  receiveMessage($event:any) {
+  receiveSong($event:any) {
     this.reproduciendo = $event;
   }
 

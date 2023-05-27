@@ -13,7 +13,8 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 export class TarjetaCancionComponent {
 @Input() song:any
 @Input() playlists:any
-@Output() messageEvent = new EventEmitter<string>();
+@Output() sendSong = new EventEmitter<any>();
+@Output() sendLyrics = new EventEmitter<any>();
 
   reproduciendo:string = ""
   userUID:any
@@ -22,6 +23,7 @@ export class TarjetaCancionComponent {
   userInfo:any
   isAdmin:boolean=false
   urlPlaylist:boolean=false
+  letraPrueba:string="letraPrueba"
 
   constructor(private userService:UsuariosService, private db:DbService, private router:Router){
     this.updateSong = new FormGroup({
@@ -43,7 +45,8 @@ export class TarjetaCancionComponent {
 
   reproducir(song:string){
     this.reproduciendo = song
-    this.messageEvent.emit(this.reproduciendo);
+    this.sendLyrics.emit(this.song.lyrics)
+    this.sendSong.emit(this.reproduciendo);
   }
 
   addSongToPlaylist(playlist:Playlist){
