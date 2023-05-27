@@ -23,6 +23,7 @@
       <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="IMAGEN fav" class="card-img-top img-fluid">
       <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
       <h5 class="card-title">{{favAlbum.name}}</h5>
+      <p class="card-subtitle">{{favAlbum.year}}</p>
     </div>
     <button class="btn btn-fav" (click)="delAlbumFav()" *ngIf="isAlbumFav()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart-fill heart-svg" viewBox="0 0 16 16">
