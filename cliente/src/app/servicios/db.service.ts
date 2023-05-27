@@ -183,7 +183,6 @@ export class DbService {
     await this.fireStorage.deleteSongFile(song)
   }
 
-
   async getArtistUID(artist:Artist){
     let uid = ""
     if (artist !== null) {
@@ -213,23 +212,6 @@ export class DbService {
     }
     return uid
   }
-
-  /*async addSong(song:Song, file:any){
-    const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
-    const querySnapshots = await getDocs(q)
-    if(querySnapshots.docs.length === 0)
-    {
-      const songRef = collection(this.firestore, 'songs');
-      await addDoc(songRef, song);
-
-      const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
-      const querySnapshots = await getDocs(q)
-      let songId = querySnapshots.docs[0].id;
-      this.uploadSong(file, song, songId)
-    }else{
-      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
-    }
-  }*/
 
   async addPlaylist(playlist:Playlist){
     const q = query(collection(this.firestore, "playlists"), where("name", "==", playlist.name))
