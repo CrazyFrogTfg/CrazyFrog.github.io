@@ -29,53 +29,56 @@ export class TarjetaCancionComponent {
     })
   }
 
-async ngOnInit(){
-  this.userInfo = await this.userService.getUserInfo()
-    if(this.userInfo.admin) this.isAdmin = true
-  this.userUID = await this.userService.getUID()
-}
+  async ngOnInit(){
+    this.userInfo = await this.userService.getUserInfo()
+      if(this.userInfo.admin) this.isAdmin = true
+    this.userUID = await this.userService.getUID()
+  }
 
-ngAfterViewInit()
-{
-  if(this.router.url.includes("playlist"))
-  this.urlPlaylist=true
-  console.log(this.urlPlaylist)
-}
+  ngAfterViewInit()
+  {
+    if(this.router.url.includes("playlist"))
+    this.urlPlaylist=true
+  }
 
-reproducir(song:string){
-  this.reproduciendo = song
-  this.messageEvent.emit(this.reproduciendo);
-}
+  reproducir(song:string){
+    this.reproduciendo = song
+    this.messageEvent.emit(this.reproduciendo);
+  }
 
-addSongToPlaylist(playlist:Playlist){
-  this.db.addSongToPlaylist(playlist, this.song)
-}
+  addSongToPlaylist(playlist:Playlist){
+    this.db.addSongToPlaylist(playlist, this.song)
+  }
 
-deleteSongPlaylist(playlist:Playlist)
-{
-  console.log(playlist)
-  this.db.deleteSongPlaylist(playlist, this.song)
-  //this.router.navigate(['/buscador'])
-}
+  deleteSongPlaylist(playlist:Playlist)
+  {
+    console.log("deleteSongPlaylist (tarjetaCancion.ts) - playlist: ")
+    console.log(playlist)
+    console.log(this.song)
+    this.db.deleteSongPlaylist(playlist, this.song)
+    console.log("deleteSongPlaylist (tarjetaCancion.ts) - FIN")
+    location.reload()
+    //this.router.navigate(['/buscador'])
+  }
 
-toggleEdit(){
-  this.edit = !this.edit
-}
+  toggleEdit(){
+    this.edit = !this.edit
+  }
 
-async onSubmit()
-{
-  if(this.updateSong.value)
-    {
-      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
-      await this.db.updateSong(this.updateSong.value, this.song);
-      this.router.navigate(['/home'])
-    }
-}
+  async onSubmit()
+  {
+    if(this.updateSong.value)
+      {
+        console.log("Controlar error de año, que puede ser mayor a la fecha actual")
+        await this.db.updateSong(this.updateSong.value, this.song);
+        this.router.navigate(['/home'])
+      }
+  }
 
-deleteSong()
-{
-  this.db.deleteSong(this.song)
-  this.router.navigate(['/buscador'])
-}
+  deleteSong()
+  {
+    this.db.deleteSong(this.song)
+    this.router.navigate(['/buscador'])
+  }
 
 }

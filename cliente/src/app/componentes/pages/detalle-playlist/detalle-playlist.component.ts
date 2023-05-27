@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
@@ -9,14 +9,13 @@ import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-detalle-playlist',
   templateUrl: './detalle-playlist.component.html',
   styleUrls: ['./detalle-playlist.component.css']
 })
 export class DetallePlaylistComponent {
+  @Output() messageEvent = new EventEmitter<any>();
 
   playlistId:string = ""
   playlistInfo:any = []
@@ -106,6 +105,12 @@ export class DetallePlaylistComponent {
 
   toggleEdit(){
     this.edit = !this.edit
+  }
+
+  reproducirPlaylist(){
+    console.log("click en nombre playlist")
+    console.log(this.songs)
+    this.messageEvent.emit(this.songs);
   }
 
 }

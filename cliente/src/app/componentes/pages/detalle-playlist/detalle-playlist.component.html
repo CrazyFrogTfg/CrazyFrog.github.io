@@ -8,7 +8,7 @@
   <div class="d-flex justify-content-between">
     <div></div>
     <div>
-      <h1 *ngIf="!edit"> {{playlistInfo.name}} </h1>
+      <h1 *ngIf="!edit" (click)="reproducirPlaylist()"> {{playlistInfo.name}} </h1>
       <p *ngIf="playlistInfo.private && !edit">Privada</p>
       <p *ngIf="!playlistInfo.private && !edit">Pública</p>
       <div *ngIf="edit">
@@ -64,4 +64,4 @@
   </section>
 </section>
 <app-footer></app-footer>
-<app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>
+<app-reproductor [reproduciendo] = "reproduciendo" [playlist]="songs" (messageEvent)="receiveMessage($event)"></app-reproductor>

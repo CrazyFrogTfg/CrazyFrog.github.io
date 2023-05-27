@@ -8,6 +8,9 @@ export class ReproductorService {
   isPaused:boolean=true
   currentProgress: number = 0;
   totalDuration: number = 0;
+  playlist:any
+  sonando:number=0
+  songs:any
 
   constructor() {
     this.audioElement = new Audio();
@@ -16,6 +19,9 @@ export class ReproductorService {
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
       this.totalDuration = this.audioElement.duration;
+    });
+    this.audioElement.addEventListener('ended', () => {
+      this.handleSongEnd();
     });
   }
 
@@ -27,6 +33,16 @@ export class ReproductorService {
   reproducir(cancion: string) {
     this.audioElement.src = cancion;
     this.audioElement.play();
+    this.isPaused=false
+  }
+
+  reproducirPlaylist(songs:any[]) {
+    console.log("repList service")
+    console.log(songs)
+    this.songs = songs
+    this.sonando=0
+    this.reproducir(this.songs[0].file)
+    
   }
 
   playPausa(cancion: string): boolean {
@@ -59,6 +75,20 @@ export class ReproductorService {
 
   onProgressChange() {
     this.audioElement.currentTime = this.currentProgress;
+  }
+
+  handleSongEnd()
+  {
+    console.log("La canción ha terminado de reproducirse")
+    console.log(this.sonando)
+    this.sonando++
+    console.log(this.sonando)
+    
+    // if(this.songs.length<=this.sonando)
+    // {
+      console.log(this.sonando)
+      this.reproducir(this.songs[this.sonando].file)
+    //}
   }
 
   /*

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Song } from 'src/app/interfaces/song.interface';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
 })
 export class ReproductorComponent {
 @Input() reproduciendo:any
-isPaused:boolean=true
+@Input() playlist:any
 isSticky: boolean = false;
 volume:number = 0.5;
+muted:boolean=false
 
 constructor(protected reproductorService:ReproductorService){}
 
@@ -20,10 +22,17 @@ ngOnChanges()
   {
     this.reproducir()
   }
+  if(this.playlist){
+    this.reproducirPlaylist()
+  }
 }
 reproducir() {
   const cancion = this.reproduciendo.file;
   this.reproductorService.reproducir(cancion);
+}
+reproducirPlaylist() {
+  const songs = this.playlist
+  this.reproductorService.reproducirPlaylist(songs);
 }
 
 playPausa() {
@@ -44,6 +53,7 @@ isPlaying(): boolean {
 }
 
 muteUnmuted(){
+  this.muted = !this.muted
   this.reproductorService.muteUnmuted()
 }
 /*
