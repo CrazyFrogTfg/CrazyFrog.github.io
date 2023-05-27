@@ -22,7 +22,6 @@ export class UsuariosService {
     return this.authh
   }
 
-
 // constructor(private afAuth: AngularFireAuth) {}
 
 // deleteUser(userId: string) {
@@ -73,11 +72,6 @@ export class UsuariosService {
 
   }
 
-  // deleteUser(user:any){
-  //   const userDocRef = doc(this.firestore, `users/${user}`);
-  //   return deleteDoc(userDocRef)
-  // }
-
   //Elimina Doc de user de CloudFirestore
   //Añadir para eliminar el Auth!
   deleteUser(user:User){
@@ -114,21 +108,18 @@ export class UsuariosService {
     return documents;
   }
 
-
   async updateUserDb(uid:any, user:User, oldUser:any, file:any){
+    //Obtenemos documento de Database
     const userRef = doc(this.firestore, 'users', uid);
-    //Comprobamos que los datos del form son correctos y no vacios.
 
       //Comprobamos los datos de Auth
       const currentUser = this.getAuthh().currentUser;
       if (currentUser) {
-
         //Actualizamos Nombre usuario si ha cambiado
         if(user.username && user.username != oldUser.username)
         await updateDoc(userRef, {
           username:user.username,
         })
-
         //Actualizamos password si ha cambiado
         if(user.password && user.password != oldUser.password){
             await updatePassword(currentUser, user.password)
@@ -141,7 +132,6 @@ export class UsuariosService {
                 });
             })
         }
-
         //Actualizamos email si ha cambiado
         if(user.email && user.email.toLowerCase().trim() != oldUser.email)
         {
@@ -157,7 +147,7 @@ export class UsuariosService {
               console.log(error)
             });
         }
-
+        //Actualizamos imagen usuario
         if(file)
         {
           this.uploadImageProfile(file, uid)

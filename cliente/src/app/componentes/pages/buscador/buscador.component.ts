@@ -13,9 +13,9 @@ import { Song } from 'src/app/interfaces/song.interface';
 })
 export class BuscadorComponent {
 
-  cboxArtista:boolean=true
+  cboxArtist:boolean=true
   cboxAlbum:boolean=true
-  cboxCancion:boolean=true
+  cboxSong:boolean=true
   artists:any
   albums:any
   songs:Song[] = []
@@ -89,14 +89,14 @@ export class BuscadorComponent {
 
   }
 
-  toogleCboxArtista(){
-    return this.cboxArtista = !this.cboxArtista
+  toogleCboxArtist(){
+    return this.cboxArtist = !this.cboxArtist
   }
   toogleCboxAlbum(){
     this.cboxAlbum = !this.cboxAlbum
   }
-  toogleCboxCancion(){
-    this.cboxCancion = !this.cboxCancion
+  toogleCboxSong(){
+    this.cboxSong = !this.cboxSong
   }
   newArtista(){
     this.router.navigate(['/newartist']);

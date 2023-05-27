@@ -15,7 +15,7 @@
       <div class="container">
         <h2>Artistas</h2>
         <div class="row row-cols-auto">
-          <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+          <section class="d-flex flex-wrap col" *ngIf="cboxArtist">
             <app-tarjeta-artista *ngFor="let artist of artists | byName:getFilterName() | slice:paginator:paginator+3" [artist]="artist"></app-tarjeta-artista>
           </section>
         </div>
@@ -26,16 +26,16 @@
         <h2>Albumes</h2>
         <section *ngIf="cboxAlbum">
           <div class="row row-cols-auto">
-            <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+            <section class="d-flex flex-wrap col" *ngIf="cboxAlbum">
               <app-tarjeta-album *ngFor="let album of albums | byName:getFilterName()" [album]="album" [artista]="album.artistId" ></app-tarjeta-album>
             </section>
           </div>
         </section>
 
         <h2>Canciones</h2>
-        <section *ngIf="cboxCancion">
+        <section *ngIf="cboxSong">
           <div class="row row-cols-auto">
-            <section class="d-flex flex-wrap col" *ngIf="cboxArtista">
+            <section class="d-flex flex-wrap col" *ngIf="cboxSong">
               <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]= "song" [playlists] = "playlists" ></app-tarjeta-cancion>
             </section>
           </div>
@@ -45,13 +45,13 @@
     <section class="sidebar">
       <section class="filtrosSection">
           <label>Filtrar por:<br>
-              <input type="checkbox" checked (change)="toogleCboxArtista()" class="black-checkbox">Artistas
+              <input type="checkbox" checked (change)="toogleCboxArtist()" class="black-checkbox">Artistas
           </label><br>
           <label>
               <input type="checkbox" checked name="cboxAlbum" (change)="toogleCboxAlbum()" class="black-checkbox">Albumes
           </label><br>
           <label>
-              <input type="checkbox" checked name="cboxCancion" (change)="toogleCboxCancion()" class="black-checkbox">Canciones
+              <input type="checkbox" checked name="cboxCancion" (change)="toogleCboxSong()" class="black-checkbox">Canciones
           </label>
       </section>
 
