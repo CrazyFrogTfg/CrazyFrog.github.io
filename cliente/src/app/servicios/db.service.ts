@@ -149,21 +149,16 @@ export class DbService {
   }
 
   async addSong(song:Song, file:any){
-    console.log("Entrando a dbservice addSong")
-    console.log("song arti id:" +song.artistId)
     const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
     {
-      console.log("Comprobado que no existe cancion con mismo nombre")
       const songRef = collection(this.firestore, 'songs');
       await addDoc(songRef, song);
-      console.log("Cancion subida a database")
 
       const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
       const querySnapshots = await getDocs(q)
       let songId = querySnapshots.docs[0].id;
-      console.log("recogido songId: "+ songId)
       this.uploadSong(file, song, songId)
     }else{
       window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
@@ -219,9 +214,33 @@ export class DbService {
     return uid
   }
 
-  addPlaylist(playlist:Playlist){
-    const playlistRef = collection(this.firestore, 'playlists');
-    return addDoc(playlistRef, playlist);
+  /*async addSong(song:Song, file:any){
+    const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
+    const querySnapshots = await getDocs(q)
+    if(querySnapshots.docs.length === 0)
+    {
+      const songRef = collection(this.firestore, 'songs');
+      await addDoc(songRef, song);
+
+      const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
+      const querySnapshots = await getDocs(q)
+      let songId = querySnapshots.docs[0].id;
+      this.uploadSong(file, song, songId)
+    }else{
+      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
+    }
+  }*/
+
+  async addPlaylist(playlist:Playlist){
+    const q = query(collection(this.firestore, "playlists"), where("name", "==", playlist.name))
+    const querySnapshots = await getDocs(q)
+    if(querySnapshots.docs.length === 0)
+    {
+      const playlistRef = collection(this.firestore, 'playlists');
+      await addDoc(playlistRef, playlist);
+    }else{
+      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
+    }
   }
 
   async getPlaylistByUser(uid:string){
