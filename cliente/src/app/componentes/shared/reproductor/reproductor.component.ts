@@ -14,6 +14,8 @@ isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
 cancionSonando:any
+totalDuration:any
+isTotalDuration:boolean=false
 
 constructor(protected reproductorService:ReproductorService){}
 
@@ -34,12 +36,13 @@ ngOnChanges()
     this.reproducirPlaylist()
   }
   this.reproducing()
-  
+   
 }
 
 reproducir() {
   //const cancion = this.reproduciendo.file;
   this.reproductorService.reproducir(this.reproduciendo);
+  this.getTotalDuration()
 }
 
 reproducirPlaylist() {
@@ -73,9 +76,22 @@ isPlaying(): boolean {
   return !this.reproductorService.isPaused;
 }
 
+previousSong(){
+  this.reproductorService.previousSong()
+}
+
+nextSong(){
+  this.reproductorService.nextSong()
+}
 muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()
+}
+
+async getTotalDuration()
+{
+  this.isTotalDuration=true
+  return this.totalDuration = await this.reproductorService.getTotalDuration()
 }
 /*
 

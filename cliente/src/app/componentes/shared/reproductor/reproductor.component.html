@@ -2,6 +2,12 @@
   <section class="buttons">
     <!-- <audio src="{{ reproduciendo }}" autoplay controls></audio> -->
     <!-- [disabled]="!cancionSonando" -->
+    <button (click)="previousSong()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    </button>
     <button class="btn btn-light"  (click)="playPausa()">
       <svg *ngIf="isPlaying()" xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
         <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
@@ -16,11 +22,17 @@
         <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
       </svg>
     </button>
+    <button (click)="nextSong()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
   </section>
   <section>
     <p *ngIf="!cancionSonando">No hay canción en el reproductor</p>
     <p *ngIf="cancionSonando">{{cancionSonando.name}}</p>
-    <p *ngIf="cancionSonando">duracion:{{cancionSonando.duration}}</p>
+    <p *ngIf="isTotalDuration">duracion: (cancion anterior){{totalDuration}}</p>
   </section>
   <section class="time-line">
     <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.totalDuration">

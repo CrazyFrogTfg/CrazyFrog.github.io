@@ -7,10 +7,10 @@ export class ReproductorService {
   private audioElement: HTMLAudioElement;
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: number = 0;
+  totalDuration: any;
   playlist:any
   sonando:number=0
-  songs:any
+  songs:any[]=[]
   cancionSonando:any
   volumeLocal:number
 
@@ -20,7 +20,8 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      this.totalDuration = this.audioElement.duration;
+      this.totalDuration = this.audioElement.duration
+      console.log("Duracion total: "+this.totalDuration)
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -35,12 +36,17 @@ export class ReproductorService {
     this.audioElement.autoplay=true
 
   }
+  ngOnChanges()
+  {
+    this.getTotalDuration()
+  }
 
   reproducir(cancion:any) {
     this.cancionSonando = cancion;
     this.audioElement.src = this.cancionSonando.file;
     this.audioElement.play();
     this.isPaused=false
+    return this.getTotalDuration()
   }
   reproducirPlaylist(songs:any[]) {
     console.log("repList service")
@@ -79,6 +85,21 @@ export class ReproductorService {
     this.isPaused = true;
   }
 
+  previousSong(){
+    console.log("click previousSong")
+    console.log(this.sonando)
+    if(this.sonando>1)
+    {
+      this.sonando--
+      console.log(this.sonando)
+      this.reproducir(this.songs[this.sonando].file)
+    }
+  }
+  
+  nextSong(){
+    this.handleSongEnd()
+  }
+
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
     this.setVolumeLocal(volume)
@@ -100,16 +121,19 @@ export class ReproductorService {
 
   handleSongEnd()
   {
-    console.log("La canción ha terminado de reproducirse")
-    console.log(this.sonando)
+    console.log("La canción "+this.sonando+" ha terminado de reproducirse")
     this.sonando++
     console.log(this.sonando)
     
-    // if(this.songs.length<=this.sonando)
-    // {
-      console.log(this.sonando)
+    if(this.songs.length<=this.sonando)
+    {
       this.reproducir(this.songs[this.sonando].file)
-    //} 
+    } 
+  }
+
+  async getTotalDuration()
+  {
+    return this.totalDuration
   }
 
   /*
