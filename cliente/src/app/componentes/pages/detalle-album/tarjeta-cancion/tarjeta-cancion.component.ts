@@ -43,7 +43,7 @@ export class TarjetaCancionComponent {
     this.urlPlaylist=true
   }
 
-  reproducir(song:string){
+  reproducir(song:any){
     this.reproduciendo = song
     this.sendLyrics.emit(this.song.lyrics)
     this.sendSong.emit(this.reproduciendo);

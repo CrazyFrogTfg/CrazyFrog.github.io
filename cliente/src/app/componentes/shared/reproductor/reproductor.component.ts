@@ -13,8 +13,16 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
+cancionSonando:any
 
 constructor(protected reproductorService:ReproductorService){}
+
+ngOnInit()
+{
+ this.reproducing()
+ this.volume = this.getVolumelocal()
+ this.updateVolume()
+}
 
 ngOnChanges()
 {
@@ -25,19 +33,28 @@ ngOnChanges()
   if(this.playlist){
     this.reproducirPlaylist()
   }
+  this.reproducing()
+  
 }
+
 reproducir() {
-  const cancion = this.reproduciendo.file;
-  this.reproductorService.reproducir(cancion);
+  //const cancion = this.reproduciendo.file;
+  this.reproductorService.reproducir(this.reproduciendo);
 }
+
 reproducirPlaylist() {
   const songs = this.playlist
   this.reproductorService.reproducirPlaylist(songs);
 }
 
+reproducing()
+{
+  this.cancionSonando = this.reproductorService.reproducing()
+}
+
 playPausa() {
-  const cancion = this.reproduciendo.file;
-  return this.reproductorService.playPausa(cancion);
+  //const cancion = this.reproduciendo.file;
+  return this.reproductorService.playPausa();
 }
 
 detener() {
@@ -46,6 +63,10 @@ detener() {
 
 updateVolume() {
   this.reproductorService.updateVolume(this.volume)
+}
+getVolumelocal()
+{
+  return this.reproductorService.getVolumeLocal()
 }
 
 isPlaying(): boolean {

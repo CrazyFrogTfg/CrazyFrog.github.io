@@ -20,7 +20,7 @@ export class DetallePlaylistComponent {
   playlistId:string = ""
   playlistInfo:any = []
   songs: Song[] = []
-  reproduciendo:string = ""
+  reproduciendo:any
   owner:string = ""
   imageOwner:string = ""
   isVisible:boolean = false
@@ -82,8 +82,8 @@ export class DetallePlaylistComponent {
     }
   }
 
-  obtainLyrics(letra:string){
-    this.obtainedLyrics=letra
+  obtainLyrics(lyrics:string){
+    this.obtainedLyrics=lyrics
   }
 
   getFilterName():string{
@@ -115,7 +115,7 @@ export class DetallePlaylistComponent {
   reproducirPlaylist(){
     console.log("click en nombre playlist")
     console.log(this.songs)
-    this.messageEvent.emit(this.songs);
+    //this.messageEvent.emit(this.songs);
   }
 
 }

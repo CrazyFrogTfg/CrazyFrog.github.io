@@ -11,6 +11,8 @@ export class ReproductorService {
   playlist:any
   sonando:number=0
   songs:any
+  cancionSonando:any
+  volumeLocal:number
 
   constructor() {
     this.audioElement = new Audio();
@@ -23,41 +25,49 @@ export class ReproductorService {
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
     });
+
+    let savedVolumeLocal = localStorage.getItem("volumeLocal") || "[]"
+    this.volumeLocal = JSON.parse(savedVolumeLocal);
   }
 
   ngOnInit()
   {
     this.audioElement.autoplay=true
+
   }
 
-  reproducir(cancion: string) {
-    this.audioElement.src = cancion;
+  reproducir(cancion:any) {
+    this.cancionSonando = cancion;
+    this.audioElement.src = this.cancionSonando.file;
     this.audioElement.play();
     this.isPaused=false
   }
-
   reproducirPlaylist(songs:any[]) {
     console.log("repList service")
     console.log(songs)
     this.songs = songs
     this.sonando=0
     this.reproducir(this.songs[0].file)
-    
   }
 
-  playPausa(cancion: string): boolean {
-    if (this.audioElement.src !== cancion) {
-      this.audioElement.src = cancion;
-      this.audioElement.load();
-    }
-    if(this.audioElement.src){
+  reproducing()
+  {
+    return this.cancionSonando
+  }
+
+  playPausa():boolean {
+    // if (this.audioElement.src !== cancion && cancion) {
+    //   this.audioElement.src = cancion;
+    //   this.audioElement.load();
+    // }
+    //if(this.audioElement.src){
       if (this.audioElement.paused) {
         this.audioElement.play();
         this.isPaused = false;
       } else {
         this.audioElement.pause();
         this.isPaused = true;
-      }
+      //}
     }
 
     return this.isPaused;
@@ -71,6 +81,17 @@ export class ReproductorService {
 
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
+    this.setVolumeLocal(volume)
+  }
+
+  setVolumeLocal(volume:number){ 
+    this.volumeLocal = volume
+    localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
+  }
+
+  getVolumeLocal()
+  {
+    return this.volumeLocal
   }
 
   onProgressChange() {
@@ -88,7 +109,7 @@ export class ReproductorService {
     // {
       console.log(this.sonando)
       this.reproducir(this.songs[this.sonando].file)
-    //}
+    //} 
   }
 
   /*
