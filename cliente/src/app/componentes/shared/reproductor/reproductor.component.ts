@@ -46,6 +46,8 @@ reproducir() {
 }
 
 reproducirPlaylist() {
+  // const songs = this.playlist
+  // this.reproductorService.reproducirPlaylist(songs);
   console.log(this.playlist, this.reproduciendo)
   this.reproductorService.reproducirPlaylist(this.playlist, this.reproduciendo);
 }

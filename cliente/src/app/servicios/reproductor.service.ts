@@ -43,12 +43,18 @@ export class ReproductorService {
 
   reproducir(cancion:any) {
     this.cancionSonando = cancion;
-    this.audioElement.src = this.cancionSonando;
+    this.audioElement.src = this.cancionSonando.file;
     this.audioElement.play();
     this.isPaused=false
     return this.getTotalDuration()
   }
   reproducirPlaylist(songs: any[], reproduciendo: string) {
+    // reproducirPlaylist(songs:any[]) {
+    //   console.log("repList service")
+    //   console.log(songs)
+    //   this.songs = songs
+    //   this.sonando=0
+    //   this.reproducir(this.songs[0].file)
   this.songs = songs;
   const index = this.songs.findIndex(song => song.file === reproduciendo);
   this.sonando = index;
