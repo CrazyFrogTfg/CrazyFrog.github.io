@@ -48,8 +48,8 @@ export class NewSongComponent {
     })
   }
 
-  goHome(){
-    this.router.navigate(['/album']);
+  goBack(){
+    this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } });
   }
 
   setFile($event:any){
@@ -63,7 +63,7 @@ export class NewSongComponent {
 
   async onSubmit(){
     await this.db.addSong(this.newSong.value, this.file)
-    setTimeout(() => this.router.navigate(['/home']), 1500)
+    setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
 
   }
 

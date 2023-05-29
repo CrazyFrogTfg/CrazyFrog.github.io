@@ -2,7 +2,7 @@
 <section class="newpl-container" *ngIf="this.order!=0">
   <section class="newpl-box">
     <div>
-      <button class="btn btn-outline-dark" (click)="goHome()">X</button>
+      <button class="btn btn-outline-dark" (click)="goBack()">X</button>
       <br>
       <h1>Nueva canción</h1>
       <form [formGroup]="newSong" (ngSubmit)="onSubmit()">

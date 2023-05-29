@@ -44,8 +44,8 @@ export class NewAlbumComponent {
     this.newAlbum.controls['artistId'].setValue(this.artistId)
   }
 
-  goHome(){
-    this.router.navigate(['/artista']);
+  goBack(){
+    this.router.navigate(['/artista'], { queryParams: { id: this.artistId } });
   }
 
   async onSubmit(){
