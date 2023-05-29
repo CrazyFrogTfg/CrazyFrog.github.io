@@ -30,12 +30,14 @@
     </button>
   </section>
   <section>
-    <p *ngIf="!cancionSonando">No hay canción en el reproductor</p>
-    <p *ngIf="cancionSonando">{{cancionSonando.name}}</p>
-    <p *ngIf="isTotalDuration">duracion: (cancion anterior){{totalDuration}}</p>
-  </section>
-  <section class="time-line">
-    <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.totalDuration">
+    <section class="infoCancion">
+      <p *ngIf="!cancionSonando">No hay canción en el reproductor</p>
+      <p *ngIf="cancionSonando">{{cancionSonando.name}}</p>
+      <p *ngIf="isTotalDuration">duracion: (cancion anterior){{totalDuration}}</p>
+    </section>
+    <section class="time-line">
+      <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.totalDuration">
+    </section>
   </section>
   <section class="volume-control d-flex">
     <button class="btn btn-light mute" *ngIf="muted" (click)="muteUnmuted()">

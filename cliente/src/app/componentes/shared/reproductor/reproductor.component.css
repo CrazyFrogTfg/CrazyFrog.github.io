@@ -26,13 +26,17 @@ audio::-webkit-media-controls-play-button {
 
 .repro{
   background-color: #E9840E;
-  height: 70px;
+  height: 80px;
   display: flex;
   align-items: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   justify-content: space-between;
+}
+
+.infoCancion{
+  text-align: center;
 }
 
 .buttons{

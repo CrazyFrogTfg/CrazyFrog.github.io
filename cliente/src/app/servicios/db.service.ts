@@ -179,9 +179,17 @@ export class DbService {
         })
   }
 
-  async deleteSong(song:any){
-    await deleteDoc(doc(this.firestore, "songs", song.id));
-    await this.fireStorage.deleteSongFile(song)
+  async deleteSong(song: any) {
+    const playlistRef = collection(this.firestore, 'playlists');
+    const playlistsSnapshot = await getDocs(playlistRef);
+    playlistsSnapshot.forEach(async (playlistDoc) => {
+      const q = query(collection(this.firestore, `playlists/${playlistDoc.id}/songs`),  where("id", "==", song.id));
+      const songInPlaylist = await getDocs(q);
+      if (!songInPlaylist.empty) {
+        await this.deleteSongPlaylist(playlistDoc.id, song.id);
+      }})
+    await deleteDoc(doc(this.firestore, 'songs', song.id));
+    await this.fireStorage.deleteSongFile(song);
   }
 
   async getArtistUID(artist:Artist){

@@ -108,6 +108,7 @@ export class DetalleAlbumComponent {
 
   deleteAlbum(){
     this.db.deleteAlbum(this.albumId)
+    this.db.delAlbumFav(this.albumId)
     this.router.navigate(['/buscador'])
   }
 

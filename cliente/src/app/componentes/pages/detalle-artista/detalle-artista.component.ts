@@ -63,6 +63,7 @@ export class DetalleArtistaComponent {
     const pregunta="Si deseas eliminar "+artistInfo.name+" escribe su nombre aquí";
     if( prompt(pregunta) == artistInfo.name)
     {
+      this.db.delArtistFav(this.artistId)
       this.db.deleteArtist(this.artistId)
       this.router.navigate(['/buscador']);
     }

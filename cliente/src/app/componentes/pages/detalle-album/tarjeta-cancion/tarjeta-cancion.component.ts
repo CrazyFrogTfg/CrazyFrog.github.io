@@ -33,7 +33,6 @@ export class TarjetaCancionComponent {
   }
 
   async ngOnInit(){
-    console.log(this.playlist)
     this.userInfo = await this.userService.getUserInfo()
       if(this.userInfo.admin) this.isAdmin = true
     this.userUID = await this.userService.getUID()
