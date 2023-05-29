@@ -36,7 +36,7 @@
         <section *ngIf="cboxSong">
           <div class="container">
             <div class="row">
-                <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]= "song" [playlists] = "playlists" ></app-tarjeta-cancion>
+                <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
             </div>
           </div>
         </section>
@@ -64,4 +64,4 @@
     </section>
 </section>
 </section>
-<app-reproductor></app-reproductor>
+<app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>

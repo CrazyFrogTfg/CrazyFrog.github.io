@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Song } from 'src/app/interfaces/song.interface';
+import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 
 @Component({
   selector: 'app-buscador',
@@ -12,6 +13,7 @@ import { Song } from 'src/app/interfaces/song.interface';
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent {
+  @ViewChild(TarjetaCancionComponent) cancion:any
 
   cboxArtist:boolean=true
   cboxAlbum:boolean=true
@@ -24,6 +26,7 @@ export class BuscadorComponent {
   paginator:number=0
   playlists:any
   userUID:string = ""
+  reproduciendo:string = ""
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
@@ -81,6 +84,10 @@ export class BuscadorComponent {
 
   getFilterName():string{
     return this.fireStorage.getFilterName()
+  }
+
+  receiveSong($event:any) {
+    this.reproduciendo = $event;
   }
 
   setFilterName(search:string){
