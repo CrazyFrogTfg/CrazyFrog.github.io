@@ -182,3 +182,34 @@ input[type="range"].time::-moz-range-thumb {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  .repro .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .repro .repro-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .repro .repro-center .time-line {
+    display:none;
+  }
+
+  .repro .repro-center .infoCancion {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size:17px;
+  }
+
+  .repro .volume-control {
+    display: none !important;
+  }
+
+}
