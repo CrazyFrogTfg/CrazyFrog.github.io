@@ -1,33 +1,43 @@
 <app-navbar></app-navbar>
 <app-spinner *ngIf="!userInfo"></app-spinner>
-<section class="home-container" *ngIf="userInfo">
+<section class="home-container d-flex" *ngIf="userInfo">
 
   <section class="homeDisp">
-    <p></p>
-    <img class="profile-img2 img-fluid" [src]="userInfo.imageProfile" alt="alt">
-    <div class="welcome">
-      <h3>
-        Bienvenido a <strong>MediaFrog</strong>,<br/>
-        {{userInfo.username}}
-      </h3>
-      <p>¿Qué te apetece escuchar hoy?</p>
-    </div>
-    <div class="divBuscador">
-      <div class="lupa">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-sm-6">
+          <img class="profile-img2" [src]="userInfo.imageProfile" alt="alt">
+        </div>
+        <div class="col-md-10 col-sm-6 welcome">
+          <h1>
+            Bienvenido a <strong>MediaFrog</strong>,<br/>
+            {{userInfo.username}}
+            <h3>¿Qué te apetece escuchar hoy?</h3>
+          </h1>
+        </div>
       </div>
-      <input class="buscador" #search (keyup.enter)="setFilterName(search.value)" type="text" placeholder="Filter de Playlist">
     </div>
   </section>
 
-  <section class="playlist-container">
-    <div></div>
+  <hr class="divider"/>
 
-  <div>
-   <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
-  </div>
+  <section class="favs">
+    <div class="header-playlist d-flex justify-content-between">
+      <h2>Mis playlists</h2>
+      <div class="divBuscador">
+        <div class="lupa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </div>
+        <input class="buscador" #search (keyup.enter)="setFilterName(search.value)" type="text" placeholder="Filter de Playlist">
+    </div>
+    </div>
+  <div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+    <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
+    </div>
 
     <div class="addPlaylist">
       <button class="btn" (click)="goToNewPlaylist()">
@@ -38,6 +48,8 @@
       </button>
       <p>Crear playlist</p>
     </div>
+    <div></div>
+  </div>
   </section>
   <hr class="divider"/>
   <section class="favs">
