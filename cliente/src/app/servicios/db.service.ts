@@ -186,7 +186,9 @@ export class DbService {
       const q = query(collection(this.firestore, `playlists/${playlistDoc.id}/songs`),  where("id", "==", song.id));
       const songInPlaylist = await getDocs(q);
       if (!songInPlaylist.empty) {
-        await this.deleteSongPlaylist(playlistDoc.id, song.id);
+        songInPlaylist.forEach(async (songDoc) => {
+          await this.deleteSongPlaylist(playlistDoc.id, songDoc.id);
+        });
       }})
     await deleteDoc(doc(this.firestore, 'songs', song.id));
     await this.fireStorage.deleteSongFile(song);
