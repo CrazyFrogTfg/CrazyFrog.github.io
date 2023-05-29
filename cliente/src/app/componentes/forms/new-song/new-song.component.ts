@@ -47,7 +47,7 @@ export class NewSongComponent {
       artistId: new FormControl(),
     })
   }
-
+  
   goBack(){
     this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } });
   }

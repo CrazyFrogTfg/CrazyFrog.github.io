@@ -1,3 +1,19 @@
-.divPrueba{
-    color: red;
+.lyrics-container {
+  width: 350px; /* Tamaño fijo del contenedor */
+  height: 400px; /* Tamaño fijo del contenedor */
+  overflow: auto; /* Habilitar el scroll si el contenido excede las dimensiones */
+  border: 2px solid #ccc; /* Borde opcional para resaltar el contenedor */
+  border-radius: 10px;
+  margin-left: 7%;
+  margin-top: 5%;
+}
+
+.lyrics-content {
+  padding: 15px; /* Espacio interno para separar la letra del borde del contenedor */
+}
+
+pre{
+  color:white;
+  font-size:22px;
+  white-space: pre-wrap;
 }

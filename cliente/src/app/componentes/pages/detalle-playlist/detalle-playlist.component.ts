@@ -86,7 +86,7 @@ export class DetallePlaylistComponent {
   }
 
   obtainLyrics(lyrics:string){
-    this.obtainedLyrics=lyrics
+    this.obtainedLyrics=lyrics.replace(/&#10;/g, '\n');
   }
 
   getFilterName():string{

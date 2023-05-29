@@ -7,6 +7,10 @@ body{
   margin-bottom: 80px;
 }
 
+pre{
+  font-family: 'Poppins', sans-serif;
+}
+
 .navbar-nav li{
   background-color: black;
   border-radius: 25px;

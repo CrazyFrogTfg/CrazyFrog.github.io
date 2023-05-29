@@ -155,22 +155,6 @@ export class UsuariosService {
       }
   }
 
-  // async getImageProfile(uid: string): Promise<string> {
-  //   return new Promise(async (resolve, reject) => {
-  //     try {
-  //       const imagesRef = ref(this.storage, `users/${uid}`);
-  //       const response = await listAll(imagesRef);
-  //       for (let item of response.items) {
-  //         const url = await getDownloadURL(item);
-  //         resolve(url);
-  //         return;
-  //       }
-  //       throw new Error('No se encontró ninguna imagen de perfil.');
-  //     } catch (error) {
-  //       console.log(error);
-  //       reject(error);
-  // }})}
-
   uploadImageProfile($event:any, uid:string){
     //Preparamos la imagen dandole ruta
     const file = $event.target.files[0];

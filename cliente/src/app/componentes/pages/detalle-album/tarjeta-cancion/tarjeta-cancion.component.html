@@ -1,9 +1,9 @@
 <section class="card-song align-items-center container-fluid">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
       <h4 (click)="reproducir(song)" *ngIf="!edit">{{song.name}}</h4>
     </div>
-  <div class="col-md-2">
+  <div class="col-md-3 d-flex">
     <div class="btn-group dropup" *ngIf="!edit">
       <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
@@ -46,8 +46,8 @@
     </button>
   </div>
 
-  <div *ngIf="urlPlaylist">
-    <button class="btn btn-light admin-button" (click)="deleteSongPlaylist()">
+
+    <button class="btn btn-light admin-button" (click)="deleteSongPlaylist()" *ngIf="urlPlaylist">
       <p class="paragraph"> Borrar </p>
         <span class="icon-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -55,7 +55,6 @@
           </svg>
         </span>
     </button>
-  </div>
   </div>
 </div>
 </section>

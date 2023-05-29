@@ -153,6 +153,7 @@ export class DbService {
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
     {
+      song.lyrics = song.lyrics.replace(/\n/g, '&#10;');
       const songRef = collection(this.firestore, 'songs');
       await addDoc(songRef, song);
 
