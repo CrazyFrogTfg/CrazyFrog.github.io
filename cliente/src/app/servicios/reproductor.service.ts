@@ -43,18 +43,22 @@ export class ReproductorService {
 
   reproducir(cancion:any) {
     this.cancionSonando = cancion;
-    this.audioElement.src = this.cancionSonando.file;
+    this.audioElement.src = this.cancionSonando;
     this.audioElement.play();
     this.isPaused=false
     return this.getTotalDuration()
   }
-  reproducirPlaylist(songs:any[]) {
-    console.log("repList service")
-    console.log(songs)
-    this.songs = songs
-    this.sonando=0
-    this.reproducir(this.songs[0].file)
+  reproducirPlaylist(songs: any[], reproduciendo: string) {
+  this.songs = songs;
+  const index = this.songs.findIndex(song => song.file === reproduciendo);
+  this.sonando = index;
+
+  if (index !== -1) {
+    this.reproducir(this.songs[index].file);
+  } else {
+    console.log(`No se encontró la canción con el archivo '${reproduciendo}'.`);
   }
+}
 
   reproducing()
   {
@@ -95,7 +99,7 @@ export class ReproductorService {
       this.reproducir(this.songs[this.sonando].file)
     }
   }
-  
+
   nextSong(){
     this.handleSongEnd()
   }
@@ -105,7 +109,7 @@ export class ReproductorService {
     this.setVolumeLocal(volume)
   }
 
-  setVolumeLocal(volume:number){ 
+  setVolumeLocal(volume:number){
     this.volumeLocal = volume
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
   }
@@ -124,11 +128,11 @@ export class ReproductorService {
     console.log("La canción "+this.sonando+" ha terminado de reproducirse")
     this.sonando++
     console.log(this.sonando)
-    
+
     if(this.songs.length<=this.sonando)
     {
       this.reproducir(this.songs[this.sonando].file)
-    } 
+    }
   }
 
   async getTotalDuration()

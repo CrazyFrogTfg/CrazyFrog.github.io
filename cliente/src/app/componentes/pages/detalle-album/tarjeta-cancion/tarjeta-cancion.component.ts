@@ -44,9 +44,10 @@ export class TarjetaCancionComponent {
   }
 
   reproducir(song:any){
+    console.log(song)
     this.reproduciendo = song
-    this.sendLyrics.emit(this.song.lyrics)
-    this.sendSong.emit(this.reproduciendo);
+    this.sendLyrics.emit(song.lyrics)
+    this.sendSong.emit(song.file);
   }
 
   addSongToPlaylist(playlist:Playlist){

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
+
 
 @Component({
   selector: 'app-detalle-playlist',
@@ -16,6 +18,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DetallePlaylistComponent {
   @Output() messageEvent = new EventEmitter<any>();
+  @ViewChild(TarjetaCancionComponent) cancion:any
 
   playlistId:string = ""
   playlistInfo:any = []
