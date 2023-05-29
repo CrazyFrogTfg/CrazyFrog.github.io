@@ -81,7 +81,7 @@ previousSong(){
 }
 
 nextSong(){
-  this.reproductorService.nextSong(this.cancionSonando)
+  this.reproductorService.nextSong()
 }
 muteUnmuted(){
   this.muted = !this.muted
