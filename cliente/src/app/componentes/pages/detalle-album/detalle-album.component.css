@@ -149,9 +149,32 @@ h1, h5 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: space-between;
-  margin-right:4px;
 }
 
+.btn-fav{
+  color:white;
+
+}
+
+.heart-svg:hover {
+  fill: #E9840E;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 

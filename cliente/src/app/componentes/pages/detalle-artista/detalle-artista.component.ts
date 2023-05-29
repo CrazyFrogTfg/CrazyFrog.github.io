@@ -94,4 +94,16 @@ export class DetalleArtistaComponent {
     }
   }
 
+  setArtistFav(){
+    this.db.setArtistFav(this.artistId)
+  }
+
+  delArtistFav(){
+    this.db.delArtistFav(this.artistId)
+  }
+
+  isArtistFav(){
+    return this.db.isArtistFav(this.artistId)
+  }
+
 }

@@ -175,6 +175,32 @@ label{
   margin-right:25px;
 }
 
+.btn-fav{
+  color:white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.heart-svg:hover {
+  fill: #E9840E;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 768px) {
   .artistaDisp {
     grid-template-columns: repeat(8, 1fr);

@@ -119,4 +119,18 @@ export class DetalleAlbumComponent {
   goToNewSong(){
     this.router.navigate(['/newsong'], {queryParams: {artistId: this.artistId, albumId: this.albumId, order: this.iteraciones} });
   }
+
+  setAlbumFav(){
+    this.db.setAlbumFav(this.albumId)
+  }
+
+  delAlbumFav(){
+    this.db.delAlbumFav(this.albumId)
+  }
+
+
+  isAlbumFav(){
+    return this.db.isAlbumFav(this.albumId)
+  }
+
 }
