@@ -31,13 +31,14 @@ ngOnChanges()
 {
   if(this.reproduciendo)
   {
+    console.log("reproduciendo" + this.reproduciendo)
     this.reproducir()
   }
   if(this.playlist){
+    console.log("playlist" + this.playlist)
     this.reproducirPlaylist()
   }
   this.reproducing()
-
 }
 
 reproducir() {
@@ -49,7 +50,6 @@ reproducir() {
 reproducirPlaylist() {
   // const songs = this.playlist
   // this.reproductorService.reproducirPlaylist(songs);
-  console.log(this.playlist, this.reproduciendo)
   this.reproductorService.reproducirPlaylist(this.playlist, this.reproduciendo);
 }
 

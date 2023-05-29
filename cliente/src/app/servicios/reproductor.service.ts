@@ -48,7 +48,7 @@ export class ReproductorService {
     this.isPaused=false
     return this.getTotalDuration()
   }
-  
+
   reproducirPlaylist(songs: any[], reproduciendo: string) {
     // reproducirPlaylist(songs:any[]) {
     //   console.log("repList service")
@@ -56,18 +56,18 @@ export class ReproductorService {
     //   this.songs = songs
     //   this.sonando=0
     //   this.reproducir(this.songs[0].file)
-  this.songs = songs;
-  const index = this.songs.findIndex(song => song.file === reproduciendo);
-  this.sonando = index;
+    this.songs = songs;
+    const index = this.songs.findIndex(song => song.file === reproduciendo);
+    this.sonando = index;
 
-  if (index !== -1) {
-    this.reproducir(this.songs[index].file);
-  } else {
-    console.log(`No se encontró la canción con el archivo '${reproduciendo}'.`);
+    if (index !== -1) {
+      this.reproducir(this.songs[index].file);
+    } else {
+      console.log(`No se encontró la canción con el archivo '${reproduciendo}'.`);
+    }
   }
-}
 
-//Funcion que devuelve 
+//Funcion que devuelve
   reproducing()
   {
     return this.cancionSonando

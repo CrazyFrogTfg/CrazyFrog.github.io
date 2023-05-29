@@ -173,5 +173,12 @@ input[type="range"].time::-moz-range-thumb {
 }
 
 .repro-center{
-  width: 70%;
+  width: 60%;
+}
+
+.infoCancion p {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
