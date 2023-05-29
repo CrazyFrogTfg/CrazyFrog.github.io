@@ -118,7 +118,7 @@ export class DetallePlaylistComponent {
   reproducirPlaylist(){
     console.log("click en nombre playlist")
     console.log(this.songs)
-    //this.messageEvent.emit(this.songs);
+    this.messageEvent.emit(this.songs);
   }
 
 }

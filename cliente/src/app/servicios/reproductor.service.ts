@@ -48,6 +48,7 @@ export class ReproductorService {
     this.isPaused=false
     return this.getTotalDuration()
   }
+  
   reproducirPlaylist(songs: any[], reproduciendo: string) {
     // reproducirPlaylist(songs:any[]) {
     //   console.log("repList service")
@@ -66,6 +67,7 @@ export class ReproductorService {
   }
 }
 
+//Funcion que devuelve 
   reproducing()
   {
     return this.cancionSonando

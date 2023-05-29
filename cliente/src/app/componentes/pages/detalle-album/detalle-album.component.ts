@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, query, where, orderBy } from '@angular/fire/firestore';
 import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
@@ -89,6 +89,7 @@ export class DetalleAlbumComponent {
           this.songs.push(song);
           this.iteraciones++;
         });
+        this.songs.sort((a,b)=>a.order-b.order)
     });
   }
 
