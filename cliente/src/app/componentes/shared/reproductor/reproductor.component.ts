@@ -10,6 +10,7 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
 export class ReproductorComponent {
 @Input() reproduciendo:any
 @Input() playlist:any
+
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false

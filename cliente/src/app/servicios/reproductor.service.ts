@@ -48,6 +48,7 @@ export class ReproductorService {
     this.isPaused=false
     return this.getTotalDuration()
   }
+  
   reproducirPlaylist(songs: any[], reproduciendo: string) {
   this.songs = songs;
   const index = this.songs.findIndex(song => song.file === reproduciendo);
@@ -60,6 +61,7 @@ export class ReproductorService {
   }
 }
 
+//Funcion que devuelve 
   reproducing()
   {
     return this.cancionSonando
