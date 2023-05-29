@@ -4,7 +4,8 @@
   <img class="artista-img" [src]="artistInfo.image">
   <div class="artista-nombre">
     <div *ngIf="!edit">
-      <h1> {{artistInfo.name}} </h1>
+      <h1> {{artistInfo.name | slice:0:15}} </h1>
+      <h1> {{artistInfo.name | slice:15}} </h1>
       <h5> {{artistInfo.description}} </h5>
     </div>
     <div *ngIf="edit">

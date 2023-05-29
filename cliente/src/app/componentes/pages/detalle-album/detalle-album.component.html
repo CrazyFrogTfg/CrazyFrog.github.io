@@ -4,7 +4,8 @@
   <img class="album-img" [src]="albumInfo.image">
   <div class="album-nombre">
     <div *ngIf="!edit">
-      <h1> {{albumInfo.name}} </h1>
+      <h1> {{albumInfo.name| slice:0:15}} </h1>
+      <h1> {{albumInfo.name| slice:15}} </h1>
       <h5> {{albumInfo.year}} </h5>
     </div>
 
