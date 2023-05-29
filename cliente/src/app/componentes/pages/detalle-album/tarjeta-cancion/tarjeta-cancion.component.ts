@@ -13,6 +13,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 export class TarjetaCancionComponent {
 @Input() song:any
 @Input() playlists:any
+@Input() playlist:any
 @Output() sendSong = new EventEmitter<any>();
 @Output() sendLyrics = new EventEmitter<any>();
 
@@ -32,9 +33,11 @@ export class TarjetaCancionComponent {
   }
 
   async ngOnInit(){
+    console.log(this.playlist)
     this.userInfo = await this.userService.getUserInfo()
       if(this.userInfo.admin) this.isAdmin = true
     this.userUID = await this.userService.getUID()
+
   }
 
   ngAfterViewInit()
@@ -54,14 +57,12 @@ export class TarjetaCancionComponent {
     this.db.addSongToPlaylist(playlist, this.song)
   }
 
-  deleteSongPlaylist(playlist:Playlist)
+  deleteSongPlaylist()
   {
-    console.log("deleteSongPlaylist (tarjetaCancion.ts) - playlist: ")
-    console.log(playlist)
-    console.log(this.song)
-    this.db.deleteSongPlaylist(playlist, this.song)
+    this.db.deleteSongPlaylist(this.playlist, this.song.id)
+    console.log(this.playlist, this.song.id)
     console.log("deleteSongPlaylist (tarjetaCancion.ts) - FIN")
-    location.reload()
+    // location.reload()
     //this.router.navigate(['/buscador'])
   }
 

@@ -359,15 +359,10 @@ export class DbService {
         }
   }
 
-  async deleteSongPlaylist(playlist:Playlist, song:Song){
-    console.log("deleteSongPlaylist in DB.SERVICE")
-    console.log(playlist, song)
-    window.confirm("En construcción. db.service deleteSongPlaylist.\nNo selecciona correctamente la canción\nComentar location.reload() de tarjetaCancion.ts para ver console.logs")
-    await deleteDoc(doc(this.firestore, `playlists/${playlist.id}/songs`, song.id))
+  async deleteSongPlaylist(playlist:string, song:string){
+    await deleteDoc(doc(this.firestore, `playlists/${playlist}/songs`, song))
     .then(response => console.log(response))
-    //He probado de estas 2 maneras, devuelve undefined, no encuentra la cancion, no se porque
-    await deleteDoc(doc(this.firestore, `playlists/${playlist.id}/songs/${song.id}`))
-    .then(response => console.log(response))
+    location.reload();
   }
 
 }
