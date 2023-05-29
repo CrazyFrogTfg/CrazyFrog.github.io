@@ -1,6 +1,16 @@
 .card-song{
   color:white;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  margin-left: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(62, 58, 53, 0.6);
+  border-radius: 15px;
+}
+
+.card-song:hover{
+  background-color: rgba(85, 80, 74, 0.6);
 }
 
 .dropup{
@@ -8,15 +18,15 @@
 }
 
 .dropdown-toggle:hover{
-  background-color: #14a73e98;
+  background-color: #fa9522;
 }
 
 .dropdown-toggle:focus{
-  background-color: #14a73e98;
+  background-color: #fa9522;
 }
 
 .dropdown-toggle{
-  background-color: greenyellow;
+  background-color: #e9840e;
 }
 
 .playlist{

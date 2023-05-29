@@ -34,10 +34,10 @@
 
         <h2>Canciones</h2>
         <section *ngIf="cboxSong">
-          <div class="row row-cols-auto">
-            <section class="d-flex flex-wrap col" *ngIf="cboxSong">
-              <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]= "song" [playlists] = "playlists" ></app-tarjeta-cancion>
-            </section>
+          <div class="container">
+            <div class="row">
+                <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]= "song" [playlists] = "playlists" ></app-tarjeta-cancion>
+            </div>
           </div>
         </section>
     </section>

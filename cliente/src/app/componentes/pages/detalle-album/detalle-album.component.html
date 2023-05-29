@@ -7,7 +7,7 @@
       <h1> {{albumInfo.name}} </h1>
       <h5> {{albumInfo.year}} </h5>
     </div>
-    
+
     <div *ngIf="edit">
        <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -68,15 +68,17 @@
   </section>
 </section>
 
-<section>
-  <app-lyrics [lyrics]="obtainedLyrics"></app-lyrics>
-</section>
-
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song" 
-    [playlists] = "playlists" (sendLyrics)="obtainLyrics($event)" 
-    (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
+    <div class="col-md-9">
+      <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"
+      [playlists] = "playlists" (sendLyrics)="obtainLyrics($event)"
+      (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
+    </div>
+    <div class="col-md-3">
+      <app-lyrics [lyrics]="obtainedLyrics"></app-lyrics>
+    </div>
   </div>
 </div>
+
 <app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>
