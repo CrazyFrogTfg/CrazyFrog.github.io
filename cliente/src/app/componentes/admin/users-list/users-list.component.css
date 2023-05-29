@@ -103,3 +103,12 @@ h2{
   transition: .2s linear;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
