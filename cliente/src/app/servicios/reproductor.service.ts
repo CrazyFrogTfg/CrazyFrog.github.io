@@ -46,6 +46,7 @@ export class ReproductorService {
     this.audioElement.src = this.cancionSonando.file;
     this.audioElement.play();
     this.isPaused=false
+    //Falta enviar la cancion al compReproductor para actualizar nombre etc etc
     return this.getTotalDuration()
   }
 
@@ -56,14 +57,20 @@ export class ReproductorService {
     //   this.songs = songs
     //   this.sonando=0
     //   this.reproducir(this.songs[0].file)
-    this.songs = songs;
-    const index = this.songs.findIndex(song => song.file === reproduciendo);
-    this.sonando = index;
+    console.log("repPlaylist in Service")
+    console.log(songs)
+    console.log(this.songs)
 
+    this.songs = songs;
+    const index = this.songs.findIndex(song => song.file == reproduciendo);
+    
     if (index !== -1) {
-      this.reproducir(this.songs[index].file);
+      this.sonando = index;
+      this.reproducir(this.songs[index]);
     } else {
-      console.log(`No se encontró la canción con el archivo '${reproduciendo}'.`);
+      this.sonando = 0;
+      this.reproducir(this.songs[index]);
+      console.log(`No se encontró la canción con el archivo '${reproduciendo}'. Asi que this.sonando=0`);
     }
   }
 
@@ -98,18 +105,28 @@ export class ReproductorService {
   }
 
   previousSong(){
+    //Funciona correctamente
     console.log("click previousSong")
     console.log(this.sonando)
-    if(this.sonando>1)
+    if(this.sonando>0)
     {
       this.sonando--
       console.log(this.sonando)
-      this.reproducir(this.songs[this.sonando].file)
+      this.reproducir(this.songs[this.sonando])
     }
   }
 
   nextSong(){
-    this.handleSongEnd()
+    //funciona correctamente
+    console.log("La canción "+this.sonando+" ha terminado de reproducirse")
+    this.sonando++
+    console.log(this.sonando)
+    console.log(this.songs.length)
+
+    if(this.songs.length>=this.sonando)
+    {
+      this.reproducir(this.songs[this.sonando])
+    }
   }
 
   updateVolume(volume:any) {
@@ -132,15 +149,8 @@ export class ReproductorService {
   }
 
   handleSongEnd()
-  {
-    console.log("La canción "+this.sonando+" ha terminado de reproducirse")
-    this.sonando++
-    console.log(this.sonando)
-
-    if(this.songs.length<=this.sonando)
-    {
-      this.reproducir(this.songs[this.sonando].file)
-    }
+  { 
+    this.nextSong()
   }
 
   async getTotalDuration()

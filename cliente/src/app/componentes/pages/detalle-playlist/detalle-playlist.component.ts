@@ -9,6 +9,7 @@ import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
+import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class DetallePlaylistComponent {
 
   constructor(private route: ActivatedRoute,private router:Router,
     private firestore: Firestore,private userService:UsuariosService,
-    private fireStorage:FireStorageService, private db:DbService){
+    private fireStorage:FireStorageService, private db:DbService, private reproductorService:ReproductorService){
       this.updatePlaylist = new FormGroup({
         name: new FormControl(),
         private: new FormControl(),
@@ -118,8 +119,10 @@ export class DetallePlaylistComponent {
   }
 
   reproducirPlaylist(){
-    console.log("click en nombre playlist")
+    console.log("click en nombre playlist. Pero no se envia al servicio")
     console.log(this.songs)
+    window.confirm("linea 124 detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
+    this.reproductorService.reproducirPlaylist(this.songs, this.reproduciendo)
     this.messageEvent.emit(this.songs);
   }
 
