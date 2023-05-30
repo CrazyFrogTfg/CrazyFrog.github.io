@@ -1,5 +1,5 @@
 import { Injectable,  } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,10 @@ export class ReproductorService {
   }
 
   reproduce(song:any) {
+    if(!this.songs.includes(song))
+    {
+      this.songs=[]
+    }
     this.songPlaying = song;
     this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
@@ -61,6 +65,7 @@ export class ReproductorService {
   }
 
   reproducePlaylist(songs: any[], songOrder: number) {
+    
     this.songs = songs;
     this.positionPlaying=songOrder
     this.songPlaying=this.songs[songOrder]
@@ -91,22 +96,34 @@ export class ReproductorService {
   }
 
   previousSong(){
+    //Si existe anterior
     if(this.positionPlaying>0)
     {
       this.positionPlaying--
       this.reproduce(this.songs[this.positionPlaying])
       return this.songs[this.positionPlaying]
+      //Si no está en la lista
+    }else if(!this.songs.includes(this.songPlaying))
+    {
+      return this.songPlaying
     }
+    else //Si es la primera de la lista
     return this.songs[this.positionPlaying]
   }
 
   nextSong(){
+    //Si existe una canción siguiente
     if(this.songs.length>this.positionPlaying+1)
     {
       this.positionPlaying++
       this.reproduce(this.songs[this.positionPlaying])
       return this.songs[this.positionPlaying]
+      //Si no hay siguiente y no es de la lista
+    }else if(!this.songs.includes(this.songPlaying))
+    {
+      return this.songPlaying
     }
+    else //Si es la última de la lista
     return this.songs[this.positionPlaying]
   }
 
