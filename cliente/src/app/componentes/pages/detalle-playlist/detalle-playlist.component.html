@@ -71,5 +71,5 @@
   </section>
 </section>
 <app-footer></app-footer>
-<app-reproductor [reproduciendo] = "reproduciendo" [playlist]="songs"
+<app-reproductor [receivedSong] = "sendedSong" [songsToPlay]="songs"
  (messageEvent)="receiveSong($event)"></app-reproductor>

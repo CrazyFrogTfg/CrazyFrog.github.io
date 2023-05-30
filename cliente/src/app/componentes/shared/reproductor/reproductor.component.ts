@@ -8,8 +8,8 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
   styleUrls: ['./reproductor.component.css']
 })
 export class ReproductorComponent {
-@Input() reproduciendo:any
-@Input() playlist:any
+@Input() receivedSong:any
+@Input() songsToPlay:any
 
 isSticky: boolean = false;
 volume:number = 0.5;
@@ -29,29 +29,31 @@ ngOnInit()
 
 ngOnChanges()
 {
-  if(this.reproduciendo)
+  if(this.receivedSong)
   {
-    console.log("reproduciendo" + this.reproduciendo)
-    this.reproducir()
+    console.log("receivedSong" + this.receivedSong)
+    this.reproduceFromBuscador()
   }
-  if(this.playlist){
-    console.log("playlist" + this.playlist)
-    this.reproducirPlaylist()
-  }
+  // if(this.songsToPlay){
+  //   console.log("songsToPlay" + this.songsToPlay)
+  //   this.reproducirPlaylist()
+  // }
   this.reproducing()
 }
 
-reproducir() {
-  //const cancion = this.reproduciendo.file;
-  this.reproductorService.reproducir(this.reproduciendo);
+reproduceFromBuscador() {
+  //const cancion = this.receivedSong.file;
+  console.log(this.receivedSong)
+  this.cancionSonando = this.receivedSong
+  this.reproductorService.reproduce(this.receivedSong);
   this.getTotalDuration()
 }
 
-reproducirPlaylist() {
-  // const songs = this.playlist
-  // this.reproductorService.reproducirPlaylist(songs);
-  this.reproductorService.reproducirPlaylist(this.playlist, this.reproduciendo);
-}
+// reproducirPlaylist() {
+//   // const songs = this.songsToPlay
+//   // this.reproductorService.reproducirsongsToPlay(songs);
+//   this.reproductorService.reproducePlaylist(this.songsToPlay, this.receivedSong);
+// }
 
 reproducing()
 {
@@ -59,7 +61,7 @@ reproducing()
 }
 
 playPausa() {
-  //const cancion = this.reproduciendo.file;
+  //const cancion = this.receivedSong.file;
   return this.reproductorService.playPausa();
 }
 
@@ -80,11 +82,11 @@ isPlaying(): boolean {
 }
 
 previousSong(){
-  this.reproductorService.previousSong()
+ this.cancionSonando = this.reproductorService.previousSong()
 }
 
 nextSong(){
-  this.reproductorService.nextSong()
+  this.cancionSonando = this.reproductorService.nextSong()
 }
 muteUnmuted(){
   this.muted = !this.muted

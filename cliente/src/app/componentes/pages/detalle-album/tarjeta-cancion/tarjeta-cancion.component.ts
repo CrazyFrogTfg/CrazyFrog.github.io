@@ -16,6 +16,7 @@ export class TarjetaCancionComponent {
 @Input() playlist:any
 @Output() sendSong = new EventEmitter<any>();
 @Output() sendLyrics = new EventEmitter<any>();
+@Output() sendSongOrder = new EventEmitter<any>();
 
   reproduciendo:string = ""
   userUID:any
@@ -24,6 +25,7 @@ export class TarjetaCancionComponent {
   userInfo:any
   isAdmin:boolean=false
   urlPlaylist:boolean=false
+  urlAlbum:boolean=false
   letraPrueba:string="letraPrueba"
 
   constructor(private userService:UsuariosService, private db:DbService, private router:Router){
@@ -46,13 +48,30 @@ export class TarjetaCancionComponent {
   {
     if(this.router.url.includes("playlist"))
     this.urlPlaylist=true
+    if(this.router.url.includes("album"))
+    this.urlAlbum=true
   }
 
-  reproducir(song:any){
-    console.log(song)
-    this.reproduciendo = song
-    this.sendLyrics.emit(song.lyrics)
-    this.sendSong.emit(song);
+  reproducir(){
+    if(this.urlAlbum)
+    {
+      //Reproducir como playlist
+      console.log("estas en playlist o en det album")
+      this.sendSongOrder.emit(this.song.order-1);
+    }else{
+      if(this.urlPlaylist)
+      {
+        this.sendSong.emit(this.song);
+
+      }else{
+        //Reproducir como cancion
+        console.log(this.song)
+        this.reproduciendo = this.song
+        this.sendLyrics.emit(this.song.lyrics)
+        this.sendSong.emit(this.song);
+
+      }
+    }
   }
 
   addSongToPlaylist(playlist:Playlist){
