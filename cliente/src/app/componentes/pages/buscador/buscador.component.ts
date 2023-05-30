@@ -31,7 +31,7 @@ export class BuscadorComponent {
   pagSong:number=0
   playlists:any
   userUID:string = ""
-  reproduciendo:string = ""
+  sendedSong:string = ""
   filteredArtistsLength:number = 0;
   filteredAlbumsLength:number = 0;
   filteredSongsLength:number = 0;
@@ -116,7 +116,7 @@ export class BuscadorComponent {
   }
 
   receiveSong($event:any) {
-    this.reproduciendo = $event;
+    this.sendedSong = $event;
   }
 
   setFilterName(search:string){

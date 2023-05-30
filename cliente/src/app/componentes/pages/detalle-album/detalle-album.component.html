@@ -86,7 +86,7 @@
     <div class="col-md-9">
       <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"
       [playlists] = "playlists" (sendLyrics)="obtainLyrics($event)"
-      (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
+      (sendSong)="receiveSong($event)" (sendSongOrder)="receiveSongOrder($event)"></app-tarjeta-cancion>
     </div>
     <div class="col-md-3">
       <app-lyrics [lyrics]="obtainedLyrics"></app-lyrics>
@@ -94,4 +94,4 @@
   </div>
 </div>
 
-<app-reproductor [reproduciendo] = "reproduciendo"></app-reproductor>
+<app-reproductor [receivedSong] = "sendedSong"></app-reproductor>

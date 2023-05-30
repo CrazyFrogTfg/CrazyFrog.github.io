@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
+import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 @Component({
   selector: 'app-detalle-album',
@@ -23,7 +24,7 @@ export class DetalleAlbumComponent {
   albumId:string = ""
   isAdmin:boolean = false
   songs: Song[] = []
-  reproduciendo:string = ""
+  sendedSong:string = ""
   iteraciones:number=0;
   query:string=""
   edit:boolean=false
@@ -36,7 +37,7 @@ export class DetalleAlbumComponent {
   obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title)
+    private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService, private title:Title)
     { title.setTitle('Mediafrog - Album')
 
     this.updateAlbum = new FormGroup({
@@ -52,12 +53,12 @@ export class DetalleAlbumComponent {
   }
 
   receiveSong($event:any) {
-    this.reproduciendo = $event;
+    this.sendedSong = $event;
   }
 
   ngOnChanges()
   {
-    console.log(this.reproduciendo)
+    console.log(this.sendedSong)
     this.obtainLyrics(this.obtainedLyrics)
   }
 
@@ -101,6 +102,16 @@ export class DetalleAlbumComponent {
       this.router.navigate(['/home'])
     }
   }
+
+  receiveSongOrder(songOrder:any)
+  {
+    this.reproduceAlbum(this.songs, songOrder)
+  }
+  reproduceAlbum(playlist:any, songOrder:number)
+  {
+    this.reproductorService.reproducePlaylist(playlist, songOrder)
+  }
+
 
   setFile($event:any){
     this.file = $event

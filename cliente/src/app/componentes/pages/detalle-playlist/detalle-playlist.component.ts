@@ -24,7 +24,7 @@ export class DetallePlaylistComponent {
   playlistId:string = ""
   playlistInfo:any = []
   songs: Song[] = []
-  reproduciendo:any
+  sendedSong:any
   owner:string = ""
   imageOwner:string = ""
   isVisible:boolean = false
@@ -99,7 +99,8 @@ export class DetallePlaylistComponent {
     this.fireStorage.setFilterName(search)
   }
   receiveSong($event:any) {
-    this.reproduciendo = $event;
+    this.sendedSong = $event;
+    this.reproducePlaylist()
   }
 
   async visibility(){
@@ -118,11 +119,17 @@ export class DetallePlaylistComponent {
     this.edit = !this.edit
   }
 
+  reproducePlaylist()
+  {
+    const index = this.songs.findIndex(song => song.name === this.sendedSong.name);
+    this.reproductorService.reproducePlaylist(this.songs, index)
+  }
+
   reproducirPlaylist(){
     console.log("click en nombre playlist. Pero no se envia al servicio")
     console.log(this.songs)
     window.confirm("linea 124 detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
-    this.reproductorService.reproducirPlaylist(this.songs, this.reproduciendo)
+    this.reproductorService.reproducePlaylist(this.songs, this.sendedSong)
     this.messageEvent.emit(this.songs);
   }
 

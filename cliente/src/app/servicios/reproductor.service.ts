@@ -6,13 +6,14 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ReproductorService {
   private audioElement: HTMLAudioElement;
+
   isPaused:boolean=true
   currentProgress: number = 0;
   totalDuration: any;
   playlist:any
-  sonando:number=0
+  positionPlaying:number=0
   songs:any[]=[]
-  cancionSonando:any
+  songPlaying:any
   volumeLocal:number
   private durationSubject: Subject<number> = new Subject<number>();
   public duration$: Observable<number> = this.durationSubject.asObservable();
@@ -44,60 +45,35 @@ export class ReproductorService {
     this.getTotalDuration()
   }
 
-  reproducir(cancion:any) {
-    this.cancionSonando = cancion;
-    this.audioElement.src = this.cancionSonando.file;
+  reproduce(song:any) {
+    this.songPlaying = song;
+    this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
     this.isPaused=false
     //Falta enviar la cancion al compReproductor para actualizar nombre etc etc
     return this.getTotalDuration()
   }
 
-  reproducirPlaylist(songs: any[], reproduciendo: string) {
-    // reproducirPlaylist(songs:any[]) {
-    //   console.log("repList service")
-    //   console.log(songs)
-    //   this.songs = songs
-    //   this.sonando=0
-    //   this.reproducir(this.songs[0].file)
-    console.log("repPlaylist in Service")
-    console.log(songs)
-    console.log(this.songs)
-
+  reproducePlaylist(songs: any[], songOrder: number) {
     this.songs = songs;
-    const index = this.songs.findIndex(song => song.file == reproduciendo);
-
-    if (index !== -1) {
-      this.sonando = index;
-      this.reproducir(this.songs[index]);
-    } else {
-      this.sonando = 0;
-      this.reproducir(this.songs[index]);
-      console.log(`No se encontró la canción con el archivo '${reproduciendo}'. Asi que this.sonando=0`);
-    }
+    this.positionPlaying=songOrder
+    this.reproduce(this.songs[songOrder]);
   }
 
 //Funcion que devuelve
   reproducing()
   {
-    return this.cancionSonando
+    return this.songPlaying
   }
 
   playPausa():boolean {
-    // if (this.audioElement.src !== cancion && cancion) {
-    //   this.audioElement.src = cancion;
-    //   this.audioElement.load();
-    // }
-    //if(this.audioElement.src){
       if (this.audioElement.paused) {
         this.audioElement.play();
         this.isPaused = false;
       } else {
         this.audioElement.pause();
         this.isPaused = true;
-      //}
     }
-
     return this.isPaused;
   }
 
@@ -108,27 +84,20 @@ export class ReproductorService {
   }
 
   previousSong(){
-    //Funciona correctamente
-    console.log("click previousSong")
-    console.log(this.sonando)
-    if(this.sonando>0)
+    if(this.positionPlaying>0)
     {
-      this.sonando--
-      console.log(this.sonando)
-      this.reproducir(this.songs[this.sonando])
+      this.positionPlaying--
+      this.reproduce(this.songs[this.positionPlaying])
+      return this.songs[this.positionPlaying]
     }
   }
 
   nextSong(){
-    //funciona correctamente
-    console.log("La canción "+this.sonando+" ha terminado de reproducirse")
-    this.sonando++
-    console.log(this.sonando)
-    console.log(this.songs.length)
-
-    if(this.songs.length>=this.sonando)
+    if(this.songs.length>this.positionPlaying+1)
     {
-      this.reproducir(this.songs[this.sonando])
+      this.positionPlaying++
+      this.reproduce(this.songs[this.positionPlaying])
+      return this.songs[this.positionPlaying]
     }
   }
 
