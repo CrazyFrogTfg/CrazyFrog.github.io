@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, limit, deleteDoc, query, where, getDocs, getDoc, orderBy } from '@angular/fire/firestore';
 import { Artist } from '../interfaces/artist.interface';
 import { Album } from '../interfaces/album.interface';
 import { Observable } from 'rxjs';
@@ -236,26 +236,27 @@ export class DbService {
     }
   }
 
-  async getPlaylistByUser(uid:string){
+  getPlaylistByUser(uid:string): Observable<Playlist[]>{
   //Con la linea siguiente vaciamos el array para que no se llene continuamente.
   this.playlists=[]
   const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(async (doc) => {
-      const playlist = {
-        id: doc.id,
-        name: doc.data()['name'],
-        private: doc.data()['private'],
-        owner: doc.data()['owner'],
-        songs: []
-      };
-      this.playlists.push(playlist);
-    })
-    return this.playlists
+  return collectionData(q, { idField: 'id'}) as Observable<Playlist[]>;
+    // const querySnapshot = await getDocs(q);
+    // querySnapshot.forEach(async (doc) => {
+    //   const playlist = {
+    //     id: doc.id,
+    //     name: doc.data()['name'],
+    //     private: doc.data()['private'],
+    //     owner: doc.data()['owner'],
+    //     songs: []
+    //   };
+    //   this.playlists.push(playlist);
+    // })
+    // return this.playlists as Observable<Artist[]>
   }
 
-  async updatePlaylist(playlist:Playlist, oldPlaylist:Playlist, playlistId:string ){
-    const playlistRef = doc(this.firestore, 'playlists', playlistId);
+  async updatePlaylist(playlist:Playlist, oldPlaylist:Playlist){
+    const playlistRef = doc(this.firestore, 'playlists', oldPlaylist.id);
     //Actualizamos Nombre playlist si ha cambiado
     if(playlist.name && playlist.name != oldPlaylist.name)
         await updateDoc(playlistRef, {
@@ -268,7 +269,6 @@ export class DbService {
             private:playlist.private,
           })
         }
-      //}
     }
 
     async deletePlaylist(playlistId:string){
@@ -370,8 +370,8 @@ export class DbService {
         }
   }
 
-  async deleteSongPlaylist(playlist:string, song:string){
-    await deleteDoc(doc(this.firestore, `playlists/${playlist}/songs`, song))
+  async deleteSongPlaylist(playlistId:string, songId:string){
+    await deleteDoc(doc(this.firestore, `playlists/${playlistId}/songs`, songId))
     .then(response => console.log(response))
     location.reload();
   }

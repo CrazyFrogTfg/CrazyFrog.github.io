@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Song } from 'src/app/interfaces/song.interface';
 import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
+import { ByNamePipe } from 'src/app/filtros/by-name.pipe';
+import { Artist } from 'src/app/interfaces/artist.interface';
+import { Album } from 'src/app/interfaces/album.interface';
 
 @Component({
   selector: 'app-buscador',
@@ -23,10 +26,15 @@ export class BuscadorComponent {
   songs:Song[] = []
   isAdmin:boolean = false
   userInfo:any
-  paginator:number=0
+  pagArtist:number=0
+  pagAlbum:number=0
+  pagSong:number=0
   playlists:any
   userUID:string = ""
   reproduciendo:string = ""
+  filteredArtistsLength:number = 0;
+  filteredAlbumsLength:number = 0;
+  filteredSongsLength:number = 0;
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
@@ -36,8 +44,7 @@ export class BuscadorComponent {
 
   async ngOnInit(){
     this.userUID = await this.userService.getUID()
-    this.playlists = await this.db.getPlaylistByUser(this.userUID)
-    console.log(this.playlists)
+    this.playlists = this.db.getPlaylistByUser(this.userUID)
     this.db.getArtists().subscribe(artists =>{
       this.artists = artists
     })
@@ -65,21 +72,43 @@ export class BuscadorComponent {
   //     this.paginator -= 1;
   //   }
 
-  increasePaginator(){
-    if(this.artists.length>3 && this.paginator+1<this.artists.length-3)
-    {
-      console.log("artistas length: "+this.artists.length)
-      this.paginator= this.paginator+3
-    }
-    console.log("paginator: "+this.paginator)
-    console.log("artistas length: "+this.artists.length)
+  increasePagArtist(){
+    if(this.filteredArtistsLength == 0 && this.artists.length>5 && this.pagArtist+1<=this.artists.length-5)
+      this.pagArtist= this.pagArtist+5
+    if(this.filteredArtistsLength>5 && this.pagArtist+1<=this.filteredArtistsLength-5)
+      this.pagArtist= this.pagArtist+5
   }
 
-  decreasePaginator(){
-    if(this.paginator+1>3)
-    this.paginator= this.paginator-3
-    console.log("paginator: "+this.paginator)
+  decreasePagArtist(){
+    if(this.pagArtist+1>5)
+    this.pagArtist= this.pagArtist-5
+    console.log("paginator: "+this.pagArtist)
+  }
 
+  increasePagAlbum(){
+    if(this.filteredAlbumsLength == 0 && this.albums.length>5 && this.pagAlbum+1<=this.albums.length-5)
+      this.pagAlbum= this.pagAlbum+5
+    if(this.filteredAlbumsLength>5 && this.pagAlbum+1<=this.filteredAlbumsLength-5)
+      this.pagAlbum= this.pagAlbum+5
+  }
+
+  decreasePagAlbum(){
+    if(this.pagAlbum+1>5)
+    this.pagAlbum= this.pagAlbum-5
+    console.log("paginator: "+this.pagAlbum)
+
+  }
+  increasePagSong(){
+    if(this.filteredSongsLength == 0 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
+      this.pagSong= this.pagSong+10
+    if(this.filteredSongsLength>10 && this.pagSong+1<=this.filteredSongsLength-10)
+      this.pagSong= this.pagSong+10
+  }
+
+  decreasePagSong(){
+    if(this.pagSong+1>10)
+    this.pagSong= this.pagSong-10
+    console.log("paginator: "+this.pagSong)
   }
 
   getFilterName():string{
@@ -92,8 +121,12 @@ export class BuscadorComponent {
 
   setFilterName(search:string){
     this.fireStorage.setFilterName(search)
-   this.paginator = 0
-
+    this.pagArtist = 0
+    this.pagAlbum = 0
+    this.pagSong = 0
+    this.filteredArtistsLength = this.artists.filter((searched: Artist) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
+    this.filteredAlbumsLength = this.albums.filter((searched: Album) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
+    this.filteredSongsLength = this.songs.filter((searched: Song) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
   }
 
   toogleCboxArtist(){

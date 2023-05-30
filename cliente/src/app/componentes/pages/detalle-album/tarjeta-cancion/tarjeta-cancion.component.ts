@@ -36,6 +36,9 @@ export class TarjetaCancionComponent {
     this.userInfo = await this.userService.getUserInfo()
       if(this.userInfo.admin) this.isAdmin = true
     this.userUID = await this.userService.getUID()
+    this.db.getPlaylistByUser(this.userUID).subscribe(playlists =>{
+      this.playlists = playlists
+    })
 
   }
 

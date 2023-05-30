@@ -108,3 +108,22 @@ h2{
   margin-top: 20px;
 }
 
+.pag-button-song{
+  float:right;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.pag-button-prev{
+  position: relative;
+  top:150px;
+  background-color:rgba(233, 132, 14, 0.8);
+  border-color:rgba(233, 132, 14, 0.8);
+  border-radius:50%;
+
+}
+
+.carousel-content{
+  width: 100%;
+}

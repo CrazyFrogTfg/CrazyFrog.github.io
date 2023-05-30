@@ -46,7 +46,8 @@ export class DetallePlaylistComponent {
 
   async ngOnInit() {
     this.userUID = await this.userService.getUID()
-    this.playlists = await this.db.getPlaylistByUser(this.userUID)
+    this.playlists = this.db.getPlaylistByUser(this.userUID)  
+    console.log(this.playlists)
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']
@@ -54,6 +55,7 @@ export class DetallePlaylistComponent {
       const playlistRef = doc(this.firestore, "playlists", this.playlistId);
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
+      this.playlistInfo.id = this.playlistId
       this.privateChecked=this.playlistInfo.private
       const userRef = doc(this.firestore, "users", this.playlistInfo.owner);
       const userSnap = await getDoc(userRef);
@@ -80,7 +82,7 @@ export class DetallePlaylistComponent {
   async onSubmit(){
     if(this.updatePlaylist.value)
     {
-      await this.db.updatePlaylist(this.updatePlaylist.value, this.playlistInfo, this.playlistId)
+      await this.db.updatePlaylist(this.updatePlaylist.value, this.playlistInfo)
       location.reload();
     }
   }

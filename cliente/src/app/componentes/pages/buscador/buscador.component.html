@@ -14,33 +14,73 @@
     <section class="encontradoContainer">
       <div class="container">
         <h2>Artistas</h2>
-        <div class="row row-cols-auto">
-          <section class="d-flex flex-wrap col" *ngIf="cboxArtist">
-            <app-tarjeta-artista *ngFor="let artist of artists | byName:getFilterName() | slice:paginator:paginator+3" [artist]="artist"></app-tarjeta-artista>
-          </section>
+
+        <div class="carousel-container align-items-center">
+          <div class="d-flex justify-content-start">
+            <button class="btn btn-light pag-button-prev" (click)="decreasePagArtist()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="carousel-content">
+            <div class="row row-cols-auto">
+              <section class="d-flex flex-wrap col" *ngIf="cboxArtist">
+                <app-tarjeta-artista *ngFor="let artist of artists | byName:getFilterName() | slice:pagArtist:pagArtist+5" [artist]="artist"></app-tarjeta-artista>
+              </section>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-light pag-button" (click)="increasePagArtist()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+              </svg>
+            </button>
+          </div>
         </div>
-        <button (click)="increasePaginator()">+</button>
-        <button (click)="decreasePaginator()">-</button>
-      </div>
 
         <h2>Albumes</h2>
-        <section *ngIf="cboxAlbum">
+        <div class="carousel-container">
+          <button class="btn btn-light pag-button" (click)="decreasePagArtist()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </button>
+
           <div class="row row-cols-auto">
             <section class="d-flex flex-wrap col" *ngIf="cboxAlbum">
-              <app-tarjeta-album *ngFor="let album of albums | byName:getFilterName()" [album]="album" [artista]="album.artistId" ></app-tarjeta-album>
-            </section>
+              <app-tarjeta-album *ngFor="let album of albums | byName:getFilterName() | slice:pagAlbum:pagAlbum+5" [album]="album" [artista]="album.artistId" ></app-tarjeta-album>            </section>
           </div>
-        </section>
+
+          <button class="btn btn-light pag-button" (click)="increasePagArtist()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </button>
+        </div>
 
         <h2>Canciones</h2>
         <section *ngIf="cboxSong">
           <div class="container">
             <div class="row">
-                <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName()" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
+                <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName() | slice:pagSong:pagSong+10" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
             </div>
           </div>
+          <button class="btn btn-light pag-button-song" (click)="increasePagSong()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </button>
+          <button class="btn btn-light pag-button-song" (click)="decreasePagSong()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </button>
         </section>
-    </section>
+      </div>
+      </section>
 
     <section class="sidebar">
       <section class="filtrosSection">

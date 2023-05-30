@@ -38,7 +38,9 @@ export class HomeComponent {
         this.isAdmin = true
         this.userService.getAllUsers()
       }
-    this.playlists = await this.db.getPlaylistByUser(this.uid)
+    await this.db.getPlaylistByUser(this.uid).subscribe(playlists =>{
+      this.playlists = playlists
+    })
     this.artistsFav = await this.db.getArtistsFav()
     this.albumsFav = await this.db.getAlbumsFav()
   }
