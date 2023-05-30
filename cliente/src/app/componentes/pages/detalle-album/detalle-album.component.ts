@@ -53,6 +53,7 @@ export class DetalleAlbumComponent {
   }
 
   receiveSong($event:any) {
+    console.log(this.obtainedLyrics)
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
   }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
 @Component({
   selector: 'app-lyrics',
@@ -8,6 +9,15 @@ import { Component, Input } from '@angular/core';
 export class LyricsComponent {
 @Input() lyrics:any
 
-constructor(){}
+constructor(private reproductorService:ReproductorService){}
+
+ngOnInit()
+{
+  this.getLyricsFromReproductor()
+}
+getLyricsFromReproductor()
+{
+  this.lyrics = this.reproductorService.reproducing().lyrics
+}
 
 }

@@ -89,7 +89,10 @@ export class DetallePlaylistComponent {
   }
 
   obtainLyrics(lyrics:string){
+    //No llega aquí
     this.obtainedLyrics=lyrics.replace(/&#10;/g, '\n');
+    console.log(this.obtainedLyrics)
+    console.log("hola obtainLyrics detPlay")
   }
 
   getFilterName():string{

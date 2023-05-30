@@ -63,11 +63,9 @@ ngOnChanges()
 }
 
 reproduceFromBuscador() {
-  //const cancion = this.receivedSong.file;
   console.log(this.receivedSong)
   this.cancionSonando = this.receivedSong
   this.reproductorService.reproduce(this.receivedSong);
-  this.getTotalDuration()
 }
 
 reproducing()
@@ -76,7 +74,6 @@ reproducing()
 }
 
 playPausa() {
-  //const cancion = this.receivedSong.file;
   return this.reproductorService.playPausa();
 }
 
