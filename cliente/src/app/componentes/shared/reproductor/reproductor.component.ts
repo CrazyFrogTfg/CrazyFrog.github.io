@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Song } from 'src/app/interfaces/song.interface';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 
@@ -17,8 +18,28 @@ muted:boolean=false
 cancionSonando:any
 totalDuration:any
 isTotalDuration:boolean=false
+durationSong: string = '0:00';
+durationSubscription: Subscription;
 
-constructor(protected reproductorService:ReproductorService){}
+constructor(protected reproductorService:ReproductorService){
+  this.durationSubscription = this.reproductorService.duration$.subscribe(
+    (duration: number) => {
+      this.durationSong = this.convertirduration(duration);
+    }
+  );
+}
+
+ngOnDestroy() {
+  this.durationSubscription.unsubscribe();
+}
+
+convertirduration(duration: number): string {
+  const minutos = Math.floor(duration / 60);
+  const segundos = Math.floor(duration % 60);
+  const segundosFormateados = segundos < 10 ? `0${segundos}` : `${segundos}`;
+
+  return `${minutos}:${segundosFormateados}`;
+}
 
 ngOnInit()
 {

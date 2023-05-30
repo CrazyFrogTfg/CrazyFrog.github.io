@@ -33,7 +33,7 @@
     <section class="infoCancion">
       <p *ngIf="!cancionSonando">No hay canción en el reproductor</p>
       <p *ngIf="cancionSonando">{{cancionSonando.name}}</p>
-      <p *ngIf="isTotalDuration">duracion: (cancion anterior){{totalDuration}}</p>
+      <p>{{durationSong}}</p>
     </section>
     <section class="time-line">
       <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.totalDuration">

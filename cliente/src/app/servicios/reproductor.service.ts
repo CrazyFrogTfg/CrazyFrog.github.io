@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable,  } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ReproductorService {
   songs:any[]=[]
   cancionSonando:any
   volumeLocal:number
+  private durationSubject: Subject<number> = new Subject<number>();
+  public duration$: Observable<number> = this.durationSubject.asObservable();
 
   constructor() {
     this.audioElement = new Audio();
@@ -20,8 +23,8 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      this.totalDuration = this.audioElement.duration
-      console.log("Duracion total: "+this.totalDuration)
+      const totalDuration = this.audioElement.duration;
+      this.durationSubject.next(totalDuration);
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -63,7 +66,7 @@ export class ReproductorService {
 
     this.songs = songs;
     const index = this.songs.findIndex(song => song.file == reproduciendo);
-    
+
     if (index !== -1) {
       this.sonando = index;
       this.reproducir(this.songs[index]);
@@ -149,7 +152,7 @@ export class ReproductorService {
   }
 
   handleSongEnd()
-  { 
+  {
     this.nextSong()
   }
 
