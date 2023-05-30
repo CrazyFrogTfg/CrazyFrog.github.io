@@ -53,24 +53,12 @@ export class TarjetaCancionComponent {
   }
 
   reproducir(){
-    if(this.urlAlbum)
+    if(this.urlAlbum || this.urlPlaylist)
     {
-      //Reproducir como playlist
-      console.log("estas en playlist o en det album")
-      this.sendSongOrder.emit(this.song.order-1);
+      this.sendLyrics.emit(this.song.lyrics)
+      this.sendSong.emit(this.song);
     }else{
-      if(this.urlPlaylist)
-      {
         this.sendSong.emit(this.song);
-
-      }else{
-        //Reproducir como cancion
-        console.log(this.song)
-        this.reproduciendo = this.song
-        this.sendLyrics.emit(this.song.lyrics)
-        this.sendSong.emit(this.song);
-
-      }
     }
   }
 

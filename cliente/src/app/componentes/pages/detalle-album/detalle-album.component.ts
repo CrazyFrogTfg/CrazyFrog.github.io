@@ -24,7 +24,7 @@ export class DetalleAlbumComponent {
   albumId:string = ""
   isAdmin:boolean = false
   songs: Song[] = []
-  sendedSong:string = ""
+  sendedSong:any
   iteraciones:number=0;
   query:string=""
   edit:boolean=false
@@ -54,6 +54,11 @@ export class DetalleAlbumComponent {
 
   receiveSong($event:any) {
     this.sendedSong = $event;
+    this.reproduceAlbum(this.songs, this.sendedSong.order-1)
+  }
+  reproduceAlbum(playlist:any, songOrder:number)
+  {
+    this.reproductorService.reproducePlaylist(playlist, songOrder)
   }
 
   ngOnChanges()
@@ -102,16 +107,6 @@ export class DetalleAlbumComponent {
       this.router.navigate(['/home'])
     }
   }
-
-  receiveSongOrder(songOrder:any)
-  {
-    this.reproduceAlbum(this.songs, songOrder)
-  }
-  reproduceAlbum(playlist:any, songOrder:number)
-  {
-    this.reproductorService.reproducePlaylist(playlist, songOrder)
-  }
-
 
   setFile($event:any){
     this.file = $event

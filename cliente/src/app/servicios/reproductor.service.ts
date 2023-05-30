@@ -45,18 +45,25 @@ export class ReproductorService {
     this.getTotalDuration()
   }
 
+  reproduceFromBuscador(song:any) {
+    this.songs=[]
+    this.songPlaying = song;
+    this.audioElement.src = this.songPlaying.file;
+    this.audioElement.play();
+    this.isPaused=false
+  }
+
   reproduce(song:any) {
     this.songPlaying = song;
     this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
     this.isPaused=false
-    //Falta enviar la cancion al compReproductor para actualizar nombre etc etc
-    return this.getTotalDuration()
   }
 
   reproducePlaylist(songs: any[], songOrder: number) {
     this.songs = songs;
     this.positionPlaying=songOrder
+    this.songPlaying=this.songs[songOrder]
     this.reproduce(this.songs[songOrder]);
   }
 
@@ -90,6 +97,7 @@ export class ReproductorService {
       this.reproduce(this.songs[this.positionPlaying])
       return this.songs[this.positionPlaying]
     }
+    return this.songs[this.positionPlaying]
   }
 
   nextSong(){
@@ -99,6 +107,7 @@ export class ReproductorService {
       this.reproduce(this.songs[this.positionPlaying])
       return this.songs[this.positionPlaying]
     }
+    return this.songs[this.positionPlaying]
   }
 
   updateVolume(volume:any) {

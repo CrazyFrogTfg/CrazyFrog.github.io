@@ -70,12 +70,6 @@ reproduceFromBuscador() {
   this.getTotalDuration()
 }
 
-// reproducirPlaylist() {
-//   // const songs = this.songsToPlay
-//   // this.reproductorService.reproducirsongsToPlay(songs);
-//   this.reproductorService.reproducePlaylist(this.songsToPlay, this.receivedSong);
-// }
-
 reproducing()
 {
   this.cancionSonando = this.reproductorService.reproducing()
