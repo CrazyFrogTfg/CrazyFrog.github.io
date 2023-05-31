@@ -5,6 +5,13 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
+.carousel-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
 
 .buscadorInput{
     width: 60%;
@@ -107,6 +114,7 @@ h2{
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
+
 }
 
 .pag-button-next:hover, .pag-button-prev:hover, .pag-button-song:hover{

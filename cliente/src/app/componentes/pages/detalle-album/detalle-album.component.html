@@ -5,8 +5,9 @@
   <div class="album-nombre">
     <div *ngIf="!edit">
       <div class="d-flex align-items-center">
-        <h1> {{albumInfo.name }} </h1>
+        <h1> {{albumInfo.name| slice:0:15}} </h1>
       </div>
+      <h1> {{albumInfo.name| slice:15}} </h1>
       <h5> {{albumInfo.year}} </h5>
       <button class="btn btn-fav" (click)="setAlbumFav()" *ngIf="!isAlbumFav() && !edit">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">
