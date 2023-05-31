@@ -21,41 +21,16 @@
     justify-content: space-around;
 }
 
-check-input:checked{
+.black-checkbox:checked{
   background-color: black;
-}
-.black-checkbox {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #000;
-  background-color: #000;
-  border-radius: 3px;
-  outline: none;
+  --bs-check-indicator-color:
 }
 
-.black-checkbox:checked {
-  background-color: #000;
+.form-check-input:checked{
+  background-color: black;
+  --bs-check-indicator-color:
 }
 
-.black-checkbox::after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.black-checkbox:checked::after {
-  display: block;
-  width: 5px;
-  height: 10px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  margin-top: 0.3px;
-  margin-left: 4px;
-}
 
 .filtrosSection{
     background-color: #e9840e;
@@ -113,6 +88,9 @@ h2{
   margin-right: 5px;
   margin-bottom: 15px;
   margin-top: 15px;
+  background-color:rgba(233, 132, 14, 0.8);
+  border-color:rgba(233, 132, 14, 0.8);
+  border-radius:50%;
 }
 
 .pag-button-prev{
@@ -129,6 +107,11 @@ h2{
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
+}
+
+.pag-button-next:hover, .pag-button-prev:hover, .pag-button-song:hover{
+  background-color:rgba(233, 131, 14, 1);
+  border-color:rgba(233, 132, 14, 1);
 }
 
 .carousel-content{
