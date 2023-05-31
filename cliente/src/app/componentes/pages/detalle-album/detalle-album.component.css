@@ -102,7 +102,9 @@ h1, h5 {
 .bnt:hover > .icon-wrapper .icon path {
   stroke: black;
 }
-
+.admin{
+  margin-bottom: 20px;
+}
 .paragraph {
   color: black;
   visibility: hidden;
