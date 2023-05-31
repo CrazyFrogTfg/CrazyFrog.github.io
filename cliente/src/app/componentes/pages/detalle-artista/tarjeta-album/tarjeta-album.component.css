@@ -13,6 +13,7 @@
 img{
   height: 200px;
   width: 200px;
+  padding-bottom: 15px;
 }
 
 h1, h5 {
@@ -71,7 +72,7 @@ label{
 
 .btn-fav{
   color:white;
-  
+
 }
 
 .heart-svg:hover {
@@ -80,6 +81,18 @@ label{
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.album-container{
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top:2%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 15px;
+  text-align: center;
 }
 
 @keyframes pulse {

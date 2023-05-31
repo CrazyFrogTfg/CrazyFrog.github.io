@@ -33,6 +33,10 @@
   margin-left:15px;
 }
 
+.playlist:hover{
+  background-color: rgba(231, 230, 229, 0.6);
+}
+
 .admin-button {
   cursor: pointer;
   width: 50px;
