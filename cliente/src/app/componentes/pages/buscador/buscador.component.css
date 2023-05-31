@@ -42,14 +42,16 @@
 .filtrosSection{
     background-color: #e9840e;
     margin-right: 45px;
-    width: 90%;
-    height: 300px;
+    width: 100%;
+    height: 150px;
     padding-left: 35px;
-    padding-top: 10px;
+    padding-top: 20px;
     border-radius: 10px;
+    
 }
 
 .filtrosSection>p{
+    margin-top: 10px;
     color: green;
 }
 h2{
@@ -66,7 +68,6 @@ h2{
   font-size: 16px;
   padding: 0.7em 1.4em 0.7em 1.1em;
   color: white;
-  background: #ad5389;
   background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
   border: none;
   box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
@@ -125,3 +126,4 @@ h2{
 .carousel-content{
   width: 100%;
 }
+
