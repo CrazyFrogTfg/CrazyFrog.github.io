@@ -39,6 +39,7 @@ async ngOnInit()
 }
 
 onSubmit(){
+  
 }
 
 toggleEdit(){
@@ -57,6 +58,18 @@ async deleteAlbum(album:Album){
     this.db.deleteAlbum(album.id)
     //this.router.navigate(['/buscador']);
   //}
+}
+
+truncateTitle(title: string, maxLength: number): string {
+  if (title.length <= maxLength) {
+    return title;
+  } else {
+    let truncatedTitle = title.slice(0, maxLength);
+    if (truncatedTitle.charAt(maxLength - 1) === ' ') {
+      truncatedTitle = truncatedTitle.slice(0, maxLength - 1);
+    }
+    return truncatedTitle + '...';
+  }
 }
 
 async goToDetails(album: any) {

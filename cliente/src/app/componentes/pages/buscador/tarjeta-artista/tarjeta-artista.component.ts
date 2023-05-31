@@ -37,6 +37,7 @@ export class TarjetaArtistaComponent {
   isArtistFav(){
     return this.db.isArtistFav(this.artist.id)
   }
+  
 }
 
 

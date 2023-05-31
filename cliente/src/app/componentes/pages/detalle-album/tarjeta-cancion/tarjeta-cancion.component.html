@@ -11,7 +11,7 @@
         </svg>
       </button>
       <ul class="dropdown-menu">
-        <li class="playlist" *ngFor="let p of playlists" (click)="addSongToPlaylist(p)"> {{p.name}}</li>
+        <button class="playlist btn" *ngFor="let p of playlists" (click)="addSongToPlaylist(p)"> {{p.name}}</button>
       </ul>
     </div>
 

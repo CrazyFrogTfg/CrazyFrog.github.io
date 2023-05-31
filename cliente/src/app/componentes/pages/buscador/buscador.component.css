@@ -117,11 +117,18 @@ h2{
 
 .pag-button-prev{
   position: relative;
-  top:150px;
+  top:110px;
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
+}
 
+.pag-button-next{
+  position: relative;
+  bottom:215px;
+  background-color:rgba(233, 132, 14, 0.8);
+  border-color:rgba(233, 132, 14, 0.8);
+  border-radius:50%;
 }
 
 .carousel-content{

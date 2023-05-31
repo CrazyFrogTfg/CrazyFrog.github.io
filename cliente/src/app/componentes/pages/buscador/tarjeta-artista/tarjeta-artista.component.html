@@ -3,6 +3,7 @@
   <div (click)="goToDetails()" class="cardArtista">
     <img class="card-img-top img-fluid" [src]="artist.image" alt="IMAGEN ARTISTA">
     <h5 class="card-title">{{artist.name}}</h5>
+    <p class="card-subtitle">-</p>
   </div>
   <button class="btn btn-fav" (click)="setArtistFav()" *ngIf="!isArtistFav()">
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">

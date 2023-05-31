@@ -1,10 +1,9 @@
-<div class="col" >
-    <div class="card custom-card">
+<div class="album-container">
+    <div class="cardAlbum">
       <div class="card-body" *ngIf="!edit" (click)="goToDetails(album)">
         <img *ngIf="album.image" [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top img-fluid">
         <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-        <h5 class="card-title">{{album.name | slice:0:15}}</h5>
-        <h5 class="card-title">{{album.name | slice:15}}</h5>
+        <h5 class="card-title">{{ truncateTitle(album.name, 15) }}</h5>
         <p class="card-subtitle">{{album.year}}</p>
       </div>
       <button class="btn btn-fav" (click)="setAlbumFav()" *ngIf="!isAlbumFav() && !edit">
