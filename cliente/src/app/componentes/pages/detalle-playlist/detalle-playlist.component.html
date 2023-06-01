@@ -1,12 +1,14 @@
+<h1>{{title}}</h1>
 <app-navbar></app-navbar>
 <app-spinner *ngIf="!owner"></app-spinner>
 <section class="playlistDisp" *ngIf="owner">
   <img class="playlist-img" [src]="playlistInfo.image">
   <div class="playlist-nombre">
+    Actualizar div class="playlist-nombre"
   </div>
 
-  <div class="d-flex justify-content-between">
-    <div></div>
+  <div class="d-flex justify-content-between" >
+    
     <div>
       <h1 *ngIf="!edit" (click)="reproducirPlaylist()"> {{playlistInfo.name}} </h1>
       <p *ngIf="playlistInfo.private && !edit">Privada</p>
@@ -18,17 +20,17 @@
            <input type="text" class="form-control" #namePlaylist id="namePlaylist" placeholder="{{playlistInfo.name}}" formControlName="name">
          </div>
          <div class="form-check">
-           <input class="form-check-input" [(ngModel)]="privateChecked" type="checkbox" formControlName="private" >
+           <input class="form-check-input" #privateCheck type="checkbox" formControlName="private" >
            <label class="form-check-label" for="flexCheckDefault">
              Privada
            </label>
         </div>
-         <button type="submit" [disabled]="(namePlaylist.value.length<1)" class="btn btn-dark">ACTUALIZAR</button>
+         <button type="submit" [disabled]="(namePlaylist.value.length === 0 && privateCheck.checked === playlistInfo.private )" class="btn btn-dark">ACTUALIZAR</button>
          <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCELAR</button>
        </form>
      </div>
 
-      <button class="btn btn-light admin-button" *ngIf="!edit" (click)="toggleEdit()">
+      <button class="btn btn-light admin-button" *ngIf="!edit && isMyPlaylist" (click)="toggleEdit()">
         <p class="paragraph"> editar </p>
           <span class="icon-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -38,12 +40,10 @@
           </span>
       </button>
 
-
-
       <h5> Creada por: {{owner}} <img  class="img-owner" [src]="imageOwner"></h5>
     </div>
 
-    <div class="divBuscador">
+    <div class="divBuscador" *ngIf="isVisible">
       <button class="btn" (click)="setFilterName(search.value)">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="isVisible">
     <div class="row">
       <div class="col-md-9">
         <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"

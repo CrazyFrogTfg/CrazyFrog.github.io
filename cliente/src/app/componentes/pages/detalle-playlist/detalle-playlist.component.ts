@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
   styleUrls: ['./detalle-playlist.component.css']
 })
 export class DetallePlaylistComponent {
+  @Input() title:any
   @Output() messageEvent = new EventEmitter<any>();
   @ViewChild(TarjetaCancionComponent) cancion:any
 
@@ -28,6 +29,7 @@ export class DetallePlaylistComponent {
   owner:string = ""
   imageOwner:string = ""
   isVisible:boolean = false
+  isMyPlaylist:boolean = false
   query:string=""
   playlists:any
   userUID:string = ""
@@ -57,7 +59,10 @@ export class DetallePlaylistComponent {
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
       this.playlistInfo.id = this.playlistId
-      this.privateChecked=this.playlistInfo.private
+      console.log(this.playlistInfo.private)
+      //var private for form edit Playlist actualized by info playlist
+      this.updatePlaylist.controls['private'].setValue(this.playlistInfo.private)
+
       const userRef = doc(this.firestore, "users", this.playlistInfo.owner);
       const userSnap = await getDoc(userRef);
       this.owner = userSnap.data()?.['username'];
@@ -76,8 +81,8 @@ export class DetallePlaylistComponent {
           };
           this.songs.push(song);
         });
+        this.visibility()
       });
-      await this.visibility()
   }
 
   async onSubmit(){
@@ -89,10 +94,7 @@ export class DetallePlaylistComponent {
   }
 
   obtainLyrics(lyrics:string){
-    //No llega aquí
     this.obtainedLyrics=lyrics.replace(/&#10;/g, '\n');
-    console.log(this.obtainedLyrics)
-    console.log("hola obtainLyrics detPlay")
   }
 
   getFilterName():string{
@@ -106,15 +108,13 @@ export class DetallePlaylistComponent {
     this.reproducePlaylist()
   }
 
-  async visibility(){
-    if(await this.userService.getUID() == this.playlistInfo.owner){
+  visibility(){
+    if(this.userUID == this.playlistInfo.owner){
+      this.isMyPlaylist = true
       this.isVisible = true
     } else {
-      if(this.playlistInfo.privada == false){
+      if(this.playlistInfo.private == false)
         this.isVisible = true
-      } else {
-        this.isVisible = false
-      }
     }
   }
 
@@ -131,7 +131,7 @@ export class DetallePlaylistComponent {
   reproducirPlaylist(){
     console.log("click en nombre playlist. Pero no se envia al servicio")
     console.log(this.songs)
-    window.confirm("linea 124 detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
+    window.confirm("funcion reproducirPlaylist de detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
     this.reproductorService.reproducePlaylist(this.songs, this.sendedSong)
     this.messageEvent.emit(this.songs);
   }
