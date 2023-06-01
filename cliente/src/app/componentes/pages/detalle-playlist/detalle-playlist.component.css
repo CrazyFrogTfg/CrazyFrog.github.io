@@ -1,29 +1,17 @@
-.playlist-nombre {
-    grid-column: 5 / span 4;
-  }
-
   h1, h5 {
     color:white;
     margin-bottom: 15px;
-    width: 600px;
+    margin-right: 10px;
   }
 
   .playlistDisp {
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
+    margin: 40px 30px;
   }
 
   .divBuscador {
-    grid-column: 9 / span 4;
     display: flex;
     align-items: center;
-  }
-
-  .img-owner{
-    width: 30px;
-    height: 30px;
-    border-radius:50%;
+    justify-content: center;
   }
 
   .lupa {
@@ -37,6 +25,12 @@
     width: 400px;
     border-radius: 10px;
     flex-grow: 1;
+  }
+
+  .img-owner{
+    width: 30px;
+    height: 30px;
+    border-radius:50%;
   }
 
   .container{
@@ -100,9 +94,10 @@
     -ms-flex-pack: center;
     justify-content: space-between;
     margin-right:4px;
+    margin-bottom: 10px;
   }
-  
-  
+
+
 .container {
   margin-top: 10px;
 }
@@ -180,22 +175,15 @@ label{
   --button-diameter: 36px;
   --button-outline-width: 1px;
   --button-outline-color: rgb(17, 17, 17);
-  /* tooltip */
   --tooltip-bg: #f4f3f3;
   --toolptip-border-radius: 4px;
   --tooltip-font-family: Menlo, Roboto Mono, monospace;
-  /* 👆 this field should not be empty */
   --tooltip-font-size: 12px;
-  /* 👆 this field should not be empty */
   --tootip-text-color: rgb(14, 14, 14);
   --tooltip-padding-x: 7px;
   --tooltip-padding-y: 7px;
   --tooltip-offset: 8px;
   margin-bottom: 10px;
-  /* --tooltip-transition-duration: 0.3s; */
-  /* 👆 if you need a transition, 
-  just remove the comment,
-  but I didn't like the transition :| */
 }
 
 .copy {
@@ -291,22 +279,6 @@ label{
 }
 
   @media (max-width: 768px) {
-    .playlistDisp {
-      grid-template-columns: repeat(8, 1fr);
-    }
-
-    .playlist-img {
-      grid-column: 1 / span 4;
-    }
-
-    .playlist-nombre {
-      grid-column: 5 / span 4;
-    }
-
-    .divBuscador {
-      grid-column: 1 / span 8;
-    }
-
     .buscador {
       width: 100%;
       max-width: 400px;

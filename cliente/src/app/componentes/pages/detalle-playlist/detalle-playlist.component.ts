@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 import { Renderer2 } from '@angular/core';
+import { User } from 'src/app/interfaces/user.interface';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class DetallePlaylistComponent {
   playlistInfo:any = []
   songs: Song[] = []
   sendedSong:any
-  owner:string = ""
+  owner:any
   imageOwner:string = ""
   isVisible:boolean = false
   isMyPlaylist:boolean = false
@@ -49,7 +50,7 @@ export class DetallePlaylistComponent {
 
   async ngOnInit() {
     this.userUID = await this.userService.getUID()
-    this.playlists = this.db.getPlaylistByUser(this.userUID)  
+    this.playlists = this.db.getPlaylistByUser(this.userUID)
     console.log(this.playlists)
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
@@ -59,14 +60,11 @@ export class DetallePlaylistComponent {
       const playlistSnap = await getDoc(playlistRef);
       this.playlistInfo = playlistSnap.data();
       this.playlistInfo.id = this.playlistId
-      console.log(this.playlistInfo.private)
       //var private for form edit Playlist actualized by info playlist
       this.updatePlaylist.controls['private'].setValue(this.playlistInfo.private)
-
       const userRef = doc(this.firestore, "users", this.playlistInfo.owner);
       const userSnap = await getDoc(userRef);
-      this.owner = userSnap.data()?.['username'];
-      this.imageOwner = userSnap.data()?.['imageProfile'];
+      this.owner = userSnap.data()
       const songsRef = collection(this.firestore, "playlists", this.playlistId, "songs");
       const songsSnapshot = await getDocs(songsRef);
         songsSnapshot.forEach((songDoc) => {
