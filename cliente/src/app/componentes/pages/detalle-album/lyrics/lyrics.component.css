@@ -1,5 +1,5 @@
 .lyrics-container {
-  width: 350px; /* Tamaño fijo del contenedor */
+  width: 100%; /* Tamaño fijo del contenedor */
   height: 400px; /* Tamaño fijo del contenedor */
   overflow: auto; /* Habilitar el scroll si el contenido excede las dimensiones */
   border: 2px solid #ccc; /* Borde opcional para resaltar el contenedor */
