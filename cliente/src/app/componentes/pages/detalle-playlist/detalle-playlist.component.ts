@@ -10,6 +10,7 @@ import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
+import { Renderer2 } from '@angular/core';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class DetallePlaylistComponent {
   privateChecked:boolean=false
   obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
 
-  constructor(private route: ActivatedRoute,private router:Router,
+  constructor(private route: ActivatedRoute,private renderer: Renderer2,private router:Router,
     private firestore: Firestore,private userService:UsuariosService,
     private fireStorage:FireStorageService, private db:DbService, private reproductorService:ReproductorService){
       this.updatePlaylist = new FormGroup({
@@ -133,6 +134,16 @@ export class DetallePlaylistComponent {
     window.confirm("funcion reproducirPlaylist de detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
     this.reproductorService.reproducePlaylist(this.songs, this.sendedSong)
     this.messageEvent.emit(this.songs);
+  }
+
+  copyUrlToClipboard() {
+    const url = window.location.href;
+    const inputElement = this.renderer.createElement('input');
+    this.renderer.setAttribute(inputElement, 'value', url);
+    this.renderer.appendChild(document.body, inputElement);
+    inputElement.select();
+    document.execCommand('copy');
+    this.renderer.removeChild(document.body, inputElement);
   }
 
 }
