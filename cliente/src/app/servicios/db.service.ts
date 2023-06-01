@@ -52,6 +52,13 @@ export class DbService {
     return collectionData(artistaRef, { idField: 'id'}) as Observable<Artist[]>;
   }
 
+  async getArtistByUID(artistId: string) {
+    const artistRef = doc(this.firestore, 'artists', artistId);
+    const artistSnapshot = await getDoc(artistRef);
+    const artist = artistSnapshot.data();
+    if (artist) return artist['name'];
+  }
+
   async updateArtist(artistId:any, artist:Artist, oldArtist:Artist, file:any){
     const artistaRef = doc(this.firestore, 'artists', artistId);
         //Actualizamos Nombre artista si ha cambiado

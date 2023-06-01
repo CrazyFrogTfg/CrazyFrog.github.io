@@ -4,10 +4,7 @@ h1, h5 {
 }
 
 .artistaDisp {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  grid-gap: 10px;
+  display: flex;
   margin: 20px 20px;
 }
 
@@ -17,20 +14,21 @@ h1, h5 {
 }
 
 .artista-img {
-  grid-column: 2 / span 3;
   width: 200px;
   height: 200px;
   padding-bottom: 20px;
+  margin-left: 5%;
 }
 
 .artista-nombre {
-  grid-column: 5 / span 4;
+  margin-left: 10%;
 }
 
 .divBuscador {
-  grid-column: 9 / span 4;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
 }
 
 .lupa {
@@ -48,6 +46,7 @@ h1, h5 {
 
 .container{
   margin-top: 5%;
+  margin-bottom: 2%;
 }
 
 .admin-button {
@@ -72,10 +71,6 @@ h1, h5 {
   -ms-flex-pack: center;
   justify-content: space-between;
   margin-right:4px;
-}
-
-.container {
-  margin-top: 10px;
 }
 
 .admin-button:hover {

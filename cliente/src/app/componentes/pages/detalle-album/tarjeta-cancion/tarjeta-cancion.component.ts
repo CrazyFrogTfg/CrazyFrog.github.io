@@ -27,6 +27,7 @@ export class TarjetaCancionComponent {
   urlPlaylist:boolean=false
   urlAlbum:boolean=false
   letraPrueba:string="letraPrueba"
+  artistName:string = ""
 
   constructor(private userService:UsuariosService, private db:DbService, private router:Router){
     this.updateSong = new FormGroup({
@@ -41,7 +42,7 @@ export class TarjetaCancionComponent {
     this.db.getPlaylistByUser(this.userUID).subscribe(playlists =>{
       this.playlists = playlists
     })
-
+    this.artistName = await this.db.getArtistByUID(this.song.artistId)
   }
 
   ngAfterViewInit()

@@ -4,7 +4,14 @@
 }
 
 .buttons{
-  width:85px;
+  width:15%;
+}
+
+h5{
+  width: 70%;
+  font-size: 20px;
+  height: 40px;
+  padding-top: 3%;
 }
 
 .btn {
@@ -28,9 +35,4 @@
   fill: black;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 

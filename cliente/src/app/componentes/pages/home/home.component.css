@@ -17,15 +17,16 @@ h3{
 }
 
 .divBuscador{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .buscador{
-    height: 40px;
-    width: 400px;
-    border-radius: 10px;
+  height: 40px;
+  width: 400px;
+  border-radius: 10px;
+  flex-grow: 0.6;
 }
 
 .home-container{
@@ -33,9 +34,14 @@ h3{
 }
 
 .addPlaylist{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.playlist-list{
+  margin: 0 auto;
+  margin-bottom: 2%;
 }
 
 .btn:hover svg {
