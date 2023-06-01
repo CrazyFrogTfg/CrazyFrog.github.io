@@ -18,7 +18,6 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
   styleUrls: ['./detalle-playlist.component.css']
 })
 export class DetallePlaylistComponent {
-  @Input() title:any
   @Output() messageEvent = new EventEmitter<any>();
   @ViewChild(TarjetaCancionComponent) cancion:any
 
