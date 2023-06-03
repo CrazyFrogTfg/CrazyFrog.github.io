@@ -73,28 +73,28 @@ export class BuscadorComponent {
   //   }
 
   increasePagArtist(){
-    if(this.filteredArtistsLength == 0 && this.artists.length>5 && this.pagArtist+1<=this.artists.length-5)
-      this.pagArtist= this.pagArtist+5
-    if(this.filteredArtistsLength>5 && this.pagArtist+1<=this.filteredArtistsLength-5)
-      this.pagArtist= this.pagArtist+5
+    if(this.filteredArtistsLength == 0 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
+      this.pagArtist= this.pagArtist+4
+    if(this.filteredArtistsLength>4 && this.pagArtist+1<=this.filteredArtistsLength-4)
+      this.pagArtist= this.pagArtist+4
   }
 
   decreasePagArtist(){
-    if(this.pagArtist+1>5)
-    this.pagArtist= this.pagArtist-5
+    if(this.pagArtist+1>4)
+    this.pagArtist= this.pagArtist-4
     console.log("paginator: "+this.pagArtist)
   }
 
   increasePagAlbum(){
-    if(this.filteredAlbumsLength == 0 && this.albums.length>5 && this.pagAlbum+1<=this.albums.length-5)
-      this.pagAlbum= this.pagAlbum+5
-    if(this.filteredAlbumsLength>5 && this.pagAlbum+1<=this.filteredAlbumsLength-5)
-      this.pagAlbum= this.pagAlbum+5
+    if(this.filteredAlbumsLength == 0 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
+      this.pagAlbum= this.pagAlbum+4
+    if(this.filteredAlbumsLength>4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
+      this.pagAlbum= this.pagAlbum+4
   }
 
   decreasePagAlbum(){
-    if(this.pagAlbum+1>5)
-    this.pagAlbum= this.pagAlbum-5
+    if(this.pagAlbum+1>4)
+    this.pagAlbum= this.pagAlbum-4
     console.log("paginator: "+this.pagAlbum)
 
   }

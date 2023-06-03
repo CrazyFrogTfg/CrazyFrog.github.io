@@ -98,6 +98,7 @@ export class UsuariosService {
       const q = query(collection(this.firestore, "users"), where("email", "==", email))
       const querySnapshots = await getDocs(q)
       this.userInfo = querySnapshots.docs[0].data()
+      this.userInfo.id = querySnapshots.docs[0].id
       return this.userInfo
     }
   }

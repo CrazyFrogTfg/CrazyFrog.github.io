@@ -37,7 +37,7 @@ export class DetallePlaylistComponent {
   edit:boolean=false
   updatePlaylist:FormGroup
   privateChecked:boolean=false
-  obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
+  obtainedLyrics:string="Aquí aparecerá la letra de la canción que selecciones"
 
   constructor(private route: ActivatedRoute,private renderer: Renderer2,private router:Router,
     private firestore: Firestore,private userService:UsuariosService,

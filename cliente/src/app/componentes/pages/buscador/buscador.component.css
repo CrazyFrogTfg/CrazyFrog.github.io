@@ -47,12 +47,13 @@
     padding-left: 35px;
     padding-top: 20px;
     border-radius: 10px;
-    
+
 }
 
 .filtrosSection>p{
     margin-top: 10px;
     color: green;
+    position:fixed;
 }
 h2{
     margin-bottom: 20px;
@@ -115,7 +116,6 @@ h2{
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
-
 }
 
 .pag-button-next:hover, .pag-button-prev:hover, .pag-button-song:hover{
@@ -125,5 +125,26 @@ h2{
 
 .carousel-content{
   width: 100%;
+}
+
+@media (max-width: 769px){
+  .pag-button-prev{
+    top:290px;
+  }
+
+  .pag-button-next{
+    bottom:370px;
+  }
+  
+}
+
+@media (max-width: 450px){
+  .pag-button-prev{
+    top:608px;
+  }
+
+  .pag-button-next{
+    bottom:718px;
+  }
 }
 

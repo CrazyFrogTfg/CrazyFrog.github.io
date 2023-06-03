@@ -5,12 +5,12 @@
   <section class="homeDisp">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-sm-6 d-flex justify-content-center mb-3">
+        <div class="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-center mb-3">
           <img class="profile-img2" [src]="userInfo.imageProfile" alt="alt">
         </div>
-        <div class="col-md-10 col-sm-6 welcome">
+        <div class="col-lg-10 col-md-8 col-sm-6 welcome">
           <h1>
-            Bienvenido a <strong>MediaFrog</strong>,<br/>
+            Bienvenido a MediaFrog,<br/>
             {{userInfo.username}}
             <h3>¿Qué te apetece escuchar hoy?</h3>
           </h1>
@@ -86,8 +86,4 @@
   </section>
 </section>
 <app-reproductor></app-reproductor>
-<!-- <button (click)="reproducir()">Cansionsitalalal</button>
-<audio *ngIf="{miaudio}" controls src={{miaudio}} type="audio/mp3" ngClass="{'invisible': !isVisible, 'visible': isVisible}">
-  Your browser does not support the <code>audio</code> element.
-</audio> -->
 

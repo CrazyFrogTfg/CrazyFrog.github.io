@@ -59,7 +59,7 @@
 
   <div class="container-fluid" *ngIf="isVisible">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-9 col-sm-12">
         <div class="divBuscador">
           <button class="btn" (click)="setFilterName(search.value)">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
@@ -72,7 +72,7 @@
         [playlists] = "playlists" [playlist] = "playlistId" (sendLyrics)="obtainLyrics($event)"
         (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-12">
         <app-lyrics [lyrics]="obtainedLyrics"></app-lyrics>
       </div>
     </div>

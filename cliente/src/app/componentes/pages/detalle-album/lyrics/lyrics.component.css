@@ -4,7 +4,7 @@
   overflow: auto; /* Habilitar el scroll si el contenido excede las dimensiones */
   border: 2px solid #ccc; /* Borde opcional para resaltar el contenedor */
   border-radius: 10px;
-  margin-left: 7%;
+  margin-left: 2%;
   margin-top: 5%;
 }
 

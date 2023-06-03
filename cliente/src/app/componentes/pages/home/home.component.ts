@@ -16,11 +16,8 @@ import { Album } from 'src/app/interfaces/album.interface';
 
 export class HomeComponent {
 
-  miaudio:any
-  isVisible = false;
   userInfo:any
   isAdmin:boolean = false
-  uid:string = ""
   playlists:Playlist[] = []
   artistsFav:Artist[] = []
   albumsFav:Album[] = []
@@ -33,21 +30,15 @@ export class HomeComponent {
     this.artistsFav=[]
     this.albumsFav=[]
     this.userInfo = await this.userService.getUserInfo()
-    this.uid = await this.userService.getUID()
       if(this.userInfo.admin) {
         this.isAdmin = true
         this.userService.getAllUsers()
       }
-    await this.db.getPlaylistByUser(this.uid).subscribe(playlists =>{
+    this.db.getPlaylistByUser(this.userInfo.id).subscribe(playlists =>{
       this.playlists = playlists
     })
     this.artistsFav = await this.db.getArtistsFav()
     this.albumsFav = await this.db.getAlbumsFav()
-  }
-
-  reproducir() {
-    this.miaudio = '../../../assets/Amazing_Harmonica_Street_Musician_192_kbps.mp3';
-    this.isVisible = true;
   }
 
   getFilterName():string{
@@ -62,13 +53,13 @@ export class HomeComponent {
     this.router.navigate(['/newplaylist']);
   }
 
-  getAlbumsFav():Array<any>{
+  getAlbumsFav():Array<Album>{
     if(this.albumsFav)
     return this.albumsFav
     else return []
   }
 
-  getArtistsFav():Array<any>{
+  getArtistsFav():Array<Artist>{
     if(this.artistsFav)
     return this.artistsFav
     else return []

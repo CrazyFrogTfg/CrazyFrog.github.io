@@ -34,7 +34,7 @@ export class DetalleAlbumComponent {
   isFile:boolean=false
   playlists:any
   userUID:string = ""
-  obtainedLyrics:string="¿Aún no has seleccionado ninguna canción? ¡Clica en su título!"
+  obtainedLyrics:string="Aquí aparecerá la letra de la canción que selecciones"
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService, private title:Title)
