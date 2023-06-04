@@ -97,6 +97,16 @@ h1, h2, h3 {
   cursor: pointer;
 }
 
+.modal-title{
+  color:black;
+}
+
+.modal-text{
+  color: black;
+  font-family: Poppins;
+  font-size: 20px;
+}
+
 @keyframes blink {
   0% {
     background-color: white;
