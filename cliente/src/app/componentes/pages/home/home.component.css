@@ -39,11 +39,6 @@ h3{
   flex-direction: column;
 }
 
-.playlist-list{
-  margin: 0 auto;
-  margin-bottom: 6%;
-}
-
 .btn:hover svg {
   fill: #E9840E;
 }
@@ -61,6 +56,10 @@ h1, h2, h3 {
 
 .header-playlist{
   margin-bottom: 55px;
+}
+
+.playlist-list{
+  
 }
 
 .favs{
