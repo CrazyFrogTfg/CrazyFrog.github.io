@@ -16,6 +16,7 @@ export class ReproductorService {
   volumeLocal:number
   randomize:boolean=false
   rangeDuration:number = 0
+  loopMode:boolean=false
 
   constructor() {
     this.audioElement = new Audio();
@@ -50,9 +51,11 @@ export class ReproductorService {
 
   randomization()
   {
-    this.randomize = !this.randomize
-    console.log("random : " + this.randomize)
-    return this.randomize
+    return this.randomize = !this.randomize
+  }
+  toggleLoopMode()
+  {
+    return this.loopMode = !this.loopMode
   }
 
 reproduce(song:any) {
@@ -62,7 +65,8 @@ reproduce(song:any) {
     }
     this.songPlaying = song;
     this.audioElement.src = this.songPlaying.file;
-    this.audioElement.play();
+    //El timeout es para evitar un error de consola por "falta de tiempo" para load la canción mp3.
+    setTimeout( () => this.audioElement.play(), 1)
     this.isPaused=false
 }
 
@@ -75,10 +79,10 @@ reproduce(song:any) {
   }
 
 //Funcion que devuelve la cancion que esta sonando
-  reproducing()
-  {
-    return this.songPlaying
-  }
+  // reproducing()
+  // {
+  //   return this.songPlaying
+  // }
 
   playPausa():boolean {
       if (this.audioElement.paused) {
@@ -114,37 +118,32 @@ reproduce(song:any) {
   }
 
   nextSong(){
+        // Controlamos si el modo aleatorio está activo
     if(this.randomize == true)
-    {
+    {   // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
       let positionToPlay = Math.floor(Math.random()*this.songs.length)
-      console.log(positionToPlay)
-      if(positionToPlay === this.positionPlaying)
-      {
-        if(positionToPlay != this.songs.length)
-        {
-          positionToPlay++
-        } else positionToPlay--
+      while (this.positionPlaying == positionToPlay) {
+        positionToPlay = Math.floor(Math.random()*this.songs.length)
       } 
       this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
 
-    } else 
-      {
+    } else  // No está el modo aleatorio activo entonces:
+      {     // Comprobamos si existe una canción siguiente y la reproducimos
         if(this.songs.length>this.positionPlaying+1)
         {
           this.positionPlaying++
           this.reproduce(this.songs[this.positionPlaying])
-          //return this.songs[this.positionPlaying]
-          //Si no hay siguiente y no es de la lista
-        }else if(!this.songs.includes(this.songPlaying))
-        {
-          //return this.songPlaying
         }
-        //else //Si es la última de la lista
-        //return this.songs[this.positionPlaying]
+        else //Si es la última de la lista sin modo aleatorio
+        {
+          if(this.loopMode && this.positionPlaying == this.songs.length-1)
+          {
+            this.positionPlaying = 0
+            this.reproduce(this.songs[this.positionPlaying])
+          }
+        }
       }
-    
-    //Si existe una canción siguiente
   }
 
   converseDuration(duration: number): string {

@@ -15,25 +15,25 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-randomize:boolean = false
+randomize:boolean = this.reproductorService.randomize
+loopMode:boolean = this.reproductorService.loopMode
 
 constructor(protected reproductorService:ReproductorService){ }
 
 ngOnInit()
 {
- this.volume = this.getVolumelocal()
- this.updateVolume()
+  this.volume = this.getVolumelocal()
+  this.updateVolume()
 }
 
 ngOnChanges()
 {
   if(this.receivedSong)
   {
-    console.log("receivedSong = " + this.receivedSong)
     this.reproduceFromBuscador()
   }
 }
-
+//Esta función es necesaria para poder reproducir una canción enviada desde buscador. Sin lista.
 reproduceFromBuscador() {
   this.reproductorService.reproduce(this.receivedSong);
 }
@@ -44,11 +44,6 @@ playPausa() {
 
 detener() {
   this.reproductorService.detener();
-}
-
-randomization()
-{
-  this.randomize = this.reproductorService.randomization()
 }
 
 updateVolume() {
@@ -69,6 +64,13 @@ previousSong(){
 
 nextSong(){
   this.reproductorService.nextSong()
+}
+randomization(){
+  this.randomize = this.reproductorService.randomization()
+}
+toggleLoopMode(){
+  this.loopMode = this.reproductorService.toggleLoopMode()
+  console.log(this.loopMode)
 }
 muteUnmuted(){
   this.muted = !this.muted

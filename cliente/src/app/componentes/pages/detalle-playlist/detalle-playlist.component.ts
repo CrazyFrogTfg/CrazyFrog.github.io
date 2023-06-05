@@ -51,7 +51,7 @@ export class DetallePlaylistComponent {
   async ngOnInit() {
     this.userUID = await this.userService.getUID()
     this.playlists = this.db.getPlaylistByUser(this.userUID)
-    console.log(this.playlists)
+    
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']
@@ -89,10 +89,6 @@ export class DetallePlaylistComponent {
       await this.db.updatePlaylist(this.updatePlaylist.value, this.playlistInfo)
       location.reload();
     }
-  }
-
-  obtainLyrics(lyrics:string){
-    this.obtainedLyrics=lyrics.replace(/&#10;/g, '\n');
   }
 
   getFilterName():string{

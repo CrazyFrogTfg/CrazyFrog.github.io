@@ -53,7 +53,6 @@ export class DetalleAlbumComponent {
   }
 
   receiveSong($event:any) {
-    console.log(this.obtainedLyrics)
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
   }
@@ -62,13 +61,11 @@ export class DetalleAlbumComponent {
   {
     if(songOrder === -1)
     songOrder = Math.floor(Math.random()*playlist.length-0)
-    console.log(playlist + songOrder)
     this.reproductorService.reproducePlaylist(playlist, songOrder)
   }
 
   ngOnChanges()
   {
-    console.log(this.sendedSong)
     this.obtainLyrics(this.obtainedLyrics)
   }
 

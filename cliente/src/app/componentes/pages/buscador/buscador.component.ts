@@ -15,7 +15,6 @@ import { Album } from 'src/app/interfaces/album.interface';
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent {
-  @ViewChild(TarjetaCancionComponent) cancion:any
 
   cboxArtist:boolean=true
   cboxAlbum:boolean=true
@@ -81,8 +80,8 @@ export class BuscadorComponent {
   decreasePagAlbum(){
     if(this.pagAlbum+1>4)
     this.pagAlbum= this.pagAlbum-4
-
   }
+  
   increasePagSong(){
     if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
       this.pagSong= this.pagSong+10

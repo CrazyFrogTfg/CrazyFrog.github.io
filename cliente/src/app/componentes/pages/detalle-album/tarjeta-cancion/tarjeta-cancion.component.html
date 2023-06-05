@@ -1,6 +1,6 @@
-<section class="card-song align-items-center">
+<section class="card-song align-items-center" *ngIf="artistName">
   <div class="row">
-    <div class="col-lg-9 col-md-7 col-sm-4 d-flex flex-column" (click)="reproducir()">
+    <div class="col-lg-9 col-md-7 col-sm-4 d-flex flex-column" (click)="reproduce()">
       <h4 *ngIf="!edit">{{song.name}}</h4>
       <p *ngIf="!edit">{{artistName}}</p>
     </div>
