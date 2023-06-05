@@ -150,7 +150,7 @@ reproduce(song:any) {
 
   handleSongEnd()
   {
-    this.nextSong()
+    setTimeout(() => this.nextSong(), 600)
   }
 
   async getTotalDuration()

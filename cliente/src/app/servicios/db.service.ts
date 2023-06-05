@@ -7,6 +7,7 @@ import { Playlist } from '../interfaces/playlist.interface';
 import { Song } from '../interfaces/song.interface';
 import { FireStorageService } from './fire-storage.service';
 import { Storage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class DbService {
   artistsFavInfo:Array<any> = []
   albumsFavInfo:Array<any> = []
 
-  constructor(private firestore:Firestore, private fireStorage:FireStorageService, private storage:Storage) {
+  constructor(private firestore:Firestore, private fireStorage:FireStorageService, private storage:Storage, private router:Router) {
     let savedAlbumsFav = localStorage.getItem("albumsFav") || "[]"
     this.albumsFav = JSON.parse(savedAlbumsFav);
 
@@ -40,6 +41,7 @@ export class DbService {
       this.uploadImageArtist(file, artistId)
     }else{
       window.confirm("Ese nombre de artista ya está en uso.\nSerás redirigido al buscador.")
+      this.router.navigate(['/home'])
     }
   }
 

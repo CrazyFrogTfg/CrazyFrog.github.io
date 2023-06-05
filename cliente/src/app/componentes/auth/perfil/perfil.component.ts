@@ -34,10 +34,6 @@ export class PerfilComponent {
     if(this.updateUser.value)
     {
       await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo, this.file);
-      // if(this.file)
-      // {
-      //   this.uploadImageProfile(this.file)
-      // }
       setTimeout(() => this.router.navigate(['/home']), 1500)
     }
   }
