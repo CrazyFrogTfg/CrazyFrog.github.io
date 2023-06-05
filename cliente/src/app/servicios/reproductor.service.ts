@@ -9,14 +9,13 @@ export class ReproductorService {
 
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: number = 0;
-  playlist:any
+  totalDuration: any
   positionPlaying:number=0
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
-  private durationSubject: Subject<number> = new Subject<number>();
-  public duration$: Observable<number> = this.durationSubject.asObservable();
+  randomize:boolean=false
+  rangeDuration:number = 0
 
   constructor() {
     this.audioElement = new Audio();
@@ -24,9 +23,9 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      this.totalDuration = 0;
-      this.totalDuration = this.audioElement.duration;
-      this.durationSubject.next(this.totalDuration);
+      this.rangeDuration = 0;
+      this.rangeDuration = this.audioElement.duration;
+      this.totalDuration = this.converseDuration(this.rangeDuration)
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -39,11 +38,6 @@ export class ReproductorService {
   ngOnInit()
   {
     this.audioElement.autoplay=true
-
-  }
-  ngOnChanges()
-  {
-    this.getTotalDuration()
   }
 
   reproduceFromBuscador(song:any) {
@@ -54,6 +48,12 @@ export class ReproductorService {
     this.isPaused=false
   }
 
+  randomization()
+  {
+    this.randomize = !this.randomize
+    console.log("random : " + this.randomize)
+    return this.randomize
+  }
 
 reproduce(song:any) {
     if(!this.songs.includes(song))
@@ -114,21 +114,46 @@ reproduce(song:any) {
   }
 
   nextSong(){
-    //Si existe una canción siguiente
-    if(this.songs.length>this.positionPlaying+1)
+    if(this.randomize == true)
     {
-      this.positionPlaying++
+      let positionToPlay = Math.floor(Math.random()*this.songs.length)
+      console.log(positionToPlay)
+      if(positionToPlay === this.positionPlaying)
+      {
+        if(positionToPlay != this.songs.length)
+        {
+          positionToPlay++
+        } else positionToPlay--
+      } 
+      this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
-      return this.songs[this.positionPlaying]
-      //Si no hay siguiente y no es de la lista
-    }else if(!this.songs.includes(this.songPlaying))
-    {
-      return this.songPlaying
-    }
-    else //Si es la última de la lista
-    return this.songs[this.positionPlaying]
+
+    } else 
+      {
+        if(this.songs.length>this.positionPlaying+1)
+        {
+          this.positionPlaying++
+          this.reproduce(this.songs[this.positionPlaying])
+          //return this.songs[this.positionPlaying]
+          //Si no hay siguiente y no es de la lista
+        }else if(!this.songs.includes(this.songPlaying))
+        {
+          //return this.songPlaying
+        }
+        //else //Si es la última de la lista
+        //return this.songs[this.positionPlaying]
+      }
+    
+    //Si existe una canción siguiente
   }
 
+  converseDuration(duration: number): string {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    const secondsFormateados = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  
+    return `${minutes}:${secondsFormateados}`;
+  }
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
     this.setVolumeLocal(volume)
@@ -151,11 +176,6 @@ reproduce(song:any) {
   handleSongEnd()
   {
     setTimeout(() => this.nextSong(), 600)
-  }
-
-  async getTotalDuration()
-  {
-    return this.totalDuration
   }
 
   /*
