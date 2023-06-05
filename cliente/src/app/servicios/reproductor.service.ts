@@ -15,6 +15,8 @@ export class ReproductorService {
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
+  randomize:boolean=false
+
   private durationSubject: Subject<number> = new Subject<number>();
   public duration$: Observable<number> = this.durationSubject.asObservable();
 
@@ -52,6 +54,13 @@ export class ReproductorService {
     this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
     this.isPaused=false
+  }
+
+  randomization()
+  {
+    this.randomize = !this.randomize
+    console.log("random : " + this.randomize)
+    return this.randomize
   }
 
 
@@ -114,19 +123,37 @@ reproduce(song:any) {
   }
 
   nextSong(){
-    //Si existe una canción siguiente
-    if(this.songs.length>this.positionPlaying+1)
+    if(this.randomize == true)
     {
-      this.positionPlaying++
+      let positionToPlay = Math.floor(Math.random()*this.songs.length)
+      console.log(positionToPlay)
+      if(positionToPlay === this.positionPlaying)
+      {
+        if(positionToPlay != this.songs.length)
+        {
+          positionToPlay++
+        } else positionToPlay--
+      } 
+      this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
-      return this.songs[this.positionPlaying]
-      //Si no hay siguiente y no es de la lista
-    }else if(!this.songs.includes(this.songPlaying))
-    {
-      return this.songPlaying
-    }
-    else //Si es la última de la lista
-    return this.songs[this.positionPlaying]
+
+    } else 
+      {
+        if(this.songs.length>this.positionPlaying+1)
+        {
+          this.positionPlaying++
+          this.reproduce(this.songs[this.positionPlaying])
+          //return this.songs[this.positionPlaying]
+          //Si no hay siguiente y no es de la lista
+        }else if(!this.songs.includes(this.songPlaying))
+        {
+          //return this.songPlaying
+        }
+        //else //Si es la última de la lista
+        //return this.songs[this.positionPlaying]
+      }
+    
+    //Si existe una canción siguiente
   }
 
   updateVolume(volume:any) {

@@ -19,6 +19,7 @@ totalDuration:any
 isTotalDuration:boolean=false
 durationSong: string = '0:00';
 durationSubscription: Subscription;
+randomize:boolean = false
 
 constructor(protected reproductorService:ReproductorService){
   this.durationSubscription = this.reproductorService.duration$.subscribe(
@@ -65,6 +66,11 @@ playPausa() {
 
 detener() {
   this.reproductorService.detener();
+}
+
+randomization()
+{
+  this.randomize = this.reproductorService.randomization()
 }
 
 updateVolume() {
