@@ -37,7 +37,7 @@
              Privada
            </label>
         </div>
-         <button type="submit" [disabled]="(namePlaylist.value.length === 0 && privateCheck.checked === playlistInfo.private )" class="btn btn-dark">ACTUALIZAR</button>
+         <button type="submit" [disabled]="( namePlaylist.value.length === 0 || namePlaylist.value.length > 17  && privateCheck.checked === playlistInfo.private )" class="btn btn-dark">ACTUALIZAR</button>
          <button class="btn btn-dark admin-button" (click)="toggleEdit()">CANCELAR</button>
        </form>
      </div>

@@ -22,9 +22,9 @@
     <form  [formGroup]="updatePlaylist" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="exampleInputUser" class="label">Nombre playlist</label>
-        <input type="text" class="form-control" #nombrePlaylist id="nombrePlaylist" placeholder={{playlist.name}} formControlName="name">
+        <input type="text" class="form-control" #namePlaylist id="nombrePlaylist" placeholder={{playlist.name}} formControlName="name">
       </div>
-      <button type="submit" (click)="onSubmit()" [disabled]="nombrePlaylist.value.length === 0" class="btn btn-dark" >ACTUALIZAR</button>
+      <button type="submit" (click)="onSubmit()" [disabled]="namePlaylist.value.length === 0 || namePlaylist.value.length > 17" class="btn btn-dark" >ACTUALIZAR</button>
       <button class="btn btn-dark" (click)="toggleEdit()">CANCELAR</button>
     </form>
   </div>
