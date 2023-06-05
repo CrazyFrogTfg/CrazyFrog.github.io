@@ -1,5 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@800&family=Poppins&family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@400&family=Poppins&family=Kanit&display=swap');
 
 body{
   background-color:black;
@@ -93,6 +93,14 @@ footer {
   margin-top: 70px;
 }
 
+.lupa{
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 @media (max-width: 768px) {
 
   .navbar-collapse {
@@ -156,10 +164,5 @@ footer {
   border-radius: 25px;
 }
 
-
-
 }
 
-.lupa{
-  margin-right: 20px;
-}

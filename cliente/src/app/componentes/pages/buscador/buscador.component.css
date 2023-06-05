@@ -38,10 +38,9 @@
   --bs-check-indicator-color:
 }
 
-
 .filtrosSection{
     background-color: #e9840e;
-    width: 100%;
+    width: 80%;
     height: 150px;
     padding-left: 35px;
     padding-top: 20px;
@@ -51,6 +50,8 @@
 
 .sidebar{
   margin-top: 5%;
+  right: 0;
+  z-index: -1;
 }
 
 h2{
@@ -62,6 +63,7 @@ h2{
     padding-bottom: 5px;
     padding-top: 5px;
     border-radius: 20px;
+    font-weight: 800;
   }
 
 .cssbuttons-io-button {
@@ -139,6 +141,10 @@ h2{
     margin-right: auto;
     padding-left: 0px;
     padding-top: 0px;
+  }
+
+  .sidebar {
+    position:relative !important;
   }
 
   .adminButtons{

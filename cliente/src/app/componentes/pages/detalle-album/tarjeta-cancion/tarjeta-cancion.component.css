@@ -32,6 +32,13 @@
 
 .dropdown-toggle{
   background-color: #e9840e;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}
+
+.dropdown-toggle:after {
+  content: none
 }
 
 .playlist:hover{
@@ -54,7 +61,7 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: space-between;
-  margin-right:4px;
+  margin-left:4px;
 }
 
 .container {

@@ -31,12 +31,6 @@ h1, h5 {
   margin-bottom: 3%;
 }
 
-.lupa {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .buscador{
   height: 40px;
   width: 400px;

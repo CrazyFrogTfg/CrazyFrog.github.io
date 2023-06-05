@@ -52,14 +52,11 @@ h1, h2, h3 {
   color:white;
   padding-bottom: 5px;
   padding-top: 5px;
+  font-weight: 800;
 }
 
 .header-playlist{
   margin-bottom: 55px;
-}
-
-.playlist-list{
-  
 }
 
 .favs{

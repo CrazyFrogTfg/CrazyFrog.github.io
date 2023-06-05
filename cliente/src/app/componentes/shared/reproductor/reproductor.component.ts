@@ -33,6 +33,7 @@ ngOnChanges()
     this.reproduceFromBuscador()
   }
 }
+
 //Esta función es necesaria para poder reproducir una canción enviada desde buscador. Sin lista.
 reproduceFromBuscador() {
   this.reproductorService.reproduce(this.receivedSong);
@@ -48,7 +49,17 @@ detener() {
 
 updateVolume() {
   this.reproductorService.updateVolume(this.volume)
+
 }
+
+updateInputRange(){
+  const volumeInput:any = document.querySelector('.volume::-moz-range-track');
+  const percentage = (this.volume) * 100;
+  if(volumeInput){
+    volumeInput.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
+  }
+}
+
 getVolumelocal()
 {
   return this.reproductorService.getVolumeLocal()
@@ -76,6 +87,7 @@ muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()
 }
+
 /*
 
 // Obtener la posición actual
