@@ -58,8 +58,10 @@ export class BuscadorComponent {
   }
 
   increasePagArtist(){
-    if(this.filteredArtistsLength == 0 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
+    //if no se ha filtrado aún
+    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
       this.pagArtist= this.pagArtist+4
+    //if se ha filtrado ya
     if(this.filteredArtistsLength>4 && this.pagArtist+1<=this.filteredArtistsLength-4)
       this.pagArtist= this.pagArtist+4
   }
@@ -67,11 +69,10 @@ export class BuscadorComponent {
   decreasePagArtist(){
     if(this.pagArtist+1>4)
     this.pagArtist= this.pagArtist-4
-    console.log("paginator: "+this.pagArtist)
   }
 
   increasePagAlbum(){
-    if(this.filteredAlbumsLength == 0 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
+    if(this.filteredAlbumsLength < 1 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
       this.pagAlbum= this.pagAlbum+4
     if(this.filteredAlbumsLength>4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
       this.pagAlbum= this.pagAlbum+4
@@ -80,11 +81,10 @@ export class BuscadorComponent {
   decreasePagAlbum(){
     if(this.pagAlbum+1>4)
     this.pagAlbum= this.pagAlbum-4
-    console.log("paginator: "+this.pagAlbum)
 
   }
   increasePagSong(){
-    if(this.filteredSongsLength == 0 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
+    if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
       this.pagSong= this.pagSong+10
     if(this.filteredSongsLength>10 && this.pagSong+1<=this.filteredSongsLength-10)
       this.pagSong= this.pagSong+10
@@ -93,7 +93,6 @@ export class BuscadorComponent {
   decreasePagSong(){
     if(this.pagSong+1>10)
     this.pagSong= this.pagSong-10
-    console.log("paginator: "+this.pagSong)
   }
 
   getFilterName():string{
