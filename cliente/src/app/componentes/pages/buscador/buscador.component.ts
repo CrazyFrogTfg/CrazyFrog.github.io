@@ -31,9 +31,9 @@ export class BuscadorComponent {
   playlists:any
   userUID:string = ""
   sendedSong:string = ""
-  filteredArtistsLength:number = 0;
-  filteredAlbumsLength:number = 0;
-  filteredSongsLength:number = 0;
+  filteredArtistsLength:number = -1;
+  filteredAlbumsLength:number = -1;
+  filteredSongsLength:number = -1;
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,

@@ -74,7 +74,7 @@ reproduce(song:any) {
     this.reproduce(this.songs[songOrder]);
   }
 
-//Funcion que devuelve
+//Funcion que devuelve la cancion que esta sonando
   reproducing()
   {
     return this.songPlaying

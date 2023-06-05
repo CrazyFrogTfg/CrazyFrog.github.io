@@ -15,7 +15,6 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-cancionSonando:any
 totalDuration:any
 isTotalDuration:boolean=false
 durationSong: string = '0:00';
@@ -43,7 +42,6 @@ convertirduration(duration: number): string {
 
 ngOnInit()
 {
- this.reproducing()
  this.volume = this.getVolumelocal()
  this.updateVolume()
 }
@@ -52,25 +50,13 @@ ngOnChanges()
 {
   if(this.receivedSong)
   {
-    console.log("receivedSong" + this.receivedSong)
+    console.log("receivedSong = " + this.receivedSong)
     this.reproduceFromBuscador()
   }
-  // if(this.songsToPlay){
-  //   console.log("songsToPlay" + this.songsToPlay)
-  //   this.reproducirPlaylist()
-  // }
-  this.reproducing()
 }
 
 reproduceFromBuscador() {
-  console.log(this.receivedSong)
-  this.cancionSonando = this.receivedSong
   this.reproductorService.reproduce(this.receivedSong);
-}
-
-reproducing()
-{
-  this.cancionSonando = this.reproductorService.reproducing()
 }
 
 playPausa() {
@@ -94,11 +80,11 @@ isPlaying(): boolean {
 }
 
 previousSong(){
- this.cancionSonando = this.reproductorService.previousSong()
+ this.reproductorService.previousSong()
 }
 
 nextSong(){
-  this.cancionSonando = this.reproductorService.nextSong()
+  this.reproductorService.nextSong()
 }
 muteUnmuted(){
   this.muted = !this.muted

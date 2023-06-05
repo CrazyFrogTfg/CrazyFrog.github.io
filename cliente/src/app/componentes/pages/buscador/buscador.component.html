@@ -14,7 +14,7 @@
   <section class="row">
       <section class="encontradoContainer col-lg-10 col-sm-8 col-xs-5">
         <div class="container">
-          <div *ngIf="cboxArtist" class="artist-container">
+          <div *ngIf="cboxArtist && filteredArtistsLength!=0" class="artist-container">
             <h2>Artistas</h2>
             <div class="carousel-container align-items-center">
 
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div *ngIf="cboxAlbum">
+          <div *ngIf="cboxAlbum && filteredAlbumsLength">
             <h2>Albumes</h2>
 
             <div class="carousel-container align-items-center">
@@ -73,9 +73,9 @@
             </div>
           </div>
 
-          <div>
+          <div *ngIf="cboxSong && filteredSongsLength">
             <h2>Canciones</h2>
-            <section *ngIf="cboxSong">
+            <section>
               <div class="container">
                 <div class="row">
                     <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName() | slice:pagSong:pagSong+10" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
