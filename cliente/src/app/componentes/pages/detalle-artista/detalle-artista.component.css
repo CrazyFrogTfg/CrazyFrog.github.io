@@ -3,7 +3,7 @@ h1, h5 {
   margin-bottom: 15px;
 }
 
-.artistaDisp {
+.artistDisp {
   display: flex;
   margin: 20px 20px;
 }
@@ -13,14 +13,14 @@ h1, h5 {
 
 }
 
-.artista-img {
+.artist-img {
   width: 200px;
   height: 200px;
   padding-bottom: 20px;
   margin-left: 5%;
 }
 
-.artista-nombre {
+.artist-nombre {
   margin-left: 10%;
 }
 
@@ -196,25 +196,37 @@ label{
   }
 }
 
-@media (max-width: 768px) {
-  .artistaDisp {
-    grid-template-columns: repeat(8, 1fr);
+  @media (max-width: 767px) {
+    .artistDisp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0px;
+    }
+
+    .artist-nombre {
+      text-align: center;
+      margin-left: 0;
+    }
+
+    .artist-img{
+      margin-left: 0;
+    }
+
+    .admin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .admin-button {
+      margin-top: 10px;
+    }
+
+    .buscador {
+      width: 100%;
+      max-width: 400px;
+    }
   }
 
-  .artista-img {
-    grid-column: 1 / span 4;
-  }
 
-  .artista-nombre {
-    grid-column: 5 / span 4;
-  }
-
-  .divBuscador {
-    grid-column: 1 / span 8;
-  }
-
-  .buscador {
-    width: 100%;
-    max-width: 400px;
-  }
-}

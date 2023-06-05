@@ -12,6 +12,35 @@
 
 <section class="busquedaContainer container">
   <section class="row">
+    <section class="sidebar col-lg-2 col-sm-4 col-xs-4">
+      <section class="filtrosSection">
+        <section class="box-checks">
+          <label>Filtrar por:</label>
+            <br>
+            <input class="form-check-input" checked name="cboxArtist" (change)="toogleCboxArtist()" type="checkbox">
+            <label class="form-check-label" for="flexCheckDefault">
+              Artistas
+            </label>
+              <br>
+            <input class="form-check-input" checked name="cboxAlbum" (change)="toogleCboxAlbum()" type="checkbox">
+            <label class="form-check-label" for="flexCheckDefault">
+              Álbumes
+            </label>
+              <br>
+            <input class="form-check-input" checked name="cboxCancion" (change)="toogleCboxSong()" type="checkbox">
+            <label class="form-check-label" for="flexCheckDefault">
+              Canciones
+            </label>
+        </section>
+      </section>
+
+      <section class="adminButtons" *ngIf="isAdmin">
+        <button class="cssbuttons-io-button" (click)="newArtista()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+          <span>Añadir artista</span>
+        </button>
+      </section>
+    </section>
       <section class="encontradoContainer col-lg-10 col-sm-8 col-xs-5">
         <div class="container">
           <div *ngIf="cboxArtist && filteredArtistsLength!=0" class="artist-container">
@@ -96,33 +125,6 @@
         </div>
       </section>
 
-      <section class="sidebar col-lg-2 col-sm-4 col-xs-4">
-        <section class="filtrosSection">
-          <label>Filtrar por:</label>
-            <br>
-            <input class="form-check-input" checked name="cboxArtist" (change)="toogleCboxArtist()" type="checkbox">
-            <label class="form-check-label" for="flexCheckDefault">
-              Artistas
-            </label>
-              <br>
-            <input class="form-check-input" checked name="cboxAlbum" (change)="toogleCboxAlbum()" type="checkbox">
-            <label class="form-check-label" for="flexCheckDefault">
-              Álbumes
-            </label>
-              <br>
-            <input class="form-check-input" checked name="cboxCancion" (change)="toogleCboxSong()" type="checkbox">
-            <label class="form-check-label" for="flexCheckDefault">
-              Canciones
-            </label>
-        </section>
-
-        <section class="adminButtons" *ngIf="isAdmin">
-          <button class="cssbuttons-io-button" (click)="newArtista()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
-            <span>Añadir artista</span>
-          </button>
-        </section>
-      </section>
     </section>
   </section>
 </section>

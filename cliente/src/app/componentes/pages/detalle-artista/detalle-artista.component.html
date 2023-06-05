@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 <app-spinner *ngIf="!artistInfo"></app-spinner>
-<section class="artistaDisp" *ngIf="artistInfo">
-  <img class="artista-img" [src]="artistInfo.image">
-  <div class="artista-nombre">
+<section class="artistDisp" *ngIf="artistInfo">
+  <img class="artist-img" [src]="artistInfo.image">
+  <div class="artist-nombre">
     <div *ngIf="!edit">
       <h1> {{artistInfo.name | slice:0:15}} </h1>
       <h1> {{artistInfo.name | slice:15}} </h1>

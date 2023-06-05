@@ -57,6 +57,7 @@ export class DetalleAlbumComponent {
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
   }
+  
   reproduceAlbum(playlist:any = this.songs, songOrder:number = -1)
   {
     if(songOrder === -1)

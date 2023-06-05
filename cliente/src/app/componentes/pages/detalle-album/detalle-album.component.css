@@ -13,7 +13,7 @@ h1, h5 {
   width: 200px;
   height: 200px;
   padding-bottom: 20px;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 .album-nombre {
@@ -172,10 +172,32 @@ button{
   }
 }
 
-@media (max-width: 768px) {
-
-  .buscador {
-    width: 100%;
-    max-width: 400px;
+@media (max-width: 767px) {
+  .albumDisp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
   }
+
+  .album-nombre {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .album-img{
+    margin-left: 0;
+  }
+
+  .admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-button {
+    margin-top: 10px;
+  }
+
 }
+
