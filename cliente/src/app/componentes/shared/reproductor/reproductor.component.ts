@@ -15,31 +15,9 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-totalDuration:any
-isTotalDuration:boolean=false
-durationSong: string = '0:00';
-durationSubscription: Subscription;
 randomize:boolean = false
 
-constructor(protected reproductorService:ReproductorService){
-  this.durationSubscription = this.reproductorService.duration$.subscribe(
-    (duration: number) => {
-      this.durationSong = this.convertirduration(duration);
-    }
-  );
-}
-
-ngOnDestroy() {
-  this.durationSubscription.unsubscribe();
-}
-
-convertirduration(duration: number): string {
-  const minutos = Math.floor(duration / 60);
-  const segundos = Math.floor(duration % 60);
-  const segundosFormateados = segundos < 10 ? `0${segundos}` : `${segundos}`;
-
-  return `${minutos}:${segundosFormateados}`;
-}
+constructor(protected reproductorService:ReproductorService){ }
 
 ngOnInit()
 {
@@ -96,20 +74,14 @@ muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()
 }
-
-async getTotalDuration()
-{
-  this.isTotalDuration=true
-  return this.totalDuration = await this.reproductorService.getTotalDuration()
-}
 /*
 
 // Obtener la posición actual
 const currentTime = audioElement.currentTime;
 
 // Establecer la posición actual
-audioElement.currentTime = 30; // Ir a los 30 segundos
-Duration: Obtiene la duración total del audio (en segundos).
+audioElement.currentTime = 30; // Ir a los 30 seconds
+Duration: Obtiene la duración total del audio (en seconds).
 typescript
 Copy code
 const duration = audioElement.duration;

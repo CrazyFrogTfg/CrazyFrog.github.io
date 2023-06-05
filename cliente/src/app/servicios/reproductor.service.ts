@@ -9,16 +9,13 @@ export class ReproductorService {
 
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: number = 0;
-  playlist:any
+  totalDuration: any
   positionPlaying:number=0
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
   randomize:boolean=false
-
-  private durationSubject: Subject<number> = new Subject<number>();
-  public duration$: Observable<number> = this.durationSubject.asObservable();
+  rangeDuration:number = 0
 
   constructor() {
     this.audioElement = new Audio();
@@ -26,9 +23,9 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      this.totalDuration = 0;
-      this.totalDuration = this.audioElement.duration;
-      this.durationSubject.next(this.totalDuration);
+      this.rangeDuration = 0;
+      this.rangeDuration = this.audioElement.duration;
+      this.totalDuration = this.converseDuration(this.rangeDuration)
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -41,11 +38,6 @@ export class ReproductorService {
   ngOnInit()
   {
     this.audioElement.autoplay=true
-
-  }
-  ngOnChanges()
-  {
-    this.getTotalDuration()
   }
 
   reproduceFromBuscador(song:any) {
@@ -62,7 +54,6 @@ export class ReproductorService {
     console.log("random : " + this.randomize)
     return this.randomize
   }
-
 
 reproduce(song:any) {
     if(!this.songs.includes(song))
@@ -156,6 +147,13 @@ reproduce(song:any) {
     //Si existe una canción siguiente
   }
 
+  converseDuration(duration: number): string {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    const secondsFormateados = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  
+    return `${minutes}:${secondsFormateados}`;
+  }
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
     this.setVolumeLocal(volume)
@@ -178,11 +176,6 @@ reproduce(song:any) {
   handleSongEnd()
   {
     setTimeout(() => this.nextSong(), 600)
-  }
-
-  async getTotalDuration()
-  {
-    return this.totalDuration
   }
 
   /*
