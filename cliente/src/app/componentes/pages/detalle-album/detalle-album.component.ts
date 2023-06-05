@@ -57,8 +57,11 @@ export class DetalleAlbumComponent {
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
   }
-  reproduceAlbum(playlist:any, songOrder:number)
+  reproduceAlbum(playlist:any = this.songs, songOrder:number = -1)
   {
+    if(songOrder === -1)
+    songOrder = Math.floor(Math.random()*playlist.length-0)
+    console.log(playlist + songOrder)
     this.reproductorService.reproducePlaylist(playlist, songOrder)
   }
 

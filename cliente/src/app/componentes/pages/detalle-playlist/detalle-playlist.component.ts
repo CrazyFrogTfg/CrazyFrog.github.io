@@ -126,12 +126,10 @@ export class DetallePlaylistComponent {
     this.reproductorService.reproducePlaylist(this.songs, index)
   }
 
-  reproducirPlaylist(){
-    console.log("click en nombre playlist. Pero no se envia al servicio")
-    console.log(this.songs)
-    window.confirm("funcion reproducirPlaylist de detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
-    this.reproductorService.reproducePlaylist(this.songs, this.sendedSong)
-    this.messageEvent.emit(this.songs);
+  reproduceRandomPlaylist(){
+    let random = Math.floor(Math.random()*this.songs.length-0)
+    //window.confirm("funcion reproducirPlaylist de detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
+    this.reproductorService.reproducePlaylist(this.songs, random)
   }
 
   copyUrlToClipboard() {

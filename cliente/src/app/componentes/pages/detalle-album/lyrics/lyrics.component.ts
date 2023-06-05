@@ -9,7 +9,7 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
 export class LyricsComponent {
 @Input() lyrics:any
 
-constructor(private reproductorService:ReproductorService){}
+constructor(protected reproductorService:ReproductorService){}
 
 ngOnInit()
 {

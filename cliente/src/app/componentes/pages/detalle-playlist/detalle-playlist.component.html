@@ -2,7 +2,7 @@
 <app-spinner *ngIf="!owner"></app-spinner>
 <section class="playlistDisp" *ngIf="owner">
   <div *ngIf="!edit" class="playlist-nombre d-flex align-items-center">
-    <h1 (click)="reproducirPlaylist()"> {{playlistInfo.name}} </h1>
+    <h1> {{playlistInfo.name}} </h1>
     <button class="copy" (click)="copyUrlToClipboard()">
       <span data-text-end="Copied!" data-text-initial="Copiar al portapapeles" class="tooltip"></span>
       <span>
@@ -56,6 +56,12 @@
     </div>
 
   </div>
+
+  <section>
+    <button (click)="reproduceRandomPlaylist()">
+      Aleatorio
+    </button>
+  </section>
 
   <div class="container-fluid" *ngIf="isVisible">
     <div class="row">
