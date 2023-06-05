@@ -9,7 +9,7 @@ export class ReproductorService {
 
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: any;
+  totalDuration: number = 0;
   playlist:any
   positionPlaying:number=0
   songs:any[]=[]
@@ -24,8 +24,9 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      const totalDuration = this.audioElement.duration;
-      this.durationSubject.next(totalDuration);
+      this.totalDuration = 0;
+      this.totalDuration = this.audioElement.duration;
+      this.durationSubject.next(this.totalDuration);
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -53,7 +54,8 @@ export class ReproductorService {
     this.isPaused=false
   }
 
-  reproduce(song:any) {
+
+reproduce(song:any) {
     if(!this.songs.includes(song))
     {
       this.songs=[]
@@ -62,10 +64,10 @@ export class ReproductorService {
     this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
     this.isPaused=false
-  }
+}
 
   reproducePlaylist(songs: any[], songOrder: number) {
-    
+
     this.songs = songs;
     this.positionPlaying=songOrder
     this.songPlaying=this.songs[songOrder]

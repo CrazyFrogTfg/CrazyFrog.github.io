@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Song } from 'src/app/interfaces/song.interface';
 import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
-import { ByNamePipe } from 'src/app/filtros/by-name.pipe';
 import { Artist } from 'src/app/interfaces/artist.interface';
 import { Album } from 'src/app/interfaces/album.interface';
 
@@ -57,20 +56,6 @@ export class BuscadorComponent {
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
   }
-
-  // increasePaginator() {
-  //   const filteredArtistas:any = this.artistas | byName:getFilterName();
-  //   const totalPages = Math.ceil(filteredArtistas.length / 3);
-  //   if (this.paginator < totalPages - 1) {
-  //     this.paginator += 1;
-  //   }
-  //   console.log("paginator: " + this.paginator);
-  //   console.log("totalPages: " + totalPages);
-  // }
-  // decreasePaginator() {
-  //   if (this.paginator > 0) {
-  //     this.paginator -= 1;
-  //   }
 
   increasePagArtist(){
     if(this.filteredArtistsLength == 0 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
