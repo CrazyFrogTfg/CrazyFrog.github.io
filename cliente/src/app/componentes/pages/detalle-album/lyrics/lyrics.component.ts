@@ -7,17 +7,10 @@ import { ReproductorService } from 'src/app/servicios/reproductor.service';
   styleUrls: ['./lyrics.component.css']
 })
 export class LyricsComponent {
-@Input() lyrics:any
 
-constructor(private reproductorService:ReproductorService){}
+  lyrics:string = "¿No has seleccionado una canción aún? Clica en su nombre!"
 
-ngOnInit()
-{
-  this.getLyricsFromReproductor()
-}
-getLyricsFromReproductor()
-{
-  this.lyrics = this.reproductorService.reproducing().lyrics
-}
+constructor(protected reproductorService:ReproductorService){}
+
 
 }

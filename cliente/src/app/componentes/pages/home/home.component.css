@@ -39,11 +39,6 @@ h3{
   flex-direction: column;
 }
 
-.playlist-list{
-  margin: 0 auto;
-  margin-bottom: 6%;
-}
-
 .btn:hover svg {
   fill: #E9840E;
 }
@@ -57,6 +52,7 @@ h1, h2, h3 {
   color:white;
   padding-bottom: 5px;
   padding-top: 5px;
+  font-weight: 800;
 }
 
 .header-playlist{
@@ -86,7 +82,7 @@ h1, h2, h3 {
 
 .start-tutorial{
   width: 50%;
-  height: 50px;
+  height: 60px;
   margin: 0 auto;
   animation: blink 1s infinite;
   background-color: white;
@@ -105,6 +101,18 @@ h1, h2, h3 {
   color: black;
   font-family: Poppins;
   font-size: 20px;
+}
+
+@media (max-width: 769px) {
+  .start-tutorial{
+    height: 75px;
+  }
+}
+
+@media (max-width: 769px) {
+  .start-tutorial{
+    height: 75px;
+  }
 }
 
 @keyframes blink {

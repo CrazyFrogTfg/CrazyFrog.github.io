@@ -5,7 +5,7 @@
   padding-bottom: 1%;
   padding-top: 1%;
   padding-left: 2%;
-  background-color: rgba(62, 58, 53, 0.6);
+  background-color: rgba(73, 69, 64, 0.6);
   border-radius: 15px;
 }
 
@@ -32,10 +32,13 @@
 
 .dropdown-toggle{
   background-color: #e9840e;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
 }
 
-.playlist{
-  margin-left:15px;
+.dropdown-toggle:after {
+  content: none
 }
 
 .playlist:hover{
@@ -58,7 +61,7 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: space-between;
-  margin-right:4px;
+  margin-left:4px;
 }
 
 .container {

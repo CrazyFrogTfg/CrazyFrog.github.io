@@ -16,12 +16,6 @@
     margin-top: 3%;
   }
 
-  .lupa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .buscador{
     height: 40px;
     width: 400px;
@@ -39,8 +33,8 @@
     margin-top: 5%;
   }
 
-  .playlist-img{
-    width: 100%;
+  .playlist-name{
+    margin-bottom: 5px;
   }
 
   .cssbuttons-io-button {
@@ -280,9 +274,31 @@ label{
   color: var(--button-hover-text-color);
 }
 
-  @media (max-width: 768px) {
-    .buscador {
-      width: 100%;
-      max-width: 400px;
-    }
+@media (max-width: 767px) {
+  .playlistDisp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
   }
+
+  .artist-nombre {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-button {
+    margin-top: 10px;
+  }
+
+  .buscador {
+    width: 100%;
+    max-width: 400px;
+  }
+}

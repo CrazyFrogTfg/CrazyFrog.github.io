@@ -53,14 +53,8 @@ export class TarjetaCancionComponent {
     this.urlAlbum=true
   }
 
-  reproducir(){
-    if(this.urlAlbum || this.urlPlaylist)
-    {
-      this.sendLyrics.emit(this.song.lyrics)
-      this.sendSong.emit(this.song);
-    }else{
-        this.sendSong.emit(this.song);
-    }
+  reproduce(){
+   this.sendSong.emit(this.song);    
   }
 
   addSongToPlaylist(playlist:Playlist){
@@ -70,10 +64,6 @@ export class TarjetaCancionComponent {
   deleteSongPlaylist()
   {
     this.db.deleteSongPlaylist(this.playlist, this.song.id)
-    console.log(this.playlist, this.song.id)
-    console.log("deleteSongPlaylist (tarjetaCancion.ts) - FIN")
-    // location.reload()
-    //this.router.navigate(['/buscador'])
   }
 
   toggleEdit(){

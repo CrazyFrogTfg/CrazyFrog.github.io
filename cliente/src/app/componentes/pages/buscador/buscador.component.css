@@ -5,6 +5,7 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
+
 .carousel-content{
     display: flex;
     justify-content: center;
@@ -24,8 +25,7 @@
 }
 
 .busquedaContainer{
-    display: flex;
-    justify-content: space-around;
+  width: 100%;
 }
 
 .black-checkbox:checked{
@@ -38,28 +38,33 @@
   --bs-check-indicator-color:
 }
 
-
 .filtrosSection{
     background-color: #e9840e;
-    margin-right: 45px;
-    width: 100%;
+    width: 80%;
     height: 150px;
     padding-left: 35px;
     padding-top: 20px;
     border-radius: 10px;
-
+    min-width: 175px;
 }
 
-.filtrosSection>p{
-    margin-top: 10px;
-    color: green;
-    position:fixed;
+.sidebar{
+  margin-top: 5%;
+  right: 0;
+  z-index: -1;
 }
+
 h2{
     margin-bottom: 20px;
     margin-top: 20px;
-    color:white
-}
+    color:rgb(255, 255, 255);
+    background-color: rgba(65, 65, 65, 0.9);
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 20px;
+    font-weight: 800;
+  }
 
 .cssbuttons-io-button {
   display: flex;
@@ -103,19 +108,18 @@ h2{
 }
 
 .pag-button-prev{
-  position: relative;
-  top:110px;
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
+  margin-right: 1%;
+  margin-top: 3%;
 }
 
 .pag-button-next{
-  position: relative;
-  bottom:215px;
   background-color:rgba(233, 132, 14, 0.8);
   border-color:rgba(233, 132, 14, 0.8);
   border-radius:50%;
+  margin-top: 3%;
 }
 
 .pag-button-next:hover, .pag-button-prev:hover, .pag-button-song:hover{
@@ -127,24 +131,26 @@ h2{
   width: 100%;
 }
 
-@media (max-width: 769px){
-  .pag-button-prev{
-    top:290px;
+@media (max-width: 576px) {
+  .filtrosSection {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
+    padding-top: 0px;
   }
 
-  .pag-button-next{
-    bottom:370px;
+  .sidebar {
+    position:relative !important;
   }
-  
+
+  .adminButtons{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
-
-@media (max-width: 450px){
-  .pag-button-prev{
-    top:608px;
-  }
-
-  .pag-button-next{
-    bottom:718px;
-  }
-}
-

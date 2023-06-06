@@ -14,6 +14,7 @@ export class PerfilComponent {
   userInfo:any;
   uid:any;
   file:any;
+  passwordError:string=""
   updateUser: FormGroup;
 
   constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog - Perfil')
@@ -21,7 +22,8 @@ export class PerfilComponent {
       email: new FormControl(),
       password: new FormControl(),
       username:new FormControl(),
-      imageProfile: new FormControl()
+      imageProfile: new FormControl(),
+      currentPassword: new FormControl(),
     })
   }
 
@@ -33,12 +35,13 @@ export class PerfilComponent {
   async onSubmit() {
     if(this.updateUser.value)
     {
-      await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo, this.file);
-      // if(this.file)
-      // {
-      //   this.uploadImageProfile(this.file)
-      // }
-      setTimeout(() => this.router.navigate(['/home']), 1500)
+      if(this.updateUser.value.currentPassword === this.userInfo.password)
+      {
+        await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo, this.file);
+        setTimeout(() => this.router.navigate(['/home']), 1500)
+
+      }else 
+      this.passwordError = "*Contraseña errónea"
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Firestore, collection, doc, getDocs, getDoc, query, where, orderBy } from '@angular/fire/firestore';
+import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angular/fire/firestore';
 import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
@@ -9,7 +9,7 @@ import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
-
+  
 @Component({
   selector: 'app-detalle-album',
   templateUrl: './detalle-album.component.html',
@@ -53,18 +53,19 @@ export class DetalleAlbumComponent {
   }
 
   receiveSong($event:any) {
-    console.log(this.obtainedLyrics)
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
   }
-  reproduceAlbum(playlist:any, songOrder:number)
+
+  reproduceAlbum(playlist:any = this.songs, songOrder:number = -1)
   {
+    if(songOrder === -1)
+    songOrder = Math.floor(Math.random()*playlist.length-0)
     this.reproductorService.reproducePlaylist(playlist, songOrder)
   }
 
   ngOnChanges()
   {
-    console.log(this.sendedSong)
     this.obtainLyrics(this.obtainedLyrics)
   }
 

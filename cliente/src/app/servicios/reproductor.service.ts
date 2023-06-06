@@ -9,14 +9,14 @@ export class ReproductorService {
 
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: any;
-  playlist:any
+  totalDuration: any
   positionPlaying:number=0
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
-  private durationSubject: Subject<number> = new Subject<number>();
-  public duration$: Observable<number> = this.durationSubject.asObservable();
+  randomize:boolean=false
+  rangeDuration:number = 0
+  loopMode:boolean=false
 
   constructor() {
     this.audioElement = new Audio();
@@ -24,8 +24,9 @@ export class ReproductorService {
       this.currentProgress = this.audioElement.currentTime;
     });
     this.audioElement.addEventListener('loadedmetadata', () => {
-      const totalDuration = this.audioElement.duration;
-      this.durationSubject.next(totalDuration);
+      this.rangeDuration = 0;
+      this.rangeDuration = this.audioElement.duration;
+      this.totalDuration = this.converseDuration(this.rangeDuration)
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -38,11 +39,6 @@ export class ReproductorService {
   ngOnInit()
   {
     this.audioElement.autoplay=true
-
-  }
-  ngOnChanges()
-  {
-    this.getTotalDuration()
   }
 
   reproduceFromBuscador(song:any) {
@@ -53,30 +49,40 @@ export class ReproductorService {
     this.isPaused=false
   }
 
-  reproduce(song:any) {
+  randomization()
+  {
+    return this.randomize = !this.randomize
+  }
+  toggleLoopMode()
+  {
+    return this.loopMode = !this.loopMode
+  }
+
+reproduce(song:any) {
     if(!this.songs.includes(song))
     {
       this.songs=[]
     }
     this.songPlaying = song;
     this.audioElement.src = this.songPlaying.file;
-    this.audioElement.play();
+    //El timeout es para evitar un error de consola por "falta de tiempo" para load la canción mp3.
+    setTimeout( () => this.audioElement.play(), 1)
     this.isPaused=false
-  }
+}
 
   reproducePlaylist(songs: any[], songOrder: number) {
-    
+
     this.songs = songs;
     this.positionPlaying=songOrder
     this.songPlaying=this.songs[songOrder]
     this.reproduce(this.songs[songOrder]);
   }
 
-//Funcion que devuelve
-  reproducing()
-  {
-    return this.songPlaying
-  }
+//Funcion que devuelve la cancion que esta sonando
+  // reproducing()
+  // {
+  //   return this.songPlaying
+  // }
 
   playPausa():boolean {
       if (this.audioElement.paused) {
@@ -112,21 +118,41 @@ export class ReproductorService {
   }
 
   nextSong(){
-    //Si existe una canción siguiente
-    if(this.songs.length>this.positionPlaying+1)
-    {
-      this.positionPlaying++
+        // Controlamos si el modo aleatorio está activo
+    if(this.randomize == true)
+    {   // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
+      let positionToPlay = Math.floor(Math.random()*this.songs.length)
+      while (this.positionPlaying == positionToPlay) {
+        positionToPlay = Math.floor(Math.random()*this.songs.length)
+      } 
+      this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
-      return this.songs[this.positionPlaying]
-      //Si no hay siguiente y no es de la lista
-    }else if(!this.songs.includes(this.songPlaying))
-    {
-      return this.songPlaying
-    }
-    else //Si es la última de la lista
-    return this.songs[this.positionPlaying]
+
+    } else  // No está el modo aleatorio activo entonces:
+      {     // Comprobamos si existe una canción siguiente y la reproducimos
+        if(this.songs.length>this.positionPlaying+1)
+        {
+          this.positionPlaying++
+          this.reproduce(this.songs[this.positionPlaying])
+        }
+        else //Si es la última de la lista sin modo aleatorio
+        {
+          if(this.loopMode && this.positionPlaying == this.songs.length-1)
+          {
+            this.positionPlaying = 0
+            this.reproduce(this.songs[this.positionPlaying])
+          }
+        }
+      }
   }
 
+  converseDuration(duration: number): string {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    const secondsFormateados = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  
+    return `${minutes}:${secondsFormateados}`;
+  }
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
     this.setVolumeLocal(volume)
@@ -148,12 +174,7 @@ export class ReproductorService {
 
   handleSongEnd()
   {
-    this.nextSong()
-  }
-
-  async getTotalDuration()
-  {
-    return this.totalDuration
+    setTimeout(() => this.nextSong(), 600)
   }
 
   /*

@@ -15,62 +15,28 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-cancionSonando:any
-totalDuration:any
-isTotalDuration:boolean=false
-durationSong: string = '0:00';
-durationSubscription: Subscription;
+randomize:boolean = this.reproductorService.randomize
+loopMode:boolean = this.reproductorService.loopMode
 
-constructor(protected reproductorService:ReproductorService){
-  this.durationSubscription = this.reproductorService.duration$.subscribe(
-    (duration: number) => {
-      this.durationSong = this.convertirduration(duration);
-    }
-  );
-}
-
-ngOnDestroy() {
-  this.durationSubscription.unsubscribe();
-}
-
-convertirduration(duration: number): string {
-  const minutos = Math.floor(duration / 60);
-  const segundos = Math.floor(duration % 60);
-  const segundosFormateados = segundos < 10 ? `0${segundos}` : `${segundos}`;
-
-  return `${minutos}:${segundosFormateados}`;
-}
+constructor(protected reproductorService:ReproductorService){ }
 
 ngOnInit()
 {
- this.reproducing()
- this.volume = this.getVolumelocal()
- this.updateVolume()
+  this.volume = this.getVolumelocal()
+  this.updateVolume()
 }
 
 ngOnChanges()
 {
   if(this.receivedSong)
   {
-    console.log("receivedSong" + this.receivedSong)
     this.reproduceFromBuscador()
   }
-  // if(this.songsToPlay){
-  //   console.log("songsToPlay" + this.songsToPlay)
-  //   this.reproducirPlaylist()
-  // }
-  this.reproducing()
 }
 
+//Esta función es necesaria para poder reproducir una canción enviada desde buscador. Sin lista.
 reproduceFromBuscador() {
-  console.log(this.receivedSong)
-  this.cancionSonando = this.receivedSong
   this.reproductorService.reproduce(this.receivedSong);
-}
-
-reproducing()
-{
-  this.cancionSonando = this.reproductorService.reproducing()
 }
 
 playPausa() {
@@ -83,7 +49,17 @@ detener() {
 
 updateVolume() {
   this.reproductorService.updateVolume(this.volume)
+
 }
+
+updateInputRange(){
+  const volumeInput:any = document.querySelector('.volume::-moz-range-track');
+  const percentage = (this.volume) * 100;
+  if(volumeInput){
+    volumeInput.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
+  }
+}
+
 getVolumelocal()
 {
   return this.reproductorService.getVolumeLocal()
@@ -94,30 +70,32 @@ isPlaying(): boolean {
 }
 
 previousSong(){
- this.cancionSonando = this.reproductorService.previousSong()
+ this.reproductorService.previousSong()
 }
 
 nextSong(){
-  this.cancionSonando = this.reproductorService.nextSong()
+  this.reproductorService.nextSong()
+}
+randomization(){
+  this.randomize = this.reproductorService.randomization()
+}
+toggleLoopMode(){
+  this.loopMode = this.reproductorService.toggleLoopMode()
+  console.log(this.loopMode)
 }
 muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()
 }
 
-async getTotalDuration()
-{
-  this.isTotalDuration=true
-  return this.totalDuration = await this.reproductorService.getTotalDuration()
-}
 /*
 
 // Obtener la posición actual
 const currentTime = audioElement.currentTime;
 
 // Establecer la posición actual
-audioElement.currentTime = 30; // Ir a los 30 segundos
-Duration: Obtiene la duración total del audio (en segundos).
+audioElement.currentTime = 30; // Ir a los 30 seconds
+Duration: Obtiene la duración total del audio (en seconds).
 typescript
 Copy code
 const duration = audioElement.duration;

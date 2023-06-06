@@ -13,7 +13,7 @@ h1, h5 {
   width: 200px;
   height: 200px;
   padding-bottom: 20px;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 .album-nombre {
@@ -21,12 +21,6 @@ h1, h5 {
 }
 
 .divBuscador {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lupa {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,14 +85,10 @@ h1, h5 {
   transform: scale(1.1);
 }
 
-.bnt:hover > .icon-wrapper .icon path {
+.btn:hover > .icon-wrapper .icon path {
   stroke: black;
 }
 
-button{
-  margin-right: 5px;
-  margin-bottom: 20px;
-}
 .paragraph {
   color: black;
   visibility: hidden;
@@ -138,13 +128,13 @@ button{
   transition-delay: .2s;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: inline-flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: space-between;
+  margin-left: 3px;
 }
 
 .btn-fav{
@@ -172,10 +162,32 @@ button{
   }
 }
 
-@media (max-width: 768px) {
-
-  .buscador {
-    width: 100%;
-    max-width: 400px;
+@media (max-width: 767px) {
+  .albumDisp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
   }
+
+  .album-nombre {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .album-img{
+    margin-left: 0;
+  }
+
+  .admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-button {
+    margin-top: 10px;
+  }
+
 }
+

@@ -1,5 +1,6 @@
 <div class="lyrics-container">
-  <pre><div class="lyrics-content">{{lyrics}}</div></pre>
+  <pre><div class="lyrics-content" *ngIf="reproductorService.songPlaying">{{reproductorService.songPlaying.lyrics}}</div></pre>
+  <pre><div class="lyrics-content" *ngIf="!reproductorService.songPlaying">{{lyrics}}</div></pre>
 </div>
 
 
