@@ -9,7 +9,7 @@ import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
-  
+
 @Component({
   selector: 'app-detalle-album',
   templateUrl: './detalle-album.component.html',
@@ -76,12 +76,12 @@ export class DetalleAlbumComponent {
     this.playlists = await this.db.getPlaylistByUser(this.userUID)
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
-      this.artistId = params['idArtist']
       this.albumId = params['idAlbum']
       //sacar datos album
       const albumRef = doc(this.firestore, "albums", this.albumId);
       const albumSnap = await getDoc(albumRef);
       this.albumInfo = albumSnap.data();
+      this.artistId = this.albumInfo.artistId
       const q = query(collection(this.firestore, "songs"), where("albumId", "==", this.albumId))
       const songsSnapshot = await getDocs(q);
       songsSnapshot.forEach((songDoc) => {
@@ -116,9 +116,13 @@ export class DetalleAlbumComponent {
   }
 
   deleteAlbum(){
-    this.db.deleteAlbum(this.albumId)
-    this.db.delAlbumFav(this.albumId)
-    this.router.navigate(['/buscador'])
+    const pregunta="Si deseas eliminar "+ this.albumInfo.name +" escribe su nombre aquí. Esta acción eliminará todas las canciones asociadas.";
+
+    if( prompt(pregunta) == this.albumInfo.name) {
+      this.db.delAlbumFav(this.albumId)
+      this.db.deleteAlbum(this.albumId)
+      this.router.navigate(['/buscador'])
+    }
   }
 
   toggleEdit(){
@@ -136,7 +140,6 @@ export class DetalleAlbumComponent {
   delAlbumFav(){
     this.db.delAlbumFav(this.albumId)
   }
-
 
   isAlbumFav(){
     return this.db.isAlbumFav(this.albumId)

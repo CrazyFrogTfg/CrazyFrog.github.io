@@ -54,7 +54,7 @@ export class TarjetaCancionComponent {
   }
 
   reproduce(){
-   this.sendSong.emit(this.song);    
+   this.sendSong.emit(this.song);
   }
 
   addSongToPlaylist(playlist:Playlist){
@@ -74,16 +74,17 @@ export class TarjetaCancionComponent {
   {
     if(this.updateSong.value)
       {
-        console.log("Controlar error de año, que puede ser mayor a la fecha actual")
         await this.db.updateSong(this.updateSong.value, this.song);
         this.router.navigate(['/home'])
       }
   }
 
-  deleteSong()
-  {
-    this.db.deleteSong(this.song)
-    this.router.navigate(['/buscador'])
+  deleteSong() {
+    const pregunta="Si deseas eliminar "+this.song.name+" escribe su nombre aquí";
+    if( prompt(pregunta) == this.song.name) {
+      this.db.deleteSong(this.song)
+      this.router.navigate(['/buscador'])
+    }
   }
 
 }

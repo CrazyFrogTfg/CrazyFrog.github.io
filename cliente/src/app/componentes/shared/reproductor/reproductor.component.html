@@ -46,11 +46,11 @@
   </section>
   <section class="repro-center">
     <section class="infoCancion">
-      <p *ngIf="reproductorService.songPlaying"> {{reproductorService.songPlaying.name}} </p>
+      <section class="time-line" *ngIf="reproductorService.totalDuration">
+        <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.rangeDuration">
+      </section>
+      <p *ngIf="reproductorService.totalDuration"> {{reproductorService.songPlaying.name}} </p>
       <p> {{reproductorService.totalDuration}} </p>
-    </section>
-    <section class="time-line">
-      <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.rangeDuration">
     </section>
   </section>
   <section class="volume-control d-flex">
