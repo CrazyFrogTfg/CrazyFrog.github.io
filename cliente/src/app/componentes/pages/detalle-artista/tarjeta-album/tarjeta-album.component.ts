@@ -39,7 +39,7 @@ async ngOnInit()
 }
 
 onSubmit(){
-  
+
 }
 
 toggleEdit(){
@@ -48,16 +48,6 @@ toggleEdit(){
 
 setMyEvent($event:any){
   this.myEvent = $event
-}
-//POR EDITAR
-async deleteAlbum(album:Album){
-  console.log("Recuerda volver a deleteAlbum() de tarjetaAlbum")
-  const pregunta="Si deseas eliminar "+album.name+" escribe su nombre aquí";
-  // if( prompt(pregunta) == album.nombre)
-  // {
-    this.db.deleteAlbum(album.id)
-    //this.router.navigate(['/buscador']);
-  //}
 }
 
 truncateTitle(title: string, maxLength: number): string {

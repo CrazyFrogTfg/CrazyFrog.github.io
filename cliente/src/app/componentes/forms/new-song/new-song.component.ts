@@ -26,7 +26,7 @@ export class NewSongComponent {
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
-    await this.route.queryParams.subscribe(async params => {
+    this.route.queryParams.subscribe(async params => {
       this.artistId = params['artistId']
       this.newSong.controls['artistId'].setValue(this.artistId)
       this.albumId = params['albumId']
@@ -47,7 +47,7 @@ export class NewSongComponent {
       artistId: new FormControl(),
     })
   }
-  
+
   goBack(){
     this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } });
   }
@@ -64,7 +64,6 @@ export class NewSongComponent {
   async onSubmit(){
     await this.db.addSong(this.newSong.value, this.file)
     setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
-
   }
 
 }

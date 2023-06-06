@@ -162,6 +162,7 @@ export class DbService {
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
     {
+      console.log(song)
       song.lyrics = song.lyrics.replace(/\n/g, '&#10;');
       const songRef = collection(this.firestore, 'songs');
       await addDoc(songRef, song);
@@ -292,7 +293,7 @@ export class DbService {
     }
   }
 
-  delAlbumFav(favorite:string){
+  delAlbumFav(favorite:any){
     let posicion = this.albumsFav.indexOf(favorite)
     if (posicion != -1){
       this.albumsFav.splice(posicion, 1)
