@@ -18,7 +18,7 @@
     </section>
   </div>
 
-  <div *ngIf="edit">
+  <div *ngIf="edit" class="edit">
     <form  [formGroup]="updatePlaylist" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="exampleInputUser" class="label">Nombre playlist</label>

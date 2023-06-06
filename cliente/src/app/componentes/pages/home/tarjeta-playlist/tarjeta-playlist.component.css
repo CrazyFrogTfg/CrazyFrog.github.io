@@ -20,7 +20,7 @@ h5{
 }
 
 .btn {
-  color: black;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 10px;
   transition: background-color 0.3s, color 0.3s;
@@ -37,6 +37,9 @@ h5{
 
 .btn:hover svg {
   fill: black;
+}
+.edit{
+  color: white;
 }
 
 
