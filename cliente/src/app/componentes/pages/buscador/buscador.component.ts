@@ -38,7 +38,7 @@ export class BuscadorComponent {
               private fireStorage:FireStorageService,
               private userService:UsuariosService,
               private router:Router,
-              private title:Title){ title.setTitle('Mediafrog - Buscador')}
+              private title:Title){ title.setTitle('Mediafroggy - Buscador')}
 
   async ngOnInit(){
     this.userUID = await this.userService.getUID()

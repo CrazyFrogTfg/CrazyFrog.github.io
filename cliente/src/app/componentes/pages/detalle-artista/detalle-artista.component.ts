@@ -26,7 +26,7 @@ export class DetalleArtistaComponent {
   query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Artista'),
+    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafroggy - Artista'),
       this.updateArtist = new FormGroup({
         id: new FormControl(this.artistId),
         name: new FormControl(),

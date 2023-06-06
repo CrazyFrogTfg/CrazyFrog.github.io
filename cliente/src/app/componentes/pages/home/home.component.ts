@@ -23,7 +23,7 @@ export class HomeComponent {
   albumsFav:Album[] = []
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
-      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFrog - Home')}
+      private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFroggy - Home')}
 
   async ngOnInit() {
     this.playlists=[]
