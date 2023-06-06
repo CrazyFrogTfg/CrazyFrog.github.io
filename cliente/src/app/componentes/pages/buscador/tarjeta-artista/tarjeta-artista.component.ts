@@ -37,6 +37,18 @@ export class TarjetaArtistaComponent {
   isArtistFav(){
     return this.db.isArtistFav(this.artist.id)
   }
+
+  truncateTitle(title: string, maxLength: number): string {
+    if (title.length <= maxLength) {
+      return title;
+    } else {
+      let truncatedTitle = title.slice(0, maxLength);
+      if (truncatedTitle.charAt(maxLength - 1) === ' ') {
+        truncatedTitle = truncatedTitle.slice(0, maxLength - 1);
+      }
+      return truncatedTitle + '...';
+    }
+  }
   
 }
 

@@ -5,6 +5,7 @@ import { User } from '../interfaces/user.interface';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
+import { ReproductorService } from './reproductor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UsuariosService {
   imageProfile:string=""
   username:string = ""
 
-  constructor(private auth:Auth, private firestore: Firestore, private storage:Storage, private router:Router) { }
+  constructor(private auth:Auth, private firestore: Firestore, private storage:Storage, private router:Router, private reproductorService:ReproductorService) { }
   private readonly authh = getAuth();
 
   getAuthh(){
@@ -61,6 +62,7 @@ export class UsuariosService {
   }
 
   logout(){
+    this.reproductorService.pauseByLogout()
     return signOut(this.auth);
   }
 

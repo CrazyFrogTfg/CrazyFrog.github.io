@@ -15,14 +15,15 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-randomize:boolean = this.reproductorService.randomize
-loopMode:boolean = this.reproductorService.loopMode
+randomize:boolean = false
+loopMode:boolean = false
 
-constructor(protected reproductorService:ReproductorService){ }
+constructor(protected reproductorService:ReproductorService){
+ }
 
 ngOnInit()
 {
-  this.volume = this.getVolumelocal()
+  this.getLocals()
   this.updateVolume()
 }
 
@@ -39,8 +40,8 @@ reproduceFromBuscador() {
   this.reproductorService.reproduce(this.receivedSong);
 }
 
-playPausa() {
-  return this.reproductorService.playPausa();
+playPause() {
+  return this.reproductorService.playPause();
 }
 
 detener() {
@@ -49,20 +50,34 @@ detener() {
 
 updateVolume() {
   this.reproductorService.updateVolume(this.volume)
-
 }
 
-updateInputRange(){
-  const volumeInput:any = document.querySelector('.volume::-moz-range-track');
-  const percentage = (this.volume) * 100;
-  if(volumeInput){
-    volumeInput.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
-  }
+getLocals() {
+  this.volume = this.getVolumeLocal()
+  this.loopMode = this.getLoopLocal()
+  this.randomize = this.getRandomizeLocal()
 }
 
-getVolumelocal()
-{
+getVolumeLocal() {
   return this.reproductorService.getVolumeLocal()
+}
+
+getLoopLocal() {
+  return this.reproductorService.getLoopLocal()
+}
+
+getRandomizeLocal() {
+  return this.reproductorService.getRandomizeLocal()
+}
+
+setRandomizeLocal(){
+  this.randomize = !this.randomize
+  this.reproductorService.setRandomizeLocal(this.randomize)
+}
+
+setLoopLocal(){
+  this.loopMode = !this.loopMode
+  this.reproductorService.setLoopLocal(this.loopMode)
 }
 
 isPlaying(): boolean {
@@ -76,13 +91,7 @@ previousSong(){
 nextSong(){
   this.reproductorService.nextSong()
 }
-randomization(){
-  this.randomize = this.reproductorService.randomization()
-}
-toggleLoopMode(){
-  this.loopMode = this.reproductorService.toggleLoopMode()
-  console.log(this.loopMode)
-}
+
 muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()
