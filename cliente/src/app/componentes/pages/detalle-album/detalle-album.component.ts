@@ -38,7 +38,7 @@ export class DetalleAlbumComponent {
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService, private title:Title)
-    { title.setTitle('Mediafrog - Album')
+    { title.setTitle('Mediafroggy - Album')
 
     this.updateAlbum = new FormGroup({
       artistId: new FormControl(this.artistId),

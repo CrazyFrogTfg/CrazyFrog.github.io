@@ -17,7 +17,7 @@ export class PerfilComponent {
   passwordError:string=""
   updateUser: FormGroup;
 
-  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafrog - Perfil')
+  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafroggy - Perfil')
     this.updateUser = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
