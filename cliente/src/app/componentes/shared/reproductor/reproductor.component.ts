@@ -23,9 +23,8 @@ constructor(protected reproductorService:ReproductorService){
 
 ngOnInit()
 {
-  this.volume = this.getVolumelocal()
+  this.getLocals()
   this.updateVolume()
-  this.getRandomizeAndLoopMode()
 }
 
 ngOnChanges()
@@ -41,8 +40,8 @@ reproduceFromBuscador() {
   this.reproductorService.reproduce(this.receivedSong);
 }
 
-playPausa() {
-  return this.reproductorService.playPausa();
+playPause() {
+  return this.reproductorService.playPause();
 }
 
 detener() {
@@ -51,7 +50,6 @@ detener() {
 
 updateVolume() {
   this.reproductorService.updateVolume(this.volume)
-
 }
 
 updateInputRange(){
@@ -61,10 +59,30 @@ updateInputRange(){
     volumeInput.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
   }
 }
-
-getVolumelocal()
+getLocals(){
+  this.volume = this.getVolumeLocal()
+  this.loopMode = this.getLoopLocal()
+  this.randomize = this.getRandomizeLocal()
+}
+getVolumeLocal()
 {
   return this.reproductorService.getVolumeLocal()
+}
+getLoopLocal()
+{
+  return this.reproductorService.getLoopLocal()
+}
+getRandomizeLocal()
+{
+  return this.reproductorService.getRandomizeLocal()
+}
+setRandomizeLocal(){
+  this.randomize = !this.randomize
+  this.reproductorService.setRandomizeLocal(this.randomize)
+}
+setLoopLocal(){
+  this.loopMode = !this.loopMode
+  this.reproductorService.setLoopLocal(this.loopMode)
 }
 
 isPlaying(): boolean {
@@ -78,17 +96,8 @@ previousSong(){
 nextSong(){
   this.reproductorService.nextSong()
 }
-randomization(){
-  this.randomize = this.reproductorService.randomization()
-  console.log(this.randomize)
-}
-toggleLoopMode(){
-  this.loopMode = this.reproductorService.toggleLoopMode()
-}
-getRandomizeAndLoopMode(){
-  this.randomize = this.reproductorService.getRandomize()
-  this.loopMode = this.reproductorService.getLoopMode()
-}
+
+
 muteUnmuted(){
   this.muted = !this.muted
   this.reproductorService.muteUnmuted()

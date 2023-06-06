@@ -14,9 +14,11 @@ export class ReproductorService {
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
-  randomize:boolean=false
+  randomize:boolean=false;
+  randomizeLocal:boolean;
   rangeDuration:number = 0
   loopMode:boolean=false
+  loopLocal:boolean
 
   constructor() {
     
@@ -35,6 +37,12 @@ export class ReproductorService {
 
     let savedVolumeLocal = localStorage.getItem("volumeLocal") || "[]"
     this.volumeLocal = JSON.parse(savedVolumeLocal);
+
+    let savedLoopLocal = localStorage.getItem("loopLocal") || "[]"
+    this.loopLocal = JSON.parse(savedLoopLocal);
+
+    let savedRandomizeLocal = localStorage.getItem("randomizeLocal") || "[]"
+    this.randomizeLocal = JSON.parse(savedRandomizeLocal);
   }
 
   ngOnInit()
@@ -92,7 +100,7 @@ reproduce(song:any) {
   //   return this.songPlaying
   // }
 
-  playPausa():boolean {
+  playPause():boolean {
       if (this.audioElement.paused) {
         this.audioElement.play();
         this.isPaused = false;
@@ -101,6 +109,12 @@ reproduce(song:any) {
         this.isPaused = true;
     }
     return this.isPaused;
+  }
+
+  pauseByLogout()
+  {
+    this.audioElement.pause()
+    this.isPaused = true;
   }
 
   detener() {
@@ -165,15 +179,31 @@ reproduce(song:any) {
     this.audioElement.volume = volume;
     this.setVolumeLocal(volume)
   }
-
+  //Unificar estas 2 funciones? reducir codigo.[ updateVolume() y setVolumeLocal() ]
   setVolumeLocal(volume:number){
     this.volumeLocal = volume
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
+  }
+  setLoopLocal(loop:boolean){
+    this.loopLocal = loop
+    localStorage.setItem("loopLocal", JSON.stringify(this.loopLocal))
+  }
+  setRandomizeLocal(randomize:boolean){
+    this.randomizeLocal = randomize
+    localStorage.setItem("randomizeLocal", JSON.stringify(this.randomizeLocal))
   }
 
   getVolumeLocal()
   {
     return this.volumeLocal
+  }
+  getLoopLocal()
+  {
+    return this.loopLocal
+  }
+  getRandomizeLocal()
+  {
+    return this.randomizeLocal
   }
 
   onProgressChange() {
