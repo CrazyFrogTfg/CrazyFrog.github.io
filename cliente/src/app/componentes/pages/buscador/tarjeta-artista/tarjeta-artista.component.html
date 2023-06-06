@@ -2,7 +2,7 @@
 <div class="artist-container" *ngIf="artist">
   <div (click)="goToDetails()" class="cardArtista">
     <img class="card-img-top img-fluid" [src]="artist.image" alt="IMAGEN ARTISTA">
-    <h5 class="card-title">{{artist.name}}</h5>
+    <h5 class="card-title">{{ truncateTitle(artist.name, 15) }}</h5>
     <p class="card-subtitle">-</p>
   </div>
   <button class="btn btn-fav" (click)="setArtistFav()" *ngIf="!isArtistFav()">

@@ -3,7 +3,7 @@
     <div class="card-body" (click)="goToDetails(favArtist)">
       <img *ngIf="favArtist.image" [src]="favArtist.image" alt="IMAGEN fav" class="card-img-top img-fluid">
       <img *ngIf="!favArtist.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-      <h5 class="card-title">{{favArtist.name}}</h5>
+      <h5 class="card-title">{{ truncateTitle(favArtist.name, 15) }}</h5>
     </div>
     <button class="btn btn-fav" (click)="delArtistFav()" *ngIf="isArtistFav()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart-fill heart-svg" viewBox="0 0 16 16">
@@ -22,8 +22,7 @@
     <div class="card-body" (click)="goToDetails(favAlbum)">
       <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="IMAGEN fav" class="card-img-top img-fluid">
       <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-      <h5 class="card-title">{{favAlbum.name | slice:0:15}}</h5>
-      <h5 class="card-title">{{favAlbum.name | slice:15}}</h5>
+      <h5 class="card-title">{{ truncateTitle(favAlbum.name, 15) }}</h5>
       <p class="card-subtitle">{{favAlbum.year}}</p>
     </div>
     <button class="btn btn-fav" (click)="delAlbumFav()" *ngIf="isAlbumFav()">

@@ -54,14 +54,6 @@ updateVolume() {
 
 }
 
-updateInputRange(){
-  const volumeInput:any = document.querySelector('.volume::-moz-range-track');
-  const percentage = (this.volume) * 100;
-  if(volumeInput){
-    volumeInput.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percentage}%, #ccc ${percentage}%, #ccc 100%)`;
-  }
-}
-
 getVolumelocal()
 {
   return this.reproductorService.getVolumeLocal()
