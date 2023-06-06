@@ -9,6 +9,17 @@ audio{
   box-shadow: 0 0 3px #000000;
 }
 
+.loop-random{
+  margin: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.song-name-dur{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
 .repro{
   background-color: #E9840E;
   height: 80px;
