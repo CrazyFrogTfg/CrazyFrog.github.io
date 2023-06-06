@@ -69,6 +69,11 @@ input[type=range].volume {
 input[type=range].volume:focus {
   outline: none;
 }
+
+input[type='range'], input[type='range']::-webkit-slider-runnable-track, input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
 input[type=range].volume::-webkit-slider-runnable-track {
   width: 100%;
   height: 11px;
