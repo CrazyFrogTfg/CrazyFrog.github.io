@@ -15,15 +15,17 @@ export class ReproductorComponent {
 isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
-randomize:boolean = this.reproductorService.randomize
-loopMode:boolean = this.reproductorService.loopMode
+randomize:boolean = false
+loopMode:boolean = false
 
-constructor(protected reproductorService:ReproductorService){ }
+constructor(protected reproductorService:ReproductorService){
+ }
 
 ngOnInit()
 {
   this.volume = this.getVolumelocal()
   this.updateVolume()
+  this.getRandomizeAndLoopMode()
 }
 
 ngOnChanges()
@@ -78,10 +80,14 @@ nextSong(){
 }
 randomization(){
   this.randomize = this.reproductorService.randomization()
+  console.log(this.randomize)
 }
 toggleLoopMode(){
   this.loopMode = this.reproductorService.toggleLoopMode()
-  console.log(this.loopMode)
+}
+getRandomizeAndLoopMode(){
+  this.randomize = this.reproductorService.getRandomize()
+  this.loopMode = this.reproductorService.getLoopMode()
 }
 muteUnmuted(){
   this.muted = !this.muted

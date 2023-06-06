@@ -19,6 +19,7 @@ export class ReproductorService {
   loopMode:boolean=false
 
   constructor() {
+    
     this.audioElement = new Audio();
     this.audioElement.addEventListener('timeupdate', () => {
       this.currentProgress = this.audioElement.currentTime;
@@ -49,13 +50,20 @@ export class ReproductorService {
     this.isPaused=false
   }
 
-  randomization()
-  {
-    return this.randomize = !this.randomize
+  randomization(){
+    this.randomize = !this.randomize
+    return this.randomize
   }
-  toggleLoopMode()
+  getRandomize(){
+    return this.randomize
+  }
+  toggleLoopMode(){
+    this.loopMode = !this.loopMode
+    return this.loopMode
+  }
+  getLoopMode()
   {
-    return this.loopMode = !this.loopMode
+    return this.loopMode
   }
 
 reproduce(song:any) {
