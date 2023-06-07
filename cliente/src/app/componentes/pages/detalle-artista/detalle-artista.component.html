@@ -2,7 +2,7 @@
 <app-spinner *ngIf="!artistInfo"></app-spinner>
 <main>
   <section class="artistDisp" *ngIf="artistInfo">
-    <img class="artist-img" [src]="artistInfo.image" tabindex=0>
+    <img class="artist-img" [src]="artistInfo.image" alt="Imagen del artista {{artistInfo.name}}" tabindex=0>
     <article class="artist-nombre">
       <div *ngIf="!edit">
         <h1 tabindex=0> {{artistInfo.name}} </h1>

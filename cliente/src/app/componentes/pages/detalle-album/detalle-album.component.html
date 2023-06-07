@@ -2,7 +2,7 @@
 <app-spinner *ngIf="!albumInfo"></app-spinner>
 <main>
   <section class="albumDisp" *ngIf="albumInfo">
-    <img class="album-img" [src]="albumInfo.image" tabindex=0>
+    <img class="album-img" [src]="albumInfo.image" alt="Imagen del album {{albumInfo.name}}" tabindex=0>
     <article class="album-nombre">
       <div *ngIf="!edit">
         <div class="d-flex align-items-center">

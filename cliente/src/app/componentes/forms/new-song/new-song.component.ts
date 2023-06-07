@@ -33,7 +33,6 @@ export class NewSongComponent {
       this.newSong.controls['albumId'].setValue(this.albumId)
       this.order = parseInt(params['order'])+1
       this.newSong.controls['order'].setValue(this.order)
-      console.log(this.artistId)
     })
   }
 

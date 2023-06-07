@@ -1,7 +1,7 @@
 <app-spinner *ngIf="!artist"></app-spinner>
 <section class="artist-container" *ngIf="artist">
   <article (click)="goToDetails()" class="cardArtista">
-    <img class="card-img-top img-fluid" [src]="artist.image" alt="IMAGEN ARTISTA" tabindex=0>
+    <img class="card-img-top img-fluid" [src]="artist.image" alt="Imagen del artista {{artist.name}}" tabindex=0>
     <h5 class="card-title" tabindex=0>{{ truncateTitle(artist.name, 15) }}</h5>
     <p class="card-subtitle">-</p>
   </article>

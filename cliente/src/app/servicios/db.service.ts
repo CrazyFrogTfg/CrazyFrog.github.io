@@ -162,7 +162,6 @@ export class DbService {
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
     {
-      console.log(song)
       song.lyrics = song.lyrics.replace(/\n/g, '&#10;');
       const songRef = collection(this.firestore, 'songs');
       await addDoc(songRef, song);
@@ -279,11 +278,11 @@ export class DbService {
             private:playlist.private,
           })
         }
-    }
+  }
 
-    async deletePlaylist(playlistId:string){
-      await deleteDoc(doc(this.firestore, "playlists", playlistId));
-    }
+  async deletePlaylist(playlistId:string){
+    await deleteDoc(doc(this.firestore, "playlists", playlistId));
+  }
 
   //Favs de album - pegar un ojo
   setAlbumFav(favorite:string){

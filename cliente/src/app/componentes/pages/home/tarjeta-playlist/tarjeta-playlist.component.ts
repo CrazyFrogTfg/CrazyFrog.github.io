@@ -21,7 +21,7 @@ export class TarjetaPlaylistComponent {
   updatePlaylist:FormGroup
 
   constructor(private router:Router, private firestore: Firestore,
-    private userService:UsuariosService, private fireStorage:FireStorageService,
+    private userService:UsuariosService,
     private db:DbService){
       this.updatePlaylist = new FormGroup({
         name: new FormControl(),
@@ -52,7 +52,6 @@ toggleEdit(){
 }
 
 async onSubmit(){
-  console.log(this.playlist.id)
   await this.db.updatePlaylist(this.updatePlaylist.value, this.playlist)
 }
 

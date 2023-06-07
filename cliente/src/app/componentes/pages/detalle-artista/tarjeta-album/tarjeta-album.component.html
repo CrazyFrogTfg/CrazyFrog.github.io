@@ -1,8 +1,8 @@
 <section class="album-container">
   <section class="cardAlbum">
     <article class="card-body" *ngIf="!edit" (click)="goToDetails(album)">
-      <img *ngIf="album.image" [src]="album.image" alt="IMAGEN ALBUM" class="card-img-top img-fluid" tabindex=0>
-      <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="album.image" [src]="album.image" alt="Imagen del album {{album.name}}" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="!album.image" src="../../../../assets/defaultImageProfile.jpg" alt="Imagen por defecto de album" class="card-img-top img-fluid" tabindex=0>
       <h5 class="card-title" tabindex=0>{{ truncateTitle(album.name, 15) }}</h5>
       <p class="card-subtitle" tabindex=0>{{album.year}}</p>
     </article>
