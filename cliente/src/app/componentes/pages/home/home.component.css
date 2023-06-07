@@ -103,6 +103,10 @@ h1, h2, h3 {
   font-size: 20px;
 }
 
+.newplaylist:focus svg{
+  fill: #E9840E;
+}
+
 @media (max-width: 769px) {
   .start-tutorial{
     height: 90px;

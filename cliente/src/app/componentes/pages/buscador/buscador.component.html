@@ -16,20 +16,20 @@
         <!-- filtros -->
         <article class="filtrosSection">
           <div class="box-checks">
-            <label>Filtrar por:</label>
+            <label tabindex=0>Filtrar por:</label>
               <br>
               <input class="form-check-input" checked name="cboxArtist" (change)="toogleCboxArtist()" type="checkbox">
-              <label class="form-check-label" for="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault" tabindex=0>
                 Artistas
               </label>
                 <br>
               <input class="form-check-input" checked name="cboxAlbum" (change)="toogleCboxAlbum()" type="checkbox">
-              <label class="form-check-label" for="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault" tabindex=0>
                 Álbumes
               </label>
                 <br>
               <input class="form-check-input" checked name="cboxCancion" (change)="toogleCboxSong()" type="checkbox">
-              <label class="form-check-label" for="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault" tabindex=0>
                 Canciones
               </label>
           </div>
@@ -38,7 +38,7 @@
         <article class="adminButtons" *ngIf="isAdmin">
           <button class="cssbuttons-io-button" (click)="newArtista()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
-            <span>Añadir artista</span>
+            <span tabindex=0>Añadir artista</span>
           </button>
         </article>
       </section>
@@ -47,7 +47,7 @@
         <section class="container">
           <!-- artistas -->
           <article *ngIf="cboxArtist && filteredArtistsLength!=0" class="artist-container">
-            <h2>Artistas</h2>
+            <h2 tabindex=0>Artistas</h2>
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
                 <div class="row row-cols-auto">
@@ -72,7 +72,7 @@
           </article>
           <!-- albumes -->
           <article *ngIf="cboxAlbum && filteredAlbumsLength">
-            <h2>Albumes</h2>
+            <h2 tabindex=0>Albumes</h2>
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
                 <div class="row row-cols-auto">
@@ -97,7 +97,7 @@
           </article>
           <!-- canciones -->
           <article *ngIf="cboxSong && filteredSongsLength">
-            <h2>Canciones</h2>
+            <h2 tabindex=0>Canciones</h2>
             <section>
               <div class="container">
                 <div class="row">

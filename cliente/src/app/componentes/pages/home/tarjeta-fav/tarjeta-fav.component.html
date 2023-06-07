@@ -1,9 +1,9 @@
 <section class="col fav-container" *ngIf="favArtist">
   <section class="card custom-card">
     <article class="card-body" (click)="goToDetails(favArtist)">
-      <img *ngIf="favArtist.image" [src]="favArtist.image" alt="IMAGEN fav" class="card-img-top img-fluid">
-      <img *ngIf="!favArtist.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-      <h5 class="card-title">{{ truncateTitle(favArtist.name, 15) }}</h5>
+      <img *ngIf="favArtist.image" [src]="favArtist.image" alt="IMAGEN fav" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="!favArtist.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid" tabindex=0>
+      <h5 class="card-title" tabindex=0>{{ truncateTitle(favArtist.name, 15) }}</h5>
     </article>
     <button class="btn btn-fav" (click)="delArtistFav()" *ngIf="isArtistFav()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart-fill heart-svg" viewBox="0 0 16 16">
@@ -21,10 +21,10 @@
 <section class="col fav-container" *ngIf="favAlbum">
   <section class="card custom-card">
     <article class="card-body" (click)="goToDetails(favAlbum)">
-      <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="IMAGEN fav" class="card-img-top img-fluid">
-      <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid">
-      <h5 class="card-title">{{ truncateTitle(favAlbum.name, 15) }}</h5>
-      <p class="card-subtitle">{{favAlbum.year}}</p>
+      <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="IMAGEN fav" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.jpg" class="card-img-top img-fluid" tabindex=0>
+      <h5 class="card-title" tabindex=0>{{ truncateTitle(favAlbum.name, 15) }}</h5>
+      <p class="card-subtitle" tabindex=0>{{favAlbum.year}}</p>
     </article>
     <button class="btn btn-fav" (click)="delAlbumFav()" *ngIf="isAlbumFav()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart-fill heart-svg" viewBox="0 0 16 16">

@@ -1,7 +1,7 @@
 .card-playlist{
   color: white;
-  margin-top: 35px;
   margin-bottom:35px;
+  margin-top: 35px;
   padding-top:5px;
   padding-bottom:5px;
 }
@@ -10,6 +10,11 @@
   background-color: rgba(85, 80, 74, 0.6);
   box-shadow: rgba(233, 132, 14, 0.17) 0px -23px 25px 0px inset, rgba(233, 132, 14, 0.15) 0px -36px 30px 0px inset, rgba(233, 132, 14, 0.1) 0px -79px 40px 0px inset, rgba(233, 132, 14, 0.06) 0px 2px 1px, rgba(233, 132, 14, 0.09) 0px 4px 2px, rgba(233, 132, 14, 0.09) 0px 8px 4px, rgba(233, 132, 14, 0.09) 0px 16px 8px, rgba(233, 132, 14, 0.09) 0px 32px 16px;
   border-radius: 10px;
+}
+
+.edit-button{
+  margin-left: 4px;
+  margin-top: 4px;
 }
 
 h5{
@@ -26,7 +31,7 @@ h5{
   transition: background-color 0.3s, color 0.3s;
 }
 
-.btn:hover {
+.btn:hover, .btn:focus {
   background-color: white;
   cursor: pointer;
 }
@@ -38,6 +43,11 @@ h5{
 .btn:hover svg {
   fill: black;
 }
+
+.btn:focus svg {
+  fill: black;
+}
+
 .edit{
   color: white;
 }

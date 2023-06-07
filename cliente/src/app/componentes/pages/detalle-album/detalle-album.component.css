@@ -33,6 +33,11 @@ h1, h5 {
   flex-grow: 1;
 }
 
+.edit-button{
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
 .container{
   margin-top: 5%;
 }

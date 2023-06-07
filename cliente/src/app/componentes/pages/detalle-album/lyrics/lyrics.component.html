@@ -1,6 +1,6 @@
-<section class="lyrics-container">
-  <pre><article class="lyrics-content" *ngIf="reproductorService.songPlaying">{{reproductorService.songPlaying.lyrics}}</article></pre>
-  <pre><article class="lyrics-content" *ngIf="!reproductorService.songPlaying">{{lyrics}}</article></pre>
+<section tabindex=0 class="lyrics-container">
+  <pre><article class="lyrics-content" *ngIf="reproductorService.songPlaying" tabindex=0>{{reproductorService.songPlaying.lyrics}}</article></pre>
+  <pre><article class="lyrics-content" *ngIf="!reproductorService.songPlaying" tabindex=0>{{lyrics}}</article></pre>
 </section>
 
 

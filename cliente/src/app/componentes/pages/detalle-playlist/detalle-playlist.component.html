@@ -3,7 +3,7 @@
 <main class="playlistDisp" *ngIf="owner">
   <section *ngIf="!edit" class="playlist-name">
     <article class="d-flex align-items-center">
-      <h1> {{playlistInfo.name}} </h1>
+      <h1 tabindex=0> {{playlistInfo.name}} </h1>
       <button class="copy" (click)="copyUrlToClipboard()">
         <span data-text-end="Copied!" data-text-initial="Copiar al portapapeles" class="tooltip"></span>
         <span>
@@ -21,8 +21,8 @@
       </button>
     </article>
     <article>
-      <h5 *ngIf="playlistInfo.private && !edit">Privada</h5>
-      <h5 *ngIf="!playlistInfo.private && !edit">Pública</h5>
+      <h5 *ngIf="playlistInfo.private && !edit" tabindex=0>Privada</h5>
+      <h5 *ngIf="!playlistInfo.private && !edit" tabindex=0>Pública</h5>
     </article>
   </section>
 

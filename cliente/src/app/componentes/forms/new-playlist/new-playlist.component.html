@@ -2,7 +2,7 @@
 <main class="newpl-container">
   <section class="newpl-box">
     <article class="header d-flex justify-content-between">
-      <h1>Dale nombre a tu nueva playlist</h1>
+      <h1 tabindex=0>Dale nombre a tu nueva playlist</h1>
       <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
     </article>
     <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
@@ -10,11 +10,11 @@
         <label for="namePlaylist" class="label">Nombre</label>
         <input type="text" #namePlaylist required class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="name">
       </div>
-      <h3>Establece la privacidad:</h3>
-      <p>Tu playlist será pública por defecto</p>
+      <h3 tabindex=0>Establece la privacidad:</h3>
+      <p tabindex=0>Tu playlist será pública por defecto</p>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" formControlName="private" >
-        <label class="form-check-label" for="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault" tabindex=0>
           Privada
         </label>
       </div>

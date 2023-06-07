@@ -2,20 +2,20 @@
 <main class="newpl-container">
   <section class="newpl-box">
     <article class="header d-flex justify-content-between">
-      <h1>Nuevo Álbum</h1>
+      <h1 tabindex=0>Nuevo Álbum</h1>
       <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
     </article>
     <form [formGroup]="newAlbum" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="nameArtist" class="label">Nombre</label>
+        <label for="nameArtist" class="label" tabindex=0>Nombre</label>
         <input type="text" class="form-control" #nameAlbum id="nameAlbum" formControlName="name">
       </div>
       <div class="form-group">
-        <label for="descriptionArtist" class="label">Año</label>
+        <label for="descriptionArtist" class="label" tabindex=0>Año</label>
         <input type="number" required max={{currentYear}} min="1" class="form-control" #yearAlbum id="anyoAlbum" formControlName="year">
       </div>
       <div class="form-group">
-        <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
+        <label for="exampleInputImage" class="upload-img label-img" tabindex=0>Imagen</label>
         <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
       </div>
       <button type="submit" [disabled]="( yearAlbum.value.length <1 || yearAlbum.value.length > 4 || nameAlbum.value.length === 0)" class="btn btn-dark">CREAR</button>
