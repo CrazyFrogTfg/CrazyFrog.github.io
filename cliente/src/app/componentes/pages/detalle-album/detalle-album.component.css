@@ -67,6 +67,7 @@ h1, h5 {
 
 .addAlbum{
   margin-right:25px;
+  margin-bottom: 15px;
 }
 
 .admin-button:hover {
@@ -134,7 +135,8 @@ h1, h5 {
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  margin-left: 3px;
+  margin-left: 4px;
+  justify-content: space-between;
 }
 
 .btn-fav{
@@ -188,6 +190,5 @@ h1, h5 {
   .admin-button {
     margin-top: 10px;
   }
-
 }
 

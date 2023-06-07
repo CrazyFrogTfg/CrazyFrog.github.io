@@ -8,6 +8,10 @@
     margin: 40px 30px;
   }
 
+  .playlistInfo{
+    margin-left: 100px;
+  }
+
   .divBuscador {
     display: flex;
     align-items: center;
@@ -31,10 +35,6 @@
 
   .container{
     margin-top: 5%;
-  }
-
-  .playlist-name{
-    margin-bottom: 5px;
   }
 
   .cssbuttons-io-button {
@@ -280,6 +280,12 @@ label{
     flex-direction: column;
     align-items: center;
     margin: 20px 0px;
+  }
+
+  .playlist-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .artist-nombre {

@@ -1,14 +1,13 @@
 <app-navbar></app-navbar>
 <app-spinner *ngIf="!userInfo"></app-spinner>
-<section class="home-container d-flex" *ngIf="userInfo">
-
+<main class="home-container d-flex" *ngIf="userInfo">
   <section class="homeDisp">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-center mb-3">
+    <section class="container">
+      <section class="row">
+        <article class="col-lg-2 col-md-4 col-sm-6 d-flex justify-content-center mb-3">
           <img class="profile-img2" [src]="userInfo.imageProfile" alt="alt">
-        </div>
-        <div class="col-lg-10 col-md-8 col-sm-6 welcome">
+        </article>
+        <article class="col-lg-10 col-md-8 col-sm-6 welcome">
           <h1>
             Bienvenid@ a MediaFroggy,<br/>
             {{userInfo.username}}
@@ -17,19 +16,19 @@
           <button class="btn btn-light start-tutorial" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
             Aprende a usar MediaFroggy
           </button>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </section>
   </section>
-
-  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
+<!-- tutorial -->
+  <section class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-lg">
+      <section class="modal-content">
+        <article class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel">¡Bienvenid@, {{userInfo.username}}!</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+        </article>
+        <article class="modal-body">
           <p class="modal-text">
             Nos alegramos mucho de que te hayas unido a nuestra plataforma.
             Aquí podrás descubrir y disfrutar de tus artistas, álbumes y canciones favoritas.
@@ -37,21 +36,21 @@
             <br>
             ¡Comencemos!
           </p>
-        </div>
-        <div class="modal-footer">
+        </article>
+        <article class="modal-footer">
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Siguiente</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
+        </article>
+      </section>
+    </section>
+  </section>
+  <section class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-lg">
+      <section class="modal-content">
+        <article class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Inicio</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+        </article>
+        <article class="modal-body">
           <p class="modal-text">
             En primer lugar comenzaremos por la sección de <strong>Inicio</strong> la cual está dividida en 2 partes: <br> <br>
             Parte 1: <strong>Playlist</strong> <br> <br>
@@ -65,24 +64,24 @@
             <img src="../../../../assets/Info/Favoritos1.png" class="modal-image" width="600px" height="200px"> <br> <br>
             <img src="../../../../assets/Info/Favoritos2.png" class="modal-image" width="600px" height="200px"> <br> <br>
           </p>
-        </div>
-        <div class="modal-footer">
+        </article>
+        <article class="modal-footer">
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Volver</button>
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Siguiente</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
+        </article>
+      </section>
+    </section>
+  </section>
+  <section class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-lg">
+      <section class="modal-content">
+        <article class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Buscador</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+        </article>
+        <article class="modal-body">
           <p class="modal-text">
-            En la sección de <strong>buscador</strong> la dividiremos en 2 bloques: <br> <br>  
+            En la sección de <strong>buscador</strong> la dividiremos en 2 bloques: <br> <br>
             Parte 1: <strong>Filtros</strong><br> <br>
             En esta parte volveremos a ver una barra para filtrar por el nombre que deseemos y en la parte derecha de nuestra página veremos una caja la cual podemos filtrar por artistas, álbumes y canciones, bastaría solo con seleccionar lo que deseeomes o deseleccionando lo que no<br><br>
             <img src="../../../../assets/Info/Filtros.png" class="modal-image" width="600px" height="150px"> <br> <br>
@@ -90,22 +89,22 @@
             <img src="../../../../assets/Info/Contenido.png" class="modal-image" width="400px" height="400px"> <br> <br>
             En esta sección veremos el contenido principal de nuestra web el cual podemos dividirlo en 3 secciones, artistas, álbumes y canciones. En los cuales podemos acceder haciendole click <br> <br>
           </p>
-        </div>
-        <div class="modal-footer">
+        </article>
+        <article class="modal-footer">
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Volver</button>
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Siguiente</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
+        </article>
+      </section>
+    </section>
+  </section>
+  <section class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-lg">
+      <section class="modal-content">
+        <article class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Detalles</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+        </article>
+        <article class="modal-body">
           <p class="modal-text">
             Ahora, profundizaremos en 2 partes: <br><br>
             Parte 1: <strong>Artistas</strong><br><br>
@@ -120,99 +119,97 @@
             <img src="../../../../assets/Info/PlaylistCancion.png" class="modal-image" width="200px" height="200px"> <br> <br>
             De esta forma clickando a cualquiera de nuestras playlists se añadirá automaticamente
             </p>
-        </div>
-        <div class="modal-footer">
+        </article>
+        <article class="modal-footer">
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Volver</button>
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">Siguiente</button>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel5" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Perfil</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p class="modal-text">
-              Por último veremos como actualizar el <strong>Perfil</strong>: <br> <br>
-              <img src="../../../../assets/Info/Perfil.png" class="modal-image" width="500px" height="500px"> <br> <br>
-              Como vemos, podemos cambiar cualquier dato de nuestro perfil rellenando este formulario, tanto imagen, nombre de usuario, contraseña y el email. <br>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Vuelta al principio</button>
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </article>
+      </section>
+    </section>
+  </section>
+  <section class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel5" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-lg">
+      <section class="modal-content">
+        <article class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Perfil</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </article>
+        <article class="modal-body">
+          <p class="modal-text">
+            Por último veremos como actualizar el <strong>Perfil</strong>: <br> <br>
+            <img src="../../../../assets/Info/Perfil.png" class="modal-image" width="500px" height="500px"> <br> <br>
+            Como vemos, podemos cambiar cualquier dato de nuestro perfil rellenando este formulario, tanto imagen, nombre de usuario, contraseña y el email. <br>
+          </p>
+        </article>
+        <article class="modal-footer">
+          <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Vuelta al principio</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+        </article>
+      </section>
+    </section>
+  </section>
 
   <hr class="divider"/>
 
   <section class="favs">
-
-    <div class="header-playlist d-flex justify-content-between">
+    <article class="header-playlist d-flex justify-content-between">
       <h2>Mis playlists</h2>
-    </div>
+    </article>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row align-items-center">
-            <div class="divBuscador">
-              <div class="lupa">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-              </div>
-              <input class="buscador" #search (keyup.enter)="setFilterName(search.value)" type="text" placeholder="Filter de Playlist">
-            </div>
-          </div>
-            <div class=" playlist-list col-sm-12">
-            <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
-            </div>
-        </div>
-
-          <div class="addPlaylist col-md-6 col-sm-12">
-            <button class="btn" (click)="goToNewPlaylist()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="whitesmoke" class="bi bi-patch-plus" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
-                <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+    <section class="container">
+      <section class="row">
+        <section class="col-md-6">
+          <article class="divBuscador">
+            <div class="lupa">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
-            </button>
-            <p>Crear playlist</p>
-          </div>
-      </div>
+            </div>
+            <input class="buscador" #search (keyup.enter)="setFilterName(search.value)" type="text" placeholder="Filter de Playlist">
+          </article>
+          <article class=" playlist-list col-sm-12">
+            <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
+          </article>
+        </section>
 
-  </div>
-</section>
+        <article class="addPlaylist col-md-6 col-sm-12">
+          <button class="btn" (click)="goToNewPlaylist()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="whitesmoke" class="bi bi-patch-plus" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+              <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+            </svg>
+          </button>
+          <p>Crear playlist</p>
+        </article>
+      </section>
+    </section>
+  </section>
 
   <hr class="divider"/>
 
   <section class="favs">
-    <h2>Mis favoritos   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">
-      <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
-    </svg> </h2>
-    <div class="container" *ngIf="artistsFav[0]">
+    <h2>Mis favoritos
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-suit-heart heart-svg" viewBox="0 0 16 16">
+        <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
+      </svg>
+    </h2>
+    <article class="container" *ngIf="artistsFav[0]">
       <h3>Artistas</h3>
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
           <app-tarjeta-fav *ngFor="let favArtist of getArtistsFav()" [favArtist] = "favArtist" ></app-tarjeta-fav>
         </div>
       </div>
-    </div>
-    <div class="container" *ngIf="albumsFav[0]">
+    </article>
+    <article class="container" *ngIf="albumsFav[0]">
       <h3>Álbumes</h3>
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
           <app-tarjeta-fav *ngFor="let favAlbum of getAlbumsFav()" [favAlbum] = "favAlbum" ></app-tarjeta-fav>
         </div>
       </div>
-    </div>
+    </article>
   </section>
-</section>
+</main>
 <app-reproductor></app-reproductor>
 

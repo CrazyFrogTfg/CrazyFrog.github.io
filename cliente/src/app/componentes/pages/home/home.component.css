@@ -105,13 +105,8 @@ h1, h2, h3 {
 
 @media (max-width: 769px) {
   .start-tutorial{
-    height: 75px;
-  }
-}
-
-@media (max-width: 769px) {
-  .start-tutorial{
-    height: 75px;
+    height: 90px;
+    width:60%;
   }
 }
 
