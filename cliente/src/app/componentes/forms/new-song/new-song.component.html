@@ -1,39 +1,36 @@
 <app-navbar></app-navbar>
-<section class="newpl-container" *ngIf="this.order!=0">
+<main class="newpl-container" *ngIf="this.order!=0">
   <section class="newpl-box">
-    <div>
-      <button class="btn btn-outline-dark" (click)="goBack()">X</button>
-      <br>
-      <h1>Nueva canción</h1>
-      <form [formGroup]="newSong" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="nombre" class="label">Título</label>
-          <input type="text" class="form-control" #nombreCancion id="nombre" aria-describedby="namePlaylist" placeholder="Título" formControlName="name">
+    <article class="header d-flex justify-content-between">
+      <h1>Nueva Canción</h1>
+      <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
+    </article>
+    <form [formGroup]="newSong" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre" class="label">Título</label>
+        <input type="text" class="form-control" #nombreCancion id="nombre" aria-describedby="namePlaylist" placeholder="Título" formControlName="name">
+      </div>
+      <div class="form-group">
+        <div class="d-flex align-items-end" *ngIf="!helpOrder">
+          <label for="orden" class="label">Orden</label>
+          <button class="btn btn-outline-dark help" (click)="toogleHelpOrder()">?</button>
         </div>
-        <div class="form-group">
-          <label for="orden" class="label" *ngIf="!helpOrder">Orden <button (click)="toogleHelpOrder()">?</button></label>
-          <label for="orden" class="label" *ngIf="helpOrder">El orden por defecto es el número de canciones más uno. <button (click)="toogleHelpOrder()">?</button></label>
-          <input type="number" class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
+        <div class="d-flex align-items-end" *ngIf="helpOrder">
+          <label for="orden" class="label">El orden por defecto es el número de canciones más uno.</label>
+          <button class="btn btn-outline-dark help" (click)="toogleHelpOrder()">?</button>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Letra</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="¡Aún no la tenemos, pero la añadiremos muy pronto!" rows="3" formControlName="lyrics"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputImage" class="label-img">Archivo</label>
-          <input type="file" (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img">
-        </div>
-        <button type="submit"  [disabled]="(nombreCancion.value.length === 0 || orden.value.length === 0)" class="btn btn-dark">CREAR</button>
-      </form>
-    </div>
+        <input type="number" class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Letra</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="¡Aún no la tenemos, pero la añadiremos muy pronto!" rows="3" formControlName="lyrics"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputImage" class="label-img">Archivo</label>
+        <input type="file" (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img">
+      </div>
+      <button type="submit"  [disabled]="(nombreCancion.value.length === 0 || orden.value.length === 0)" class="btn btn-dark">CREAR</button>
+    </form>
   </section>
-</section>
-<footer class="licencia">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-  <br />
-  Este obra está bajo una
-  <br><a rel="license"  style="color:white;" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons
-  Reconocimiento-CompartirIgual
-  4.0 Internacional</a>
-</footer>
+</main>
 

@@ -1,5 +1,5 @@
 <section class="repro" *ngIf="reproductorService.totalDuration">
-  <section class="buttons">
+  <article class="buttons">
     <button class="btn btn-light" (click)="previousSong()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -26,13 +26,13 @@
         <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
       </svg>
     </button>
-  </section>
-  <section class="repro-center">
+  </article>
+  <article class="repro-center">
     <section class="infoCancion">
-      <section class="time-line">
+      <article class="time-line">
         <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.rangeDuration">
-      </section>
-      <section class="d-flex justify-content-center">
+      </article>
+      <article class="d-flex justify-content-center">
         <button *ngIf="this.loopMode" class="btn btn-light loop-random" (click)="setLoopLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
             <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
@@ -55,10 +55,10 @@
         <button *ngIf="!this.randomize" class="btn btn-light loop-random" (click)="setRandomizeLocal()">
           RandomizeFalse
         </button>
-      </section>
+      </article>
     </section>
-  </section>
-  <section class="volume-control d-flex">
+  </article>
+  <article class="volume-control d-flex">
     <button class="btn btn-light mute" *ngIf="muted" (click)="muteUnmuted()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">
         <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
@@ -72,6 +72,6 @@
       </svg>
     </button>
     <input type="range" class="volume" [(ngModel)]="volume" min="0" max="1" step="0.01" (input)="updateVolume()">
-  </section>
+  </article>
 </section>
 

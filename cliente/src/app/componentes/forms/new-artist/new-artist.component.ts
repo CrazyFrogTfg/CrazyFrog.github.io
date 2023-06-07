@@ -26,7 +26,7 @@ export class NewArtistComponent {
     })
   }
 
-  goHome(){
+  goBack(){
     this.router.navigate(['/buscador']);
   }
 

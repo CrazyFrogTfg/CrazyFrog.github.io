@@ -1,28 +1,26 @@
 <app-navbar></app-navbar>
-<section class="newpl-container">
+<main class="newpl-container">
   <section class="newpl-box">
-    <div>
-      <button class="btn btn-outline-dark" (click)="goHome()">X</button>
-      <br>
+    <article class="header d-flex justify-content-between">
       <h1>Nuevo Artista</h1>
-      <form [formGroup]="newArtist" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="nameArtist" class="label">Nombre</label>
-          <input type="text" class="form-control" #nameArtist id="nameArtist" aria-describedby="nameArtist" formControlName="name">
-        </div>
-        <div class="form-group">
-          <label for="descriptionArtist" class="label">Descripcion</label>
-          <input type="text" class="form-control" #descriptionArtist id="descriptionArtist" aria-describedby="descriptionArtist" formControlName="description">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
-          <input type="file" #file (change)="setFile($event)" required id="exampleInputImage" class="form-control upload-img">
-        </div>
-        <button type="submit" [disabled]="(nameArtist.value.length === 0 || descriptionArtist.value.length === 0 || isFile===false)" class="btn btn-dark">CREAR</button>
-      </form>
-    </div>
+      <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
+    </article>
+    <form [formGroup]="newArtist" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nameArtist" class="label">Nombre</label>
+        <input type="text" class="form-control" #nameArtist id="nameArtist" aria-describedby="nameArtist" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="descriptionArtist" class="label">Descripcion</label>
+        <input type="text" class="form-control" #descriptionArtist id="descriptionArtist" aria-describedby="descriptionArtist" formControlName="description">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
+        <input type="file" #file (change)="setFile($event)" required id="exampleInputImage" class="form-control upload-img">
+      </div>
+      <button type="submit" [disabled]="(nameArtist.value.length === 0 || descriptionArtist.value.length === 0 || isFile===false)" class="btn btn-dark">CREAR</button>
+    </form>
   </section>
-</section>
-<app-footer></app-footer>
+</main>
 
 

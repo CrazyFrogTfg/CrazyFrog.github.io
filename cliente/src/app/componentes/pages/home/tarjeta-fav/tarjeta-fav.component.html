@@ -1,4 +1,4 @@
-<div class="col" *ngIf="favArtist">
+<div class="col fav-container" *ngIf="favArtist">
   <div class="card custom-card">
     <div class="card-body" (click)="goToDetails(favArtist)">
       <img *ngIf="favArtist.image" [src]="favArtist.image" alt="IMAGEN fav" class="card-img-top img-fluid">
@@ -17,7 +17,7 @@
     </button>
   </div>
 </div>
-<div class="col" *ngIf="favAlbum">
+<div class="col fav-container" *ngIf="favAlbum">
   <div class="card custom-card">
     <div class="card-body" (click)="goToDetails(favAlbum)">
       <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="IMAGEN fav" class="card-img-top img-fluid">

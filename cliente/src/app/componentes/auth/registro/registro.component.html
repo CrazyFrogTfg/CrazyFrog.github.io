@@ -1,10 +1,10 @@
 <!-- <app-spinner></app-spinner> -->
 <section class="register-container">
-  <section class="frog-container">
+  <article class="frog-container">
     <img src="../../../assets/mediafrogLogo.svg" alt="logo-mediafrog" class="frog">
-  </section>
-  <section class="register-box">
-    <h1 style="padding-bottom: 20px; width:100%">REGISTRATE</h1>
+  </article>
+  <article class="register-box">
+    <h1>REGISTRATE</h1>
     <div>
       <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -19,12 +19,11 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" #password required id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
         </div>
-        <button type="submit" class="entrar btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entra">ÚNETE</button>
-        <button class="btn btn-outline-dark" id="iniciar" (click)="goToLogin()">INICIA SESIÓN</button>
+        <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entra">ÚNETE</button>
+        <button class="btn btn-outline-dark" (click)="goToLogin()">INICIA SESIÓN</button>
       </form>
     </div>
-  </section>
+  </article>
 </section>
-<app-footer></app-footer>
 
 

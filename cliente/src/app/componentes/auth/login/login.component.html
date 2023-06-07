@@ -1,10 +1,9 @@
 <section class="login-container">
-
-  <section class="frog-container">
+  <article class="frog-container">
     <img src="../../../assets/mediafrogLogo.svg" alt="logo-mediafrog" class="frog">
-  </section>
-  <section class="login-box">
-    <h1 style="padding-bottom: 20px;">INICIA SESIÓN</h1>
+  </article>
+  <article class="login-box">
+    <h1>INICIA SESIÓN</h1>
     <div>
       <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -15,13 +14,12 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" #password id="password" placeholder="Introduzca contraseña" formControlName="password">
         </div>
-        <button type="submit" class="entrar btn btn-dark" [disabled]="(password.value.length < 6 || email.value.length === 0)">ENTRAR</button>
-        <button class="registrar btn btn-outline-dark" (click)="goToRegister()">REGISTRATE</button>
+        <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 6 || email.value.length === 0)">ENTRAR</button>
+        <button class="btn btn-outline-dark" (click)="goToRegister()">REGISTRATE</button>
       </form>
     </div>
     <div>
       <p> {{credentialError}} </p>
     </div>
-  </section>
+  </article>
 </section>
-<app-footer></app-footer>

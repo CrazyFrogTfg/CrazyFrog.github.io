@@ -29,6 +29,7 @@ audio{
   bottom: 0;
   width: 100%;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .infoCancion{

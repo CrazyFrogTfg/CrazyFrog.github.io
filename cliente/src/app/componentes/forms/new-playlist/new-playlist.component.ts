@@ -35,7 +35,7 @@ export class NewPlaylistComponent {
     })
   }
 
-  goHome(){
+  goBack(){
     this.router.navigate(['/home']);
   }
 

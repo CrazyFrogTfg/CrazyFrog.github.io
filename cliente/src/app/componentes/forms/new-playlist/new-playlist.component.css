@@ -46,4 +46,16 @@ button{
   --bs-check-indicator-color:
 }
 
+.go-back{
+  width: 40px;
+  float: right;
+  border: 2px solid;
+  font-weight: 800;
+  height: 40px;
+}
+
+h1{
+  margin-bottom: 30px;
+}
+
 
