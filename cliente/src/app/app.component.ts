@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { UsuariosService } from './servicios/usuarios.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title ="MediaFroggy"
 
-  constructor(private router: Router, private userService:UsuariosService) {}
+  constructor(private router: Router) {}
 
   /*se detecta cuando se ha completado la navegacion y despues
   de 0,5 segundos se cambia la opacidad con una transicion
@@ -28,17 +28,5 @@ export class AppComponent {
       }
     });
   }
-
-  //probar
-  logoutDeletedUser() {
-    setTimeout(async () => {
-      const uid = await this.userService.getUID();
-      if (!uid || uid.trim() === '') {
-        this.userService.logout();
-      }
-    }, 2000);
-  }
-
-
 }
 
