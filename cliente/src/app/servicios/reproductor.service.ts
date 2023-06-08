@@ -14,11 +14,9 @@ export class ReproductorService {
   songs:any[]=[]
   songPlaying:any
   volumeLocal:number
-  randomize:boolean=false;
   randomizeLocal:boolean;
-  rangeDuration:number = 0
-  loopMode:boolean=false
   loopLocal:boolean
+  rangeDuration:number = 0
 
   constructor() {
     
@@ -58,22 +56,6 @@ export class ReproductorService {
     this.isPaused=false
   }
 
-  randomization(){
-    this.randomize = !this.randomize
-    return this.randomize
-  }
-  getRandomize(){
-    return this.randomize
-  }
-  toggleLoopMode(){
-    this.loopMode = !this.loopMode
-    return this.loopMode
-  }
-  getLoopMode()
-  {
-    return this.loopMode
-  }
-
 reproduce(song:any) {
     if(!this.songs.includes(song))
     {
@@ -93,12 +75,6 @@ reproduce(song:any) {
     this.songPlaying=this.songs[songOrder]
     this.reproduce(this.songs[songOrder]);
   }
-
-//Funcion que devuelve la cancion que esta sonando
-  // reproducing()
-  // {
-  //   return this.songPlaying
-  // }
 
   playPause():boolean {
       if (this.audioElement.paused) {
@@ -141,7 +117,7 @@ reproduce(song:any) {
 
   nextSong(){
         // Controlamos si el modo aleatorio está activo
-    if(this.randomize == true)
+    if(this.randomizeLocal == true)
     {   // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
       let positionToPlay = Math.floor(Math.random()*this.songs.length)
       while (this.positionPlaying == positionToPlay) {
@@ -159,7 +135,7 @@ reproduce(song:any) {
         }
         else //Si es la última de la lista sin modo aleatorio
         {
-          if(this.loopMode && this.positionPlaying == this.songs.length-1)
+          if(this.loopLocal && this.positionPlaying == this.songs.length-1)
           {
             this.positionPlaying = 0
             this.reproduce(this.songs[this.positionPlaying])
@@ -177,15 +153,13 @@ reproduce(song:any) {
   }
   updateVolume(volume:any) {
     this.audioElement.volume = volume;
-    this.setVolumeLocal(volume)
-  }
-  //Unificar estas 2 funciones? reducir codigo.[ updateVolume() y setVolumeLocal() ]
-  setVolumeLocal(volume:number){
     this.volumeLocal = volume
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
   }
+ 
   setLoopLocal(loop:boolean){
     this.loopLocal = loop
+    this.audioElement.loop = this.loopLocal
     localStorage.setItem("loopLocal", JSON.stringify(this.loopLocal))
   }
   setRandomizeLocal(randomize:boolean){
