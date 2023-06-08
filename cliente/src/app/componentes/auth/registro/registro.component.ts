@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  defaultImageProfile = "/assets/defaultImageProfile.jpg"
+  defaultImageProfile = "/assets/defaultImageProfile.webp"
 
   formReg: FormGroup;
   showImage:boolean=false

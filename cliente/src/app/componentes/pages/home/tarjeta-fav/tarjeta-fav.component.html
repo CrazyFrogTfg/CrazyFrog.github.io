@@ -2,7 +2,7 @@
   <section class="card custom-card">
     <article class="card-body" (click)="goToDetails(favArtist)">
       <img *ngIf="favArtist.image" [src]="favArtist.image" alt="Imagen del artista {{favArtist.name}}" class="card-img-top img-fluid" tabindex=0>
-      <img *ngIf="!favArtist.image" src="../../../../assets/defaultImageProfile.jpg" alt="Imagen de artista por defecto" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="!favArtist.image" src="../../../../assets/defaultImageProfile.webp" alt="Imagen de artista por defecto" class="card-img-top img-fluid" tabindex=0>
       <h5 class="card-title" tabindex=0>{{ truncateTitle(favArtist.name, 15) }}</h5>
     </article>
     <button class="btn btn-fav" (click)="delArtistFav()" *ngIf="isArtistFav()">
@@ -22,7 +22,7 @@
   <section class="card custom-card">
     <article class="card-body" (click)="goToDetails(favAlbum)">
       <img *ngIf="favAlbum.image" [src]="favAlbum.image" alt="Imagen del album {{favAlbum.name}}" class="card-img-top img-fluid" tabindex=0>
-      <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.jpg" alt="Imagen de album por defecto" class="card-img-top img-fluid" tabindex=0>
+      <img *ngIf="!favAlbum.image" src="../../../../assets/defaultImageProfile.webp" alt="Imagen de album por defecto" class="card-img-top img-fluid" tabindex=0>
       <h5 class="card-title" tabindex=0>{{ truncateTitle(favAlbum.name, 15) }}</h5>
       <p class="card-subtitle" tabindex=0>{{favAlbum.year}}</p>
     </article>

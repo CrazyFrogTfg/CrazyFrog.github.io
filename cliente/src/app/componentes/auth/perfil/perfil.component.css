@@ -13,6 +13,12 @@
   margin-top:5%;
 }
 
+p{
+  color: #2a3914;
+  height: 5%;
+  padding-top: 3%;
+}
+
 .profile-box{
   display:flex;
   flex-direction:column;

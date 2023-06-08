@@ -43,7 +43,6 @@ async deletePlaylist() {
   const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
   if (confirmDelete) {
     await this.db.deletePlaylist(this.idPlaylist);
-    location.reload();
   }
 }
 

@@ -7,27 +7,27 @@
     </article>
     <form [formGroup]="newSong" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="nombre" class="label">Título</label>
-        <input type="text" class="form-control" #nombreCancion id="nombre" aria-describedby="namePlaylist" placeholder="Título" formControlName="name">
+        <label for="nombre" class="label">*Título</label>
+        <input type="text" class="form-control" required #nombreCancion id="nombre" aria-describedby="namePlaylist" placeholder="Título" formControlName="name">
       </div>
       <div class="form-group">
         <div class="d-flex align-items-end" *ngIf="!helpOrder">
-          <label for="orden" class="label">Orden</label>
+          <label for="orden" class="label">*Orden</label>
           <button class="btn btn-outline-dark help" (click)="toogleHelpOrder()">?</button>
         </div>
         <div class="d-flex align-items-end" *ngIf="helpOrder">
           <label for="orden" class="label">El orden por defecto es el número de canciones más uno.</label>
           <button class="btn btn-outline-dark help" (click)="toogleHelpOrder()">?</button>
         </div>
-        <input type="number" class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
+        <input type="number" required class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Letra</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="¡Aún no la tenemos, pero la añadiremos muy pronto!" rows="3" formControlName="lyrics"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Añade la letra de la cancion" rows="3" formControlName="lyrics"></textarea>
       </div>
       <div class="form-group">
-        <label for="exampleInputImage" class="label-img">Archivo</label>
-        <input type="file" (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img">
+        <label for="exampleInputImage" class="label-img">*Archivo</label>
+        <input type="file" required (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img">
       </div>
       <button type="submit"  [disabled]="(nombreCancion.value.length === 0 || orden.value.length === 0)" class="btn btn-dark">CREAR</button>
     </form>
