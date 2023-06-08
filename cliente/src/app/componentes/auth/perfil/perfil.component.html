@@ -12,19 +12,19 @@
           <input type="file" (change)="setFile($event)" class="form-control upload-img" id="inputImage" formControlName="imageProfile">
         </div>
         <div class="form-group">
-          <label for="inputUser" class="label" tabindex=0>Usuario</label>
+          <label for="inputUser" class="label">Usuario</label>
           <input type="text" class="form-control" id="inputUser" placeholder={{userInfo.username}} formControlName="username">
         </div>
         <div class="form-group">
-          <label for="inputEmail" tabindex=0>E-mail</label>
+          <label for="inputEmail">E-mail</label>
           <input type="text" class="form-control"  id="inputEmail" placeholder={{userInfo.email}} formControlName="email">
         </div>
         <div class="form-group">
-          <label for="inputPassword" tabindex=0>Nueva contraseña</label>
+          <label for="inputPassword">Nueva contraseña</label>
           <input type="password" class="form-control" id="inputPassword" placeholder ="*******"  formControlName="password" >
         </div>
         <div class="form-group">
-          <label for="inputCurrentPassword" tabindex=0>*Contraseña actual</label>
+          <label for="inputCurrentPassword">*Contraseña actual</label>
           <input type="password" class="form-control" #currentPassword id="inputCurrentPassword" placeholder="*******" formControlName="currentPassword">
           <p *ngIf="passwordError"> {{passwordError}} </p>
         </div>
