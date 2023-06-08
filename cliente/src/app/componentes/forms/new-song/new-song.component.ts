@@ -41,7 +41,7 @@ export class NewSongComponent {
     this.newSong = new FormGroup({
       name: new FormControl(),
       order: new FormControl(),
-      lyrics: new FormControl(),
+      lyrics: new FormControl("Sin letra o instrumental"),
       albumId: new FormControl(),
       artistId: new FormControl(),
     })
