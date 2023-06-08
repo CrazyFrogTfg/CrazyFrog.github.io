@@ -56,7 +56,7 @@ export class ReproductorService {
     this.isPaused=false
   }
 
-reproduce(song:any) {
+  reproduce(song:any) {
     if(!this.songs.includes(song))
     {
       this.songs=[]
@@ -66,7 +66,7 @@ reproduce(song:any) {
     //El timeout es para evitar un error de consola por "falta de tiempo" para load la canción mp3.
     setTimeout( () => this.audioElement.play(), 1)
     this.isPaused=false
-}
+  }
 
   reproducePlaylist(songs: any[], songOrder: number) {
 

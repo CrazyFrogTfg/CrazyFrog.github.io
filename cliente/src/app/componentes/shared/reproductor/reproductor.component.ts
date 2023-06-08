@@ -12,7 +12,6 @@ export class ReproductorComponent {
 @Input() receivedSong:any
 @Input() songsToPlay:any
 
-isSticky: boolean = false;
 volume:number = 0.5;
 muted:boolean=false
 randomize:boolean = false
@@ -24,7 +23,6 @@ constructor(protected reproductorService:ReproductorService){
 ngOnInit()
 {
   this.getLocals()
-  this.updateVolume()
 }
 
 ngOnChanges()
