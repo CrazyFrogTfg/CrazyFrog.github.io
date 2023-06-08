@@ -1,4 +1,3 @@
-<app-spinner *ngIf="!artist"></app-spinner>
 <section class="artist-container" *ngIf="artist">
   <article (click)="goToDetails()" class="cardArtista">
     <img class="card-img-top img-fluid" [src]="artist.image" alt="Imagen del artista {{artist.name}}" tabindex=0>

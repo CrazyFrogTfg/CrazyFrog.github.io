@@ -24,7 +24,7 @@ export class AppComponent {
           if (footer) {
             (footer as HTMLElement).style.opacity = '1';
           }
-        }, 1000);
+        }, 1500);
       }
     });
   }

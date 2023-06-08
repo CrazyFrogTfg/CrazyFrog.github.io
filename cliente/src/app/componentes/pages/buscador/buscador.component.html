@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="!userInfo"></app-spinner>
-<main *ngIf="userInfo">
+<app-spinner *ngIf="!visible"></app-spinner>
+<main *ngIf="visible">
   <section class="buscadorSection">
     <input class="buscadorInput" type="text" #search (keyup.enter)="setFilterName(search.value)" placeholder="¿Qué te apetece escuchar?">
     <button (click)="setFilterName(search.value)" class="lupa btn">
@@ -12,7 +12,7 @@
 
   <section class="busquedaContainer container">
     <section class="row">
-      <section class="sidebar col-lg-2 col-sm-4 col-xs-4 position-fixed">
+      <aside class="sidebar col-lg-2 col-sm-4 col-xs-4 position-fixed">
         <!-- filtros -->
         <article class="filtrosSection">
           <div class="box-checks">
@@ -41,12 +41,12 @@
             <span tabindex=0>Añadir artista</span>
           </button>
         </article>
-      </section>
+      </aside>
       <!-- todo lo encontrado por el buscador -->
       <section class="encontradoContainer col-lg-10 col-sm-8 col-xs-5">
         <section class="container">
           <!-- artistas -->
-          <article *ngIf="cboxArtist && filteredArtistsLength!=0" class="artist-container">
+          <article *ngIf="cboxArtist && filteredArtistsLength!=0 && artists" class="artist-container">
             <h2 tabindex=0>Artistas</h2>
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
@@ -71,7 +71,7 @@
             </div>
           </article>
           <!-- albumes -->
-          <article *ngIf="cboxAlbum && filteredAlbumsLength">
+          <article *ngIf="cboxAlbum && filteredAlbumsLength && albums">
             <h2 tabindex=0>Albumes</h2>
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
@@ -96,7 +96,7 @@
             </div>
           </article>
           <!-- canciones -->
-          <article *ngIf="cboxSong && filteredSongsLength">
+          <article *ngIf="cboxSong && filteredSongsLength && songs">
             <h2 tabindex=0>Canciones</h2>
             <section>
               <div class="container">

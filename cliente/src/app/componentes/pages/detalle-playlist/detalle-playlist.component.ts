@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
@@ -8,10 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 import { Renderer2 } from '@angular/core';
-import { User } from 'src/app/interfaces/user.interface';
 
 
 @Component({
@@ -21,7 +19,6 @@ import { User } from 'src/app/interfaces/user.interface';
 })
 export class DetallePlaylistComponent {
   @Output() messageEvent = new EventEmitter<any>();
-  @ViewChild(TarjetaCancionComponent) cancion:any
 
   playlistId:string = ""
   playlistInfo:any = []
@@ -37,9 +34,9 @@ export class DetallePlaylistComponent {
   edit:boolean=false
   updatePlaylist:FormGroup
   privateChecked:boolean=false
-  obtainedLyrics:string="Aquí aparecerá la letra de la canción que selecciones"
+  visible:boolean = false
 
-  constructor(private route: ActivatedRoute,private renderer: Renderer2,private router:Router,
+  constructor(private route: ActivatedRoute,private renderer: Renderer2,
     private firestore: Firestore,private userService:UsuariosService,
     private fireStorage:FireStorageService, private db:DbService, private reproductorService:ReproductorService){
       this.updatePlaylist = new FormGroup({
@@ -51,7 +48,7 @@ export class DetallePlaylistComponent {
   async ngOnInit() {
     this.userUID = await this.userService.getUID()
     this.playlists = this.db.getPlaylistByUser(this.userUID)
-    
+
     this.route.queryParams.subscribe(async params => {
       //sacar parametros url
       this.playlistId = params['idPlaylist']
@@ -81,6 +78,10 @@ export class DetallePlaylistComponent {
         });
         this.visibility()
       });
+
+      setTimeout(() => {
+        this.visible = true
+      }, 800)
   }
 
   async onSubmit(){

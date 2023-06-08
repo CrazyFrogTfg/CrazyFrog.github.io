@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="!owner"></app-spinner>
-<main class="playlistDisp" *ngIf="owner">
+<app-spinner *ngIf="!visible"></app-spinner>
+<main class="playlistDisp" *ngIf="visible">
   <section *ngIf="!edit" class="playlist-name">
     <article class="d-flex align-items-center">
       <h1 tabindex=0> {{playlistInfo.name}} </h1>

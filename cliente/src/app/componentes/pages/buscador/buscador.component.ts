@@ -33,6 +33,7 @@ export class BuscadorComponent {
   filteredArtistsLength:number = -1;
   filteredAlbumsLength:number = -1;
   filteredSongsLength:number = -1;
+  visible:boolean = false
 
   constructor(private db:DbService,
               private fireStorage:FireStorageService,
@@ -54,6 +55,10 @@ export class BuscadorComponent {
     })
     this.userInfo = await this.userService.getUserInfo()
     if(this.userInfo.admin) this.isAdmin = true
+
+    setTimeout(() => {
+      this.visible = true
+    }, 800)
   }
 
   increasePagArtist(){
@@ -81,7 +86,7 @@ export class BuscadorComponent {
     if(this.pagAlbum+1>4)
     this.pagAlbum= this.pagAlbum-4
   }
-  
+
   increasePagSong(){
     if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
       this.pagSong= this.pagSong+10

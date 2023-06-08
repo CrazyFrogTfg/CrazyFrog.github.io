@@ -19,7 +19,7 @@ export class ReproductorService {
   rangeDuration:number = 0
 
   constructor() {
-    
+
     this.audioElement = new Audio();
     this.audioElement.addEventListener('timeupdate', () => {
       this.currentProgress = this.audioElement.currentTime;
@@ -51,6 +51,7 @@ export class ReproductorService {
   reproduceFromBuscador(song:any) {
     this.songs=[]
     this.songPlaying = song;
+    this.songPlaying.lyrics = this.songPlaying.lyrics.replace(/&#10;/g, '\n')
     this.audioElement.src = this.songPlaying.file;
     this.audioElement.play();
     this.isPaused=false
@@ -62,6 +63,7 @@ export class ReproductorService {
       this.songs=[]
     }
     this.songPlaying = song;
+    this.songPlaying.lyrics = this.songPlaying.lyrics.replace(/&#10;/g, '\n')
     this.audioElement.src = this.songPlaying.file;
     //El timeout es para evitar un error de consola por "falta de tiempo" para load la canción mp3.
     setTimeout( () => this.audioElement.play(), 1)
@@ -122,7 +124,7 @@ export class ReproductorService {
       let positionToPlay = Math.floor(Math.random()*this.songs.length)
       while (this.positionPlaying == positionToPlay) {
         positionToPlay = Math.floor(Math.random()*this.songs.length)
-      } 
+      }
       this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
 
@@ -148,7 +150,7 @@ export class ReproductorService {
     const minutes = Math.floor(duration / 60);
     const seconds = Math.floor(duration % 60);
     const secondsFormateados = seconds < 10 ? `0${seconds}` : `${seconds}`;
-  
+
     return `${minutes}:${secondsFormateados}`;
   }
   updateVolume(volume:any) {
@@ -156,7 +158,7 @@ export class ReproductorService {
     this.volumeLocal = volume
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
   }
- 
+
   setLoopLocal(loop:boolean){
     this.loopLocal = loop
     this.audioElement.loop = this.loopLocal

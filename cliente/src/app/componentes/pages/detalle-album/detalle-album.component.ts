@@ -34,7 +34,7 @@ export class DetalleAlbumComponent {
   isFile:boolean=false
   playlists:any
   userUID:string = ""
-  obtainedLyrics:string="Aquí aparecerá la letra de la canción que selecciones"
+  visible:boolean = false
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService, private title:Title)
@@ -48,10 +48,6 @@ export class DetalleAlbumComponent {
     })
   }
 
-  obtainLyrics(lyrics:string){
-    this.obtainedLyrics=lyrics.replace(/&#10;/g, '\n');
-  }
-
   receiveSong($event:any) {
     this.sendedSong = $event;
     this.reproduceAlbum(this.songs, this.sendedSong.order-1)
@@ -62,11 +58,6 @@ export class DetalleAlbumComponent {
     if(songOrder === -1)
     songOrder = Math.floor(Math.random()*playlist.length-0)
     this.reproductorService.reproducePlaylist(playlist, songOrder)
-  }
-
-  ngOnChanges()
-  {
-    this.obtainLyrics(this.obtainedLyrics)
   }
 
   async ngOnInit() {
@@ -99,6 +90,9 @@ export class DetalleAlbumComponent {
         });
         this.songs.sort((a,b)=>a.order-b.order)
     });
+    setTimeout(() => {
+      this.visible = true
+    }, 800)
   }
 
   async onSubmit(){

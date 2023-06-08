@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <app-spinner *ngIf="!albumInfo"></app-spinner>
-<main>
-  <section class="albumDisp" *ngIf="albumInfo">
+<main *ngIf="albumInfo">
+  <section class="albumDisp">
     <img class="album-img" [src]="albumInfo.image" alt="Imagen del album {{albumInfo.name}}" tabindex=0>
     <article class="album-nombre">
       <div *ngIf="!edit">
@@ -96,7 +96,7 @@
           <input class="buscador" [(ngModel)]="query" #search type="text" placeholder="Filter de Canciones">
         </div>
         <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"
-        [playlists] = "playlists" (sendLyrics)="obtainLyrics($event)"
+        [playlists] = "playlists" 
         (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
       </article>
       <article class="col-md-3">
