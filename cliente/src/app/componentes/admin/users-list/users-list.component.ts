@@ -33,10 +33,11 @@ export class UsersListComponent {
   }
 
   async deleteUser(user:User){
-    //user.idAuth="S0N0elq8EkhKixA54DntE9nX2I83"
-    //this.userService.deleteAuth(user)
-    await this.userService.deleteUser(user)
-    window.location.reload();
+    if(user.username == prompt("Escriba el nombre de usuario para confirmar su eliminación"))
+    {
+      await this.userService.deleteUser(user)
+      window.location.reload();
+    }
   }
 
 }

@@ -7,23 +7,48 @@
     <h1 tabindex=0>REGISTRATE</h1>
     <div>
       <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+
         <div class="form-group">
           <label for="exampleInputEmail1">*E-mail</label>
-          <input type="email" class="form-control" #email required id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduzca e-mail" formControlName="email">
+          <input class="form-control" 
+          type="email"
+          placeholder="Introduzca e-mail"
+          [class.is-invalid]="emailInvalid"
+          formControlName="email">
+          <small *ngIf="emailInvalid" class="formError">Ingrese un correo electrónico válido</small>
         </div>
+
         <div class="form-group">
           <label for="exampleInputUser1">*Usuario</label>
-          <input type="text" class="form-control" #username required id="exampleInputUser1" placeholder="Introduzca usuario" formControlName="username">
+          <input class="form-control"
+          type="text" 
+          placeholder="Introduzca usuario"
+          [class.is-invalid]="usernameInvalid"
+          formControlName="username">
+          <small *ngIf="usernameInvalid" class="formError">Nombre de usuario incorrecto. Mínimo 4 caracteres.</small>
         </div>
+
         <div class="form-group">
           <label for="exampleInputPassword1">*Contraseña</label>
-          <input type="password" class="form-control" #password required id="exampleInputPassword1" placeholder="Introduzca contraseña" formControlName="password">
+          <input class="form-control"
+          type="password" 
+          placeholder="Introduzca contraseña"
+          [class.is-invalid]="passwordInvalid"
+          formControlName="password">
+          <small *ngIf="passwordInvalid" class="formError">Contraseña incorrecta. Mínimo 6 caracteres</small>
         </div>
-        <button type="submit" class="btn btn-dark" [disabled]="(password.value.length < 5 || email.value.length === 0 || username.value.length === 0)" id="entra">ÚNETE</button>
+
+        <button type="submit" class="btn btn-dark" [disabled]="formReg.invalid" id="entra">ÚNETE</button>
         <button class="btn btn-outline-dark" (click)="goToLogin()">INICIA SESIÓN</button>
       </form>
     </div>
   </article>
+
+  <div >
+    Status: {{formReg.status}}
+    {{formReg.value | json}}
+  </div>
+
 </section>
 
 
