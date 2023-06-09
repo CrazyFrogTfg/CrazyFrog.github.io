@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Storage } from '@angular/fire/storage';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -17,13 +17,14 @@ export class PerfilComponent {
   passwordError:string=""
   updateUser: FormGroup;
 
-  constructor(private userService:UsuariosService, private storage:Storage, private router:Router, private title:Title) { title.setTitle('Mediafroggy - Perfil')
-    this.updateUser = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
-      username:new FormControl(),
+  constructor(private userService:UsuariosService, private storage:Storage, private router:Router,
+    private title:Title, private fb:FormBuilder) { title.setTitle('Mediafroggy - Perfil')
+    this.updateUser = this.fb.group({
+      email: ['', [Validators.email]],
+      password: ['', [Validators.minLength(6)]],
+      username: ['', [Validators.minLength(4)]],
       imageProfile: new FormControl(),
-      currentPassword: new FormControl(),
+      currentPassword: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
 
@@ -33,7 +34,7 @@ export class PerfilComponent {
   }
 
   async onSubmit() {
-    if(this.updateUser.value)
+    if(this.updateUser.valid)
     {
       if(this.updateUser.value.currentPassword === this.userInfo.password)
       {
@@ -43,6 +44,16 @@ export class PerfilComponent {
       }else 
       this.passwordError = "*Contraseña errónea"
     }
+  }
+
+  get usernameInvalid(){
+    return this.updateUser.get('username')?.invalid && this.updateUser.get('username')?.touched
+  }
+  get emailInvalid(){
+    return this.updateUser.get('email')?.invalid && this.updateUser.get('email')?.touched
+  }
+  get passwordInvalid(){
+    return this.updateUser.get('password')?.invalid && this.updateUser.get('password')?.touched
   }
 
   setFile($event:any){

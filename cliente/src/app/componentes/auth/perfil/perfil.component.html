@@ -11,18 +11,37 @@
           <label for="inputImage" class="label-img">Foto de perfil</label>
           <input type="file" (change)="setFile($event)" class="form-control upload-img" id="inputImage" formControlName="imageProfile">
         </div>
+
         <div class="form-group">
-          <label for="inputUser" class="label">Usuario</label>
-          <input type="text" class="form-control" id="inputUser" placeholder={{userInfo.username}} formControlName="username">
+          <label for="exampleInputUser1">Usuario</label>
+          <input class="form-control"
+          type="text" 
+          placeholder="Introduzca usuario"
+          [class.is-invalid]="usernameInvalid"
+          formControlName="username">
+          <small *ngIf="usernameInvalid" class="formError">Nombre de usuario incorrecto. Mínimo 4 caracteres.</small>
         </div>
+
         <div class="form-group">
           <label for="inputEmail">E-mail</label>
-          <input type="text" class="form-control" id="inputEmail" placeholder={{userInfo.email}} formControlName="email">
+          <input class="form-control"
+          type="text" id="inputEmail"
+          placeholder={{userInfo.email}}
+          [class.is-invalid]="emailInvalid"
+          formControlName="email">
+          <small *ngIf="emailInvalid" class="formError">E-mail incorrecto.</small>
         </div>
+
         <div class="form-group">
-          <label for="inputPassword">Nueva contraseña</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder ="*******"  formControlName="password" >
+          <label for="exampleInputPassword1">Nueva Contraseña</label>
+          <input class="form-control"
+          type="password" 
+          placeholder="Introduzca contraseña"
+          [class.is-invalid]="passwordInvalid"
+          formControlName="password">
+          <small *ngIf="passwordInvalid" class="formError">Contraseña inválida. Mínimo 6 caracteres</small>
         </div>
+
         <div class="form-group">
           <label for="inputCurrentPassword">*Contraseña actual</label>
           <input type="password" required class="form-control" #currentPassword id="inputCurrentPassword" placeholder="*******" formControlName="currentPassword">
@@ -31,7 +50,7 @@
         <small tabindex=0>*Por motivos de seguridad, debes indicar tu contraseña actual para realizar cualquier cambio.</small>
         <br>
         <small tabindex=0>*Si actualizas tu e-mail deberás iniciar sesión nuevamente.</small> <br>
-        <button type="submit" [disabled]="updateUser.untouched || currentPassword.value.length <6 " class="btn btn-dark">ACTUALIZAR</button>
+        <button type="submit" [disabled]="updateUser.invalid || currentPassword.value.length <6 " class="btn btn-dark">ACTUALIZAR</button>
       </form>
     </article>
   </section>
