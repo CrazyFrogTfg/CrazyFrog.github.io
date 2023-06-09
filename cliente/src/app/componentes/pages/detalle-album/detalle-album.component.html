@@ -22,19 +22,35 @@
       </div>
       <section *ngIf="edit">
         <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
+                   
           <div class="form-group">
             <label for="nameAlbum" class="label">Nombre</label>
-            <input type="text" class="form-control" #nameAlbum id="nameAlbum" placeholder="{{albumInfo.name}}" formControlName="name">
+            <input class="form-control"
+            type="text" placeholder="{{albumInfo.name}}"
+            #nameAlbum
+            id="nameAlbum"
+            [class.is-invalid]="nameInvalid"
+            formControlName="name">
+            <small *ngIf="nameInvalid" class="formError">Escriba un nombre válido, entre 2 y 20 caracteres.</small>
           </div>
+          
           <div class="form-group">
-            <label for="yearAlbum" class="label">Año</label>
-            <input type="number" required max={{currentYear}} min="1" class="form-control" placeholder="{{albumInfo.year}}" #yearAlbum id="yearAlbum" formControlName="year">
+            <label for="anyoAlbum" class="label">Año</label>
+            <input class="form-control" placeholder="{{albumInfo.year}}" min="0" max="{{currentYear}}"
+            type="number"
+            #yearAlbum
+            id="anyoAlbum"
+            [class.is-invalid]="yearInvalid"
+            formControlName="year">
+            <small *ngIf="yearInvalid" class="formError">Escriba un año válido. Debe ser menor al actual.</small>
           </div>
+
           <div class="form-group">
             <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
             <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
           </div>
-          <button type="submit" [disabled]="(yearAlbum.value.length != 4 && nameAlbum.value.length<1 && isFile===false)" class="btn btn-light edit-button">
+      <!-- (yearAlbum.value.length != 4 && nameAlbum.value.length<1 && isFile===false) -->
+          <button type="submit" [disabled]="updateAlbum.invalid ||  (!isFile && nameAlbum.value.length===0 && yearAlbum.value.length === 0 )" class="btn btn-light edit-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>

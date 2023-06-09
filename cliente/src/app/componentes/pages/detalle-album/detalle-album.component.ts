@@ -4,7 +4,7 @@ import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angu
 import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
@@ -29,7 +29,7 @@ export class DetalleAlbumComponent {
   query:string=""
   edit:boolean=false
   updateAlbum:FormGroup
-  currentYear:number = 2023
+  currentYear: number = new Date().getFullYear();
   file:any
   isFile:boolean=false
   playlists:any
@@ -40,13 +40,17 @@ export class DetalleAlbumComponent {
     private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService,
     private title:Title, private fb:FormBuilder)
     { title.setTitle('Mediafroggy - Album')
-    //LO DEJO SIN TOCAR PRACTICAMENTE, ANIMO IRENE :D
     this.updateAlbum = this.fb.group({
-      artistId: new FormControl(this.artistId), //Esto no da errores? lo toma bien? no hay error de tiempo de llegada?
-      name: new FormControl(),
-      year: new FormControl(),
+      name: ['', [Validators.minLength(2), Validators.maxLength(20)]],
+      year: ['', [Validators.min(0), Validators.max(this.currentYear)]],
       image: new FormControl(),
     })
+  }
+  get nameInvalid(){
+    return this.updateAlbum.get('name')?.invalid && this.updateAlbum.get('name')?.touched
+  }
+  get yearInvalid(){
+    return this.updateAlbum.get('year')?.invalid && this.updateAlbum.get('year')?.touched
   }
 
   receiveSong($event:any) {
