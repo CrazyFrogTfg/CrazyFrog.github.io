@@ -107,6 +107,7 @@ h1, h2, h3 {
   fill: #E9840E;
 }
 
+
 @media (max-width: 769px) {
   .start-tutorial{
     height: 90px;

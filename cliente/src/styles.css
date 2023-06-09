@@ -104,6 +104,10 @@ footer {
   justify-content: center;
 }
 
+::placeholder{
+  padding-left: 1%;
+}
+
 
 @media (max-width: 768px) {
 
