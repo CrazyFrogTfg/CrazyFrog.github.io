@@ -43,6 +43,10 @@ p, .nav-link{
   font-weight:bolder;
 }
 
+.form-error{
+  color: #2a3914;
+}
+
 .nav-link:focus{
   background-color: greenyellow;
   border-radius: 25px;
