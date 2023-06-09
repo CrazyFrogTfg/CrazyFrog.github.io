@@ -62,10 +62,11 @@ export class ReproductorService {
     {
       this.songs=[]
     }
-    this.songPlaying = song;
+    this.songPlaying = song; 
+    if(this.songPlaying.lyrics) //Evita error si no posee atributo 'lyrics'
     this.songPlaying.lyrics = this.songPlaying.lyrics.replace(/&#10;/g, '\n')
     this.audioElement.src = this.songPlaying.file;
-    //El timeout es para evitar un error de consola por "falta de tiempo" para load la canción mp3.
+    //El timeout es para evitar un error de consola por "falta de tiempo" para 'load' el file de canción.
     setTimeout( () => this.audioElement.play(), 1)
     this.isPaused=false
   }

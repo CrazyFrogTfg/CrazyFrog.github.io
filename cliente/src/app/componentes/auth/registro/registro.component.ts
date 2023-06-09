@@ -10,7 +10,7 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent {
   defaultImageProfile = "/assets/defaultImageProfile.webp"
 
   formReg: FormGroup;
@@ -20,19 +20,25 @@ export class RegistroComponent implements OnInit {
   formPass:boolean=true
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
-    title.setTitle('Mediafrog - Registro')
+    title.setTitle('Mediafroggy - Registro')
     this.formReg = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      //this.formReg = new FormGroup ( {
+        //email: new FormControl(),
+        //artistId: new FormControl(),
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       imageProfile: new FormControl(this.defaultImageProfile)
     })
   }
 
-  ngOnInit(): void {}
-
   async onSubmit() {
-    if(this.formReg.valid){
+    if(this.formReg.invalid){
+      return Object.values(this.formReg.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else if(this.formReg.valid)
+    {
       await this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))

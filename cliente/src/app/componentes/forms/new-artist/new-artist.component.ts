@@ -19,7 +19,7 @@ export class NewArtistComponent {
   isFile:boolean = false
 
   constructor(private router:Router, private db:DbService, private fb:FormBuilder, private title:Title){
-    title.setTitle('Mediafrog - New Artist')
+    title.setTitle('Mediafroggy - New Artist')
     this.newArtist = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.maxLength(100)]],
@@ -31,7 +31,11 @@ export class NewArtistComponent {
   }
 
   async onSubmit(){
-    if(this.newArtist.value && this.file)
+    if(this.newArtist.invalid){
+      return Object.values(this.newArtist.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else if(this.newArtist.valid && this.file)
     {
       await this.db.addArtist(this.newArtist.value, this.file)
       this.router.navigate(['/buscador'])

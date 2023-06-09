@@ -28,7 +28,7 @@
       </form>
     </div>
     <div>
-      <p class="formError" tabindex=0> {{credentialError}} </p>
+      <p class="formError" *ngIf="formIsInvalid" tabindex=0> {{credentialError}} </p>
     </div>
   </article>
 </section>

@@ -14,12 +14,12 @@
         id="nameAlbum"
         [class.is-invalid]="nameInvalid"
         formControlName="name">
-        <small *ngIf="nameInvalid" class="formError">Escribe un nombre válido. Mínimo 2 caracteres y máximo 20 caracteres.</small>
+        <small *ngIf="nameInvalid" class="formError">Escribe un nombre válido, entre 2 y 20 caracteres.</small>
       </div>
 
       <div class="form-group">
         <label for="anyoAlbum" class="label">*Año</label>
-        <input class="form-control"
+        <input class="form-control" min="0" max="{{currentYear}}"
         type="number"
         #yearAlbum
         id="anyoAlbum"

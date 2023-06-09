@@ -39,7 +39,7 @@ export class NewSongComponent {
 
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title,
     private route:ActivatedRoute, private fireStorage:FireStorageService, private fb:FormBuilder) {
-     title.setTitle('Mediafrog - Nueva Cancion')
+     title.setTitle('Mediafroggy - Nueva Cancion')
     this.newSong = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       order: new FormControl(),
@@ -49,10 +49,10 @@ export class NewSongComponent {
     })
   }
 
-
   get nameInvalid(){
     return this.newSong.get('name')?.invalid && this.newSong.get('name')?.touched
   }
+
   goBack(){
     this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } });
   }
@@ -68,8 +68,18 @@ export class NewSongComponent {
   }
 
   async onSubmit(){
-    await this.db.addSong(this.newSong.value, this.file)
-    setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
+
+    if(this.newSong.invalid){
+      return Object.values(this.newSong.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else
+    if(this.newSong.valid && this.isFile)
+    {
+      await this.db.addSong(this.newSong.value, this.file)
+      setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
+    }
+    
   }
 
 }

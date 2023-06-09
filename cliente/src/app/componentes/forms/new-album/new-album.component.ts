@@ -25,7 +25,8 @@ export class NewAlbumComponent {
 
   constructor(private route:ActivatedRoute,
     private userService:UsuariosService, private router:Router, private db:DbService,
-    private fireStorage:FireStorageService, private title:Title, private fb:FormBuilder) { title.setTitle('Mediafrog - Nuevo Album')
+    private fireStorage:FireStorageService, private title:Title, private fb:FormBuilder)
+    { title.setTitle('Mediafroggy - Nuevo Album')
 
     this.newAlbum = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -49,15 +50,13 @@ export class NewAlbumComponent {
   }
 
   async onSubmit(){
-    if(this.artistId && this.newAlbum.value && this.file)
+    if(this.newAlbum.invalid){
+      return Object.values(this.newAlbum.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else if(this.newAlbum.valid && this.file)
     {
-      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.addAlbum(this.newAlbum.value, this.file)
-      // if(this.file)
-      // {
-      //   const aid = await this.db.getAlbumUIDByName(this.newAlbum.value.name)
-      //   this.uploadImageAlbum(this.file, this.artistId, this.newAlbum.value, aid)
-      // }
       setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
     }
   }

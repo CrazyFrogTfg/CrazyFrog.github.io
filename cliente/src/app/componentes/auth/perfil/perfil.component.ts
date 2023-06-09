@@ -34,7 +34,11 @@ export class PerfilComponent {
   }
 
   async onSubmit() {
-    if(this.updateUser.valid)
+    if(this.updateUser.invalid){
+      return Object.values(this.updateUser.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else if(this.updateUser.valid)
     {
       if(this.updateUser.value.currentPassword === this.userInfo.password)
       {

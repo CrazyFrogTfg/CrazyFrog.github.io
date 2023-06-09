@@ -14,7 +14,7 @@
         id="nameArtist"
         [class.is-invalid]="nameInvalid"
         formControlName="name">
-        <small *ngIf="nameInvalid" class="formError">Escribe un nombre válido.  Mínimo 2 caracteres y máximo 20 caracteres.</small>
+        <small *ngIf="nameInvalid" class="formError">Escribe un nombre válido, entre 2 y 20 caracteres.</small>
       </div>
       <div class="form-group">
         <label for="descriptionArtist" class="label">*Descripcion</label>
@@ -40,10 +40,6 @@
       <button type="submit" [disabled]="newArtist.invalid" class="btn btn-dark">CREAR</button>
     </form>
   </section>
-  <div >
-    Status: {{newArtist.status}}
-    {{newArtist.value | json}}
-  </div>
 </main>
 <app-reproductor></app-reproductor>
 
