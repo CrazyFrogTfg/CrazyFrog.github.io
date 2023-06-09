@@ -5,7 +5,7 @@ import { Firestore, query, where } from '@angular/fire/firestore';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -21,11 +21,13 @@ export class TarjetaPlaylistComponent {
   updatePlaylist:FormGroup
 
   constructor(private router:Router, private firestore: Firestore,
-    private userService:UsuariosService,
-    private db:DbService){
-      this.updatePlaylist = new FormGroup({
-        name: new FormControl(),
+    private userService:UsuariosService, private db:DbService, private fb:FormBuilder){
+      this.updatePlaylist = this.fb.group({
+        name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(17)]],
       })
+    }
+    get nameInvalid(){
+      return this.updatePlaylist.get('name')?.invalid && this.updatePlaylist.get('name')?.touched
     }
 
 async ngOnInit() {

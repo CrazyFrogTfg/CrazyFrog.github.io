@@ -7,7 +7,7 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 import { Renderer2 } from '@angular/core';
 
@@ -37,12 +37,15 @@ export class DetallePlaylistComponent {
   visible:boolean = false
 
   constructor(private route: ActivatedRoute,private renderer: Renderer2,
-    private firestore: Firestore,private userService:UsuariosService,
-    private fireStorage:FireStorageService, private db:DbService, private reproductorService:ReproductorService){
-      this.updatePlaylist = new FormGroup({
-        name: new FormControl(),
-        private: new FormControl(),
+    private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService,
+    private db:DbService, private reproductorService:ReproductorService, private fb:FormBuilder){
+      this.updatePlaylist = this.fb.group({
+        name: ['', [Validators.minLength(3), Validators.maxLength(17)]],
+        private: [''],
       })
+    }
+    get nameInvalid(){
+      return this.updatePlaylist.get('name')?.invalid && this.updatePlaylist.get('name')?.touched
     }
 
   async ngOnInit() {
