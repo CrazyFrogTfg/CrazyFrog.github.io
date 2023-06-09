@@ -8,19 +8,42 @@
     <form [formGroup]="newArtist" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="nameArtist" class="label">*Nombre</label>
-        <input type="text" required class="form-control" #nameArtist id="nameArtist" aria-describedby="nameArtist" formControlName="name">
+        <input class="form-control"
+        type="text"
+        #nameArtist
+        id="nameArtist"
+        [class.is-invalid]="nameInvalid"
+        formControlName="name">
+        <small *ngIf="nameInvalid" class="formError">Escribe un nombre válido.  Mínimo 2 caracteres y máximo 20 caracteres.</small>
       </div>
       <div class="form-group">
         <label for="descriptionArtist" class="label">*Descripcion</label>
-        <input type="text" required class="form-control" #descriptionArtist id="descriptionArtist" aria-describedby="descriptionArtist" formControlName="description">
+        <input class="form-control"
+        type="text"
+        #descriptionArtist
+        id="descriptionArtist"
+        [class.is-invalid]="descriptionInvalid"
+        formControlName="description">
+        <small *ngIf="descriptionInvalid" class="formError">Escribe una descripcion válida. Máximo 100 caracteres.</small>
       </div>
       <div class="form-group">
-        <label for="exampleInputImage" class="upload-img label-img">*Imagen</label>
-        <input type="file" #file (change)="setFile($event)" required id="exampleInputImage" class="form-control upload-img">
+        <label for="inputImage" class="upload-img label-img">*Imagen</label>
+        <input type="file"
+        #file
+        (change)="setFile($event)"
+        required
+        id="inputImage"
+        class="form-control upload-img"
+        formControlName="imageArtist">
       </div>
-      <button type="submit" [disabled]="(nameArtist.value.length === 0 || descriptionArtist.value.length === 0 || isFile===false)" class="btn btn-dark">CREAR</button>
+      <small *ngIf="!isFile" class="formError">Es obligatorio añadir una imagen para el artista.</small>
+      <button type="submit" [disabled]="newArtist.invalid" class="btn btn-dark">CREAR</button>
     </form>
   </section>
+  <div >
+    Status: {{newArtist.status}}
+    {{newArtist.value | json}}
+  </div>
 </main>
 <app-reproductor></app-reproductor>
 

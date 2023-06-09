@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { EmailValidator, FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder } from '@angular/forms';
@@ -22,7 +22,7 @@ export class RegistroComponent implements OnInit {
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
     title.setTitle('Mediafrog - Registro')
     this.formReg = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       imageProfile: new FormControl(this.defaultImageProfile)
@@ -36,7 +36,7 @@ export class RegistroComponent implements OnInit {
       await this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))
-  
+
         await this.userService.logout()
         await this.router.navigate(['/login'])
     }else window.confirm("Formulario inválido.")

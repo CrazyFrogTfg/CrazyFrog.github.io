@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
-import { Firestore } from '@angular/fire/firestore';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title} from '@angular/platform-browser';
@@ -21,15 +20,16 @@ export class NewAlbumComponent {
   isAdmin:boolean = false;
   artistId:string="";
   currentYear:number = 2023
+  isFile:boolean = false;
 
 
-  constructor(private firestore:Firestore, private route:ActivatedRoute,
+  constructor(private route:ActivatedRoute,
     private userService:UsuariosService, private router:Router, private db:DbService,
-    private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafrog - Nuevo Album')
+    private fireStorage:FireStorageService, private title:Title, private fb:FormBuilder) { title.setTitle('Mediafrog - Nuevo Album')
 
-    this.newAlbum = new FormGroup({
-      name: new FormControl(),
-      year: new FormControl(),
+    this.newAlbum = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      year: ['', [Validators.required, Validators.min(0), Validators.max(this.currentYear)]],
       image: new FormControl(),
       artistId: new FormControl(),
     })
@@ -66,8 +66,16 @@ export class NewAlbumComponent {
     this.fireStorage.uploadImageAlbum($event, artistId, albumName.name, aid)
   }
 
+  get nameInvalid(){
+    return this.newAlbum.get('name')?.invalid && this.newAlbum.get('name')?.touched
+  }
+  get yearInvalid(){
+    return this.newAlbum.get('year')?.invalid && this.newAlbum.get('year')?.touched
+  }
+
   setFile($event:any){
     this.file = $event
+    this.isFile = true
   }
 
 }

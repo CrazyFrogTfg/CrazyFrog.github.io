@@ -96,7 +96,7 @@
           <input class="buscador" [(ngModel)]="query" #search type="text" placeholder="Filter de Canciones">
         </div>
         <app-tarjeta-cancion *ngFor="let song of songs | byName:query" [song] = "song"
-        [playlists] = "playlists" 
+        [playlists] = "playlists"
         (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
       </article>
       <article class="col-md-3">
@@ -104,5 +104,5 @@
       </article>
     </section>
   </section>
-  <app-reproductor [receivedSong] = "sendedSong"></app-reproductor>
 </main>
+<app-reproductor [receivedSong] = "sendedSong"></app-reproductor>
