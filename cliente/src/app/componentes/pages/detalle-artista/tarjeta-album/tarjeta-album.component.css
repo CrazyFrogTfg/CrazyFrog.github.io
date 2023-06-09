@@ -18,10 +18,9 @@ img{
   height: 200px;
   width: 200px;
   padding-bottom: 15px;
-
 }
 
-h1, h5 {
+h5 {
   color:white;
   margin-bottom: 15px;
 }
@@ -59,8 +58,6 @@ h1, h5 {
   margin-top: 5%;
 }
 
-
-
 label{
   color:white;
 }
@@ -71,7 +68,6 @@ label{
 
 .btn-fav{
   color:white;
-
 }
 
 .heart-svg:hover {

@@ -19,7 +19,7 @@ export class NewAlbumComponent {
   userInfo:any
   isAdmin:boolean = false;
   artistId:string="";
-  currentYear:number = 2023
+  currentYear: number = new Date().getFullYear();
   isFile:boolean = false;
 
 

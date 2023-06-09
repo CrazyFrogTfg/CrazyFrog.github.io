@@ -29,7 +29,7 @@ export class DetalleAlbumComponent {
   query:string=""
   edit:boolean=false
   updateAlbum:FormGroup
-  currentYear:number = 2023
+  currentYear: number = new Date().getFullYear();
   file:any
   isFile:boolean=false
   playlists:any
