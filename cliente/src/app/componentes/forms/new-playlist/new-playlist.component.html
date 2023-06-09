@@ -6,19 +6,28 @@
       <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
     </article>
     <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
+
       <div class="form-group">
         <label for="namePlaylist" class="label">*Nombre</label>
-        <input type="text" #namePlaylist required class="form-control" id="namePlaylist" aria-describedby="namePlaylist" formControlName="name">
+        <input class="form-control"
+        type="text" id="namePlaylist"
+        [class.is-invalid]="nameInvalid"
+        formControlName="name">
+        <small *ngIf="nameInvalid" class="formError" >Escribe un nombre válido, entre 3 y 17 caracteres.</small>
       </div>
+      
       <h3 tabindex=0>Establece la privacidad:</h3>
       <p tabindex=0>Tu playlist será pública por defecto</p>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" required formControlName="private" id="flexCheckDefault">
+        <input class="form-check-input" id="flexCheckDefault"
+        type="checkbox"
+        formControlName="private">
         <label class="form-check-label" for="flexCheckDefault">
           Privada
         </label>
       </div>
-      <button type="submit" [disabled]="  namePlaylist.value.length < 1 || namePlaylist.value.length > 18" class="btn btn-dark">CREAR</button>
+      
+      <button type="submit" [disabled]="newPlaylist.invalid" class="btn btn-dark">CREAR</button>
     </form>
   </section>
 </main>

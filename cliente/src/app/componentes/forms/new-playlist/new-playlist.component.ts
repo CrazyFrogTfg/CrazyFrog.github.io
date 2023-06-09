@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
@@ -26,13 +26,17 @@ export class NewPlaylistComponent {
     });
   }
 
-  constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title) {
+  constructor(private router: Router, private userService:UsuariosService, private db:DbService,
+    private title:Title, private fb:FormBuilder) {
      title.setTitle('Mediafrog - Nueva Playlist')
-    this.newPlaylist = new FormGroup({
-      name: new FormControl(),
+    this.newPlaylist = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(17)]],
       private: new FormControl(false),
       owner: new FormControl('')
     })
+  }
+  get nameInvalid(){
+    return this.newPlaylist.get('name')?.invalid && this.newPlaylist.get('name')?.touched
   }
 
   goBack(){
@@ -46,7 +50,12 @@ export class NewPlaylistComponent {
   }
 
   async onSubmit(){
-    if(this.newPlaylist.value.name){
+    if(this.newPlaylist.invalid){
+      return Object.values(this.newPlaylist.controls).forEach( control=>{
+        control.markAllAsTouched()
+      })
+    }else
+    if(this.newPlaylist.valid){
       await this.db.addPlaylist(this.newPlaylist.value)
       this.router.navigate(['/home']);
     }
