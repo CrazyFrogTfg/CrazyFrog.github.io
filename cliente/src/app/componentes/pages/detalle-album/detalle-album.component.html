@@ -22,7 +22,7 @@
       </div>
       <section *ngIf="edit">
         <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
-                   
+
           <div class="form-group">
             <label for="nameAlbum" class="label">Nombre</label>
             <input class="form-control"
@@ -33,7 +33,7 @@
             formControlName="name">
             <small *ngIf="nameInvalid" class="formError">Escriba un nombre válido, entre 2 y 20 caracteres.</small>
           </div>
-          
+
           <div class="form-group">
             <label for="anyoAlbum" class="label">Año</label>
             <input class="form-control" placeholder="{{albumInfo.year}}" min="0" max="{{currentYear}}"
@@ -49,7 +49,7 @@
             <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
             <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
           </div>
-     
+
           <button type="submit" [disabled]="updateAlbum.invalid || (!isFile && nameAlbum.value.length===0 && yearAlbum.value.length === 0 )" class="btn btn-light edit-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -65,7 +65,7 @@
         </form>
       </section>
     </article>
-    
+
     <article class="admin">
       <div class="container d-flex" *ngIf="isAdmin && !edit">
         <button class="btn btn-light admin-button" (click)="deleteAlbum()">
@@ -88,7 +88,7 @@
       </div>
     </article>
   </section>
-  <section class="addAlbum d-flex justify-content-end" *ngIf="isAdmin">
+  <section class="addAlbum d-flex justify-content-end position-fixed" *ngIf="isAdmin">
     <section class="adminButtons">
       <button class="cssbuttons-io-button" (click)="goToNewSong()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
@@ -111,7 +111,7 @@
         [playlists] = "playlists"
         (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
       </article>
-      <article class="col-md-3">
+      <article class="col-md-3 position-fixed lyrics-container">
         <app-lyrics></app-lyrics>
       </article>
     </section>

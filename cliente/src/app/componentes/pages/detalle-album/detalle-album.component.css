@@ -3,6 +3,7 @@ h1, h5 {
   margin-bottom: 15px;
 }
 
+
 .albumDisp {
   display: flex;
   margin: 20px 20px;
@@ -35,6 +36,12 @@ h1, h5 {
 .edit-button{
   margin-left: 4px;
   margin-top: 4px;
+}
+
+.lyrics-container{
+  right: 0;
+  top: 0;
+  padding-top: 190px;
 }
 
 .container{
@@ -70,8 +77,12 @@ h1, h5 {
 }
 
 .addAlbum{
-  margin-right:25px;
+  margin-right:10px;
   margin-bottom: 15px;
+  top: 0;
+  right: 0;
+  padding-top: 150px;
+  z-index: 1;
 }
 
 .admin-button:hover {
@@ -145,7 +156,6 @@ h1, h5 {
 
 .btn-fav{
   color:white;
-
 }
 
 .heart-svg:hover {
@@ -193,6 +203,16 @@ h1, h5 {
 
   .admin-button {
     margin-top: 10px;
+  }
+
+  .lyrics-container{
+    position: relative !important;
+    padding-top: 0;
+  }
+
+  .addAlbum{
+    position: relative !important;
+    padding-top: 0;
   }
 }
 

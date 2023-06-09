@@ -240,6 +240,12 @@ label{
   color: var(--button-hover-text-color);
 }
 
+.lyrics-container{
+  right: 0;
+  top: 0;
+  padding-top: 190px;
+}
+
 @media (max-width: 767px) {
   .playlistDisp {
     display: flex;
@@ -272,5 +278,10 @@ label{
   .buscador {
     width: 100%;
     max-width: 400px;
+  }
+
+  .lyrics-container{
+    position: relative !important;
+    padding-top: 0;
   }
 }

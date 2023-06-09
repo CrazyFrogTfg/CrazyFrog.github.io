@@ -18,7 +18,7 @@
             <small *ngIf="nameInvalid" class="formError">Nombre de canción incorrecto. Mínimo 3 caracteres, máximo 20.</small>
 
           </div>
-          
+
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Letra</label>
             <textarea class="form-control" #lyrics id="exampleFormControlTextarea1" placeholder="{{song.lyrics}}" rows="3" formControlName="lyrics"></textarea>
@@ -39,7 +39,7 @@
       </article>
     </section>
     <section class="col-lg-3 col-md-5 col-sm-8 d-flex align-items-center">
-      <article class="container d-flex">
+      <article class="container d-flex justify-content-end">
         <div class="btn-group dropup pl-button" *ngIf="!edit && !urlPlaylist">
           <button type="button" class="btn dropdown-toggle d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
