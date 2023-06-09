@@ -4,7 +4,7 @@ import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angu
 import { Song } from 'src/app/interfaces/song.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 import { TarjetaCancionComponent } from './tarjeta-cancion/tarjeta-cancion.component';
@@ -37,11 +37,12 @@ export class DetalleAlbumComponent {
   visible:boolean = false
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService, private title:Title)
+    private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService,
+    private title:Title, private fb:FormBuilder)
     { title.setTitle('Mediafroggy - Album')
-
-    this.updateAlbum = new FormGroup({
-      artistId: new FormControl(this.artistId),
+    //LO DEJO SIN TOCAR PRACTICAMENTE, ANIMO IRENE :D
+    this.updateAlbum = this.fb.group({
+      artistId: new FormControl(this.artistId), //Esto no da errores? lo toma bien? no hay error de tiempo de llegada?
       name: new FormControl(),
       year: new FormControl(),
       image: new FormControl(),

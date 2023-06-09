@@ -4,7 +4,7 @@ import { Firestore, collection, doc, getDocs, getDoc, query, where } from '@angu
 import { Album } from 'src/app/interfaces/album.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title} from '@angular/platform-browser';
 
@@ -26,13 +26,21 @@ export class DetalleArtistaComponent {
   query:string=""
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
-    private db:DbService, private router:Router, private fireStorage:FireStorageService, private title:Title) { title.setTitle('Mediafroggy - Artista'),
-      this.updateArtist = new FormGroup({
+    private db:DbService, private router:Router, private fireStorage:FireStorageService,
+    private title:Title, private fb:FormBuilder) { title.setTitle('Mediafroggy - Artista'),
+      this.updateArtist = this.fb.group({
         id: new FormControl(this.artistId),
-        name: new FormControl(),
-        description: new FormControl(),
+        name: ['', [Validators.minLength(2), Validators.maxLength(20)]],
+        description: ['', [Validators.maxLength(100)]],
         image: new FormControl(),
       })
+    }
+
+    get nameInvalid(){
+      return this.updateArtist.get('name')?.invalid && this.updateArtist.get('name')?.touched
+    }
+    get descriptionInvalid(){
+      return this.updateArtist.get('description')?.invalid && this.updateArtist.get('description')?.touched
     }
 
   async ngOnInit() {
@@ -87,7 +95,7 @@ export class DetalleArtistaComponent {
   }
 
   async onSubmit(){
-    if(this.updateArtist)
+    if(this.updateArtist.valid && this.updateArtist.touched)
     {
       await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.file);
       this.router.navigate(['/home'])
