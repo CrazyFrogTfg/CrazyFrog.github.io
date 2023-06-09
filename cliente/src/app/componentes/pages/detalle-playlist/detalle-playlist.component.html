@@ -95,6 +95,6 @@
   <section *ngIf="!owner && !isVisible">
     <h3>Estás intentando acceder a una playlist privada, por lo tanto no se podrá mostrar para usted.</h3>
   </section>
-  <app-reproductor [receivedSong] = "sendedSong" [songsToPlay]="songs"
-   (messageEvent)="receiveSong($event)"></app-reproductor>
 </main>
+<app-reproductor [receivedSong] = "sendedSong" [songsToPlay]="songs"
+ (messageEvent)="receiveSong($event)"></app-reproductor>
