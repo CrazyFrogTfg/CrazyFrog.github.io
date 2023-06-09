@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Playlist } from 'src/app/interfaces/playlist.interface';
 import { DbService } from 'src/app/servicios/db.service';
@@ -18,7 +18,6 @@ export class TarjetaCancionComponent {
 @Output() sendLyrics = new EventEmitter<any>();
 @Output() sendSongOrder = new EventEmitter<any>();
 
-  reproduciendo:string = ""
   userUID:any
   edit:boolean=false
   updateSong:FormGroup
@@ -26,13 +25,16 @@ export class TarjetaCancionComponent {
   isAdmin:boolean=false
   urlPlaylist:boolean=false
   urlAlbum:boolean=false
-  letraPrueba:string="letraPrueba"
   artistName:string = ""
 
-  constructor(private userService:UsuariosService, private db:DbService, private router:Router){
-    this.updateSong = new FormGroup({
-      name: new FormControl(),
+  constructor(private userService:UsuariosService, private db:DbService, private router:Router, private fb:FormBuilder){
+    this.updateSong = this.fb.group({
+      name: ['', [Validators.minLength(3), Validators.maxLength(20)]],
+      lyrics: new FormControl(),
     })
+  }
+  get nameInvalid(){
+    return this.updateSong.get('name')?.invalid && this.updateSong.get('name')?.touched
   }
 
   async ngOnInit(){
@@ -43,6 +45,7 @@ export class TarjetaCancionComponent {
       this.playlists = playlists
     })
     this.artistName = await this.db.getArtistByUID(this.song.artistId)
+    this.updateSong.controls['lyrics'].setValue(this.song.lyrics)
   }
 
   ngAfterViewInit()

@@ -186,6 +186,10 @@ export class DbService {
         await updateDoc(songRef, {
           name:song.name,
         })
+        if(song.lyrics && song.lyrics != oldSong.lyrics)
+        await updateDoc(songRef, {
+          lyrics:song.lyrics,
+        })
   }
 
   async deleteSong(song: any) {

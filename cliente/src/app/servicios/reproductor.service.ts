@@ -35,9 +35,11 @@ export class ReproductorService {
 
     let savedVolumeLocal = localStorage.getItem("volumeLocal") || "[]"
     this.volumeLocal = JSON.parse(savedVolumeLocal);
+    this.audioElement.volume=this.volumeLocal
 
     let savedLoopLocal = localStorage.getItem("loopLocal") || "[]"
     this.loopLocal = JSON.parse(savedLoopLocal);
+    this.audioElement.loop=this.loopLocal
 
     let savedRandomizeLocal = localStorage.getItem("randomizeLocal") || "[]"
     this.randomizeLocal = JSON.parse(savedRandomizeLocal);
@@ -155,8 +157,8 @@ export class ReproductorService {
     return `${minutes}:${secondsFormateados}`;
   }
   updateVolume(volume:any) {
-    this.audioElement.volume = volume;
     this.volumeLocal = volume
+    this.audioElement.volume = volume;
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
   }
 
