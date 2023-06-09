@@ -8,8 +8,14 @@
     <form [formGroup]="newSong" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="nombre" class="label">*Título</label>
-        <input type="text" class="form-control" required #nombreCancion id="nombre" aria-describedby="namePlaylist" placeholder="Título" formControlName="name">
+        <input class="form-control" 
+        type="text" id="nombre" 
+        placeholder="Título"
+        [class.is-invalid]="nameInvalid"
+        formControlName="name">
+        <small *ngIf="nameInvalid" class="formError">Nombre de canción incorrecto. Mínimo 3 caracteres, máximo 20.</small>
       </div>
+
       <div class="form-group">
         <div class="d-flex align-items-end" *ngIf="!helpOrder">
           <label for="orden" class="label">*Orden</label>
@@ -19,17 +25,23 @@
           <label for="orden" class="label">El orden por defecto es el número de canciones más uno.</label>
           <button class="btn btn-outline-dark help" (click)="toogleHelpOrder()">?</button>
         </div>
-        <input type="number" required class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
+        <input type="number" readonly required class="form-control" #orden id="orden" aria-describedby="namePlaylist" placeholder="{{order}}" formControlName="order">
       </div>
+
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Letra</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Añade la letra de la cancion" rows="3" formControlName="lyrics"></textarea>
       </div>
+
       <div class="form-group">
         <label for="exampleInputImage" class="label-img">*Archivo</label>
-        <input type="file" required (change)="setFile($event)" id="exampleInputImage" class="form-control upload-img">
+        <input class="form-control upload-img"
+        type="file" required (change)="setFile($event)"
+        id="exampleInputImage">
+        <small class="formError" *ngIf="!isFile">Fichero obligatorio.</small>
       </div>
-      <button type="submit"  [disabled]="(nombreCancion.value.length === 0 || orden.value.length === 0)" class="btn btn-dark">CREAR</button>
+
+      <button type="submit"  [disabled]="newSong.invalid || !isFile" class="btn btn-dark">CREAR</button>
     </form>
   </section>
 </main>

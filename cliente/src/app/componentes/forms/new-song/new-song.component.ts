@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
@@ -21,6 +21,7 @@ export class NewSongComponent {
   file:any
   order:any
   helpOrder:boolean=false
+  isFile:boolean=false
 
 
   async ngOnInit() {
@@ -36,10 +37,11 @@ export class NewSongComponent {
     })
   }
 
-  constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title, private route:ActivatedRoute, private fireStorage:FireStorageService) {
+  constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title,
+    private route:ActivatedRoute, private fireStorage:FireStorageService, private fb:FormBuilder) {
      title.setTitle('Mediafrog - Nueva Cancion')
-    this.newSong = new FormGroup({
-      name: new FormControl(),
+    this.newSong = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       order: new FormControl(),
       lyrics: new FormControl("Sin letra o instrumental"),
       albumId: new FormControl(),
@@ -47,12 +49,17 @@ export class NewSongComponent {
     })
   }
 
+
+  get nameInvalid(){
+    return this.newSong.get('name')?.invalid && this.newSong.get('name')?.touched
+  }
   goBack(){
     this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } });
   }
 
   setFile($event:any){
     this.file = $event
+    this.isFile=true
   }
 
   toogleHelpOrder()
