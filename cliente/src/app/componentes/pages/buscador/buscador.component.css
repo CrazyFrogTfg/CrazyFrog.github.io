@@ -88,10 +88,6 @@ h2{
   box-shadow: 0 0.5em 1.5em -0.5em white;
 }
 
-.cssbuttons-io-button:active {
-  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
-}
-
 .adminButtons {
   margin-top: 20px;
 }

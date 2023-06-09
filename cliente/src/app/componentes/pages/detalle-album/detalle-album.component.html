@@ -20,7 +20,6 @@
           </svg>
         </button>
       </div>
-
       <section *ngIf="edit">
         <form [formGroup]="updateAlbum" (ngSubmit)="onSubmit()">
           <div class="form-group">
@@ -50,8 +49,6 @@
         </form>
       </section>
     </article>
-
-
     <article class="admin">
       <div class="container d-flex" *ngIf="isAdmin && !edit">
         <button class="btn btn-light admin-button" (click)="deleteAlbum()">
@@ -74,7 +71,6 @@
       </div>
     </article>
   </section>
-
   <section class="addAlbum d-flex justify-content-end" *ngIf="isAdmin">
     <section class="adminButtons">
       <button class="cssbuttons-io-button" (click)="goToNewSong()">
@@ -83,7 +79,6 @@
       </button>
     </section>
   </section>
-
   <section class="container-fluid">
     <section class="row">
       <article class="col-md-9">
