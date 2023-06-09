@@ -13,6 +13,7 @@ export class LoginComponent {
 
   credentialError:string=""
   formLogin: FormGroup;
+  formIsInvalid:boolean=false
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title){
     title.setTitle('Mediafrog - Login')
@@ -34,6 +35,7 @@ export class LoginComponent {
         //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
         //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
         .catch(error => {
+          this.formIsInvalid=true
           this.credentialError="*Credenciales incorrectas"
         });
     }
