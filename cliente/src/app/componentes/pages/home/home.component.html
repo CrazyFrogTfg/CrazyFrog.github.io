@@ -13,7 +13,7 @@
             {{userInfo.username}}
             <h3>¿Qué te apetece escuchar hoy?</h3>
           </h1>
-          <button class="btn btn-light start-tutorial" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+          <button [ngClass]="{'start-tutorial': !userInfo.news, 'seen-tutorial': userInfo.news}" class="btn btn-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
             Aprende a usar MediaFroggy
           </button>
         </article>
@@ -199,7 +199,7 @@
       <section class="modal-content">
         <article class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel5">Perfil</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="userNews()"></button>
         </article>
         <article class="modal-body">
           <p class="modal-text">
@@ -211,7 +211,7 @@
         <article class="modal-footer">
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Vuelta al principio</button>
           <button class="btn btn-dark" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Volver</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close" (click)="userNews()">Cerrar</button>
         </article>
       </section>
     </section>

@@ -71,7 +71,6 @@ export class UsuariosService {
       const userRef = collection(this.firestore, 'users');
       return addDoc(userRef, user);
     } return null
-
   }
 
   //Elimina Doc de user de CloudFirestore
@@ -176,5 +175,15 @@ export class UsuariosService {
     console.log(response);
     })
     .catch(error => console.log(error));
+  }
+
+  async userNews(uid:string){
+    const userRef = doc(this.firestore, 'users', uid);
+    await updateDoc(userRef, {
+      news:true,
+    })
+    .catch((error) => {
+      console.log(error)
+    });
   }
 }

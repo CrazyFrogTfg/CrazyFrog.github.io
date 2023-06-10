@@ -26,9 +26,10 @@ export class RegistroComponent {
         //email: new FormControl(),
         //artistId: new FormControl(),
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      imageProfile: new FormControl(this.defaultImageProfile)
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      imageProfile: new FormControl(this.defaultImageProfile),
+      news: new FormControl(false)
     })
   }
 

@@ -64,4 +64,9 @@ export class HomeComponent {
     return this.artistsFav
     else return []
   }
+
+  userNews(){
+    this.userService.userNews(this.userInfo.id);
+    this.userInfo.news = true;
+  }
 }
