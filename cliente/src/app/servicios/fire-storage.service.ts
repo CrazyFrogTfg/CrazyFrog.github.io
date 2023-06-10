@@ -12,12 +12,8 @@ export class FireStorageService {
 
   storage = getStorage()
   srcImage:any
-  imageDown = ref(this.storage, 'images/rana.jpg')
-  cancionRef:string = "gs://mediafrog-816db.appspot.com/songs/Amazing_Harmonica_Street_Musician_192_kbps.mp3";
   //VARIABLE PARA PIPES.
   filterName:string="";
-  firesbaseStorage="https://firebasestorage.googleapis.com/v0/b/mediafrog-816db.appspot.com/o/"
-  rutatotal="https://firebasestorage.googleapis.com/v0/b/mediafrog-816db.appspot.com/o/artists%2FSDlYHnzITTeu418fv2cN%2Fotramas?alt=media&token=5b2885b2-c33a-47e0-a146-3900badd21af"
   private namePlaylist:string ="hola";
 
   constructor(private firestore: Firestore) { }
@@ -62,7 +58,7 @@ export class FireStorageService {
       const imagenAlbum = await getDownloadURL(fileRef);
       //const imagenAlbum = await this.getImageAlbum(artistaId, albumName)
 
-      // SI UPDATEA
+      // Update the doc with the url with the image
         const albumRef = doc(this.firestore, `albums/${albumId}`);
         await updateDoc(albumRef, {
           image:imagenAlbum,
