@@ -3,7 +3,7 @@
 <main *ngIf="visible">
   <section class="buscadorSection">
     <input class="buscadorInput" type="text" #search (keyup.enter)="setFilterName(search.value)" placeholder="¿Qué te apetece escuchar?">
-    <button (click)="setFilterName(search.value)" class="lupa btn">
+    <button (click)="setFilterName(search.value)" aria-label="Lupa. Buscador." class="lupa btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
       </svg>
@@ -15,7 +15,7 @@
       <aside class="sidebar col-lg-2 col-sm-4 col-xs-4 position-fixed">
         <!-- add artista -->
         <article class="adminButtons" *ngIf="isAdmin">
-          <button class="cssbuttons-io-button" (click)="newArtista()">
+          <button class="cssbuttons-io-button" aria-label="Nuevo Artista" (click)="newArtista()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
             <span tabindex=0>Añadir artista</span>
           </button>
@@ -57,12 +57,12 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center">
-                <button class="btn btn-light pag-button-prev" (click)="decreasePagArtist()">
+                <button class="btn btn-light pag-button-prev" aria-label="Página anterior de artistas" (click)="decreasePagArtist()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
                   </svg>
                 </button>
-                <button class="btn btn-light pag-button-next" (click)="increasePagArtist()">
+                <button class="btn btn-light pag-button-next" aria-label="Página siguiente de artistas" (click)="increasePagArtist()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                   </svg>
@@ -82,12 +82,12 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center">
-                <button class="btn btn-light pag-button-prev" (click)="decreasePagAlbum()">
+                <button class="btn btn-light pag-button-prev" aria-label="Página anterior de álbumes"(click)="decreasePagAlbum()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
                   </svg>
                 </button>
-                <button class="btn btn-light pag-button-next" (click)="increasePagAlbum()">
+                <button class="btn btn-light pag-button-next" aria-label="Página siguiente de álbumes" (click)="increasePagAlbum()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                   </svg>
@@ -104,12 +104,12 @@
                     <app-tarjeta-cancion *ngFor="let song of songs | byName:getFilterName() | slice:pagSong:pagSong+10" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-tarjeta-cancion>
                 </div>
               </div>
-              <button class="btn btn-light pag-button-song" (click)="increasePagSong()">
+              <button class="btn btn-light pag-button-song" aria-label="Página anterior de canciones" (click)="increasePagSong()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                 </svg>
               </button>
-              <button class="btn btn-light pag-button-song" (click)="decreasePagSong()">
+              <button class="btn btn-light pag-button-song" aria-label="Página siguiente de canciones" (click)="decreasePagSong()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
                 </svg>

@@ -3,7 +3,7 @@
   <section class="newpl-box">
     <article class="header d-flex justify-content-between">
       <h1 tabindex=0>Nuevo Álbum</h1>
-      <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
+      <button class="go-back btn btn-outline-dark" aria-label="Volver a artista" (click)="goBack()">X</button>
     </article>
     <form [formGroup]="newAlbum" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -37,7 +37,7 @@
         <small *ngIf="!isFile" class="formError">Es obligatorio añadir una imagen para el álbum.</small>
       </div>
 
-      <button type="submit" [disabled]="newAlbum.invalid" class="btn btn-dark">CREAR</button>
+      <button type="submit" [disabled]="newAlbum.invalid" class="btn btn-dark" aria-label="Crear">CREAR</button>
     </form>
   </section>
 </main>

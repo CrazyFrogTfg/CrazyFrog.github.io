@@ -3,7 +3,7 @@
   <section class="newpl-box">
     <article class="header d-flex justify-content-between">
       <h1 tabindex=0>Dale nombre a tu nueva playlist</h1>
-      <button class="go-back btn btn-outline-dark" (click)="goBack()">X</button>
+      <button class="go-back btn btn-outline-dark" aria-label="Volver a inicio" (click)="goBack()">X</button>
     </article>
     <form [formGroup]="newPlaylist" (ngSubmit)="onSubmit()">
 
@@ -15,7 +15,7 @@
         formControlName="name">
         <small *ngIf="nameInvalid" class="formError" >Escribe un nombre válido, entre 3 y 17 caracteres.</small>
       </div>
-      
+
       <h3 tabindex=0>Establece la privacidad:</h3>
       <p tabindex=0>Tu playlist será pública por defecto</p>
       <div class="form-check">
@@ -26,8 +26,8 @@
           Privada
         </label>
       </div>
-      
-      <button type="submit" [disabled]="newPlaylist.invalid" class="btn btn-dark">CREAR</button>
+
+      <button type="submit" [disabled]="newPlaylist.invalid" aria-label="Crear" class="btn btn-dark">CREAR</button>
     </form>
   </section>
 </main>
