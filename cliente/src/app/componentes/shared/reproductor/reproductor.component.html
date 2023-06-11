@@ -1,12 +1,12 @@
 <section class="repro" *ngIf="reproductorService.totalDuration">
   <article class="buttons">
-    <button class="btn btn-light" (click)="previousSong()">
+    <button class="btn btn-light" aria-label="Canción anterior" (click)="previousSong()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
         <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
       </svg>
     </button>
-    <button class="btn btn-light" (click)="playPause()">
+    <button class="btn btn-light" aria-label="Play/Pausa" (click)="playPause()">
       <svg *ngIf="isPlaying()" xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
         <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
       </svg>
@@ -14,13 +14,12 @@
         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
       </svg>
     </button>
-    
-    <button class="btn btn-light" (click)="detener()">
+    <button class="btn btn-light" aria-label="Detener" (click)="detener()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-stop-fill" viewBox="0 0 16 16">
         <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
       </svg>
     </button>
-    <button class="btn btn-light" (click)="nextSong()">
+    <button class="btn btn-light" aria-label="Canción siguiente" (click)="nextSong()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
         <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -33,12 +32,12 @@
         <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.rangeDuration">
       </article>
       <article class="d-flex justify-content-center">
-        <button *ngIf="!this.loopMode" class="btn btn-light loop-random" (click)="setLoopLocal()">
+        <button *ngIf="!this.loopMode" aria-label="Activar bucle" class="btn btn-light loop-random" (click)="setLoopLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
             <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
           </svg>
         </button>
-        <button *ngIf="this.loopMode" class="btn btn-dark loop-random" (click)="setLoopLocal()">
+        <button *ngIf="this.loopMode" aria-label="Desactivar bucle" class="btn btn-dark loop-random" (click)="setLoopLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
             <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
           </svg>
@@ -48,13 +47,13 @@
           <br>
           {{reproductorService.totalDuration}}
         </section>
-        <button *ngIf="!this.randomize" class="btn btn-light loop-random" (click)="setRandomizeLocal()">
+        <button *ngIf="!this.randomize" aria-label="Activar aleatorio" class="btn btn-light loop-random" (click)="setRandomizeLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
             <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
           </svg>
         </button>
-        <button *ngIf="this.randomize" class="btn btn-dark loop-random" (click)="setRandomizeLocal()">
+        <button *ngIf="this.randomize" aria-label="Desactivar aleatorio" class="btn btn-dark loop-random" (click)="setRandomizeLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
             <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
@@ -64,7 +63,7 @@
     </section>
   </article>
   <article class="volume-control d-flex">
-       <button class="btn btn-light mute" (click)="muteUnmuted()">
+       <button class="btn btn-light mute" aria-label="Mute" (click)="muteUnmuted()">
       <!-- Tenemos 4 iconos: Volumen 0 / muted, bajo(-10%), medio[15,55] y alto(+55%) -->
       <!-- alto -->
       <svg *ngIf="volume>=0.55 && !muted" xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">

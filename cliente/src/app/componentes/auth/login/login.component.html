@@ -23,8 +23,8 @@
           [class.is-invalid]="formIsInvalid"
           formControlName="password">
         </div>
-        <button type="submit" class="btn btn-dark" [disabled]="formLogin.invalid">ENTRAR</button>
-        <button class="btn btn-outline-dark" (click)="goToRegister()">REGISTRATE</button>
+        <button type="submit" aria-label="Entrar" class="btn btn-dark" [disabled]="formLogin.invalid">ENTRAR</button>
+        <button class="btn btn-outline-dark" aria-label="Registrate" (click)="goToRegister()">REGISTRATE</button>
       </form>
     </div>
     <div>

@@ -4,7 +4,7 @@
   <section *ngIf="!edit" class="playlist-name">
     <article class="d-flex align-items-center">
       <h1 tabindex=0> {{playlistInfo.name}} </h1>
-      <button class="copy" (click)="copyUrlToClipboard()">
+      <button aria-label="Copiar URL al portapapeles" class="copy" (click)="copyUrlToClipboard()">
         <span data-text-end="Copied!" data-text-initial="Copiar al portapapeles" class="tooltip"></span>
         <span>
           <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 6.35 6.35" y="0" x="0" height="20" width="20" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" class="clipboard">
@@ -45,13 +45,13 @@
              Privada
            </label>
         </div>
-         <button type="submit" [disabled]="updatePlaylist.invalid || ( namePlaylist.value.length===0 && privateCheck.checked === playlistInfo.private )" class="btn btn-dark">
+         <button type="submit" aria-label="Actualizar playlist" [disabled]="updatePlaylist.invalid || ( namePlaylist.value.length===0 && privateCheck.checked === playlistInfo.private )" class="btn btn-dark">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
           </svg>
          </button>
-         <button class="btn btn-light edit-button" (click)="toggleEdit()">
+         <button class="btn btn-light edit-button" aria-label="Cancelar edición" (click)="toggleEdit()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
             <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -61,7 +61,7 @@
      </article>
 
      <article class="admin">
-       <button class="btn btn-light admin-button" *ngIf="!edit && isMyPlaylist" (click)="toggleEdit()">
+       <button class="btn btn-light admin-button" aria-label="Editar playlist" *ngIf="!edit && isMyPlaylist" (click)="toggleEdit()">
          <p class="paragraph"> editar </p>
            <span class="icon-wrapper">
              <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -80,7 +80,7 @@
     <div class="row">
       <div class="col-md-9 col-sm-12">
         <div class="divBuscador">
-          <button class="btn lupa" (click)="setFilterName(search.value)">
+          <button class="btn lupa" aria-label="Lupa. Filtro de canciones" (click)="setFilterName(search.value)">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>

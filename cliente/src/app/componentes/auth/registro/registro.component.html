@@ -37,9 +37,9 @@
           <small *ngIf="passwordInvalid" class="formError">Contraseña incorrecta. Mínimo 6 caracteres.</small>
         </div>
 
-        <button type="submit" class="btn btn-dark" [disabled]="formReg.invalid" id="entra">ÚNETE</button>
+        <button type="submit" class="btn btn-dark" [disabled]="formReg.invalid" aria-label="Únete">ÚNETE</button>
       </form>
-      <button class="btn btn-outline-dark" (click)="goToLogin()">INICIA SESIÓN</button>
+      <button class="btn btn-outline-dark" (click)="goToLogin()" aria-label="Ir a iniciar sesión">INICIA SESIÓN</button>
     </div>
   </article>
 </section>

@@ -3,7 +3,7 @@
 <main class="profile-container" *ngIf="userInfo">
   <section class="profile-box">
     <article>
-      <button class="btn btn-outline-dark" (click)="goHome()">X</button>
+      <button class="btn btn-outline-dark" aria-label="Volver a inicio" (click)="goHome()">X</button>
       <br>
       <form [formGroup]="updateUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="exampleInputUser1">Usuario</label>
           <input class="form-control"
-          type="text" 
+          type="text"
           placeholder="Introduzca usuario"
           [class.is-invalid]="usernameInvalid"
           formControlName="username">
@@ -35,7 +35,7 @@
         <div class="form-group">
           <label for="exampleInputPassword1">Nueva Contraseña</label>
           <input class="form-control"
-          type="password" 
+          type="password"
           placeholder="Introduzca contraseña"
           [class.is-invalid]="passwordInvalid"
           formControlName="password">
@@ -50,7 +50,7 @@
         <small tabindex=0>*Por motivos de seguridad, debes indicar tu contraseña actual para realizar cualquier cambio.</small>
         <br>
         <small tabindex=0>*Si actualizas tu e-mail deberás iniciar sesión nuevamente.</small> <br>
-        <button type="submit" [disabled]="updateUser.invalid || currentPassword.value.length <6 " class="btn btn-dark">ACTUALIZAR</button>
+        <button type="submit" aria-label="Actualizar perfil" [disabled]="updateUser.invalid || currentPassword.value.length <6 " class="btn btn-dark">ACTUALIZAR</button>
       </form>
     </article>
   </section>
