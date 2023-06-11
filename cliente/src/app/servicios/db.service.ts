@@ -98,7 +98,7 @@ export class DbService {
     {
       const albumRef = collection(this.firestore, 'albums');
       await addDoc(albumRef, album);
-
+      // The album is created. Now we update it with the atribute "image", taking its ID
       const q = query(collection(this.firestore, "albums"), where("name", "==", album.name))
       const querySnapshots = await getDocs(q)
       let albumId = querySnapshots.docs[0].id;
@@ -133,7 +133,7 @@ export class DbService {
           })
         }
 
-        //event:any, artistId:string, albumName:string, albumId:string
+        // Actualizamos el file si han añadido uno nuevo
         if(file){
           this.uploadImageAlbum(file, album.artistId, album.name, albumId)
         }

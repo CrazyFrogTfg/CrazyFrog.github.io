@@ -47,24 +47,20 @@ export class FireStorageService {
   }
 
   uploadImageAlbum($event:any, artistaId:string, albumName:string, albumId:any){
-    //Preparamos la imagen dandole ruta
+    // Prepare the path with the file
     const file = $event.target.files[0];
     const fileRef = ref(this.storage, `artists/${artistaId}/${albumName}`)
-    //subimos la imagen
+    // Uploading the file to Storage
     uploadBytes(fileRef, file)
     .then(async response =>{
-      //const imagenAlbum = getDownloadURL(fileRef)
-      //Despues, obtenemos la imagen, guardamos en una variable
+      // Taking the url from Storage with the file to set into the doc in Database
       const imagenAlbum = await getDownloadURL(fileRef);
-      //const imagenAlbum = await this.getImageAlbum(artistaId, albumName)
-
-      // Update the doc with the url with the image
+      // Updating the doc with the url with the image
         const albumRef = doc(this.firestore, `albums/${albumId}`);
         await updateDoc(albumRef, {
           image:imagenAlbum,
         })
-        .then(response => console.log(response))
-
+        //.then(response => console.log(response)) It was using to detail the response in console
     })
     .catch(error => console.log(error));
   }
