@@ -41,7 +41,7 @@ h1, h5 {
 .lyrics-container{
   right: 0;
   top: 0;
-  padding-top: 190px;
+  padding-top: 250px;
 }
 
 .container{
@@ -55,7 +55,7 @@ h1, h5 {
   font-weight: 500;
   font-size: 16px;
   padding: 0.7em 1.4em 0.7em 1.1em;
-  color: white;
+  color: black;
   background: #ad5389;
   background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
   border: none;
@@ -81,7 +81,7 @@ h1, h5 {
   margin-bottom: 15px;
   top: 0;
   right: 0;
-  padding-top: 150px;
+  padding-top: 200px;
   z-index: 1;
 }
 
@@ -156,6 +156,7 @@ h1, h5 {
 
 .btn-fav{
   color:white;
+  margin-bottom: 5px;
 }
 
 .heart-svg:hover {

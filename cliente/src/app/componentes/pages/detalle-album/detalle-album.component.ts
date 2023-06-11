@@ -144,4 +144,8 @@ export class DetalleAlbumComponent {
     return this.db.isAlbumFav(this.albumId)
   }
 
+  goToArtist(){
+    this.router.navigate(['/artista'], {queryParams: {id: this.artistId}});
+  }
+
 }

@@ -14,7 +14,7 @@
 }
 
 p{
-  color:black;
+  color:#1b1c1e;
 }
 
 .newpl-box{
@@ -25,7 +25,7 @@ p{
   width: 60%;
   height: 90%;
   border-radius: 30px;
-  color: black;
+  color: #1b1c1e;
   font-family: 'Inter';
   padding-top: 25px;
   padding-bottom: 25px;
@@ -42,7 +42,7 @@ button{
 }
 
 .form-check-input:checked{
-  background-color: black;
+  background-color: #1b1c1e;
   --bs-check-indicator-color:
 }
 
