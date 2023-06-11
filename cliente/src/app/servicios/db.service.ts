@@ -103,9 +103,10 @@ export class DbService {
       const querySnapshots = await getDocs(q)
       let albumId = querySnapshots.docs[0].id;
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
+      return true
     }else{
-      window.confirm("Ese nombre de album ya está en uso.\nSerás redirigido al buscador.")
-    }
+      window.confirm("Ese nombre de album ya está en uso.")
+    } return false
   }
 
   uploadImageAlbum(event:any, artistId:string, albumName:string, albumId:string){
