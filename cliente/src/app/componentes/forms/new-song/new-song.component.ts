@@ -76,7 +76,8 @@ export class NewSongComponent {
     }else
     if(this.newSong.valid && this.isFile)
     {
-      await this.db.addSong(this.newSong.value, this.file)
+      let created = await this.db.addSong(this.newSong.value, this.file)
+      if(created)
       setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
     }
     
