@@ -105,7 +105,7 @@ export class DbService {
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
       return true
     }else{
-      window.confirm("Ese nombre de album ya está en uso.")
+      window.confirm("El nombre de álbum introducido ya existe.")
     } return false
   }
 
@@ -159,6 +159,7 @@ export class DbService {
   }
 
   async addSong(song:Song, file:any){
+    // Retornamos si se ha creado o no para controlar error de nombre existente.
     const q = query(collection(this.firestore, "songs"), where("name", "==", song.name))
     const querySnapshots = await getDocs(q)
     if(querySnapshots.docs.length === 0)
@@ -171,8 +172,10 @@ export class DbService {
       const querySnapshots = await getDocs(q)
       let songId = querySnapshots.docs[0].id;
       this.uploadSong(file, song, songId)
+      return true
     }else{
-      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
+      window.confirm("El nombre de canción introducido ya existe.")
+      return false
     }
   }
 
