@@ -103,9 +103,10 @@ export class DbService {
       const querySnapshots = await getDocs(q)
       let albumId = querySnapshots.docs[0].id;
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
+      return true
     }else{
-      window.confirm("Ese nombre de album ya está en uso.\nSerás redirigido al buscador.")
-    }
+      window.confirm("Ese nombre de album ya está en uso.")
+    } return false
   }
 
   uploadImageAlbum(event:any, artistId:string, albumName:string, albumId:string){
@@ -250,22 +251,11 @@ export class DbService {
   }
 
   getPlaylistByUser(uid:string): Observable<Playlist[]>{
-  //Con la linea siguiente vaciamos el array para que no se llene continuamente.
-  this.playlists=[]
-  const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
-  return collectionData(q, { idField: 'id'}) as Observable<Playlist[]>;
-    // const querySnapshot = await getDocs(q);
-    // querySnapshot.forEach(async (doc) => {
-    //   const playlist = {
-    //     id: doc.id,
-    //     name: doc.data()['name'],
-    //     private: doc.data()['private'],
-    //     owner: doc.data()['owner'],
-    //     songs: []
-    //   };
-    //   this.playlists.push(playlist);
-    // })
-    // return this.playlists as Observable<Artist[]>
+    // Con la linea siguiente vaciamos el array para que no se llene continuamente.
+    this.playlists=[]
+    // Obtenemos el array de manera Observable de las playlist del usuario.
+    const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
+    return collectionData(q, { idField: 'id'}) as Observable<Playlist[]>;
   }
 
   async updatePlaylist(playlist:Playlist, oldPlaylist:Playlist){
