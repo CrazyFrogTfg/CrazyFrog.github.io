@@ -125,7 +125,7 @@ export class ReproductorService {
           this.reproduce(this.songs[this.positionPlaying])
         } else {
           //Si es la última de la lista sin modo aleatorio
-          if(this.loopLocal && this.positionPlaying == this.songs.length-1){
+          if(this.positionPlaying == this.songs.length-1){
             this.positionPlaying = 0
             this.reproduce(this.songs[this.positionPlaying])
           }
@@ -133,13 +133,6 @@ export class ReproductorService {
     }
   }
 
-  converseDuration(duration: number): string {
-    const minutes = Math.floor(duration / 60);
-    const seconds = Math.floor(duration % 60);
-    const secondsFormateados = seconds < 10 ? `0${seconds}` : `${seconds}`;
-
-    return `${minutes}:${secondsFormateados}`;
-  }
   updateVolume(volume:any) {
     this.volumeLocal = volume
     this.audioElement.volume = volume;
@@ -156,16 +149,13 @@ export class ReproductorService {
     localStorage.setItem("randomizeLocal", JSON.stringify(this.randomizeLocal))
   }
 
-  getVolumeLocal()
-  {
+  getVolumeLocal(){
     return this.volumeLocal
   }
-  getLoopLocal()
-  {
+  getLoopLocal(){
     return this.loopLocal
   }
-  getRandomizeLocal()
-  {
+  getRandomizeLocal(){
     return this.randomizeLocal
   }
 
@@ -173,71 +163,13 @@ export class ReproductorService {
     this.audioElement.currentTime = this.currentProgress;
   }
 
-  handleSongEnd()
-  {
+  handleSongEnd(){
     setTimeout(() => this.nextSong(), 600)
   }
 
-  /*
-audioElement.play();
-Pause: Pausa la reproducción del audio.
-typescript
-Copy code
-audioElement.pause();
-Stop: Detiene la reproducción del audio y lo reinicia al principio.
-typescript
-Copy code
-audioElement.pause();
-audioElement.currentTime = 0;
-CurrentTime: Obtiene o establece la posición actual de reproducción del audio (en segundos).
-typescript
-Copy code
-// Obtener la posición actual
-const currentTime = audioElement.currentTime;
-
-// Establecer la posición actual
-audioElement.currentTime = 30; // Ir a los 30 segundos
-Duration: Obtiene la duración total del audio (en segundos).
-typescript
-Copy code
-const duration = audioElement.duration;
-Volume: Obtiene o establece el volumen del audio (entre 0 y 1).
-typescript
-Copy code
-// Obtener el volumen actual
-const volume = audioElement.volume;
-
-// Establecer el volumen
-audioElement.volume = 0.5; // Establecer volumen al 50%
-Muted: Obtiene o establece si el audio está silenciado.
-typescript
-Copy code
-// Obtener el estado de silencio
-const isMuted = audioElement.muted;
-
-*/
-
 // Establecer el estado de silencio
-muteUnmuted(){
-  //editar boton pa que cambie su imagen segun estado
-  this.audioElement.muted = !this.audioElement.muted; // Silenciar el audio
-
-}
-
-//Loop: Obtiene o establece si el audio debe repetirse en bucle.
-/*
-// Obtener el estado de bucle
-const isLooping = audioElement.loop;
-/*
-// Establecer el estado de bucle
-audioElement.loop = true; // Repetir en bucle
-Ended: Evento que se dispara cuando la reproducción del audio ha finalizado.
-typescript
-Copy code
-audioElement.addEventListener('ended', () => {
-  // Acciones a realizar cuando el audio ha finalizado
-});
-*/
-
-
+  muteUnmuted(){
+    //editar boton pa que cambie su imagen segun estado
+    this.audioElement.muted = !this.audioElement.muted; // Silenciar el audio
+  }
 }
