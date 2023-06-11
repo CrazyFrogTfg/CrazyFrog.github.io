@@ -35,6 +35,7 @@ import { ByNamePipe } from './filtros/by-name.pipe';
 import { SpinnerComponent } from './componentes/shared/spinner/spinner.component';
 import { DetallePlaylistComponent } from './componentes/pages/detalle-playlist/detalle-playlist.component';
 import { TarjetaFavComponent } from './componentes/pages/home/tarjeta-fav/tarjeta-fav.component';
+import { TimePipe } from './filtros/time.pipe';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { TarjetaFavComponent } from './componentes/pages/home/tarjeta-fav/tarjet
     SpinnerComponent,
     DetallePlaylistComponent,
     TarjetaFavComponent,
+    TimePipe,
   ],
   imports: [
     BrowserModule,

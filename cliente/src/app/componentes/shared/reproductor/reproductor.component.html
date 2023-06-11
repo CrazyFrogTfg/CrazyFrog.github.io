@@ -1,4 +1,4 @@
-<section class="repro" *ngIf="reproductorService.totalDuration">
+<section class="repro" *ngIf="reproductorService.audioElement.duration">
   <article class="buttons">
     <button class="btn btn-light audio-control" aria-label="Canción anterior" (click)="previousSong()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
@@ -30,7 +30,7 @@
   <article class="repro-center">
     <section class="infoCancion">
       <article class="time-line">
-        <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.rangeDuration">
+        <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.audioElement.duration">
       </article>
       <article class="d-flex justify-content-center">
         <button *ngIf="!this.loopMode" aria-label="Activar bucle" class="btn btn-light loop-random d-flex align-items-center justify-content-center" (click)="setLoopLocal()">
@@ -46,7 +46,7 @@
         <section class="song-name-dur">
           {{reproductorService.songPlaying.name}}
           <br>
-          {{reproductorService.totalDuration}}
+          {{reproductorService.audioElement.currentTime | time }} - {{reproductorService.audioElement.duration | time}}
         </section>
         <button *ngIf="!this.randomize" aria-label="Activar aleatorio" class="btn btn-light loop-random d-flex align-items-center justify-content-center" (click)="setRandomizeLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">

@@ -5,11 +5,10 @@ import { Observable, Subject, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class ReproductorService {
-  private audioElement: HTMLAudioElement;
 
+  audioElement: HTMLAudioElement;
   isPaused:boolean=true
   currentProgress: number = 0;
-  totalDuration: any
   positionPlaying:number=0
   songs:any[]=[]
   songPlaying:any
@@ -19,15 +18,9 @@ export class ReproductorService {
   rangeDuration:number = 0
 
   constructor() {
-
     this.audioElement = new Audio();
     this.audioElement.addEventListener('timeupdate', () => {
       this.currentProgress = this.audioElement.currentTime;
-    });
-    this.audioElement.addEventListener('loadedmetadata', () => {
-      this.rangeDuration = 0;
-      this.rangeDuration = this.audioElement.duration;
-      this.totalDuration = this.converseDuration(this.rangeDuration)
     });
     this.audioElement.addEventListener('ended', () => {
       this.handleSongEnd();
@@ -45,8 +38,7 @@ export class ReproductorService {
     this.randomizeLocal = JSON.parse(savedRandomizeLocal);
   }
 
-  ngOnInit()
-  {
+  ngOnInit(){
     this.audioElement.autoplay=true
   }
 
@@ -60,11 +52,10 @@ export class ReproductorService {
   }
 
   reproduce(song:any) {
-    if(!this.songs.includes(song))
-    {
+    if(!this.songs.includes(song)){
       this.songs=[]
     }
-    this.songPlaying = song; 
+    this.songPlaying = song;
     if(this.songPlaying.lyrics) //Evita error si no posee atributo 'lyrics'
     this.songPlaying.lyrics = this.songPlaying.lyrics.replace(/&#10;/g, '\n')
     this.audioElement.src = this.songPlaying.file;
@@ -74,7 +65,6 @@ export class ReproductorService {
   }
 
   reproducePlaylist(songs: any[], songOrder: number) {
-
     this.songs = songs;
     this.positionPlaying=songOrder
     this.songPlaying=this.songs[songOrder]
@@ -92,13 +82,12 @@ export class ReproductorService {
     return this.isPaused;
   }
 
-  pauseByLogout()
-  {
+  pauseByLogout(){
     this.audioElement.pause()
     this.isPaused = true;
   }
 
-  detener() {
+  detener(){
     this.audioElement.pause();
     this.audioElement.currentTime = 0;
     this.isPaused = true;
@@ -106,14 +95,12 @@ export class ReproductorService {
 
   previousSong(){
     //Si existe anterior
-    if(this.positionPlaying>0)
-    {
+    if(this.positionPlaying>0){
       this.positionPlaying--
       this.reproduce(this.songs[this.positionPlaying])
       return this.songs[this.positionPlaying]
       //Si no está en la lista
-    }else if(!this.songs.includes(this.songPlaying))
-    {
+    }else if(!this.songs.includes(this.songPlaying)){
       return this.songPlaying
     }
     else //Si es la primera de la lista
@@ -122,31 +109,28 @@ export class ReproductorService {
 
   nextSong(){
         // Controlamos si el modo aleatorio está activo
-    if(this.randomizeLocal == true)
-    {   // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
+    if(this.randomizeLocal == true){
+      // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
       let positionToPlay = Math.floor(Math.random()*this.songs.length)
-      while (this.positionPlaying == positionToPlay) {
+      while (this.positionPlaying == positionToPlay){
         positionToPlay = Math.floor(Math.random()*this.songs.length)
       }
       this.positionPlaying = positionToPlay
       this.reproduce(this.songs[this.positionPlaying])
-
-    } else  // No está el modo aleatorio activo entonces:
-      {     // Comprobamos si existe una canción siguiente y la reproducimos
-        if(this.songs.length>this.positionPlaying+1)
-        {
+    } else {
+        // No está el modo aleatorio activo entonces:
+        // Comprobamos si existe una canción siguiente y la reproducimos
+        if(this.songs.length>this.positionPlaying+1){
           this.positionPlaying++
           this.reproduce(this.songs[this.positionPlaying])
-        }
-        else //Si es la última de la lista sin modo aleatorio
-        {
-          if(this.loopLocal && this.positionPlaying == this.songs.length-1)
-          {
+        } else {
+          //Si es la última de la lista sin modo aleatorio
+          if(this.loopLocal && this.positionPlaying == this.songs.length-1){
             this.positionPlaying = 0
             this.reproduce(this.songs[this.positionPlaying])
           }
         }
-      }
+    }
   }
 
   converseDuration(duration: number): string {
