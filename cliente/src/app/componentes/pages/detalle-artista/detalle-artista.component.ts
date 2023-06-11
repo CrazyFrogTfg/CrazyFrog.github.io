@@ -67,12 +67,12 @@ export class DetalleArtistaComponent {
     });
   }
 
-  deleteArtist(artistInfo: any){
+  async deleteArtist(artistInfo: any){
     const pregunta="Si deseas eliminar "+artistInfo.name+"escribe su nombre aquí. Esta acción eliminará todos sus álbumes y canciones asociadas.";
     if( prompt(pregunta) == artistInfo.name)
     {
       this.db.delArtistFav(this.artistId)
-      this.db.deleteArtist(this.artistId)
+      await this.db.deleteArtist(this.artistId)
       this.router.navigate(['/buscador']);
     }
   }
