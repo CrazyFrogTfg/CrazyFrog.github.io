@@ -13,15 +13,14 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="exampleInputUser1">Usuario</label>
+          <label for="inputUser">Usuario</label>
           <input class="form-control"
-          type="text"
+          type="text" id="inputUser"
           placeholder="Introduzca usuario"
           [class.is-invalid]="usernameInvalid"
           formControlName="username">
           <small *ngIf="usernameInvalid" class="formError">Nombre de usuario incorrecto. Mínimo 4 caracteres.</small>
         </div>
-
         <div class="form-group">
           <label for="inputEmail">E-mail</label>
           <input class="form-control"
