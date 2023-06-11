@@ -47,6 +47,14 @@ p, .nav-link{
   color: #2a3914;
 }
 
+.divider {
+  position: relative;
+  height: 10px;
+  margin: 50px 50px;
+  background: linear-gradient(to right, #e9840e, #fff);
+  border-radius: 5px;
+}
+
 .nav-link:focus{
   background-color: greenyellow;
   border-radius: 25px;
