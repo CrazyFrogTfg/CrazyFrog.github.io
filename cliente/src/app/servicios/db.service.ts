@@ -250,22 +250,11 @@ export class DbService {
   }
 
   getPlaylistByUser(uid:string): Observable<Playlist[]>{
-  //Con la linea siguiente vaciamos el array para que no se llene continuamente.
-  this.playlists=[]
-  const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
-  return collectionData(q, { idField: 'id'}) as Observable<Playlist[]>;
-    // const querySnapshot = await getDocs(q);
-    // querySnapshot.forEach(async (doc) => {
-    //   const playlist = {
-    //     id: doc.id,
-    //     name: doc.data()['name'],
-    //     private: doc.data()['private'],
-    //     owner: doc.data()['owner'],
-    //     songs: []
-    //   };
-    //   this.playlists.push(playlist);
-    // })
-    // return this.playlists as Observable<Artist[]>
+    // Con la linea siguiente vaciamos el array para que no se llene continuamente.
+    this.playlists=[]
+    // Obtenemos el array de manera Observable de las playlist del usuario.
+    const q = query(collection(this.firestore, "playlists"), where("owner", "==", uid))
+    return collectionData(q, { idField: 'id'}) as Observable<Playlist[]>;
   }
 
   async updatePlaylist(playlist:Playlist, oldPlaylist:Playlist){
