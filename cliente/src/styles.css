@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Inter:wght@400&family=Poppins&family=Kanit&display=swap');
 
 body{
-  background-color:black;
+  background-color:#1b1c1e;
   font-family: 'Inter', sans-serif;
   margin-bottom: 80px;
 }
@@ -12,7 +12,7 @@ pre{
 }
 
 .navbar-nav li{
-  background-color: black;
+  background-color: #1b1c1e;
   border-radius: 25px;
   margin-right: 10px;
 }
@@ -30,7 +30,7 @@ h3{
 }
 
 .nav{
-  border:black;
+  border:#1b1c1e;
 }
 
 p, .nav-link{
@@ -67,7 +67,7 @@ p, .nav-link{
 
 .nav-link:hover{
   background-color:greenyellow;
-  color:black;
+  color:#1b1c1e;
   border:none;
   border-radius: 25px;
   transition-property: background-color, color;
@@ -117,7 +117,7 @@ footer {
 
   .navbar-toggler:hover {
     background-color:greenyellow;
-    color:black;
+    color:#1b1c1e;
     border-radius: 25px;
     transition-property: background-color, color;
     transition-duration: 0.4s;
@@ -133,7 +133,7 @@ footer {
     display:flex;
     flex-direction: column; /* Mostrar los elementos en una columna cuando se muestra la barra de navegación */
     align-items: center; /* Centrar los elementos verticalmente */
-    background-color: black; /* Cambiar el fondo de la barra de navegación */
+    background-color: #1b1c1e; /* Cambiar el fondo de la barra de navegación */
     justify-content: center;
   }
 
@@ -158,7 +158,7 @@ footer {
 }
 
 .nav-link {
-  color: black;
+  color: #1b1c1e;
 }
 
 .navbar-brand {
