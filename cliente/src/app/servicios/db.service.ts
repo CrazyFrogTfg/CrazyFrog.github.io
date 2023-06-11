@@ -104,9 +104,9 @@ export class DbService {
       let albumId = querySnapshots.docs[0].id;
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
       return true
-    }else{
-      window.confirm("El nombre de álbum introducido ya existe.")
-    } return false
+    }
+      //window.confirm("El nombre de álbum introducido ya existe.")
+    return false
   }
 
   uploadImageAlbum(event:any, artistId:string, albumName:string, albumId:string){
@@ -173,10 +173,8 @@ export class DbService {
       let songId = querySnapshots.docs[0].id;
       this.uploadSong(file, song, songId)
       return true
-    }else{
-      window.confirm("El nombre de canción introducido ya existe.")
-      return false
     }
+      return false
   }
 
   uploadSong(file:any, song:Song, songId:string){

@@ -22,7 +22,7 @@ export class NewSongComponent {
   order:any
   helpOrder:boolean=false
   isFile:boolean=false
-
+  createError:boolean=false
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -78,9 +78,17 @@ export class NewSongComponent {
     {
       let created = await this.db.addSong(this.newSong.value, this.file)
       if(created)
-      setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
+      {
+        setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
+      }else
+      this.createError=true
     }
     
+  }
+
+  closeModalError()
+  {
+    this.createError=false
   }
 
 }

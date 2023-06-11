@@ -44,5 +44,18 @@
       <button type="submit" aria-label="Crear" [disabled]="newSong.invalid || !isFile" class="btn btn-dark">CREAR</button>
     </form>
   </section>
+
+  <section *ngIf="createError" class="modal d-block" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <section class="modal-dialog modal-dialog-centered modal-sm">
+      <section class="modal-content">
+        <article class="modal-body">
+          <button type="button" class="btn-close" aria-label="Cerrar tutorial" (click)="closeModalError()" ></button>
+          <p class="modal-text">
+             ¡Ese nombre ya existe!
+          </p>
+        </article>
+      </section>
+    </section>
+  </section>
 </main>
 <app-reproductor></app-reproductor>

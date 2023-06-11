@@ -21,6 +21,7 @@ export class NewAlbumComponent {
   artistId:string="";
   currentYear: number = new Date().getFullYear();
   isFile:boolean = false;
+  createError:boolean=false
 
 
   constructor(private route:ActivatedRoute,
@@ -58,8 +59,11 @@ export class NewAlbumComponent {
     {
       let created:boolean = false
       created = await this.db.addAlbum(this.newAlbum.value, this.file)
-      if(created)
-      setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
+      if(created){
+
+        setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
+      }
+      else this.createError=true
     }
   }
 
@@ -79,4 +83,8 @@ export class NewAlbumComponent {
     this.isFile = true
   }
 
+  closeModalError()
+  {
+    this.createError=false
+  }
 }
