@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Title } from '@angular/platform-browser';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-users-list',
@@ -15,8 +16,14 @@ export class UsersListComponent {
   userInfo:any
   users:User[] = []
   isAdmin:boolean = false
+  deletePrompt:boolean = false
+  formDelete: FormGroup;
+  userDelete!: User;
 
-  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafroggy - Lista Usuarios')}
+  constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafroggy - Lista Usuarios')
+  this.formDelete = new FormGroup({
+    prompt: new FormControl(),
+  })}
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -32,12 +39,28 @@ export class UsersListComponent {
       }
   }
 
-  async deleteUser(user:User){
-    if(user.username == prompt("Escriba el nombre de usuario para confirmar su eliminación"))
-    {
-      await this.userService.deleteUser(user)
-      window.location.reload();
+  async deleteUser(){
+    await this.userService.deleteUser(this.userDelete)
+    window.location.reload();
+  }
+
+  deleteQuestion(user:User){
+    this.deletePrompt = true;
+    this.userDelete = user;
+  }
+
+  checkDeleteName(){
+    const promptControl = this.formDelete.get('prompt');
+    if (promptControl) {
+      if(promptControl.value == this.userDelete.username){
+        this.deleteUser()
+      }
     }
   }
+
+  closeModalError(){
+    this.deletePrompt=false
+  }
+
 
 }

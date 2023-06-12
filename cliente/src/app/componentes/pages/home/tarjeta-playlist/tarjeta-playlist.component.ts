@@ -19,6 +19,7 @@ export class TarjetaPlaylistComponent {
   idPlaylist:string = ""
   edit:boolean = false
   updatePlaylist:FormGroup
+  confirmDelete:boolean = false
 
   constructor(private router:Router, private firestore: Firestore,
     private userService:UsuariosService, private db:DbService, private fb:FormBuilder){
@@ -30,30 +31,35 @@ export class TarjetaPlaylistComponent {
       return this.updatePlaylist.get('name')?.invalid && this.updatePlaylist.get('name')?.touched
     }
 
-async ngOnInit() {
-  this.uid = await this.userService.getUID()
-  const q = query(collection(this.firestore, "playlists"), where("name", "==", this.playlist.name), where("owner", "==", this.uid))
-  const querySnapshots = await getDocs(q)
-  this.idPlaylist = querySnapshots.docs[0].id;
-}
+  async ngOnInit() {
+    this.uid = await this.userService.getUID()
+    const q = query(collection(this.firestore, "playlists"), where("name", "==", this.playlist.name), where("owner", "==", this.uid))
+    const querySnapshots = await getDocs(q)
+    this.idPlaylist = querySnapshots.docs[0].id;
+  }
 
-async goToDetails() {
-  this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
-}
+  async goToDetails() {
+    this.router.navigate(['/playlist'], { queryParams: {idPlaylist: this.idPlaylist} });
+  }
 
-async deletePlaylist() {
-  const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar esta playlist?');
-  if (confirmDelete) {
+  confirmDeletePlaylist(){
+    this.confirmDelete = true;
+  }
+
+  closeModalError(){
+    this.confirmDelete=false
+  }
+
+  async deletePlaylist() {
     await this.db.deletePlaylist(this.idPlaylist);
   }
-}
 
-toggleEdit(){
-  this.edit = !this.edit
-}
+  toggleEdit(){
+    this.edit = !this.edit
+  }
 
-async onSubmit(){
-  await this.db.updatePlaylist(this.updatePlaylist.value, this.playlist)
-}
+  async onSubmit(){
+    await this.db.updatePlaylist(this.updatePlaylist.value, this.playlist)
+  }
 
 }

@@ -92,3 +92,9 @@ pl-delete:hover{
 label{
   color:white;
 }
+
+.btn-modal{
+  margin-top: 5px;
+  margin-left: 3px;
+  float: right;
+}

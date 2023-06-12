@@ -60,8 +60,7 @@ export class NewAlbumComponent {
       let created:boolean = false
       created = await this.db.addAlbum(this.newAlbum.value, this.file)
       if(created){
-
-        setTimeout( () => this.router.navigate(['/artista'], { queryParams: { id: this.artistId } }), 1200)
+        this.router.navigate(['/artista'], { queryParams: { id: this.artistId } })
       }
       else this.createError=true
     }
@@ -83,8 +82,7 @@ export class NewAlbumComponent {
     this.isFile = true
   }
 
-  closeModalError()
-  {
+  closeModalError(){
     this.createError=false
   }
 }

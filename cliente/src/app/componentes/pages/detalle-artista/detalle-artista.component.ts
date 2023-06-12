@@ -24,6 +24,8 @@ export class DetalleArtistaComponent {
   updateArtist:FormGroup
   file:any=null
   query:string=""
+  deletePrompt:boolean = false
+  formDelete: FormGroup;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private router:Router, private fireStorage:FireStorageService,
@@ -34,14 +36,17 @@ export class DetalleArtistaComponent {
         description: ['', [Validators.maxLength(100)]],
         image: new FormControl(),
       })
+      this.formDelete = new FormGroup({
+        prompt: new FormControl(),
+      })
     }
 
-    get nameInvalid(){
-      return this.updateArtist.get('name')?.invalid && this.updateArtist.get('name')?.touched
-    }
-    get descriptionInvalid(){
-      return this.updateArtist.get('description')?.invalid && this.updateArtist.get('description')?.touched
-    }
+  get nameInvalid(){
+    return this.updateArtist.get('name')?.invalid && this.updateArtist.get('name')?.touched
+  }
+  get descriptionInvalid(){
+    return this.updateArtist.get('description')?.invalid && this.updateArtist.get('description')?.touched
+  }
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -67,14 +72,27 @@ export class DetalleArtistaComponent {
     });
   }
 
-  async deleteArtist(artistInfo: any){
-    const pregunta="Si deseas eliminar "+artistInfo.name+"escribe su nombre aquí. Esta acción eliminará todos sus álbumes y canciones asociadas.";
-    if( prompt(pregunta) == artistInfo.name)
-    {
-      this.db.delArtistFav(this.artistId)
-      await this.db.deleteArtist(this.artistId)
-      this.router.navigate(['/buscador']);
+  async deleteArtist(){
+    this.db.delArtistFav(this.artistId)
+    await this.db.deleteArtist(this.artistId)
+    this.router.navigate(['/buscador']);
+  }
+
+  deleteQuestion(){
+    this.deletePrompt = true;
+  }
+
+  checkDeleteName(){
+    const promptControl = this.formDelete.get('prompt');
+    if (promptControl) {
+      if(promptControl.value == this.artistInfo.name){
+        this.deleteArtist()
+      }
     }
+  }
+
+  closeModalError(){
+    this.deletePrompt=false
   }
 
   async goToDetails(artist: any) {
