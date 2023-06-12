@@ -92,7 +92,6 @@ constructor(protected reproductorService:ReproductorService){
     this.reproductorService.setOneLoop(posLoop)
   }
   
-
   isPlaying(): boolean {
     return !this.reproductorService.isPaused;
   }
@@ -105,6 +104,7 @@ constructor(protected reproductorService:ReproductorService){
     this.reproductorService.nextSong()
   }
 
+  // Eliminar variable muted y usar this.reproductorService.audioElement.muted? en HTML
   muteUnmuted(){
     this.muted = !this.muted
     this.reproductorService.muteUnmuted()
