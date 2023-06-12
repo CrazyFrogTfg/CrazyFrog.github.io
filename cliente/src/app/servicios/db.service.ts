@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, updateDoc, limit, deleteDoc, query, where, getDocs, getDoc, orderBy } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
 import { Artist } from '../interfaces/artist.interface';
 import { Album } from '../interfaces/album.interface';
 import { Observable } from 'rxjs';
@@ -273,6 +273,11 @@ export class DbService {
   }
 
   async deletePlaylist(playlistId:string){
+    const songsRef = collection(this.firestore, "playlists", playlistId, "songs")
+    const songsDocs = await getDocs(songsRef)
+    songsDocs.forEach(async (songDoc) => {
+      this.deleteSongPlaylist(playlistId, songDoc.id)
+    });
     await deleteDoc(doc(this.firestore, "playlists", playlistId));
   }
 
@@ -373,7 +378,6 @@ export class DbService {
 
   async deleteSongPlaylist(playlistId:string, songId:string){
     await deleteDoc(doc(this.firestore, `playlists/${playlistId}/songs`, songId))
-    .then(response => console.log(response))
     location.reload();
   }
 
