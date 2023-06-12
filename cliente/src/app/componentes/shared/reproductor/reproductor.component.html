@@ -1,4 +1,4 @@
-<section class="repro" *ngIf="reproductorService.audioElement.duration">
+<section class="repro" *ngIf="reproductorService.audioElement.src">
   <article class="buttons">
     <button class="btn btn-light audio-control" aria-label="Canción anterior" (click)="previousSong()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
@@ -14,7 +14,7 @@
         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
       </svg>
     </button>
-    <!-- [disabled]="!cancionSonando"  -->
+    
     <button class="btn btn-light audio-control" aria-label="Detener" (click)="detener()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor" class="bi bi-stop-fill" viewBox="0 0 16 16">
         <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
@@ -33,20 +33,28 @@
         <input type="range" class="time" [(ngModel)]="reproductorService.currentProgress"(change)="reproductorService.onProgressChange()" min="0" [max]="reproductorService.audioElement.duration">
       </article>
       <article class="d-flex justify-content-center">
-        <button *ngIf="!this.loopMode" aria-label="Activar bucle" class="btn btn-light loop-random d-flex align-items-center justify-content-center" (click)="setLoopLocal()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20 " height="20" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
+        <button (click)="changeLoops()" aria-label="Activar/Desactivar bucle" [ngClass]="{'btn-light': !reproductorService.loopList && !reproductorService.audioElement.loop, 'btn-dark':reproductorService.loopList || reproductorService.audioElement.loop, }"
+        class="btn loop-random d-flex align-items-center justify-content-center">
+       
+          <svg *ngIf="!reproductorService.loopList && !reproductorService.audioElement.loop" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
             <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
           </svg>
-        </button>
-        <button *ngIf="this.loopMode" aria-label="Desactivar bucle" class="btn btn-dark loop-random d-flex align-items-center justify-content-center" (click)="setLoopLocal()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
+          <svg *ngIf="reproductorService.loopList && !reproductorService.audioElement.loop" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
             <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
+          </svg>
+          <svg *ngIf="reproductorService.audioElement.loop" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-repeat-1" viewBox="0 0 16 16">
+            <path d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4h6Zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z"/>
+            <path d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0v-5Z"/>
           </svg>
         </button>
         <section class="song-name-dur">
-          {{reproductorService.songPlaying.name}}
-          <br>
-          {{reproductorService.audioElement.currentTime | time }} - {{reproductorService.audioElement.duration | time}}
+           <small> {{reproductorService.songPlaying.name}} </small>  <br>
+          <small *ngIf="reproductorService.audioElement.duration">
+            {{reproductorService.audioElement.currentTime | time }} - {{reproductorService.audioElement.duration | time}}
+          </small>
+          <small *ngIf="!reproductorService.audioElement.duration">
+            {{reproductorService.audioElement.currentTime | time }} - 0:00
+          </small>
         </section>
         <button *ngIf="!this.randomize" aria-label="Activar aleatorio" class="btn btn-light loop-random d-flex align-items-center justify-content-center" (click)="setRandomizeLocal()">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">

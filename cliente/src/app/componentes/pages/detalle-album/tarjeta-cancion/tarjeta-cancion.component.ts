@@ -83,13 +83,15 @@ export class TarjetaCancionComponent {
     if(this.updateSong.value)
       {
         await this.db.updateSong(this.updateSong.value, this.song);
-        this.router.navigate(['/home'])
+        window.location.reload()
       }
   }
 
   deleteSong() {
     this.db.deleteSong(this.song)
-    this.router.navigate(['/buscador'])
+    setTimeout(() => {
+      window.location.reload()
+    }, 500);
   }
 
   deleteQuestion(){

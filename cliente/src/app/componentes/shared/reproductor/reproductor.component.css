@@ -55,7 +55,12 @@ audio{
 .mute{
   margin-right: 10px;
 }
-
+.no-loop{
+  background-color: white;
+}
+.loop{
+  background-color:black;
+}
 .volume-control {
   margin-right: 15px;
 }

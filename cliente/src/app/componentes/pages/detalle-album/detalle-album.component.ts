@@ -110,7 +110,7 @@ export class DetalleAlbumComponent {
     {
       console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
-      this.router.navigate(['/home'])
+      window.location.reload()
     }
   }
 
@@ -122,7 +122,7 @@ export class DetalleAlbumComponent {
   deleteAlbum(){
     this.db.delAlbumFav(this.albumId)
     this.db.deleteAlbum(this.albumId)
-    this.router.navigate(['/buscador'])
+    this.router.navigate(['/artista'], {queryParams: {id: this.artistId}});
   }
 
   deleteQuestion(){

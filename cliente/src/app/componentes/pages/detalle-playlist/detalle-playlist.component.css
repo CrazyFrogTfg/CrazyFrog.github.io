@@ -246,6 +246,11 @@ label{
   padding-top: 190px;
 }
 
+.edit-button{
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
 @media (max-width: 767px) {
   .playlistDisp {
     display: flex;
