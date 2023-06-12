@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DbService } from 'src/app/servicios/db.service';
-import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
 
 @Component({
@@ -38,8 +37,8 @@ export class NewSongComponent {
   }
 
   constructor(private router: Router, private userService:UsuariosService, private db:DbService, private title:Title,
-    private route:ActivatedRoute, private fireStorage:FireStorageService, private fb:FormBuilder) {
-     title.setTitle('Mediafroggy - Nueva Cancion')
+    private route:ActivatedRoute, private fb:FormBuilder) {
+     title.setTitle('Mediafroggy - Nueva Canción')
     this.newSong = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       order: new FormControl(),
@@ -79,11 +78,10 @@ export class NewSongComponent {
       let created = await this.db.addSong(this.newSong.value, this.file)
       if(created)
       {
-        setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1500)
+        setTimeout(() => this.router.navigate(['/album'], { queryParams: { idArtist: this.artistId, idAlbum: this.albumId } }), 1200)
       }else
       this.createError=true
     }
-    
   }
 
   closeModalError()
