@@ -19,7 +19,7 @@ export class NewArtistComponent {
   createError:boolean=false
 
   constructor(private router:Router, private db:DbService, private fb:FormBuilder, private title:Title){
-    title.setTitle('Mediafroggy - New Artist')
+    title.setTitle('Mediafroggy - Nuevo Artista')
     this.newArtist = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.maxLength(100)]],

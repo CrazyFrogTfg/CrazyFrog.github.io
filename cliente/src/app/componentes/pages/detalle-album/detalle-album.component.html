@@ -54,7 +54,7 @@
 
           <div class="form-group">
             <label for="exampleInputImage" class="upload-img label-img">Imagen</label>
-            <input type="file" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
+            <input type="file" accept="image/*" (change)="setFile($event)" class="form-control upload-img" formControlName="image">
           </div>
 
           <button type="submit" aria-label="Editar album" [disabled]="updateAlbum.invalid || (!isFile && nameAlbum.value.length===0 && yearAlbum.value.length === 0 )" class="btn btn-light edit-button">
