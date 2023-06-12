@@ -86,7 +86,10 @@ export class TarjetaCancionComponent {
     const pregunta="Si deseas eliminar "+this.song.name+" escribe su nombre aquí";
     if( prompt(pregunta) == this.song.name) {
       this.db.deleteSong(this.song)
-      this.router.navigate(['/buscador'])
+      setTimeout(() => {
+        window.location.reload()
+      }, 500);
+      
     }
   }
 
