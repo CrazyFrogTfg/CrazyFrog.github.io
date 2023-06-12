@@ -14,8 +14,11 @@ export class ReproductorService {
   songPlaying:any
   volumeLocal:number
   randomizeLocal:boolean;
-  loopLocal:boolean
   rangeDuration:number = 0
+  loopsLocal:any = []
+  loopList:boolean=false
+  audioLoop:boolean=false
+  positionLoop:number=1
 
   constructor() {
     this.audioElement = new Audio();
@@ -30,9 +33,12 @@ export class ReproductorService {
     this.volumeLocal = JSON.parse(savedVolumeLocal);
     this.audioElement.volume=this.volumeLocal
 
-    let savedLoopLocal = localStorage.getItem("loopLocal") || "[]"
-    this.loopLocal = JSON.parse(savedLoopLocal);
-    this.audioElement.loop=this.loopLocal
+    let savedloopsLocal = localStorage.getItem("loopsLocal") || "[]"
+    this.loopsLocal = JSON.parse(savedloopsLocal);
+    this.audioLoop = this.loopsLocal[0]
+    this.loopList = this.loopsLocal[1]
+    this.positionLoop = this.loopsLocal[2]
+    this.audioElement.loop=this.audioLoop
 
     let savedRandomizeLocal = localStorage.getItem("randomizeLocal") || "[]"
     this.randomizeLocal = JSON.parse(savedRandomizeLocal);
@@ -125,7 +131,7 @@ export class ReproductorService {
           this.reproduce(this.songs[this.positionPlaying])
         } else {
           //Si es la última de la lista sin modo aleatorio
-          if(this.positionPlaying == this.songs.length-1){
+          if(this.loopList && this.positionPlaying == this.songs.length-1){
             this.positionPlaying = 0
             this.reproduce(this.songs[this.positionPlaying])
           }
@@ -139,21 +145,49 @@ export class ReproductorService {
     localStorage.setItem("volumeLocal", JSON.stringify(this.volumeLocal))
   }
 
-  setLoopLocal(loop:boolean){
-    this.loopLocal = loop
-    this.audioElement.loop = this.loopLocal
-    localStorage.setItem("loopLocal", JSON.stringify(this.loopLocal))
-  }
   setRandomizeLocal(randomize:boolean){
     this.randomizeLocal = randomize
     localStorage.setItem("randomizeLocal", JSON.stringify(this.randomizeLocal))
+  }
+  setloopsLocal(loop:boolean){
+    this.loopsLocal = loop
+    this.audioElement.loop = this.loopsLocal
+    localStorage.setItem("loopsLocal", JSON.stringify(this.loopsLocal))
+  }
+
+  actualizeLoops(posLoop:number){
+    this.loopsLocal = []
+    this.loopsLocal.push(this.audioLoop)
+    this.loopsLocal.push(this.loopList)
+    this.loopsLocal.push(posLoop)
+    localStorage.setItem("loopsLocal", JSON.stringify(this.loopsLocal))
+  }
+
+  setNoLoops(posLoop:number){
+    this.audioLoop = false
+    this.loopList = false // Eliminar cuando storage funcional
+    this.audioElement.loop = this.audioLoop
+    this.actualizeLoops(posLoop)
+  }
+
+  setLoopList(posLoop:number){
+    this.audioLoop = false //Eliminar esta linea cuando generemos el loopsLocal como array y se getee y tal.
+    this.loopList = true
+    this.audioElement.loop = this.audioLoop
+    this.actualizeLoops(posLoop)
+  }
+  setOneLoop(posLoop:number){
+    this.audioLoop = true
+    this.loopList = false
+    this.audioElement.loop = this.audioLoop
+    this.actualizeLoops(posLoop)
   }
 
   getVolumeLocal(){
     return this.volumeLocal
   }
-  getLoopLocal(){
-    return this.loopLocal
+  getloopsLocal(){
+    return this.loopsLocal
   }
   getRandomizeLocal(){
     return this.randomizeLocal

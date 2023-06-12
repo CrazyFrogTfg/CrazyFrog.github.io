@@ -15,85 +15,100 @@ export class ReproductorComponent {
 volume:number = 0.5;
 muted:boolean=false
 randomize:boolean = false
-loopMode:boolean = false
+loopPosition:number = this.reproductorService.positionLoop
 
 constructor(protected reproductorService:ReproductorService){
  }
 
-ngOnInit()
-{
-  this.getLocals()
-}
-
-ngOnChanges()
-{
-  if(this.receivedSong)
+  ngOnInit()
   {
-    this.reproduceFromBuscador()
+    this.getLocals()
   }
-}
 
-//Esta función es necesaria para poder reproducir una canción enviada desde buscador. Sin lista.
-reproduceFromBuscador() {
-  this.reproductorService.reproduce(this.receivedSong);
-}
+  ngOnChanges()
+  {
+    if(this.receivedSong)
+    {
+      this.reproduceFromBuscador()
+    }
+  }
 
-playPause() {
-  return this.reproductorService.playPause();
-}
+  //Esta función es necesaria para poder reproducir una canción enviada desde buscador. Sin lista.
+  reproduceFromBuscador() {
+    this.reproductorService.reproduce(this.receivedSong);
+  }
 
-detener() {
-  this.reproductorService.detener();
-}
+  playPause() {
+    return this.reproductorService.playPause();
+  }
 
-updateVolume() {
-  this.reproductorService.updateVolume(this.volume)
-}
+  detener() {
+    this.reproductorService.detener();
+  }
 
-getLocals() {
-  this.volume = this.getVolumeLocal()
-  this.loopMode = this.getLoopLocal()
-  this.randomize = this.getRandomizeLocal()
-}
+  updateVolume() {
+    this.reproductorService.updateVolume(this.volume)
+  }
 
-getVolumeLocal() {
-  return this.reproductorService.getVolumeLocal()
-}
+  getLocals() {
+    this.volume = this.getVolumeLocal()
+    this.randomize = this.getRandomizeLocal()
+  }
 
-getLoopLocal() {
-  return this.reproductorService.getLoopLocal()
-}
+  getVolumeLocal() {
+    return this.reproductorService.getVolumeLocal()
+  }
 
-getRandomizeLocal() {
-  return this.reproductorService.getRandomizeLocal()
-}
+  getRandomizeLocal() {
+    return this.reproductorService.getRandomizeLocal()
+  }
 
-setRandomizeLocal(){
-  this.randomize = !this.randomize
-  this.reproductorService.setRandomizeLocal(this.randomize)
-}
+  setRandomizeLocal(){
+    this.randomize = !this.randomize
+    this.reproductorService.setRandomizeLocal(this.randomize)
+  }
 
-setLoopLocal(){
-  this.loopMode = !this.loopMode
-  this.reproductorService.setLoopLocal(this.loopMode)
-}
+  changeLoops()
+  {
+    this.loopPosition++
+    switch(this.loopPosition){
+      case 1: this.setNoLoops(this.loopPosition)
+        break
+      case 2: this.setLoopList(this.loopPosition)
+        break
+      case 3: this.setOneLoop(this.loopPosition)
+        break
+      default: this.loopPosition = 1; this.setNoLoops(this.loopPosition)
+      break
+    }
+  }
+  setNoLoops(posLoop:number){
+    this.reproductorService.setNoLoops(posLoop)
+  }
+  setLoopList(posLoop:number){
+    this.reproductorService.setLoopList(posLoop)
+  }
+  setOneLoop(posLoop:number){
+    this.reproductorService.setOneLoop(posLoop)
+  }
+  
 
-isPlaying(): boolean {
-  return !this.reproductorService.isPaused;
-}
+  isPlaying(): boolean {
+    return !this.reproductorService.isPaused;
+  }
 
-previousSong(){
- this.reproductorService.previousSong()
-}
+  previousSong(){
+  this.reproductorService.previousSong()
+  }
 
-nextSong(){
-  this.reproductorService.nextSong()
-}
+  nextSong(){
+    this.reproductorService.nextSong()
+  }
 
-muteUnmuted(){
-  this.muted = !this.muted
-  this.reproductorService.muteUnmuted()
-}
+  muteUnmuted(){
+    this.muted = !this.muted
+    this.reproductorService.muteUnmuted()
+  }
 
 /*
 
