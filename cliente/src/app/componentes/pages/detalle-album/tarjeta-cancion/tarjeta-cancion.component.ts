@@ -78,7 +78,7 @@ export class TarjetaCancionComponent {
     if(this.updateSong.value)
       {
         await this.db.updateSong(this.updateSong.value, this.song);
-        this.router.navigate(['/home'])
+        window.location.reload()
       }
   }
 

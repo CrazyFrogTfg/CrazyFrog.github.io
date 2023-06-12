@@ -98,7 +98,7 @@ export class DetalleArtistaComponent {
     if(this.updateArtist.valid && this.updateArtist.touched)
     {
       await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.file);
-      this.router.navigate(['/home'])
+      window.location.reload()
     }
   }
 
