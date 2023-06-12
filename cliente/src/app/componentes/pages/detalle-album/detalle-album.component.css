@@ -3,6 +3,11 @@ h1, h5 {
   margin-bottom: 15px;
 }
 
+.btn-modal{
+  margin-top: 5px;
+  margin-left: 3px;
+  float: right;
+}
 
 .albumDisp {
   display: flex;

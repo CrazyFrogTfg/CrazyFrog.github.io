@@ -34,19 +34,18 @@ export class RegistroComponent {
   }
 
   async onSubmit() {
-    if(this.formReg.invalid){
+    if(!this.formReg.valid){
       return Object.values(this.formReg.controls).forEach( control=>{
         control.markAllAsTouched()
       })
-    }else if(this.formReg.valid)
-    {
+    }else if(this.formReg.valid){
       await this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))
 
         await this.userService.logout()
         await this.router.navigate(['/login'])
-    }else window.confirm("Formulario inválido.")
+    }
   }
 
   get usernameInvalid(){

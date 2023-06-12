@@ -26,11 +26,16 @@ export class TarjetaCancionComponent {
   urlPlaylist:boolean=false
   urlAlbum:boolean=false
   artistName:string = ""
+  deletePrompt:boolean = false
+  formDelete: FormGroup;
 
   constructor(private userService:UsuariosService, private db:DbService, private router:Router, private fb:FormBuilder){
     this.updateSong = this.fb.group({
       name: ['', [Validators.minLength(3), Validators.maxLength(20)]],
       lyrics: new FormControl(),
+    })
+    this.formDelete = new FormGroup({
+      prompt: new FormControl(),
     })
   }
   get nameInvalid(){
@@ -83,11 +88,26 @@ export class TarjetaCancionComponent {
   }
 
   deleteSong() {
-    const pregunta="Si deseas eliminar "+this.song.name+" escribe su nombre aquí";
-    if( prompt(pregunta) == this.song.name) {
-      this.db.deleteSong(this.song)
-      this.router.navigate(['/buscador'])
+    this.db.deleteSong(this.song)
+    this.router.navigate(['/buscador'])
+  }
+
+  deleteQuestion(){
+    this.deletePrompt = true;
+  }
+
+  checkDeleteName(){
+    const promptControl = this.formDelete.get('prompt');
+    if (promptControl) {
+      if(promptControl.value == this.song.name){
+        this.deleteSong()
+      }
     }
   }
+
+  closeModalError(){
+    this.deletePrompt=false
+  }
+
 
 }

@@ -128,7 +128,6 @@ export class DetallePlaylistComponent {
 
   reproduceRandomPlaylist(){
     let random = Math.floor(Math.random()*this.songs.length-0)
-    //window.confirm("funcion reproducirPlaylist de detPlaylist.ts: Linea siguiente no estaba, no enviaba nada al service. Tengo que cortar vuelvo luego")
     this.reproductorService.reproducePlaylist(this.songs, random)
   }
 

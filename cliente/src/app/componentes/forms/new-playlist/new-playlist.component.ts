@@ -17,6 +17,7 @@ export class NewPlaylistComponent {
   userInfo:any
   owner:string = '';
   canCreate:boolean=false
+  createError:boolean=false
 
   async ngOnInit() {
     this.userInfo = await this.userService.getUserInfo()
@@ -56,8 +57,16 @@ export class NewPlaylistComponent {
       })
     }else
     if(this.newPlaylist.valid){
-      await this.db.addPlaylist(this.newPlaylist.value)
-      this.router.navigate(['/home']);
+      let created:boolean = false
+      created = await this.db.addPlaylist(this.newPlaylist.value)
+      if(created){
+        this.router.navigate(['/home'])
+      }
+      else this.createError=true
     }
+  }
+
+  closeModalError(){
+    this.createError=false
   }
 }

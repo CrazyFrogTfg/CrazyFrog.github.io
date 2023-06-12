@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Album } from 'src/app/interfaces/album.interface';
 import { DbService } from 'src/app/servicios/db.service';
-import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -17,6 +16,7 @@ export class NewArtistComponent {
   file:any
   albumes:Album[]=[]
   isFile:boolean = false
+  createError:boolean=false
 
   constructor(private router:Router, private db:DbService, private fb:FormBuilder, private title:Title){
     title.setTitle('Mediafroggy - New Artist')
@@ -31,14 +31,17 @@ export class NewArtistComponent {
   }
 
   async onSubmit(){
-    if(this.newArtist.invalid){
+    if(this.newArtist.invalid) {
       return Object.values(this.newArtist.controls).forEach( control=>{
         control.markAllAsTouched()
       })
-    }else if(this.newArtist.valid && this.file)
-    {
-      await this.db.addArtist(this.newArtist.value, this.file)
-      this.router.navigate(['/buscador'])
+    } else if(this.newArtist.valid && this.file) {
+      let created:boolean = false
+      created = await this.db.addArtist(this.newArtist.value, this.file)
+      if(created){
+        this.router.navigate(['/buscador'])
+      }
+      else this .createError=true
     }
   }
 
@@ -53,5 +56,10 @@ export class NewArtistComponent {
   setFile($event:any){
     this.file = $event
     this.isFile = true
+  }
+
+  closeModalError()
+  {
+    this.createError=false
   }
 }

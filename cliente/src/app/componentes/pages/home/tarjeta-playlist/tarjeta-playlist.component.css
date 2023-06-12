@@ -12,6 +12,10 @@
   border-radius: 10px;
 }
 
+.btn-close{
+  float:right;
+}
+
 .edit-button{
   margin-left: 4px;
   margin-top: 4px;
@@ -29,6 +33,14 @@ h5{
   border: none;
   border-radius: 10px;
   transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-modal{
+  color: black;
+}
+
+.btn-modal-ok{
+  background-color: #e9840e;
 }
 
 .btn:hover, .btn:focus {

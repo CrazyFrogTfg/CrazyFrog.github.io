@@ -35,6 +35,8 @@ export class DetalleAlbumComponent {
   playlists:any
   userUID:string = ""
   visible:boolean = false
+  deletePrompt:boolean = false
+  formDelete: FormGroup;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, private userService:UsuariosService,
     private db:DbService, private reproductorService:ReproductorService, private router:Router, private fireStorage:FireStorageService,
@@ -44,6 +46,9 @@ export class DetalleAlbumComponent {
       name: ['', [Validators.minLength(2), Validators.maxLength(20)]],
       year: ['', [Validators.min(0), Validators.max(this.currentYear)]],
       image: new FormControl(),
+    })
+    this.formDelete = new FormGroup({
+      prompt: new FormControl(),
     })
   }
   get nameInvalid(){
@@ -115,13 +120,26 @@ export class DetalleAlbumComponent {
   }
 
   deleteAlbum(){
-    const pregunta="Si deseas eliminar "+ this.albumInfo.name +" escribe su nombre aquí. Esta acción eliminará todas las canciones asociadas.";
+    this.db.delAlbumFav(this.albumId)
+    this.db.deleteAlbum(this.albumId)
+    this.router.navigate(['/buscador'])
+  }
 
-    if( prompt(pregunta) == this.albumInfo.name) {
-      this.db.delAlbumFav(this.albumId)
-      this.db.deleteAlbum(this.albumId)
-      this.router.navigate(['/buscador'])
+  deleteQuestion(){
+    this.deletePrompt = true;
+  }
+
+  checkDeleteName(){
+    const promptControl = this.formDelete.get('prompt');
+    if (promptControl) {
+      if(promptControl.value == this.albumInfo.name){
+        this.deleteAlbum()
+      }
     }
+  }
+
+  closeModalError(){
+    this.deletePrompt=false
   }
 
   toggleEdit(){

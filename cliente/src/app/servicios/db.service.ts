@@ -32,17 +32,15 @@ export class DbService {
   async addArtist(artist:Artist, file:any){
     const q = query(collection(this.firestore, "artists"), where("name", "==", artist.name))
     const querySnapshots = await getDocs(q)
-    if(querySnapshots.docs.length === 0)
-    {
+    if(querySnapshots.docs.length === 0){
       const artistRef = collection(this.firestore, 'artists');
       addDoc(artistRef, artist);
 
       const artistId = await this.getArtistUIDByName(artist.name)
       this.uploadImageArtist(file, artistId)
-    }else{
-      window.confirm("Ese nombre de artista ya está en uso.\nSerás redirigido al buscador.")
-      this.router.navigate(['/home'])
+      return true
     }
+    return false
   }
 
   uploadImageArtist(event:any, artistId:string){
@@ -94,8 +92,7 @@ export class DbService {
   async addAlbum(album:Album, file:any){
     const q = query(collection(this.firestore, "albums"), where("name", "==", album.name))
     const querySnapshots = await getDocs(q)
-    if(querySnapshots.docs.length === 0)
-    {
+    if(querySnapshots.docs.length === 0){
       const albumRef = collection(this.firestore, 'albums');
       await addDoc(albumRef, album);
       // The album is created. Now we update it with the atribute "image", taking its ID
@@ -105,7 +102,6 @@ export class DbService {
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
       return true
     }
-      //window.confirm("El nombre de álbum introducido ya existe.")
     return false
   }
 
@@ -246,8 +242,9 @@ export class DbService {
     {
       const playlistRef = collection(this.firestore, 'playlists');
       await addDoc(playlistRef, playlist);
+      return true;
     }else{
-      window.confirm("Ese nombre de la canción ya está en uso.\nSerás redirigido al buscador.")
+      return false;
     }
   }
 
