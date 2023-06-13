@@ -27,8 +27,10 @@ export class UsuariosService {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
-  login({email, password}: any){
+  async login({email, password}: any){
+    if(await this.userExist(email))
     return signInWithEmailAndPassword(this.auth, email, password);
+    else return null
   }
 
   logout(){
@@ -72,6 +74,12 @@ export class UsuariosService {
     }
   }
 
+  async userExist(email: string) {
+    const q = query(collection(this.firestore, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.size > 0;
+  }
+  
   async getAllUsers(): Promise<User[]> {
     const querySnapshot = await getDocs(collection(this.firestore, "users"));
     const documents = querySnapshot.docs.map((doc) => doc.data() as User);
