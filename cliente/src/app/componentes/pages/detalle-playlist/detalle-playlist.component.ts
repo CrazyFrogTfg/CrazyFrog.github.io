@@ -72,7 +72,7 @@ export class DetallePlaylistComponent {
             const song = await getDoc(songsRef);
             if (song.exists()) {
               const songObject: Song = {
-                id:song.id,
+                id:songDoc.id,
                 name:song.data()['name'],
                 order:song.data()['order'],
                 lyrics:song.data()['lyrics'],
