@@ -12,8 +12,9 @@
           type="email"
           id="email"
           placeholder="Introduzca email"
-          [class.is-invalid]="formIsInvalid"
+          [class.is-invalid]="formIsInvalid || emailInvalid"
           formControlName="email">
+          <small *ngIf="emailInvalid" class="formError">Escriba un E-mail correctamente.</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Contraseña</label>

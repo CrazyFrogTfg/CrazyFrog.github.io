@@ -17,59 +17,27 @@ export class LoginComponent {
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
     title.setTitle('Mediafroggy - Login')
-    this.formLogin = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-      //  VERSION NUEVA:
-      // this.formLogin = this.fb.group({
-      //   email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
-      //   password: ['', [Validators.required]]
+      this.formLogin = this.fb.group({
+        email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+        password: ['', [Validators.required]]
     })
   }
 
-  ngOnInit(): void {}
-
   async onSubmit(){
-    //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
-    //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
-    if(this.formLogin.value.email.trim() != "" && this.formLogin.value.password.trim() != "")
+    if(this.formLogin.valid)
     {
-      try{
-        await this.userService.login(this.formLogin.value)  
-        this.router.navigate(['/home']);
-
-      }catch(error){
-        console.log(error)
-        console.log("No consigo atajar el error POST que salta en consola aun usando trycatch. Ni en service")
+      let login = await this.userService.login(this.formLogin.value)
+      if(login)
+      this.router.navigate(['/home']);
+      else
+      {
         this.formIsInvalid=true
       }
-    };
+    }else this.formIsInvalid=true;
   }
-
-  // onSubmit(){        CODIGO ACTUALIZADO. NO CATCHEA EL ERROR - NO FUNCIONA PERO ES VERSION MEJOR.
-  //   //habria que imprimir algo en pantalla con este error, pero no sé muy bien qué
-  //   //Quizas tambien agregar mensaje que se imprima en Home diciendo que los cambios han surtido efecto
-  //   if(this.formLogin.invalid){
-  //     return Object.values(this.formLogin.controls).forEach( control=>{
-  //       control.markAllAsTouched()
-  //       this.formIsInvalid=true
-  //     })
-  //   }else
-  //   if(this.formLogin.valid)
-  //   {
-  //     this.formIsInvalid=false
-  //     try{
-  //       this.userService.login(this.formLogin.value)  
-  //       this.router.navigate(['/home']);
-
-  //     }catch(error){
-  //       console.log(error)
-  //       console.log("No consigo atajar el error que salta en consola aun usando trycatch")
-  //       this.formIsInvalid=true
-  //     }
-  //   }
-  // }
-  
+  get emailInvalid(){
+    return this.formLogin.get('email')?.invalid && this.formLogin.get('email')?.touched
+  }
 
   goToRegister(){
     this.router.navigate(['/registro']);

@@ -30,7 +30,7 @@ export class UsuariosService {
   async login({email, password}: any){
     if(await this.userExist(email))
     return signInWithEmailAndPassword(this.auth, email, password);
-    else return null
+    else return false
   }
 
   logout(){
