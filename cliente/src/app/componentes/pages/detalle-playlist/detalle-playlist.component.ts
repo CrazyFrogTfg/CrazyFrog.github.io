@@ -68,18 +68,22 @@ export class DetallePlaylistComponent {
       const songsRef = collection(this.firestore, "playlists", this.playlistId, "songs");
       const songsSnapshot = await getDocs(songsRef);
         songsSnapshot.forEach((songDoc) => {
-          const song = {
-            id: songDoc.id,
-            name: songDoc.data()['name'],
-            order: songDoc.data()['order'],
-            lyrics: songDoc.data()['lyrics'],
-            file: songDoc.data()['file'],
-            albumId : songDoc.data()['albumId'],
-            artistId : songDoc.data()['artistId'],
-          };
-          this.songs.push(song);
+          const songId = songDoc.data()['songId']
+          const song = this.getSongById(songId)
+          this.songs.push(song)
+          // const song = {
+          //   id: songDoc.id,
+          //   name: songDoc.data()['name'],
+          //   order: songDoc.data()['order'],
+          //   lyrics: songDoc.data()['lyrics'],
+          //   file: songDoc.data()['file'],
+          //   albumId : songDoc.data()['albumId'],
+          //   artistId : songDoc.data()['artistId'],
+          // };
+          // this.songs.push(song);
         });
         this.visibility()
+        console.log(this.songs)
       });
 
       setTimeout(() => {
@@ -139,6 +143,11 @@ export class DetallePlaylistComponent {
     inputElement.select();
     document.execCommand('copy');
     this.renderer.removeChild(document.body, inputElement);
+  }
+
+  getSongById(songId:string):any{
+    console.log("Song id a getear: "+songId)
+    return this.db.getSongById(songId)
   }
 
 }
