@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FireStorageService } from 'src/app/servicios/fire-storage.service';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Router } from '@angular/router';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/servicios/db.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReproductorService } from 'src/app/servicios/reproductor.service';
 import { Renderer2 } from '@angular/core';
 
@@ -67,28 +66,28 @@ export class DetallePlaylistComponent {
       this.owner = userSnap.data()
       const songsRef = collection(this.firestore, "playlists", this.playlistId, "songs");
       const songsSnapshot = await getDocs(songsRef);
-        songsSnapshot.forEach((songDoc) => {
-          const songId = songDoc.data()['songId']
-          const song = this.getSongById(songId)
-          this.songs.push(song)
-          // const song = {
-          //   id: songDoc.id,
-          //   name: songDoc.data()['name'],
-          //   order: songDoc.data()['order'],
-          //   lyrics: songDoc.data()['lyrics'],
-          //   file: songDoc.data()['file'],
-          //   albumId : songDoc.data()['albumId'],
-          //   artistId : songDoc.data()['artistId'],
-          // };
-          // this.songs.push(song);
-        });
+        songsSnapshot.forEach(async (songDoc) => {
+          if(songDoc.data()['songId']){
+            const songsRef = doc(this.firestore, "songs", songDoc.data()['songId']);
+            const song = await getDoc(songsRef);
+            if (song.exists()) {
+              const songObject: Song = {
+                id:song.id,
+                name:song.data()['name'],
+                order:song.data()['order'],
+                lyrics:song.data()['lyrics'],
+                file:song.data()['file'],
+                albumId:song.data()['albumId'],
+                artistId:song.data()['artistId'],
+              };
+              this.songs.push(songObject);
+          }
+        }});
         this.visibility()
-        console.log(this.songs)
       });
-
       setTimeout(() => {
         this.visible = true
-      }, 800)
+      }, 1000)
   }
 
   async onSubmit(){
@@ -143,11 +142,6 @@ export class DetallePlaylistComponent {
     inputElement.select();
     document.execCommand('copy');
     this.renderer.removeChild(document.body, inputElement);
-  }
-
-  getSongById(songId:string):any{
-    console.log("Song id a getear: "+songId)
-    return this.db.getSongById(songId)
   }
 
 }

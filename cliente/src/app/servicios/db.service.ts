@@ -258,30 +258,8 @@ export class DbService {
 
   async getSongById(songId:string)
   {
-    console.log("getSongById in DB")
     const songsRef = doc(this.firestore, "songs", songId);
     const songDoc = await getDoc(songsRef);
-    console.log(songDoc.data())
-    let name = "hola";
-    
-    name = songDoc.data()?['name'];
-    let order = ""
-    order = songDoc.data()?['order'] || ""
-    let lyrics = songDoc.data()?['lyrics']
-    let file = songDoc.data()?['file']
-    let albumId = songDoc.data()?['albumId']
-    let artistId = songDoc.data()?['artistId']
-
-    // const song = {
-    //   id: songDoc.id,
-    //   name: songDoc.data()?['name'],
-    //   order: songDoc.data()['order'],
-    //   lyrics: songDoc.data()['lyrics'],
-    //   file: songDoc.data()['file'],
-    //   albumId: songDoc.data()['albumId'],
-    //   artistId: songDoc.data()['artistId']
-    // };
-
     return songDoc.data()
   }
 

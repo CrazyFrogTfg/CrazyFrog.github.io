@@ -108,7 +108,6 @@ export class DetalleAlbumComponent {
   async onSubmit(){
     if(this.updateAlbum)
     {
-      console.log("Controlar error de año, que puede ser mayor a la fecha actual")
       await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
       window.location.reload()
     }
