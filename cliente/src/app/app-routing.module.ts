@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './componentes/pages/home/home.component';
-import { SearchComponent } from './componentes/pages/search/search.component';
-import { LoginComponent } from './componentes/auth/login/login.component';
-import { RegisterComponent } from './componentes/auth/register/register.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { SearchComponent } from './components/pages/search/search.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
-import { ProfileComponent } from './componentes/auth/profile/profile.component';
-import { LandingComponent } from './componentes/pages/landing/landing.component';
-import { Error404Component } from './componentes/shared/error404/error404.component';
-import { NewPlaylistComponent } from './componentes/forms/new-playlist/new-playlist.component';
-import { UsersListComponent } from './componentes/admin/users-list/users-list.component';
-import { ArtistDetailComponent } from './componentes/pages/artist-detail/artist-detail.component';
-import { NewArtistComponent } from './componentes/forms/new-artist/new-artist.component';
-import { NewAlbumComponent } from './componentes/forms/new-album/new-album.component';
-import { AlbumDetailComponent } from './componentes/pages/album-detail/album-detail.component';
-import { NewSongComponent } from './componentes/forms/new-song/new-song.component';
-import { PlaylistDetailComponent } from './componentes/pages/playlist-detail/playlist-detail.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { LandingComponent } from './components/pages/landing/landing.component';
+import { Error404Component } from './components/shared/error404/error404.component';
+import { NewPlaylistComponent } from './components/forms/new-playlist/new-playlist.component';
+import { UsersListComponent } from './components/admin/users-list/users-list.component';
+import { ArtistDetailComponent } from './components/pages/artist-detail/artist-detail.component';
+import { NewArtistComponent } from './components/forms/new-artist/new-artist.component';
+import { NewAlbumComponent } from './components/forms/new-album/new-album.component';
+import { AlbumDetailComponent } from './components/pages/album-detail/album-detail.component';
+import { NewSongComponent } from './components/forms/new-song/new-song.component';
+import { PlaylistDetailComponent } from './components/pages/playlist-detail/playlist-detail.component';
 
 
 const routes: Routes = [
