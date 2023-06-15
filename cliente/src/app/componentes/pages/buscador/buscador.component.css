@@ -38,10 +38,14 @@
   --bs-check-indicator-color:
 }
 
+.form-check-input{
+  margin-right: 3px;
+}
+
 .filtrosSection{
     background-color: #e9840e;
     width: 80%;
-    height: 150px;
+    height: 170px;
     padding-left: 35px;
     padding-top: 20px;
     border-radius: 10px;
@@ -126,7 +130,9 @@ h2{
   width: 100%;
 }
 
-
+.new-content-title{
+  background-color: rgba(233, 131, 14, 0.5);
+}
 
 @media (max-width: 576px) {
   .filtrosSection {

@@ -20,6 +20,7 @@ export class BuscadorComponent {
   cboxArtist:boolean=true
   cboxAlbum:boolean=true
   cboxSong:boolean=true
+  cboxNew:boolean=true
   artists:any
   albums:any
   songs:Song[] = []
@@ -54,7 +55,7 @@ export class BuscadorComponent {
       querySnapshot.forEach(async (doc) => {
         const artist = {
           id: doc.id,
-          name: doc.data()['name'],          
+          name: doc.data()['name'],
           image: doc.data()['image'],
           dateCreation: doc.data()['dateCreation']
         };
@@ -82,7 +83,7 @@ export class BuscadorComponent {
     let currentDate = new Date();   // Creamos new Date y restamos 2 semanas.
     currentDate.setDate(currentDate.getDate() - 14);
     let dDate = currentDate.getDate().toString()
-    if(dDate.length < 2) dDate = 0+dDate   
+    if(dDate.length < 2) dDate = 0+dDate
     // Preparamos el dia. Necesario formato 2 numeros.
     let mDate = (currentDate.getMonth()+1).toString()
     if(mDate.length < 2) mDate = 0+mDate
@@ -157,6 +158,10 @@ export class BuscadorComponent {
   toogleCboxSong(){
     this.cboxSong = !this.cboxSong
   }
+  toogleCboxNew(){
+    this.cboxNew = !this.cboxNew
+  }
+
   newArtista(){
     this.router.navigate(['/newartist']);
   }
