@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc, query, where, getDocs, getDoc, QuerySnapshot } from '@angular/fire/firestore';
 import { Artist } from '../interfaces/artist.interface';
 import { Album } from '../interfaces/album.interface';
 import { Observable } from 'rxjs';
@@ -45,6 +45,19 @@ export class DbService {
 
   uploadImageArtist(event:any, artistId:string){
     this.fireStorage.uploadImageArtist(event, artistId)
+  }
+
+  async getNovedades(currentDate:string){
+    console.log(currentDate)
+    let novedades=[]
+    const q = query(collection(this.firestore, "artists"), where("dateCreation", "==", currentDate))
+    //const querySnapshots = await getDocs(q)
+    return collectionData(q, { idField: 'id'}) as Observable<Artist[]>;
+    // querySnapshots.forEach( artist =>{
+    //   novedades.push(artist)
+    // })
+    // return novedades
+    // const artistaRef = collection(this.firestore, 'artists')
   }
 
   getArtists(): Observable<Artist[]>{
