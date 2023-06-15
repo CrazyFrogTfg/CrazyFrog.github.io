@@ -40,7 +40,7 @@
             <input class="buscador" #search (keyup.enter)="setFilterName(search.value)" type="text" placeholder="Nombre de la playlist">
           </article>
           <article class=" playlist-list col-sm-12">
-            <app-tarjeta-playlist *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-tarjeta-playlist>
+            <app-playlist-card *ngFor="let playlist of playlists | byName:getFilterName()" [playlist]="playlist"></app-playlist-card>
           </article>
         </section>
 
@@ -69,7 +69,7 @@
       <h3 tabindex=0>Artistas</h3>
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
-          <app-tarjeta-fav *ngFor="let favArtist of getArtistsFav()" [favArtist] = "favArtist" ></app-tarjeta-fav>
+          <app-fav-card *ngFor="let favArtist of getArtistsFav()" [favArtist] = "favArtist" ></app-fav-card>
         </div>
       </div>
     </article>
@@ -77,7 +77,7 @@
       <h3 tabindex=0>Álbumes</h3>
       <div class="row row-cols-auto">
         <div class="d-flex flex-wrap col">
-          <app-tarjeta-fav *ngFor="let favAlbum of getAlbumsFav()" [favAlbum] = "favAlbum" ></app-tarjeta-fav>
+          <app-fav-card *ngFor="let favAlbum of getAlbumsFav()" [favAlbum] = "favAlbum" ></app-fav-card>
         </div>
       </div>
     </article>
@@ -147,8 +147,11 @@
         <article class="modal-body">
           <p class="modal-text" style="color: white;">
             La sección de <strong>Buscador</strong> la dividiremos en 2 bloques: <br> <br>
-            Parte 1: <strong>Filtros</strong><br> <br>
-            En esta sección encontramos un filtro para buscar el nombre que deseemos y en la parte derecha veremos otro en el que podemos filtrar por artistas, álbumes y canciones, bastaría solo con seleccionar lo que deseamos ver o deseleccionar lo que no.<br><br>
+            Parte 1: <strong>Filtros y Novedades</strong><br> <br>
+            En esta sección encontramos un filtro para buscar el nombre que deseemos y en la parte derecha veremos otro en el que podemos filtrar por artistas, álbumes y canciones, bastaría solo con seleccionar lo que deseamos ver o deseleccionar lo que no.
+            <br>
+            Además, encontramos la sección de novedades, donde se mostraran los artistas recién llegados o con nueva música.
+            <br><br>
             <img src="../../../../assets/Info/Filtros.webp" class="modal-image" alt="Filtros del buscador" width="100%"> <br> <br>
             Parte 2: <strong>Contenido</strong><br><br>
             <img src="../../../../assets/Info/Contenido.webp" class="modal-image" alt="Contenido de la sección buscador" width="100%"> <br> <br>
