@@ -8,7 +8,7 @@ import { Song } from '../interfaces/song.interface';
 import { FireStorageService } from './fire-storage.service';
 import { Storage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -45,19 +45,6 @@ export class DbService {
 
   uploadImageArtist(event:any, artistId:string){
     this.fireStorage.uploadImageArtist(event, artistId)
-  }
-
-  async getNovedades(currentDate:string){
-    console.log(currentDate)
-    let novedades=[]
-    const q = query(collection(this.firestore, "artists"), where("dateCreation", "==", currentDate))
-    //const querySnapshots = await getDocs(q)
-    return collectionData(q, { idField: 'id'}) as Observable<Artist[]>;
-    // querySnapshots.forEach( artist =>{
-    //   novedades.push(artist)
-    // })
-    // return novedades
-    // const artistaRef = collection(this.firestore, 'artists')
   }
 
   getArtists(): Observable<Artist[]>{
@@ -113,6 +100,14 @@ export class DbService {
       const querySnapshots = await getDocs(q)
       let albumId = querySnapshots.docs[0].id;
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
+
+      // Update date Artist for Novedades
+      const artistaRef = doc(this.firestore, 'artists', album.artistId);
+      //Actualizamos Nombre artista si ha cambiado
+      let aDate = formatDate(new Date(), 'yyyy/MM/dd', 'en')
+      await updateDoc(artistaRef, {
+        dateCreation: aDate,
+      })
       return true
     }
     return false

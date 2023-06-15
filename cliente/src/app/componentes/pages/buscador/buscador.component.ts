@@ -5,10 +5,8 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Song } from 'src/app/interfaces/song.interface';
-import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { Artist } from 'src/app/interfaces/artist.interface';
 import { Album } from 'src/app/interfaces/album.interface';
-import { formatDate,  } from '@angular/common';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
 
