@@ -114,29 +114,34 @@ export class ReproductorService {
   }
 
   nextSong(){
+    try
+    {
+      if(this.songs[0].file){
         // Controlamos si el modo aleatorio está activo
-    if(this.randomizeLocal == true){
-      // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
-      let positionToPlay = Math.floor(Math.random()*this.songs.length)
-      while (this.positionPlaying == positionToPlay){
-        positionToPlay = Math.floor(Math.random()*this.songs.length)
-      }
-      this.positionPlaying = positionToPlay
-      this.reproduce(this.songs[this.positionPlaying])
-    } else {
-        // No está el modo aleatorio activo entonces:
-        // Comprobamos si existe una canción siguiente y la reproducimos
-        if(this.songs.length>this.positionPlaying+1){
-          this.positionPlaying++
+        if(this.randomizeLocal == true){
+          // Creamos un valores aleatorios hasta que no sea el mismo que el 'actual sonando'
+          let positionToPlay = Math.floor(Math.random()*this.songs.length)
+          while (this.positionPlaying == positionToPlay){
+            positionToPlay = Math.floor(Math.random()*this.songs.length)
+          }
+          this.positionPlaying = positionToPlay
           this.reproduce(this.songs[this.positionPlaying])
         } else {
-          //Si es la última de la lista sin modo aleatorio
-          if(this.loopList && this.positionPlaying == this.songs.length-1){
-            this.positionPlaying = 0
-            this.reproduce(this.songs[this.positionPlaying])
+            // No está el modo aleatorio activo entonces:
+            // Comprobamos si existe una canción siguiente y la reproducimos
+            if(this.songs.length>this.positionPlaying+1){
+              this.positionPlaying++
+              this.reproduce(this.songs[this.positionPlaying])
+            } else {
+              //Si es la última de la lista sin modo aleatorio
+              if(this.loopList && this.positionPlaying == this.songs.length-1){
+                this.positionPlaying = 0
+                this.reproduce(this.songs[this.positionPlaying])
+              }
+            }
           }
-        }
-    }
+      }
+    }catch(error){}
   }
 
   updateVolume(volume:any) {
