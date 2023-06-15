@@ -5,10 +5,8 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Song } from 'src/app/interfaces/song.interface';
-import { TarjetaCancionComponent } from '../detalle-album/tarjeta-cancion/tarjeta-cancion.component';
 import { Artist } from 'src/app/interfaces/artist.interface';
 import { Album } from 'src/app/interfaces/album.interface';
-import { formatDate,  } from '@angular/common';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
 
@@ -59,10 +57,11 @@ export class BuscadorComponent {
           id: doc.id,
           name: doc.data()['name'],
           image: doc.data()['image'],
+          dateCreation: doc.data()['dateCreation']
         };
         this.novedades.push(artist);
       });
-
+    this.novedades.sort((a:any,b:any)=>a.dateCreation - b.dateCreation)
     this.db.getArtists().subscribe(artists =>{
       this.artists = artists
     })
