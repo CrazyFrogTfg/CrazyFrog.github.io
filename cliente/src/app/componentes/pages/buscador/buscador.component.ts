@@ -58,10 +58,11 @@ export class BuscadorComponent {
           id: doc.id,
           name: doc.data()['name'],          
           image: doc.data()['image'],
+          dateCreation: doc.data()['dateCreation']
         };
         this.novedades.push(artist);
       });
-    
+    this.novedades.sort((a:any,b:any)=>a.dateCreation - b.dateCreation)
     this.db.getArtists().subscribe(artists =>{
       this.artists = artists
     })
