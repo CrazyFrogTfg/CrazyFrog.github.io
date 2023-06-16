@@ -18,6 +18,7 @@ export class RegisterComponent {
   passwordError:string=""
   userNameError:string=""
   formPass:boolean=true
+  emailRepeated:boolean = false
 
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
     title.setTitle('Mediafroggy - Registro')
@@ -40,12 +41,15 @@ export class RegisterComponent {
         control.markAllAsTouched()
       })
     }else if(this.formReg.valid){
+      try {
       await this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))
-
         await this.userService.logout()
         await this.router.navigate(['/login'])
+      } catch (error) {
+      this.emailRepeated = true;
+      }
     }
   }
 

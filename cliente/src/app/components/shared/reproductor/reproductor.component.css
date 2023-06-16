@@ -156,11 +156,11 @@ input[type=range].volume:focus::-ms-fill-upper {
 
 input[type="range"].time {
   width: 93%;
-  height: 10px;
+  height: 8px;
   background-color: #fff;
   border-radius: 5px;
   outline: none;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 input[type="range"].time::-webkit-slider-thumb {
