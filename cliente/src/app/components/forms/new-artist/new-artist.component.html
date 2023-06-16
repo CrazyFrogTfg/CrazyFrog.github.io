@@ -33,7 +33,7 @@
         (change)="setFile($event)"
         required
         id="inputImage"
-        class="form-control upload-img"> 
+        class="form-control upload-img">
       </div>
       <small *ngIf="!isFile" class="formError">Es obligatorio añadir una imagen para el artista.</small>
       <button type="submit" [disabled]="newArtist.invalid" class="btn btn-dark" aria-label="Crear">CREAR</button>
@@ -51,10 +51,6 @@
         </article>
       </section>
     </section>
-  </section>
-
-  <section>
-    {{newArtist.value | json}}
   </section>
 </main>
 <app-reproductor></app-reproductor>
