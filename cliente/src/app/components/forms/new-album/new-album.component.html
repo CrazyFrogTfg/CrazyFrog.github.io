@@ -31,7 +31,7 @@
       <div class="form-group">
         <label for="exampleInputImage" class="upload-img label-img">*Imagen</label>
         <input class="form-control upload-img"
-        type="file" accept="image/*"
+        type="file" accept="image/svg, image/webp, image/png"
         (change)="setFile($event)"
         formControlName="image">
         <small *ngIf="!isFile" class="formError">Es obligatorio añadir una imagen para el álbum.</small>

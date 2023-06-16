@@ -78,10 +78,6 @@ export class ArtistDetailComponent {
     this.router.navigate(['/buscador']);
   }
 
-  deleteQuestion(){
-    this.deletePrompt = true;
-  }
-
   checkDeleteName(){
     const promptControl = this.formDelete.get('prompt');
     if (promptControl) {
@@ -89,6 +85,10 @@ export class ArtistDetailComponent {
         this.deleteArtist()
       }
     }
+  }
+
+  deleteQuestion(){
+    this.deletePrompt = true;
   }
 
   closeModalError(){

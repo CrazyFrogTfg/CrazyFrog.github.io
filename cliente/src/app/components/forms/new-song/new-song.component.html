@@ -36,7 +36,7 @@
       <div class="form-group">
         <label for="exampleInputImage" class="label-img">*Archivo</label>
         <input class="form-control upload-img"
-        type="file" accept="audio/*" required (change)="setFile($event)"
+        type="file" accept="audio/ogg, audio/mp3, audio/midi" required (change)="setFile($event)"
         id="exampleInputImage">
         <small class="formError" *ngIf="!isFile">Fichero obligatorio.</small>
       </div>
