@@ -57,7 +57,9 @@ h1{
   width:100%;
 }
 
-
+.emailRepeated{
+  color:black;
+}
 
 @media (max-width: 768px) {
   .register-box{

@@ -41,6 +41,7 @@
       </form>
       <button class="btn btn-outline-dark" (click)="goToLogin()" aria-label="Ir a iniciar sesión">INICIA SESIÓN</button>
     </div>
+    <p *ngIf="emailRepeated">El e-mail no es válido o ya está en uso.</p>
   </article>
 </section>
 
