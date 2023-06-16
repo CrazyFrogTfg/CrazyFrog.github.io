@@ -36,6 +36,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { PlaylistDetailComponent } from './components/pages/playlist-detail/playlist-detail.component';
 import { FavCardComponent } from './components/cards/fav-card/fav-card.component';
 import { TimePipe } from './filters/time.pipe';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { TimePipe } from './filters/time.pipe';
     PlaylistDetailComponent,
     FavCardComponent,
     TimePipe,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

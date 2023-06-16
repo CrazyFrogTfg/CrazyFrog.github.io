@@ -32,6 +32,7 @@ export class SearchComponent {
   playlists:any
   userUID:string = ""
   sendedSong:string = ""
+  filteredNewsLength:number = -1;
   filteredArtistsLength:number = -1;
   filteredAlbumsLength:number = -1;
   filteredSongsLength:number = -1;
@@ -144,6 +145,7 @@ export class SearchComponent {
     this.pagArtist = 0
     this.pagAlbum = 0
     this.pagSong = 0
+    this.filteredNewsLength = this.novedades.filter((searched: Artist) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
     this.filteredArtistsLength = this.artists.filter((searched: Artist) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
     this.filteredAlbumsLength = this.albums.filter((searched: Album) => searched.name.toLowerCase().includes(search.toLowerCase())).length;
     this.filteredSongsLength = this.songs.filter((searched: Song) => searched.name.toLowerCase().includes(search.toLowerCase())).length;

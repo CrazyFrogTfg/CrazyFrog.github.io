@@ -3,7 +3,7 @@ import { Auth, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPasswo
 import { Firestore, collection, addDoc, doc, getDocs, where, query, deleteDoc } from '@angular/fire/firestore';
 import { User } from '../interfaces/user.interface';
 import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
-import { updateDoc } from 'firebase/firestore';
+import { getDoc, updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
 import { ReproductorService } from './reproductor.service';
 
@@ -79,6 +79,53 @@ export class UsuariosService {
     const querySnapshot = await getDocs(q);
     return querySnapshot.size > 0;
   }
+
+  async getUserByEmail(email: string) {
+    const q = query(collection(this.firestore, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+      const user:User = {
+        id: querySnapshot.docs[0].id,
+        email: querySnapshot.docs[0].data()['email'],
+        imageProfile: querySnapshot.docs[0].data()['imageProfile'],
+        news: querySnapshot.docs[0].data()['news'],
+        password: querySnapshot.docs[0].data()['password'],
+        securityQuestion: querySnapshot.docs[0].data()['securityQuestion'],
+        username: querySnapshot.docs[0].data()['username'],
+      }
+    return user
+  }
+  
+
+  async resetPasswordByEmail(formUserToReset:any)
+  {
+    if(await this.userExist(formUserToReset.email))
+    {
+      const userToReset = await this.getUserByEmail(formUserToReset.email)
+      if(userToReset.securityQuestion == formUserToReset.securityQuestion)
+      {
+        this.resetPassword(formUserToReset.newPassword, userToReset)
+        return true
+      }
+      else return false
+
+    }
+    else return false
+  }
+
+  async resetPassword(newPassword:string, userToReset:any){
+    await signInWithEmailAndPassword(this.auth, userToReset.email, userToReset.password)
+    const currentUser = await this.getAuthh().currentUser;
+    if(currentUser)
+    await updatePassword(currentUser, newPassword)
+    const userRef = doc(this.firestore, 'users', userToReset.id);
+    await updateDoc(userRef, {
+      password:newPassword,
+    })
+    setTimeout( () =>{
+      this.logout();
+      this.router.navigate(['/login'])
+    } , 2000)
+  }
   
   async getAllUsers(): Promise<User[]> {
     const querySnapshot = await getDocs(collection(this.firestore, "users"));
@@ -86,9 +133,9 @@ export class UsuariosService {
     return documents;
   }
 
-  async updateUserDb(uid:any, user:User, oldUser:any, file:any){
+  async updateUserDb(user:any, oldUser:any, file?:any){
     //Obtenemos documento de Database
-    const userRef = doc(this.firestore, 'users', uid);
+    const userRef = doc(this.firestore, 'users', oldUser.id);
 
       //Comprobamos los datos de Auth
       const currentUser = this.getAuthh().currentUser;
@@ -128,7 +175,7 @@ export class UsuariosService {
         //Actualizamos imagen usuario
         if(file)
         {
-          this.uploadImageProfile(file, uid)
+          this.uploadImageProfile(file, oldUser.id)
         }
       }
   }

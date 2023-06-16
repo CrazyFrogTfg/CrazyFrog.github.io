@@ -29,6 +29,7 @@ export class RegisterComponent {
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       imageProfile: new FormControl(this.defaultImageProfile),
+      securityQuestion: ['', [Validators.required, Validators.minLength(4)]],
       news: new FormControl(false)
     })
   }
@@ -56,6 +57,9 @@ export class RegisterComponent {
   }
   get passwordInvalid(){
     return this.formReg.get('password')?.invalid && this.formReg.get('password')?.touched
+  }
+  get securityQuestionInvalid(){
+    return this.formReg.get('securityQuestion')?.invalid && this.formReg.get('securityQuestion')?.touched
   }
 
   goToLogin(){

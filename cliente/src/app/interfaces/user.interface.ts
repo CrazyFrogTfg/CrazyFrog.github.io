@@ -4,5 +4,7 @@ export interface User {
   password:string;
   username:string;
   imageProfile:string;
-  admin:boolean
+  admin?:boolean;
+  news:boolean;
+  securityQuestion?:string;
 }
