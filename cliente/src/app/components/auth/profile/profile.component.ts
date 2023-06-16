@@ -42,7 +42,7 @@ export class ProfileComponent {
     {
       if(this.updateUser.value.currentPassword === this.userInfo.password)
       {
-        await this.userService.updateUserDb(this.uid, this.updateUser.value, this.userInfo, this.file);
+        await this.userService.updateUserDb(this.updateUser.value, this.userInfo, this.file);
         setTimeout(() => this.router.navigate(['/home']), 1500)
 
       }else

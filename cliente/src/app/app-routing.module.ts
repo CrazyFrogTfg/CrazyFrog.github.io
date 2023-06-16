@@ -16,6 +16,7 @@ import { NewAlbumComponent } from './components/forms/new-album/new-album.compon
 import { AlbumDetailComponent } from './components/pages/album-detail/album-detail.component';
 import { NewSongComponent } from './components/forms/new-song/new-song.component';
 import { PlaylistDetailComponent } from './components/pages/playlist-detail/playlist-detail.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'artista', component: ArtistDetailComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'album', component: AlbumDetailComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
   {path: 'playlist', component: PlaylistDetailComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  {path: 'resetPassword', component: ResetPasswordComponent, ...canActivate(() => redirectLoggedInTo(['/home']))},
   {path: '**', component: Error404Component}
 ];
 

@@ -37,6 +37,16 @@
           <small *ngIf="passwordInvalid" class="formError">Contraseña incorrecta. Mínimo 6 caracteres.</small>
         </div>
 
+        <div class="form-group">
+          <label for="securityQuestion">*Pregunta de seguridad: ¿Cuál es tu canción favorita?</label>
+          <input class="form-control"
+          type="text" id="securityQuestion"
+          placeholder="En caso de olvido de contraseña"
+          [class.is-invalid]="securityQuestionInvalid"
+          formControlName="securityQuestion">
+          <small *ngIf="securityQuestionInvalid" class="formError">Valor incorrecto. Mínimo 4 caracteres.</small>
+        </div>
+
         <button type="submit" class="btn btn-dark" [disabled]="formReg.invalid" aria-label="Únete">ÚNETE</button>
       </form>
       <button class="btn btn-outline-dark" (click)="goToLogin()" aria-label="Ir a iniciar sesión">INICIA SESIÓN</button>

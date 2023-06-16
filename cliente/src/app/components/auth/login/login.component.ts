@@ -43,4 +43,8 @@ export class LoginComponent {
     this.router.navigate(['/registro']);
   }
 
+  goToResetPassword(){
+    this.router.navigate(['/resetPassword']);
+  }
+
 }

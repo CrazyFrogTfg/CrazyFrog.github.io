@@ -21,6 +21,7 @@ export class HomeComponent {
   playlists:Playlist[] = []
   artistsFav:Artist[] = []
   albumsFav:Album[] = []
+  query:string=""
 
   constructor(private userService:UsuariosService, private router: Router, private db:DbService,
       private fireStorage:FireStorageService, private title:Title){ title.setTitle('MediaFroggy - Home')}
