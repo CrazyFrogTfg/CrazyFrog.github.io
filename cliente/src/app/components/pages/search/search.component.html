@@ -12,7 +12,7 @@
 
   <section class="busquedaContainer container">
     <section class="row">
-      <aside class="sidebar col-lg-2 col-sm-4 col-xs-4 position-fixed">
+      <aside class="sidebar col-lg-2 col-sm-3 col-xs-4 position-fixed">
         <!-- add artista -->
         <article class="adminButtons" *ngIf="isAdmin">
           <button class="cssbuttons-io-button" aria-label="Nuevo Artista" (click)="newArtista()">
@@ -48,7 +48,7 @@
         </article>
       </aside>
       <!-- todo lo encontrado por el buscador -->
-      <section class="encontradoContainer col-lg-10 col-sm-8 col-xs-5">
+      <section class="encontradoContainer col-lg-10 col-sm-9 col-xs-5">
         <section class="container">
           <!-- Novedades -->
           <article *ngIf="cboxNew && filteredArtistsLength!=0 && novedades" class="artist-container">
@@ -59,7 +59,7 @@
             </h2>
             <div class="carousel-container align-items-center">
               <div class="carousel-content row row-cols-auto">
-                  <section class="d-flex flex-wrap col">
+                  <section class="d-flex flex-wrap col justify-content-center">
                     <app-artist-card *ngFor="let novedad of novedades | byName:getFilterName()" [artist]="novedad"></app-artist-card>
                   </section>
                 </div>
@@ -72,7 +72,7 @@
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
                 <div class="row row-cols-auto">
-                  <section class="d-flex flex-wrap col">
+                  <section class="d-flex flex-wrap col justify-content-center">
                     <app-artist-card *ngFor="let artist of artists | byName:getFilterName() | slice:pagArtist:pagArtist+4" [artist]="artist"></app-artist-card>
                   </section>
                 </div>
@@ -97,7 +97,7 @@
             <div class="carousel-container align-items-center">
               <div class="carousel-content">
                 <div class="row row-cols-auto">
-                  <section class="d-flex flex-wrap col">
+                  <section class="d-flex flex-wrap col justify-content-center">
                     <app-album-card *ngFor="let album of albums | byName:getFilterName() | slice:pagAlbum:pagAlbum+4" [album]="album"></app-album-card>
                   </section>
                 </div>
