@@ -9,9 +9,16 @@ a{
 a:hover{
     background-color:greenyellow;
     color:black;
-    border-radius: 25px;
+    border-radius: 2px;
     transition-property: background-color, color;
     transition-duration: 0.5s;
     transition-timing-function: ease;
-    font-weight:bolder; 
+    font-weight:bolder;
+}
+.link{
+  width: 60px;
+}
+
+.container{
+  margin-top: 3%;
 }
