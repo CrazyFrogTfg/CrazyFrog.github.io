@@ -24,14 +24,14 @@
           [class.is-invalid]="formIsInvalid"
           formControlName="password">
         </div>
+        <small class="question">¿No recuerdas tu contraseña?</small>
         <button type="submit" aria-label="Entrar" class="btn btn-dark" [disabled]="formLogin.invalid">ENTRAR</button>
         <button class="btn btn-outline-dark" aria-label="Registrate" (click)="goToRegister()">REGISTRATE</button>
+        <br><a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" (click)="goToResetPassword()" >Restaurar aquí</a>
       </form>
     </div>
     <div>
       <p class="formError" *ngIf="formIsInvalid" tabindex=0> {{credentialError}} </p>
     </div>
-    <small class="question">¿No recuerdas tu contraseña?</small>
-    <a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" (click)="goToResetPassword()" >Restaurar aquí</a>
   </article>
 </section>

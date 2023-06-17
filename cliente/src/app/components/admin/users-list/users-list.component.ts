@@ -19,6 +19,7 @@ export class UsersListComponent {
   deletePrompt:boolean = false
   formDelete: FormGroup;
   userDelete!: User;
+  pagUser:number=0
 
   constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafroggy - Lista Usuarios')
   this.formDelete = new FormGroup({
@@ -60,6 +61,15 @@ export class UsersListComponent {
 
   closeModalError(){
     this.deletePrompt=false
+  }
+
+  increasePagUser(){
+    if(this.users.length>4 && this.pagUser+1<=this.users.length-4)
+    this.pagUser+=4
+  }
+  decreasePagUser(){
+    if(this.pagUser+1>4)
+    this.pagUser-=4
   }
 
 
