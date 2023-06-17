@@ -24,10 +24,17 @@
           [class.is-invalid]="formIsInvalid"
           formControlName="password">
         </div>
-        <small class="question">¿No recuerdas tu contraseña?</small>
-        <button type="submit" aria-label="Entrar" class="btn btn-dark" [disabled]="formLogin.invalid">ENTRAR</button>
-        <button class="btn btn-outline-dark" aria-label="Registrate" (click)="goToRegister()">REGISTRATE</button>
-        <br><a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" (click)="goToResetPassword()" >Restaurar aquí</a>
+        <div class="d-flex flex-column flex-md-row mt-2 justify-content-between">
+          <div class="order-md-first">
+            <small class="question">¿Olvidaste tu contraseña?</small>
+            <br>
+            <a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" (click)="goToResetPassword()">Restaurar aquí</a>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <button type="submit" aria-label="Entrar" class="btn btn-dark" [disabled]="formLogin.invalid">ENTRAR</button>
+            <button class="btn btn-outline-dark" aria-label="Registrate" (click)="goToRegister()">REGISTRATE</button>
+          </div>
+        </div>
       </form>
     </div>
     <div>

@@ -130,6 +130,9 @@ footer {
   border: 2px solid #e9840e;
 }
 
+a:hover {
+  cursor:pointer;
+}
 
 @media (max-width: 768px) {
 
