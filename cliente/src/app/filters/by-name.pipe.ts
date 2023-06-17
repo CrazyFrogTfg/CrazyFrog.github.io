@@ -7,10 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ByNamePipe implements PipeTransform {
 
   transform(arraySearched: any[], param: string=""): any[] {
-    if(param){
+    if(param.trim()){
       return arraySearched.filter( searched => searched.name.toLowerCase().includes(param.toLowerCase()));
-      param=""
-      //return arrayFiltred
     }else
      {
        return arraySearched;
