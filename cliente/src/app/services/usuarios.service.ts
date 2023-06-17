@@ -34,19 +34,18 @@ export class UsuariosService {
     {
       await signInWithEmailAndPassword(this.auth, email, password)
       .then(()=> {
-        errorCatched = "Login existoso"
         this.router.navigate(['/home'])
       })
       .catch((error: FirebaseError) => {
         if (error.code === 'auth/wrong-password') {
-          errorCatched = "Contraseña incorrecta"
+          errorCatched = "Contraseña incorrecta."
         } else if(error.code === 'auth/too-many-requests') {
-          errorCatched = "Demasiados intentos. Espere o recupere su contraseña"
+          errorCatched = "Demasiados intentos. Espere o recupere su contraseña."
         } else {
-          errorCatched = "Error de Firebase"
+          errorCatched = "Error de Firebase."
         }
       });
-    } else errorCatched = "El usuario no existe"
+    } else errorCatched = "El usuario no existe."
     return errorCatched
   }
 
