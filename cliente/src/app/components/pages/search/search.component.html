@@ -70,7 +70,7 @@
           <article *ngIf="cboxArtist && filteredArtistsLength!=0 && artists" class="artist-container">
             <h2 tabindex=0>Artistas</h2>
             <div class="carousel-container align-items-center">
-              <div class="carousel-content">
+              <div class="carousel-content" [class.move-left]="carouselArtRight" [class.move-right]="carouselArtLeft">
                 <div class="row row-cols-auto">
                   <section class="d-flex flex-wrap col justify-content-center">
                     <app-artist-card *ngFor="let artist of artists | byName:getFilterName() | slice:pagArtist:pagArtist+4" [artist]="artist"></app-artist-card>
@@ -95,7 +95,7 @@
           <article *ngIf="cboxAlbum && filteredAlbumsLength && albums">
             <h2 tabindex=0>Albumes</h2>
             <div class="carousel-container align-items-center">
-              <div class="carousel-content">
+              <div class="carousel-content" [class.move-left]="carouselAlbRight" [class.move-right]="carouselAlbLeft">
                 <div class="row row-cols-auto">
                   <section class="d-flex flex-wrap col justify-content-center">
                     <app-album-card *ngFor="let album of albums | byName:getFilterName() | slice:pagAlbum:pagAlbum+4" [album]="album"></app-album-card>
@@ -120,7 +120,7 @@
           <article *ngIf="cboxSong && filteredSongsLength && songs">
             <h2 tabindex=0>Canciones</h2>
             <section>
-              <div class="container">
+              <div class="container" [class.move-left]="carouselSongRight" [class.move-right]="carouselSongLeft">
                 <div class="row">
                     <app-song-card *ngFor="let song of songs | byName:getFilterName() | slice:pagSong:pagSong+10" [song]="song" [playlists] = "playlists" (sendSong)="receiveSong($event)"></app-song-card>
                 </div>

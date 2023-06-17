@@ -27,10 +27,8 @@ export class LoginComponent {
     if(this.formLogin.valid)
     {
       const login = await this.userService.login(this.formLogin.value)
-      // if(login!="Login existoso"){
         this.credentialError = login
         this.formIsInvalid = true
-      // }
      } else this.formIsInvalid = true;
   }
   get emailInvalid(){
