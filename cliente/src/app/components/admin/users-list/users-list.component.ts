@@ -64,12 +64,12 @@ export class UsersListComponent {
   }
 
   increasePagUser(){
-    if(this.users.length>4 && this.pagUser+1<=this.users.length-4)
-    this.pagUser+=4
+    if(this.users.length>10 && this.pagUser+1<=this.users.length-10)
+    this.pagUser+=10
   }
   decreasePagUser(){
-    if(this.pagUser+1>4)
-    this.pagUser-=4
+    if(this.pagUser+1>10)
+    this.pagUser-=10
   }
 
 
