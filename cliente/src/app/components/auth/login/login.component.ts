@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
     title.setTitle('Mediafroggy - Login')
       this.formLogin = this.fb.group({
-        email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+        email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$')]],
         password: ['', [Validators.required]]
     })
   }

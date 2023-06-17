@@ -20,7 +20,7 @@ export class ProfileComponent {
   constructor(private userService:UsuariosService, private storage:Storage, private router:Router,
     private title:Title, private fb:FormBuilder) { title.setTitle('Mediafroggy - Perfil')
     this.updateUser = this.fb.group({
-      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+      email: ['', [Validators.pattern('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$')]],
       password: ['', [Validators.minLength(6)], Validators.maxLength(40)],
       username: ['', [Validators.minLength(4)], Validators.maxLength(20)],
       imageProfile: new FormControl(),
