@@ -101,9 +101,8 @@ export class DbService {
       let albumId = querySnapshots.docs[0].id;
       this.uploadImageAlbum(file, album.artistId, album.name, albumId)
 
-      // Update date Artist for Novedades
+      // Update dateCreation from artist to update news section
       const artistaRef = doc(this.firestore, 'artists', album.artistId);
-      //Actualizamos Nombre artista si ha cambiado
       let aDate = formatDate(new Date(), 'yyyy/MM/dd', 'en')
       await updateDoc(artistaRef, {
         dateCreation: aDate,
