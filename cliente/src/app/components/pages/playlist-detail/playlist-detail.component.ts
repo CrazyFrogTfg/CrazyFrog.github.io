@@ -3,7 +3,7 @@ import { FireStorageService } from 'src/app/services/fire-storage.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Song } from 'src/app/interfaces/song.interface';
 import { DbService } from 'src/app/services/db.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,10 +34,12 @@ export class PlaylistDetailComponent {
   updatePlaylist:FormGroup
   privateChecked:boolean=false
   visible:boolean = false
+  confirmDelete:boolean = false
 
   constructor(private route: ActivatedRoute,private renderer: Renderer2,
     private firestore: Firestore,private userService:UsuariosService, private fireStorage:FireStorageService,
-    private db:DbService, private reproductorService:ReproductorService, private fb:FormBuilder){
+    private db:DbService, private reproductorService:ReproductorService, private fb:FormBuilder,
+    private router:Router){
       this.updatePlaylist = this.fb.group({
         name: ['', [Validators.minLength(3), Validators.maxLength(17)]],
         private: [''],
@@ -96,6 +98,19 @@ export class PlaylistDetailComponent {
       await this.db.updatePlaylist(this.updatePlaylist.value, this.playlistInfo)
       location.reload();
     }
+  }
+
+  confirmDeletePlaylist(){
+    this.confirmDelete = true;
+  }
+
+  closeModalError(){
+    this.confirmDelete=false
+  }
+
+  async deletePlaylist() {
+    await this.db.deletePlaylist(this.playlistId);
+    this.router.navigate(['/home'])
   }
 
   getFilterName():string{

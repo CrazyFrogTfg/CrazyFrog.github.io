@@ -16,7 +16,7 @@
           <label for="inputUser">Usuario</label>
           <input class="form-control"
           type="text" id="inputUser"
-          placeholder="Introduzca usuario"
+          placeholder="{{userInfo.username}}"
           [class.is-invalid]="usernameInvalid"
           formControlName="username">
           <small *ngIf="usernameInvalid" class="formError">Nombre de usuario incorrecto. Mínimo 4 caracteres.</small>
@@ -35,7 +35,7 @@
           <label for="exampleInputPassword1">Nueva Contraseña</label>
           <input class="form-control"
           type="password"
-          placeholder="Introduzca contraseña"
+          placeholder="*******"
           [class.is-invalid]="passwordInvalid"
           formControlName="password">
           <small *ngIf="passwordInvalid" class="formError">Contraseña inválida. Mínimo 6 caracteres</small>

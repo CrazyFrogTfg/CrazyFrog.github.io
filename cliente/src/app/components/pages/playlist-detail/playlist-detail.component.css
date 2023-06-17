@@ -1,6 +1,6 @@
   h1, h5 {
     color:white;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     margin-right: 10px;
   }
 
@@ -274,10 +274,11 @@ label{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 40px;
   }
 
   .admin-button {
-    margin-top: 10px;
+    margin-top: 0px;
   }
 
   .buscador {
