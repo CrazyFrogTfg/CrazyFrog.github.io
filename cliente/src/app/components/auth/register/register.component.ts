@@ -43,7 +43,7 @@ export class RegisterComponent {
       })
     }else if(this.formReg.valid){
       try {
-      await this.userService.register(this.formReg.value)
+      this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))
         await this.userService.logout()

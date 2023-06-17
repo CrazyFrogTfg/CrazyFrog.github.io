@@ -26,14 +26,12 @@ export class LoginComponent {
   async onSubmit(){
     if(this.formLogin.valid)
     {
-      let login = await this.userService.login(this.formLogin.value)
-      if(login)
-      this.router.navigate(['/home']);
-      else
-      {
-        this.formIsInvalid=true
-      }
-    }else this.formIsInvalid=true;
+      const login = await this.userService.login(this.formLogin.value)
+      // if(login!="Login existoso"){
+        this.credentialError = login
+        this.formIsInvalid = true
+      // }
+     } else this.formIsInvalid = true;
   }
   get emailInvalid(){
     return this.formLogin.get('email')?.invalid && this.formLogin.get('email')?.touched

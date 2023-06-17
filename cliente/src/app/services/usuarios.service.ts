@@ -6,6 +6,7 @@ import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage
 import { getDoc, updateDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
 import { ReproductorService } from './reproductor.service';
+import { FirebaseError } from 'firebase-admin';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,27 @@ export class UsuariosService {
   }
 
   async login({email, password}: any){
+    let errorCatched:string=""
     if(await this.userExist(email))
-    return signInWithEmailAndPassword(this.auth, email, password);
-    else return false
+    {
+      await signInWithEmailAndPassword(this.auth, email, password)
+      .then(()=> {
+        errorCatched = "Login existoso"
+        this.router.navigate(['/home'])
+      })
+      .catch((error: FirebaseError) => {
+        if (error.code === 'auth/wrong-password') {
+          errorCatched = "Contraseña incorrecta"
+        } else if(error.code === 'auth/too-many-requests') {
+          errorCatched = "Demasiados intentos. Espere o recupere su contraseña"
+        } else {
+          errorCatched = "Error de Firebase"
+        }
+      });
+    } else errorCatched = "El usuario no existe"
+    return errorCatched
   }
+
 
   logout(){
     this.reproductorService.pauseByLogout()
