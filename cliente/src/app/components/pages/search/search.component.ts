@@ -46,13 +46,8 @@ export class SearchComponent {
   carAlbToRightEnd:boolean=false
   carAlbToLeft:boolean=false
   carAlbToLeftEnd:boolean=false
-  carSongToRight:boolean=false
-  carSongToRightEnd:boolean=false
-  carSongToLeft:boolean=false
-  carSongToLeftEnd:boolean=false
   pagArtBlocked:boolean=false
   pagAlbBlocked:boolean=false
-  pagSongBlocked:boolean=false
 
   constructor(private db:DbService,
               private firestore:Firestore,
@@ -123,7 +118,7 @@ export class SearchComponent {
           this.carArtToLeft=false
           this.carArtToLeftEnd=true
         }, 600)
-        setTimeout(()=> 
+        setTimeout(()=>
         {
           this.carArtToLeftEnd=false
           this.pagArtBlocked=false
@@ -140,7 +135,7 @@ export class SearchComponent {
           this.carArtToLeft=false
           this.carArtToLeftEnd=true
         }, 600)
-        setTimeout(()=> 
+        setTimeout(()=>
         {
           this.carArtToLeftEnd=false
           this.pagArtBlocked=false
@@ -162,7 +157,7 @@ export class SearchComponent {
           this.carArtToRight=false
           this.carArtToRightEnd=true
         }, 600)
-        setTimeout(()=> 
+        setTimeout(()=>
         {
           this.carArtToRightEnd=false
           this.pagArtBlocked=false
@@ -223,7 +218,7 @@ export class SearchComponent {
           this.carAlbToRight=false
           this.carAlbToRightEnd=true
         }, 600)
-        setTimeout(()=> 
+        setTimeout(()=>
         {
           this.carAlbToRightEnd=false
           this.pagAlbBlocked=false
