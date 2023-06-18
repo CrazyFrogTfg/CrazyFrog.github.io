@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<app-spinner *ngIf="!users"></app-spinner>
-<section class="users-container" *ngIf="users">
+<app-spinner *ngIf="!users[0].username"></app-spinner>
+<section class="users-container" *ngIf="users[0].username">
   <h2>Usuarios registrados</h2>
   <article class="table-container">
     <table class="table table-hover bg-white">
