@@ -44,7 +44,7 @@ export class NewArtistComponent {
       let created:boolean = false
       created = await this.db.addArtist(this.newArtist.value, this.file)
       if(created){
-        this.router.navigate(['/buscador'])
+        setTimeout( () => this.router.navigate(['/buscador']), 1000)
       }
       else this .createError=true
     }
