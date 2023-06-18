@@ -127,7 +127,7 @@ export class SearchComponent {
         {
           this.carArtToLeftEnd=false
           this.pagArtBlocked=false
-        }, 2000)
+        }, 1000)
       }
       //if has been filtered
       if(this.filteredArtistsLength > 4 && this.pagArtist+1<=this.filteredArtistsLength-4)
@@ -144,7 +144,7 @@ export class SearchComponent {
         {
           this.carArtToLeftEnd=false
           this.pagArtBlocked=false
-        }, 2000)
+        }, 1000)
       }
     }
   }
@@ -166,7 +166,7 @@ export class SearchComponent {
         {
           this.carArtToRightEnd=false
           this.pagArtBlocked=false
-        },2000)
+        }, 1000)
       }
 
     }
@@ -189,7 +189,7 @@ export class SearchComponent {
         {
           this.carAlbToLeftEnd=false
           this.pagAlbBlocked=false
-        }, 2000)
+        }, 1000)
       }
       if(this.filteredAlbumsLength > 4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
       {
@@ -205,7 +205,7 @@ export class SearchComponent {
         {
           this.carAlbToLeftEnd=false
           this.pagAlbBlocked=false
-        }, 2000)
+        }, 1000)
       }
     }
   }
@@ -227,70 +227,21 @@ export class SearchComponent {
         {
           this.carAlbToRightEnd=false
           this.pagAlbBlocked=false
-        }, 2000)
+        }, 1000)
       }
     }
   }
 
   increasePagSong(){
-    if(!this.pagSongBlocked)
-    {
-      if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
-      {
-        this.pagSongBlocked=true
-        this.carSongToLeftEnd=false
-        this.carSongToLeft=true
-        setTimeout(()=> {this.pagSong+=10},600)
-        setTimeout(()=>{
-          this.carSongToLeft=false
-          this.carSongToLeftEnd=true
-        }, 600)
-        setTimeout(()=> 
-        {
-          this.carSongToLeftEnd=false
-          this.pagSongBlocked=false
-        }, 2000) 
-      }
-      if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
-      {
-        this.pagSongBlocked=true
-        this.carSongToLeftEnd=false
-        this.carSongToLeft=true
-        setTimeout(()=> {this.pagSong+=10},600)
-        setTimeout(()=>{
-          this.carSongToLeft=false
-          this.carSongToLeftEnd=true
-        }, 600)
-        setTimeout(()=> 
-        {
-          this.carSongToLeftEnd=false
-          this.pagSongBlocked=false
-        }, 2000) 
-      }
-    }
+    if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
+      this.pagSong+=10
+    if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
+      this.pagSong+=10
   }
 
   decreasePagSong(){
-    if(!this.pagSongBlocked)
-    {
-      if(this.pagSong+1>10)
-      {
-        this.pagSongBlocked=true
-        this.carSongToRightEnd=false
-        this.carSongToRight=true
-        setTimeout(()=> {this.pagSong-=10},600)
-        setTimeout(()=> {
-          this.carSongToRight=false
-          this.carSongToRightEnd=true
-        }, 600)
-        setTimeout(()=>
-        {
-         this.carSongToRightEnd=false
-         this.pagSongBlocked=false
-        }, 2000)
-      }
-
-    }
+    if(this.pagSong+1>10)
+      this.pagSong-=10
   }
 
   getFilterName():string{
