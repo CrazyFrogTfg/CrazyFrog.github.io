@@ -3,6 +3,7 @@
 <section class="users-container" *ngIf="users[0].username">
   <h2>Usuarios registrados</h2>
   <article class="table-container">
+    <p class="list-info">Total de usuarios: {{users.length}}</p>
     <table class="table table-hover bg-white">
       <thead>
         <tr>
@@ -27,24 +28,6 @@
           </button>
           </td>
         </tr>
-        <tr class="justify-content-center">
-          <td></td>
-          <td class="justify-content-center">
-            <div class="d-flex justify-content-center">
-              <button [disabled]="this.pagUser+1<10" class="btn btn-light pag-button-prev" aria-label="Página anterior de usuarios" (click)="decreasePagUser()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                </svg>
-              </button>
-              <button [disabled]="this.users.length<10 || this.pagUser+1>this.users.length-10" class="btn btn-light pag-button-next" aria-label="Página siguiente de usuarios" (click)="increasePagUser()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                </svg>
-              </button>
-            </div>
-          </td>
-          <td>Mostrando página {{page}} de {{maxPages}}<br>Total de usuarios: {{users.length}}</td>
-        </tr>
       </tbody>
     </table>
   </article>
@@ -68,4 +51,17 @@
       </section>
     </section>
   </section>
+  <p class="list-info">Mostrando página {{page}} de {{maxPages}}</p>
+  <div class="d-flex justify-content-center">
+    <button [disabled]="this.pagUser+1<10" class="btn btn-light pag-button-prev" aria-label="Página anterior de usuarios" (click)="decreasePagUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+      </svg>
+    </button>
+    <button [disabled]="this.users.length<10 || this.pagUser+1>this.users.length-10" class="btn btn-light pag-button-next" aria-label="Página siguiente de usuarios" (click)="increasePagUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="47" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+      </svg>
+    </button>
+  </div>
 </section>
