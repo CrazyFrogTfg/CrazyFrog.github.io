@@ -38,12 +38,18 @@ export class SearchComponent {
   filteredSongsLength:number = -1;
   visible:boolean = false
   novedades:any=[]
-  carouselArtRight:boolean=false
-  carouselArtLeft:boolean=false
-  carouselAlbRight:boolean=false
-  carouselAlbLeft:boolean=false
-  carouselSongRight:boolean=false
-  carouselSongLeft:boolean=false
+  carArtToRight:boolean=false
+  carArtToRightEnd:boolean=false
+  carArtToLeft:boolean=false
+  carArtToLeftEnd:boolean=false
+  carAlbToRight:boolean=false
+  carAlbToRightEnd:boolean=false
+  carAlbToLeft:boolean=false
+  carAlbToLeftEnd:boolean=false
+  carSongToRight:boolean=false
+  carSongToRightEnd:boolean=false
+  carSongToLeft:boolean=false
+  carSongToLeftEnd:boolean=false
 
   constructor(private db:DbService,
               private firestore:Firestore,
@@ -102,94 +108,120 @@ export class SearchComponent {
 
   increasePagArtist(){
     //if is not filtered yet
-    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4){
-      this.carouselArtRight=true
-      setTimeout(()=> {
-        this.carouselArtRight=false
-        this.pagArtist+=4}
-        ,500)      
+    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
+    {
+      this.carArtToLeftEnd=false
+      this.carArtToLeft=true
+      setTimeout(()=> {this.pagArtist+=4},600)
+      setTimeout(()=>{
+        this.carArtToLeft=false
+        this.carArtToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carArtToLeftEnd=false, 2000)
     }
     //if has been filtered
     if(this.filteredArtistsLength > 4 && this.pagArtist+1<=this.filteredArtistsLength-4)
     {
-      this.carouselArtRight=true
-      setTimeout(()=> {
-        this.carouselArtRight=false
-        this.pagArtist+=4}
-        ,500)
+      this.carArtToLeftEnd=false
+      this.carArtToLeft=true
+      setTimeout(()=> {this.pagArtist+=4},600)
+      setTimeout(()=>{
+        this.carArtToLeft=false
+        this.carArtToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carArtToLeftEnd=false, 2000)
     }
   }
 
   decreasePagArtist(){
     if(this.pagArtist+1>4)
     {
-      this.carouselArtLeft=true
+      this.carArtToRightEnd=false
+      this.carArtToRight=true
+      setTimeout(()=> {this.pagArtist-=4},600)
       setTimeout(()=> {
-        this.carouselArtLeft=false
-        this.pagArtist-=4}
-        ,500)
+        this.carArtToRight=false
+        this.carArtToRightEnd=true
+      }, 600)
+      setTimeout(()=> this.carArtToRightEnd=false, 2000)
     }
   }
 
   increasePagAlbum(){
     if(this.filteredAlbumsLength < 1 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
     {
-      this.carouselAlbRight=true
-      setTimeout(()=> {
-        this.carouselAlbRight=false
-        this.pagAlbum+=4}
-        ,500) 
+      this.carAlbToLeftEnd=false
+      this.carAlbToLeft=true
+      setTimeout(()=> {this.pagAlbum+=4},600)
+      setTimeout(()=>{
+        this.carAlbToLeft=false
+        this.carAlbToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carAlbToLeftEnd=false, 2000)
     }
     if(this.filteredAlbumsLength > 4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
     {
-      this.carouselAlbRight=true
-      setTimeout(()=> {
-        this.carouselAlbRight=false
-        this.pagAlbum+=4}
-        ,500) 
+      this.carAlbToLeftEnd=false
+      this.carAlbToLeft=true
+      setTimeout(()=> {this.pagAlbum+=4},600)
+      setTimeout(()=>{
+        this.carAlbToLeft=false
+        this.carAlbToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carAlbToLeftEnd=false, 2000)
     }
   }
 
   decreasePagAlbum(){
     if(this.pagAlbum+1>4)
     {
-      this.carouselAlbLeft=true
+      this.carAlbToRightEnd=false
+      this.carAlbToRight=true
+      setTimeout(()=> {this.pagAlbum-=4},600)
       setTimeout(()=> {
-        this.carouselAlbLeft=false
-        this.pagAlbum-=4}
-        ,500)
+        this.carAlbToRight=false
+        this.carAlbToRightEnd=true
+      }, 600)
+      setTimeout(()=> this.carAlbToRightEnd=false, 2000)
     }
   }
 
   increasePagSong(){
     if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
     {
-      this.carouselSongRight=true
-      setTimeout(()=> {
-        this.carouselSongRight=false
-        this.pagSong+=10}
-        ,500) 
+      this.carSongToLeftEnd=false
+      this.carSongToLeft=true
+      setTimeout(()=> {this.pagSong+=10},600)
+      setTimeout(()=>{
+        this.carSongToLeft=false
+        this.carSongToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carSongToLeftEnd=false, 2000) 
     }
     if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
     {
-      this.carouselSongRight=true
-      setTimeout(()=> {
-        this.pagSong+=10
-        this.carouselSongRight=false
-      }
-        ,400) 
+      this.carSongToLeftEnd=false
+      this.carSongToLeft=true
+      setTimeout(()=> {this.pagSong+=10},600)
+      setTimeout(()=>{
+        this.carSongToLeft=false
+        this.carSongToLeftEnd=true
+      }, 600)
+      setTimeout(()=> this.carSongToLeftEnd=false, 2000) 
     }
   }
 
   decreasePagSong(){
     if(this.pagSong+1>10)
     {
-      this.carouselSongLeft=true
+      this.carSongToRightEnd=false
+      this.carSongToRight=true
+      setTimeout(()=> {this.pagSong-=10},600)
       setTimeout(()=> {
-        this.pagSong-=10
-        this.carouselSongLeft=false
-      }
-        ,400)
+        this.carSongToRight=false
+        this.carSongToRightEnd=true
+      }, 600)
+      setTimeout(()=> this.carSongToRightEnd=false, 2000)
     }
   }
 

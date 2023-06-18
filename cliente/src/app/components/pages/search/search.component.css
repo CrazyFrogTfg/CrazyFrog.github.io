@@ -130,28 +130,13 @@ h2{
   width: 100%;
 }
 
-/* .carousel-content-animated {
-  animation-duration: 3s;
-  animation-name: slidein;
+.move-start-left {
+  animation: startLeftAnimation 0.8s forwards;
 }
 
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%
-  }
-
-  to {
-    width: 100%;
-  }
-} */
-.move-left {
-  animation: moveLeftAnimation 0.5s forwards;
-}
-
-@keyframes moveLeftAnimation {
+@keyframes startLeftAnimation {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
     opacity: 1;
   }
   100% {
@@ -159,18 +144,47 @@ h2{
     opacity: 0;
   }
 }
-.move-right {
-  animation: moveRightAnimation 1s forwards;
+.move-end-left {
+  animation: endLeftAnimation 0.5s forwards;
 }
 
-@keyframes moveRightAnimation {
+@keyframes endLeftAnimation {
   0% {
-    transform: translateX(0);
+    transform: translateX(+90%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.move-start-right {
+  animation: startRightAnimation 0.8s forwards;
+}
+
+@keyframes startRightAnimation {
+  0% {
+    transform: translateX(0%);
     opacity: 1;
   }
   100% {
-    transform: translateX(+120%);
+    transform: translateX(+100%);
     opacity: 0;
+  }
+}
+.move-end-right {
+  animation: endRightAnimation 0.5s forwards;
+}
+
+@keyframes endRightAnimation {
+  0% {
+    transform: translateX(-90%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
   }
 }
 
