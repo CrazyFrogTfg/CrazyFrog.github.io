@@ -20,6 +20,8 @@ export class UsersListComponent {
   formDelete: FormGroup;
   userDelete!: User;
   pagUser:number=0
+  page:number=1;
+  maxPages:number=0
 
   constructor(private userService:UsuariosService, private router: Router, private firestore:Firestore, private title:Title){ title.setTitle('Mediafroggy - Lista Usuarios')
   this.formDelete = new FormGroup({
@@ -38,6 +40,8 @@ export class UsersListComponent {
           user.id = querySnapshots.docs[0].id
         });
       }
+      this.maxPages=Math.floor(this.users.length/10)
+      if(this.maxPages%10>0) this.maxPages++
   }
 
   async deleteUser(){
@@ -65,11 +69,17 @@ export class UsersListComponent {
 
   increasePagUser(){
     if(this.users.length>10 && this.pagUser+1<=this.users.length-10)
-    this.pagUser+=10
+    {
+      this.pagUser+=10
+      this.page++
+    }
   }
   decreasePagUser(){
     if(this.pagUser+1>10)
-    this.pagUser-=10
+    {
+      this.pagUser-=10
+      this.page--
+    }
   }
 
 
