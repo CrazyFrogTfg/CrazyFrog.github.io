@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private userService:UsuariosService, private router: Router, private title:Title, private fb:FormBuilder){
     title.setTitle('Mediafroggy - Login')
       this.formLogin = this.fb.group({
-        email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+        email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$')]],
         password: ['', [Validators.required]]
     })
   }
@@ -27,10 +27,8 @@ export class LoginComponent {
     if(this.formLogin.valid)
     {
       const login = await this.userService.login(this.formLogin.value)
-      // if(login!="Login existoso"){
         this.credentialError = login
         this.formIsInvalid = true
-      // }
      } else this.formIsInvalid = true;
   }
   get emailInvalid(){

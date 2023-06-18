@@ -38,6 +38,12 @@ export class SearchComponent {
   filteredSongsLength:number = -1;
   visible:boolean = false
   novedades:any=[]
+  carouselArtRight:boolean=false
+  carouselArtLeft:boolean=false
+  carouselAlbRight:boolean=false
+  carouselAlbLeft:boolean=false
+  carouselSongRight:boolean=false
+  carouselSongLeft:boolean=false
 
   constructor(private db:DbService,
               private firestore:Firestore,
@@ -96,40 +102,95 @@ export class SearchComponent {
 
   increasePagArtist(){
     //if is not filtered yet
-    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
-      this.pagArtist = this.pagArtist+4
+    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4){
+      this.carouselArtRight=true
+      setTimeout(()=> {
+        this.carouselArtRight=false
+        this.pagArtist+=4}
+        ,500)      
+    }
     //if has been filtered
     if(this.filteredArtistsLength > 4 && this.pagArtist+1<=this.filteredArtistsLength-4)
-      this.pagArtist = this.pagArtist+4
+    {
+      this.carouselArtRight=true
+      setTimeout(()=> {
+        this.carouselArtRight=false
+        this.pagArtist+=4}
+        ,500)
+    }
   }
 
   decreasePagArtist(){
     if(this.pagArtist+1>4)
-    this.pagArtist= this.pagArtist-4
+    {
+      this.carouselArtLeft=true
+      setTimeout(()=> {
+        this.carouselArtLeft=false
+        this.pagArtist-=4}
+        ,500)
+    }
   }
 
   increasePagAlbum(){
     if(this.filteredAlbumsLength < 1 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
-      this.pagAlbum = this.pagAlbum+4
+    {
+      this.carouselAlbRight=true
+      setTimeout(()=> {
+        this.carouselAlbRight=false
+        this.pagAlbum+=4}
+        ,500) 
+    }
     if(this.filteredAlbumsLength > 4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
-      this.pagAlbum = this.pagAlbum+4
+    {
+      this.carouselAlbRight=true
+      setTimeout(()=> {
+        this.carouselAlbRight=false
+        this.pagAlbum+=4}
+        ,500) 
+    }
   }
 
   decreasePagAlbum(){
     if(this.pagAlbum+1>4)
-    this.pagAlbum = this.pagAlbum-4
+    {
+      this.carouselAlbLeft=true
+      setTimeout(()=> {
+        this.carouselAlbLeft=false
+        this.pagAlbum-=4}
+        ,500)
+    }
   }
 
   increasePagSong(){
     if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
-      this.pagSong = this.pagSong+10
+    {
+      this.carouselSongRight=true
+      setTimeout(()=> {
+        this.carouselSongRight=false
+        this.pagSong+=10}
+        ,500) 
+    }
     if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
-      this.pagSong = this.pagSong+10
+    {
+      this.carouselSongRight=true
+      setTimeout(()=> {
+        this.pagSong+=10
+        this.carouselSongRight=false
+      }
+        ,400) 
+    }
   }
 
   decreasePagSong(){
     if(this.pagSong+1>10)
-    this.pagSong = this.pagSong-10
+    {
+      this.carouselSongLeft=true
+      setTimeout(()=> {
+        this.pagSong-=10
+        this.carouselSongLeft=false
+      }
+        ,400)
+    }
   }
 
   getFilterName():string{

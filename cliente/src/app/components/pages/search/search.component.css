@@ -130,6 +130,50 @@ h2{
   width: 100%;
 }
 
+/* .carousel-content-animated {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%
+  }
+
+  to {
+    width: 100%;
+  }
+} */
+.move-left {
+  animation: moveLeftAnimation 0.5s forwards;
+}
+
+@keyframes moveLeftAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+.move-right {
+  animation: moveRightAnimation 1s forwards;
+}
+
+@keyframes moveRightAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(+120%);
+    opacity: 0;
+  }
+}
+
 .new-content-title{
   background-color: rgba(233, 131, 14, 0.5);
 }

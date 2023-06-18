@@ -17,7 +17,7 @@ export class ResetPasswordComponent {
 
   constructor(private fb:FormBuilder, private userService:UsuariosService, private router:Router){
     this.resetPassword = this.fb.group({
-      email: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+      email: ['', [Validators.pattern('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$')]],
       securityQuestion: ['', [Validators.required, Validators.minLength(4)]],
       newPassword: ['', [Validators.minLength(6)]],
       newPassword2: ['', [Validators.minLength(6)]],
