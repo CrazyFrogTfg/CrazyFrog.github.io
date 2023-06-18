@@ -26,9 +26,9 @@ export class FireStorageService {
     this.filterName = newName
   }
 
-  uploadImageArtist($event:any, artistId:string){
+  uploadImageArtist(file:any, artistId:string){
     //Preparamos la imagen dandole ruta
-    const file = $event.target.files[0];
+    //const file = $event.target.files[0];
     const fileRef = ref(this.storage, `artists/${artistId}/imageArtist`)
 
     //subimos la imagen

@@ -109,14 +109,14 @@ export class ArtistDetailComponent {
   }
 
   setFile($event:any){
-    this.file = $event
+    this.file = $event.target.files[0]
   }
 
   async onSubmit(){
-    if(this.updateArtist.valid && this.updateArtist.touched)
+    if(this.updateArtist.valid)
     {
       await this.db.updateArtist(this.artistId, this.updateArtist.value, this.artistInfo, this.file);
-      window.location.reload()
+      setTimeout(()=>window.location.reload(),1000)
     }
   }
 

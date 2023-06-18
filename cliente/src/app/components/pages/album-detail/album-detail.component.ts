@@ -109,7 +109,7 @@ export class AlbumDetailComponent {
     if(this.updateAlbum)
     {
       await this.db.updateAlbum(this.albumId, this.updateAlbum.value, this.albumInfo, this.file);
-      window.location.reload()
+      setTimeout(()=>window.location.reload(),1000)
     }
   }
 

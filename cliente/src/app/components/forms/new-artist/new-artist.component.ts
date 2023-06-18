@@ -59,7 +59,7 @@ export class NewArtistComponent {
   }
 
   setFile($event:any){
-    this.file = $event
+    this.file = $event.target.files[0]
     this.isFile = true
   }
 

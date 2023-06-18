@@ -43,8 +43,8 @@ export class DbService {
     return false
   }
 
-  uploadImageArtist(event:any, artistId:string){
-    this.fireStorage.uploadImageArtist(event, artistId)
+  uploadImageArtist(file:any, artistId:string){
+    this.fireStorage.uploadImageArtist(file, artistId)
   }
 
   getArtists(): Observable<Artist[]>{
@@ -75,6 +75,7 @@ export class DbService {
         }
 
         if(file){
+          console.log(file)
           this.uploadImageArtist(file, artistId)
         }
   }
