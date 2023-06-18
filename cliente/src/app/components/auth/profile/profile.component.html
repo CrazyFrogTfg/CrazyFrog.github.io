@@ -16,6 +16,7 @@
           <label for="inputUser">Usuario</label>
           <input class="form-control"
           type="text" id="inputUser"
+          autocomplete="off"
           placeholder="{{userInfo.username}}"
           [class.is-invalid]="usernameInvalid"
           formControlName="username">
@@ -25,6 +26,7 @@
           <label for="inputEmail">E-mail</label>
           <input class="form-control"
           type="text" id="inputEmail"
+          autocomplete="off"
           placeholder={{userInfo.email}}
           [class.is-invalid]="emailInvalid"
           formControlName="email">
@@ -36,6 +38,7 @@
           <input class="form-control"
           type="password"
           placeholder="*******"
+          autocomplete="off"
           [class.is-invalid]="passwordInvalid"
           formControlName="password">
           <small *ngIf="passwordInvalid" class="formError">Contraseña inválida. Mínimo 6 caracteres</small>
@@ -43,7 +46,7 @@
 
         <div class="form-group">
           <label for="inputCurrentPassword">*Contraseña actual</label>
-          <input type="password" required class="form-control" #currentPassword id="inputCurrentPassword" placeholder="*******" formControlName="currentPassword">
+          <input type="password" required class="form-control" autocomplete="off" #currentPassword id="inputCurrentPassword" placeholder="*******" formControlName="currentPassword">
           <p *ngIf="passwordError"> {{passwordError}} </p>
         </div>
         <small tabindex=0>*Por motivos de seguridad, debes indicar tu contraseña actual para realizar cualquier cambio.</small>

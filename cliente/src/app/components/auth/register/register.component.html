@@ -11,6 +11,7 @@
           <label for="exampleInputEmail1">*E-mail</label>
           <input class="form-control"
           type="email"
+          autofocus
           placeholder="Introduzca e-mail"
           [class.is-invalid]="emailInvalid"
           formControlName="email">
@@ -31,6 +32,7 @@
           <label for="exampleInputPassword1">*Contraseña</label>
           <input class="form-control"
           type="password"
+          autocomplete="off"
           placeholder="Introduzca contraseña"
           [class.is-invalid]="passwordInvalid"
           formControlName="password">
@@ -41,6 +43,7 @@
           <label for="securityQuestion">*Pregunta de seguridad: ¿Cuál es tu canción favorita?</label>
           <input class="form-control"
           type="text" id="securityQuestion"
+          autocomplete="off"
           placeholder="En caso de olvido de contraseña"
           [class.is-invalid]="securityQuestionInvalid"
           formControlName="securityQuestion">

@@ -11,6 +11,7 @@
         <label for="namePlaylist" class="label">*Nombre</label>
         <input class="form-control"
         type="text" id="namePlaylist"
+        autofocus
         [class.is-invalid]="nameInvalid"
         formControlName="name">
         <small *ngIf="nameInvalid" class="formError" >Escribe un nombre válido, entre 3 y 17 caracteres.</small>

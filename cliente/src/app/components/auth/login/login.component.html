@@ -10,8 +10,10 @@
           <label for="exampleInputEmail">E-mail</label>
           <input class="form-control"
           type="email"
+          autofocus
           id="email"
           placeholder="Introduzca email"
+          autocomplete="off"
           [class.is-invalid]="formIsInvalid || emailInvalid"
           formControlName="email">
           <small *ngIf="emailInvalid" class="formError">Escriba un E-mail correctamente.</small>
@@ -20,6 +22,7 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input class="form-control"
           type="password" id="password"
+          autocomplete="off"
           placeholder="Introduzca contraseña"
           [class.is-invalid]="formIsInvalid"
           formControlName="password">
