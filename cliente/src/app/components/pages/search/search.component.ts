@@ -50,6 +50,9 @@ export class SearchComponent {
   carSongToRightEnd:boolean=false
   carSongToLeft:boolean=false
   carSongToLeftEnd:boolean=false
+  pagArtBlocked:boolean=false
+  pagAlbBlocked:boolean=false
+  pagSongBlocked:boolean=false
 
   constructor(private db:DbService,
               private firestore:Firestore,
@@ -107,121 +110,186 @@ export class SearchComponent {
   }
 
   increasePagArtist(){
-    //if is not filtered yet
-    if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
+    if(!this.pagArtBlocked)
     {
-      this.carArtToLeftEnd=false
-      this.carArtToLeft=true
-      setTimeout(()=> {this.pagArtist+=4},600)
-      setTimeout(()=>{
-        this.carArtToLeft=false
-        this.carArtToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carArtToLeftEnd=false, 2000)
-    }
-    //if has been filtered
-    if(this.filteredArtistsLength > 4 && this.pagArtist+1<=this.filteredArtistsLength-4)
-    {
-      this.carArtToLeftEnd=false
-      this.carArtToLeft=true
-      setTimeout(()=> {this.pagArtist+=4},600)
-      setTimeout(()=>{
-        this.carArtToLeft=false
-        this.carArtToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carArtToLeftEnd=false, 2000)
+      //if is not filtered yet
+      if(this.filteredArtistsLength < 1 && this.artists.length>4 && this.pagArtist+1<=this.artists.length-4)
+      {
+        this.pagArtBlocked=true
+        this.carArtToLeftEnd=false
+        this.carArtToLeft=true
+        setTimeout(()=> {this.pagArtist+=4},600)
+        setTimeout(()=>{
+          this.carArtToLeft=false
+          this.carArtToLeftEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carArtToLeftEnd=false
+          this.pagArtBlocked=false
+        }, 2000)
+      }
+      //if has been filtered
+      if(this.filteredArtistsLength > 4 && this.pagArtist+1<=this.filteredArtistsLength-4)
+      {
+        this.pagArtBlocked=true
+        this.carArtToLeftEnd=false
+        this.carArtToLeft=true
+        setTimeout(()=> {this.pagArtist+=4},600)
+        setTimeout(()=>{
+          this.carArtToLeft=false
+          this.carArtToLeftEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carArtToLeftEnd=false
+          this.pagArtBlocked=false
+        }, 2000)
+      }
     }
   }
 
   decreasePagArtist(){
-    if(this.pagArtist+1>4)
+    if(!this.pagArtBlocked)
     {
-      this.carArtToRightEnd=false
-      this.carArtToRight=true
-      setTimeout(()=> {this.pagArtist-=4},600)
-      setTimeout(()=> {
-        this.carArtToRight=false
-        this.carArtToRightEnd=true
-      }, 600)
-      setTimeout(()=> this.carArtToRightEnd=false, 2000)
+      if(this.pagArtist+1>4)
+      {
+        this.pagArtBlocked=true
+        this.carArtToRightEnd=false
+        this.carArtToRight=true
+        setTimeout(()=> {this.pagArtist-=4},600)
+        setTimeout(()=> {
+          this.carArtToRight=false
+          this.carArtToRightEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carArtToRightEnd=false
+          this.pagArtBlocked=false
+        },2000)
+      }
+
     }
   }
 
   increasePagAlbum(){
-    if(this.filteredAlbumsLength < 1 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
+    if(!this.pagAlbBlocked)
     {
-      this.carAlbToLeftEnd=false
-      this.carAlbToLeft=true
-      setTimeout(()=> {this.pagAlbum+=4},600)
-      setTimeout(()=>{
-        this.carAlbToLeft=false
-        this.carAlbToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carAlbToLeftEnd=false, 2000)
-    }
-    if(this.filteredAlbumsLength > 4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
-    {
-      this.carAlbToLeftEnd=false
-      this.carAlbToLeft=true
-      setTimeout(()=> {this.pagAlbum+=4},600)
-      setTimeout(()=>{
-        this.carAlbToLeft=false
-        this.carAlbToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carAlbToLeftEnd=false, 2000)
+      if(this.filteredAlbumsLength < 1 && this.albums.length>4 && this.pagAlbum+1<=this.albums.length-4)
+      {
+        this.pagAlbBlocked=true
+        this.carAlbToLeftEnd=false
+        this.carAlbToLeft=true
+        setTimeout(()=> {this.pagAlbum+=4},600)
+        setTimeout(()=>{
+          this.carAlbToLeft=false
+          this.carAlbToLeftEnd=true
+        }, 600)
+        setTimeout(()=>
+        {
+          this.carAlbToLeftEnd=false
+          this.pagAlbBlocked=false
+        }, 2000)
+      }
+      if(this.filteredAlbumsLength > 4 && this.pagAlbum+1<=this.filteredAlbumsLength-4)
+      {
+        this.pagAlbBlocked=true
+        this.carAlbToLeftEnd=false
+        this.carAlbToLeft=true
+        setTimeout(()=> {this.pagAlbum+=4},600)
+        setTimeout(()=>{
+          this.carAlbToLeft=false
+          this.carAlbToLeftEnd=true
+        }, 600)
+        setTimeout(()=>
+        {
+          this.carAlbToLeftEnd=false
+          this.pagAlbBlocked=false
+        }, 2000)
+      }
     }
   }
 
   decreasePagAlbum(){
-    if(this.pagAlbum+1>4)
+    if(!this.pagAlbBlocked)
     {
-      this.carAlbToRightEnd=false
-      this.carAlbToRight=true
-      setTimeout(()=> {this.pagAlbum-=4},600)
-      setTimeout(()=> {
-        this.carAlbToRight=false
-        this.carAlbToRightEnd=true
-      }, 600)
-      setTimeout(()=> this.carAlbToRightEnd=false, 2000)
+      if(this.pagAlbum+1>4)
+      {
+        this.pagAlbBlocked=true
+        this.carAlbToRightEnd=false
+        this.carAlbToRight=true
+        setTimeout(()=> {this.pagAlbum-=4},600)
+        setTimeout(()=> {
+          this.carAlbToRight=false
+          this.carAlbToRightEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carAlbToRightEnd=false
+          this.pagAlbBlocked=false
+        }, 2000)
+      }
     }
   }
 
   increasePagSong(){
-    if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
+    if(!this.pagSongBlocked)
     {
-      this.carSongToLeftEnd=false
-      this.carSongToLeft=true
-      setTimeout(()=> {this.pagSong+=10},600)
-      setTimeout(()=>{
-        this.carSongToLeft=false
-        this.carSongToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carSongToLeftEnd=false, 2000) 
-    }
-    if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
-    {
-      this.carSongToLeftEnd=false
-      this.carSongToLeft=true
-      setTimeout(()=> {this.pagSong+=10},600)
-      setTimeout(()=>{
-        this.carSongToLeft=false
-        this.carSongToLeftEnd=true
-      }, 600)
-      setTimeout(()=> this.carSongToLeftEnd=false, 2000) 
+      if(this.filteredSongsLength < 1 && this.songs.length>10 && this.pagSong+1<=this.songs.length-10)
+      {
+        this.pagSongBlocked=true
+        this.carSongToLeftEnd=false
+        this.carSongToLeft=true
+        setTimeout(()=> {this.pagSong+=10},600)
+        setTimeout(()=>{
+          this.carSongToLeft=false
+          this.carSongToLeftEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carSongToLeftEnd=false
+          this.pagSongBlocked=false
+        }, 2000) 
+      }
+      if(this.filteredSongsLength > 10 && this.pagSong+1<=this.filteredSongsLength-10)
+      {
+        this.pagSongBlocked=true
+        this.carSongToLeftEnd=false
+        this.carSongToLeft=true
+        setTimeout(()=> {this.pagSong+=10},600)
+        setTimeout(()=>{
+          this.carSongToLeft=false
+          this.carSongToLeftEnd=true
+        }, 600)
+        setTimeout(()=> 
+        {
+          this.carSongToLeftEnd=false
+          this.pagSongBlocked=false
+        }, 2000) 
+      }
     }
   }
 
   decreasePagSong(){
-    if(this.pagSong+1>10)
+    if(!this.pagSongBlocked)
     {
-      this.carSongToRightEnd=false
-      this.carSongToRight=true
-      setTimeout(()=> {this.pagSong-=10},600)
-      setTimeout(()=> {
-        this.carSongToRight=false
-        this.carSongToRightEnd=true
-      }, 600)
-      setTimeout(()=> this.carSongToRightEnd=false, 2000)
+      if(this.pagSong+1>10)
+      {
+        this.pagSongBlocked=true
+        this.carSongToRightEnd=false
+        this.carSongToRight=true
+        setTimeout(()=> {this.pagSong-=10},600)
+        setTimeout(()=> {
+          this.carSongToRight=false
+          this.carSongToRightEnd=true
+        }, 600)
+        setTimeout(()=>
+        {
+         this.carSongToRightEnd=false
+         this.pagSongBlocked=false
+        }, 2000)
+      }
+
     }
   }
 
