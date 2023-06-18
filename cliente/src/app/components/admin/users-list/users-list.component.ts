@@ -40,8 +40,7 @@ export class UsersListComponent {
           user.id = querySnapshots.docs[0].id
         });
       }
-      this.maxPages=Math.floor(this.users.length/10)
-      if(this.maxPages%10>0) this.maxPages++
+      this.maxPages=Math.ceil(this.users.length/10)
   }
 
   async deleteUser(){
