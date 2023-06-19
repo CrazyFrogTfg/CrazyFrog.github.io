@@ -46,8 +46,8 @@ export class RegisterComponent {
       this.userService.register(this.formReg.value)
       .then(async () =>
         await this.userService.addUser(this.formReg.value))
-        await this.userService.logout()
-        await this.router.navigate(['/login'])
+        ///await this.userService.logout()
+        setTimeout(()=> this.router.navigate(['/home']),2000) 
       } catch (error) {
       this.emailRepeated = true;
       }
